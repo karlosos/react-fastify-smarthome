@@ -1,0 +1,28 @@
+{
+  "name": "patronage20-js",
+  "version": "0.0.1",
+  "description": "The JavaScript app for patronage 2020 :)",
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^2.12.0"
+  },
+  "devDependencies": {
+    "fastify-swagger": "^2.5.0",
+    "jest": "^25.1.0",
+    "standard": "^14.3.1"
+  },
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intive/patronage20-js.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/intive/patronage20-js/issues"
+  },
+  "homepage": "https://github.com/intive/patronage20-js#readme"
+}
