@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Run tests on CI
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
 
     strategy:

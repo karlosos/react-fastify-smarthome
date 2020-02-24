@@ -20,7 +20,7 @@ module.exports = function ({ port }) {
     },
     exposeRoute: true
   })
-  // Declare a route
+
   app.get('/.well-known/health-check', async (request, reply) => {
     reply.send('OK')
   })
