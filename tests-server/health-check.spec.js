@@ -21,7 +21,9 @@ describe('/.well-known/health-check', function () {
       })
 
       expect(result.statusCode).toBe(200)
-      expect(result.payload).toEqual('OK')
+      expect(JSON.parse(result.payload)).toEqual({
+        message: 'OK'
+      })
     })
   })
 })

@@ -22,7 +22,9 @@ module.exports = function ({ port }) {
   })
 
   app.get('/.well-known/health-check', async (request, reply) => {
-    reply.send('OK')
+    reply.send({
+      message: 'OK'
+    })
   })
 
   app.ready(err => {

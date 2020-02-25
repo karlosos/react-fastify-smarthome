@@ -12,3 +12,7 @@
 ## Code convention
 
 * [standard js](https://standardjs.com/)
+
+## CI/CD
+
+* github actions
