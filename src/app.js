@@ -1,5 +1,10 @@
+const path = require('path')
+
 module.exports = function ({ port }) {
   const app = require('fastify')({ logger: true })
+  const serveStatic = require('serve-static')
+
+  app.use('/', serveStatic(path.join(__dirname, '..', 'frontend', 'dist')))
 
   app.register(require('fastify-swagger'), {
     routePrefix: '/.well-known/documentation',
