@@ -1,0 +1,12 @@
+{
+  "name": "Patronage 2020 JS",
+  "description": "Better smart home.",
+  "repository": "https://github.com/intive/patronage20-js",
+  "success_url": "/",
+  "image": "heroku/nodejs",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}
