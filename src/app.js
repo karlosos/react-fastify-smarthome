@@ -1,43 +1,54 @@
-const path = require('path')
+const path = require('path');
 
-module.exports = function ({ port }) {
-  const app = require('fastify')({ logger: true })
-  const serveStatic = require('serve-static')
+module.exports = function({ port }) {
+  const app = require('fastify')({ logger: true });
+  const serveStatic = require('serve-static');
 
-  app.use('/', serveStatic(path.join(__dirname, '..', 'frontend', 'dist')))
+  app.use('/', serveStatic(path.join(__dirname, '..', 'frontend', 'dist')));
 
-  app
-    .register((instance, opts, next) => {
-      instance.register(require('fastify-swagger'), {
-        routePrefix: '/documentation',
-        swagger: {
-          info: {
-            title: 'Patronage 2020 JS',
-            description: '',
-            version: '0.1.0'
+  app.register(
+    (instance, opts, next) => {
+      instance
+        .register(require('fastify-swagger'), {
+          routePrefix: '/documentation',
+          swagger: {
+            info: {
+              title: 'Patronage 2020 JS',
+              description: '',
+              version: '0.1.0'
+            },
+            externalDocs: {
+              url: 'https://swagger.io',
+              description: 'Find more info here'
+            },
+            host: 'localhost' + ':' + port,
+            schemes: ['http'],
+            consumes: ['application/json'],
+            produces: ['application/json']
           },
-          externalDocs: {
-            url: 'https://swagger.io',
-            description: 'Find more info here'
-          },
-          host: 'localhost' + ':' + port,
-          schemes: ['http'],
-          consumes: ['application/json'],
-          produces: ['application/json']
-        },
-        exposeRoute: true
-      })
-        .ready(err => {
-          if (err) throw err
-          instance.swagger()
+          exposeRoute: true
         })
+        .ready(err => {
+          if (err) throw err;
+          instance.swagger();
+        });
 
-      instance.register(require('./routes/well-known/health-check'))
+      instance.register(require('./routes/well-known/health-check'));
 
-      next()
-    }, {
+      next();
+    },
+    {
       prefix: '.well-known'
-    })
+    }
+  );
 
-  return app
-}
+  app.get('/api/v1/authors', async (request, reply) => {
+    reply.send(require('./public/authors.json'));
+  });
+
+  app.register(require('./routes/authors'), {
+    prefix: '/api/v1/authors'
+  });
+
+  return app;
+};
