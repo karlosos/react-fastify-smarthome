@@ -1,16 +1,16 @@
-import "regenerator-runtime/runtime";
-import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import rootReducer from './redux/reducer/index';
-import rootSaga from './redux/saga/index';
+import 'regenerator-runtime/runtime'
+import { applyMiddleware, createStore } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './redux/reducer/index'
+import rootSaga from './redux/saga/index'
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-    rootReducer,
-    applyMiddleware(sagaMiddleware),
-);
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+)
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga)
 
-export default store;
+export default store
