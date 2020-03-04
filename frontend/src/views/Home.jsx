@@ -9,7 +9,7 @@ export default function Home() {
     }, [])
     return (
         <div>
-            <h1>Patronage 2020 - JavaScript</h1>
+            <h1>Patronage 2020 - JavaScript!</h1>
         </div>
     )
 }
