@@ -42,10 +42,6 @@ module.exports = function({ port }) {
     }
   );
 
-  app.get('/api/v1/authors', async (request, reply) => {
-    reply.send(require('./public/authors.json'));
-  });
-
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'
   });

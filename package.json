@@ -32,7 +32,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "start": "node .",
+    "start": "nodemon .",
     "start:local": "npm run build:frontend && npm run start",
     "test": "npm run test:server",
     "test:server": "jest tests-server/",
