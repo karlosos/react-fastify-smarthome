@@ -5,7 +5,8 @@ module.exports = {
   entry: './frontend/src/index.jsx',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'frontend/dist')
+    path: path.resolve(__dirname, 'frontend/dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
