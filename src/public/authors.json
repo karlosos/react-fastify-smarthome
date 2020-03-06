@@ -1,40 +1,38 @@
-{
-  "authors": [
-    {
-      "id": 1,
-      "name": "Marta",
-      "github": "https://github.com/MartaJaszewska",
-      "avatar": "avatar"
-    },
-    {
-      "id": 2,
-      "name": "",
-      "github": "https://github.com/",
-      "avatar": "avatar"
-    },
-    {
-      "id": 3,
-      "name": "",
-      "github": "https://github.com/",
-      "avatar": "avatar"
-    },
-    {
-      "id": 4,
-      "name": "Kamil",
-      "github": "https://github.com/",
-      "avatar": "avatar"
-    },
-    {
-      "id": 5,
-      "name": "",
-      "github": "https://github.com/",
-      "avatar": "avatar"
-    },
-    {
-      "id": 6,
-      "name": "",
-      "github": "https://github.com/",
-      "avatar": "avatar"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Marta",
+    "github": "https://github.com/MartaJaszewska",
+    "avatar": "avatar"
+  },
+  {
+    "id": 2,
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  },
+  {
+    "id": 3,
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  },
+  {
+    "id": 4,
+    "name": "Kamil",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  },
+  {
+    "id": 5,
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  },
+  {
+    "id": 6,
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  }
+]
