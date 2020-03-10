@@ -11,7 +11,7 @@ const routes = async (fastify, options) => {
 
   fastify.get('/2', (request, reply) => {
     reply.send(authors[1]);
-  });
+  })
 
   fastify.get('/3', (request, reply) => {
     reply.send(authors[2])

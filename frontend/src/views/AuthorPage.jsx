@@ -1,6 +1,6 @@
 import React from 'react'
 import SampleCard from '../components/SampleCard'
-import ShowcaseHanna from '@components/Authors/ShowcaseHanna'
+import ShowcaseHanna from '@components/Authors/ShowcaseHanna/ShowcaseHanna.jsx'
 // on merging replace mock data coresponding to your id with your AuthorAbout component
 
 function switchAuthors (id) {

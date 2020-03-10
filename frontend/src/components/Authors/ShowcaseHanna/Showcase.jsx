@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 
-import Section from '@components/ShowcaseHanna/Section.jsx';
+import Section from '@components/Authors/ShowcaseHanna/Section.jsx';
 
 const useStyles = makeStyles(theme => ({
   container: {

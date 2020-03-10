@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import InfoField from '@components/ShowcaseHanna/InfoField.jsx';
-import Header from '@components/ShowcaseHanna/Header.jsx';
+import InfoField from '@components/Authors/ShowcaseHanna/InfoField.jsx';
+import Header from '@components/Authors/ShowcaseHanna/Header.jsx';
 
 const useStyles = makeStyles(theme => ({
   section: {

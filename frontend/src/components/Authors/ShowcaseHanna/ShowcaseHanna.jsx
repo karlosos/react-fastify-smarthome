@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
 import { fetchAuthorRequest, fetchAuthorCancel } from '@data/actions/author';
-import Showcase from '@components/ShowcaseHanna/Showcase.jsx';
+import Showcase from '@components/Authors/ShowcaseHanna/Showcase.jsx';
 
 export default function ShowcaseHanna (props) {
   const dispatch = useDispatch();

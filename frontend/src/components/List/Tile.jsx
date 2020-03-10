@@ -46,7 +46,7 @@ const Tile = (props) => {
           }
           action={
             <IconButton
-              onClick={()=> history.push(`/${id}`)}
+              onClick={()=> history.push(`/authors/${id}`)}
               aria-label="ArrowForwardIos">
               <ArrowRightIcon />
             </IconButton>

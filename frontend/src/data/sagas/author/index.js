@@ -1,9 +1,9 @@
 import { takeLatest } from 'redux-saga/effects'
 
+import actionTypes from '@constants/actionTypes';
 import { makeFetchAuthorsSaga } from './fetchAllSaga';
 import { makeFetchAuthorSaga } from './fetchOne';
 import { fetchAuthors, fetchAuthor } from '@data/api/author'
-import actionTypes from '@constants/actionTypes';
 import { fetchAuthorsSuccess, fetchAuthorsError } from '@data/actions/author';
 
 export function * watchAuthors () {
