@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "id": 1,
@@ -36,3 +37,45 @@
     "avatar": "avatar"
   }
 ]
+=======
+{
+  "authors": [
+    {
+      "id": 1,
+      "name": "Marta",
+      "github": "https://github.com/MartaJaszewska",
+      "avatar": "avatar"
+    },
+    {
+      "id": 2,
+      "name": "Hania",
+      "github": "https://github.com/",
+      "avatar": "avatar"
+    },
+    {
+      "id": 3,
+      "name": "Kamil",
+      "github": "https://github.com/kamiljalowiczor",
+      "avatar": "https://i.ibb.co/9gbmrNk/myAvatar.png"
+    },
+    {
+      "id": 4,
+      "name": "Kamil",
+      "github": "https://github.com/",
+      "avatar": "avatar"
+    },
+    {
+      "id": 5,
+      "name": "Jakub",
+      "github": "https://github.com/",
+      "avatar": "avatar"
+    },
+    {
+      "id": 6,
+      "name": "Karol",
+      "github": "https://github.com/",
+      "avatar": "avatar"
+    }
+  ]
+}
+>>>>>>> feat: [64] add Kamil J about card

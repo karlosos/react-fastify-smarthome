@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import AuthorsList from '@views/AuthorsList.jsx'
 
@@ -14,6 +15,8 @@ ReactDOM.render(
       <AuthorsList/>
     </Provider>
 =======
+=======
+>>>>>>> feat: [64] add Kamil J about card
 import KamilJCard from './components/Authors/KamilJCard'
 
 ReactDOM.render(
