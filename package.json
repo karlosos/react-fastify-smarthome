@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "node .",
+    "start:watch": "nodemon .",
     "start:local": "npm run build:frontend && npm run start",
     "test": "npm run test:server",
     "test:server": "jest tests-server/",

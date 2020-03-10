@@ -1,0 +1,1 @@
+export { fetchAuthor } from './fetchOne';
