@@ -25,7 +25,6 @@ export default function AuthorsList () {
     return <div>{fetchError.message}</div>
   }
   
-  console.log(authors)
   return (
     <>
       {
