@@ -1,16 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import './index.css'
+import { BrowserRouter, Route } from 'react-router-dom'
 import store from './store'
-
-import AuthorsList from '@views/AuthorsList.jsx'
+import ShowcaseHanna from '@components/ShowcaseHanna/ShowcaseHanna.jsx'
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <AuthorsList/>
+      <Route component={ShowcaseHanna} />
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')

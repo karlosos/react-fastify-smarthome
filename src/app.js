@@ -52,5 +52,5 @@ module.exports = function({ port }) {
 
   app.register(require('./routes/catch-all/catch-all'))
 
-  return app
-}
+  return app;
+};

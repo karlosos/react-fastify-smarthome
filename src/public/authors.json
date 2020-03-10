@@ -8,26 +8,31 @@
   {
     "id": 2,
     "name": "Hania",
-    "github": "https://github.com/",
+    "github": "https://gitlab.com/parsleyyy",
     "avatar": "avatar"
   },
   {
     "id": 3,
-    "name": "Kamil",
-    "github": "https://github.com/kamiljalowiczor",
-    "avatar": "https://cdn.discordapp.com/attachments/418574529972142081/687054642940739609/myAvatar.png"
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
   },
   {
     "id": 4,
-    "name": "Jakub",
-    "github": "https://github.com/jwieckowski",
-    "avatar": "https://cdn.discordapp.com/attachments/635558831258206210/686957826605580292/myAvatar.png"
+    "name": "Kamil",
+    "github": "https://github.com/",
+    "avatar": "avatar"
   },
   {
     "id": 5,
-    "name": "Karol",
-    "github": "https://github.com/karlosos",
-    "avatar": "https://www.gravatar.com/avatar/5721fbdfcafc3269ac39d9f98c6eba02?s=400",
-    "linkedin": "https://www.linkedin.com/in/karol-dzialowski/"
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
+  },
+  {
+    "id": 6,
+    "name": "",
+    "github": "https://github.com/",
+    "avatar": "avatar"
   }
 ]
