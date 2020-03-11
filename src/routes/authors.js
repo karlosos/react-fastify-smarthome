@@ -6,8 +6,6 @@ const routes = async (fastify, options) => {
   });
 
   fastify.get('/1', (request, reply) => {
-    console.log(authors);
-    console.log(authors[0]);
     reply.send(authors[0]);
   });
 
