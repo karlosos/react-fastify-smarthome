@@ -1,16 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { StoreContext } from 'redux-react-hook'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import store from './store'
-import App from './app'
+
+import AuthorsList from '@views/AuthorsList.jsx'
 
 ReactDOM.render(
   <BrowserRouter>
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>
+    <Provider store={store}>
+      <AuthorsList/>
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 )
