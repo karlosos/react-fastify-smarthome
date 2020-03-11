@@ -23,9 +23,7 @@ describe('/authors/4', function () {
     test('should return undefined id and status code 404 and assign defaultProps', async function () {
       const requestedID = 100
       const errorResponse = {
-        'error': 'Not Found',
-        'message': 'Route GET:/api/v1/authors/100 not found',
-        'statusCode': 404
+        "error": "Page not found"
       }
       const result = await instance.inject({
         method: 'GET',
