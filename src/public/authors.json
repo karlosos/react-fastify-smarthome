@@ -19,18 +19,12 @@
   },
   {
     "id": 4,
-    "name": "Kamil",
-    "github": "https://github.com/",
-    "avatar": "avatar"
+    "name": "Jakub",
+    "github": "https://github.com/jwieckowski",
+    "avatar": "https://cdn.discordapp.com/attachments/635558831258206210/686957826605580292/myAvatar.png"
   },
   {
     "id": 5,
-    "name": "Jakub",
-    "github": "https://github.com/",
-    "avatar": "avatar"
-  },
-  {
-    "id": 6,
     "name": "Karol",
     "github": "https://github.com/",
     "avatar": "avatar"

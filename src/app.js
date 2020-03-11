@@ -44,7 +44,7 @@ module.exports = function({ port }) {
 
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'
-  });
+  })
 
   app.register(require('./routes/catch-all/catch-all-api-404'), {
     prefix: '/api'
