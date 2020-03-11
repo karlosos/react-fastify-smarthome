@@ -6,14 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "axios": "^0.19.2",
->>>>>>> feat: [64] add Kamil J about card
-=======
-    "axios": "^0.19.2",
->>>>>>> feat: [64] add Kamil J about card
     "fastify": "^2.12.0",
     "fastify-swagger": "^2.5.0",
     "react": "^16.12.0",
@@ -48,11 +41,7 @@
     "start:local": "npm run build:frontend && npm run start",
     "test": "npm run test:server",
     "test:server": "jest tests-server/",
-<<<<<<< HEAD
     "test:frontend": "jest frontend/",
-=======
-    "test:frontend": "jest frontend",
->>>>>>> feat: [64] add Kamil J about card
     "start:frontend:dev": "webpack-dev-server --open --mode development",
     "build": "npm run build:frontend",
     "build:frontend": "webpack --mode production"

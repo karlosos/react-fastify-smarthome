@@ -5,13 +5,6 @@ import Links from './Links'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import Container from '@material-ui/core/Container'
->>>>>>> feat: [64] add Kamil J about card
-=======
->>>>>>> fix: [64] fix showcase width bug, change avatar url
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
@@ -23,16 +16,8 @@ const useStyles = makeStyles({
     height: '180px'
   },
   container: {
-<<<<<<< HEAD
-<<<<<<< HEAD
     padding: 0,
     margin: 0,
-=======
->>>>>>> feat: [64] add Kamil J about card
-=======
-    padding: 0,
-    margin: 0,
->>>>>>> fix: [64] fix showcase width bug, change avatar url
     display: 'flex',
     alignItems: 'center',
     background: '#3badfc',
@@ -52,15 +37,7 @@ const useStyles = makeStyles({
 export default function Showcase (props) {
   const classes = useStyles()
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Box className={classes.container}>
-=======
-    <Container className={classes.container}>
->>>>>>> feat: [64] add Kamil J about card
-=======
-    <Box className={classes.container}>
->>>>>>> fix: [64] fix showcase width bug, change avatar url
       <Grid
         container
         spacing={0}
@@ -83,14 +60,6 @@ export default function Showcase (props) {
           <Links style={{ height: '100%' }} github={props.github} />
         </Grid>
       </Grid>
-<<<<<<< HEAD
-<<<<<<< HEAD
     </Box>
-=======
-    </Container>
->>>>>>> feat: [64] add Kamil J about card
-=======
-    </Box>
->>>>>>> fix: [64] fix showcase width bug, change avatar url
   )
 }
