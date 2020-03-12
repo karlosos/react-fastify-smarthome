@@ -2,7 +2,7 @@ import sagaHelper from 'redux-saga-testing';
 import { call, put, select, race, take } from 'redux-saga/effects';
 
 import actionTypes from '@constants/actionTypes.js';
-import { makeFetchAuthorsSaga } from './fetchAll';
+import { makeFetchAuthorsSaga } from './fetchAllSaga';
 
 describe('Testing author saga', () => {
   describe('Successful fetch data from api', () => {
