@@ -1,7 +1,6 @@
 import { takeLatest } from 'redux-saga/effects'
 
 import actionTypes from '@constants/actionTypes';
-
 import { makeFetchAuthorsSaga } from './fetchAllSaga';
 import { makeFetchAuthorSaga } from './fetchOne';
 import { fetchAuthors } from '@data/api/author'
