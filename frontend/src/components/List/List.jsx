@@ -1,9 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
 
-import Header from './Header.jsx';
-import Tile from './Tile.jsx';
+import Header from './Header.jsx'
+import Tile from './Tile.jsx'
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -11,10 +11,10 @@ const useStyles = makeStyles(theme => ({
     width: '50%vw',
     height: '50%vh'
   }
-}));
+}))
 
 const CustomList = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <List className={classes.list}>
@@ -28,8 +28,7 @@ const CustomList = (props) => {
   )
 }
 
-CustomList.Header = Header;
-CustomList.Tile = Tile;
+CustomList.Header = Header
+CustomList.Tile = Tile
 
-export default CustomList;
-
+export default CustomList

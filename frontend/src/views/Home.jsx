@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import actionTypes from '../common/constants/actionTypes'
+import actionTypes from '@constants/actionTypes'
 import SampleCard from '@components/SampleCard'
 
 export default function Home () {

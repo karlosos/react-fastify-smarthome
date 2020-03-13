@@ -1,11 +1,11 @@
 /* globals beforeAll, afterAll, describe, test, expect */
-const app = require('./../src/app.js');
-const authors = require('../src/public/authors.json');
+const app = require('../../src/app.js')
+const authors = require('../../src/public/authors.json')
 // Start application before running the test case
 describe('/api/v1/authors', function () {
   let instance
   beforeAll(async () => {
-    instance = await app({ port: 3000 }).ready();
+    instance = await app({ port: 3000 }).ready()
   })
   // Stop application after running the test case
   afterAll(async () => {
@@ -18,8 +18,8 @@ describe('/api/v1/authors', function () {
         method: 'GET',
         url: '/api/v1/authors'
       })
-      expect(result.statusCode).toBe(200);
-      expect(JSON.parse(result.payload)).toEqual(authors);
+      expect(result.statusCode).toBe(200)
+      expect(JSON.parse(result.payload)).toEqual(authors)
     })
   })
 
@@ -42,18 +42,6 @@ describe('/api/v1/authors', function () {
       })
       expect(result.statusCode).toBe(404)
       expect(JSON.parse(result.payload).id).toBe(undefined)
-    })
-  })
-
-  describe('GET author with id 3', () => {
-    test('should return status code 200 and author with id 3', async function () {
-      const result = await instance.inject({
-        method: 'GET',
-        url: '/api/v1/authors/3'
-      })
-      expect(result.statusCode).toBe(200)
-      expect(JSON.parse(result.payload).id).toBeDefined()
-      expect(JSON.parse(result.payload)).toEqual(authors[2])
     })
   })
 })

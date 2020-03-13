@@ -1,17 +1,20 @@
 import React from 'react'
-import SampleCard from '../components/SampleCard'
-
-// on merging replace mock data coresponding to your id with your AuthorAbout component
+import Marta from '@components/Authors/Marta'
+import Hanna from '@components/Authors/Hanna'
+import Kamil from '@components/Authors/Kamil'
+import Jakub from '@components/Authors/Jakub'
+import Karol from '@components/Authors/Karol'
+import NotExistingAuthor from '@components/Authors/NotExistingAuthor'
 
 function switchAuthors (id) {
   const authors = {
-    1: <SampleCard />,
-    2: 'author2 component',
-    3: 'author3 component',
-    4: 'author4 component',
-    5: 'author5 component'
+    1: <Marta />,
+    2: <Hanna />,
+    3: <Kamil />,
+    4: <Jakub />,
+    5: <Karol />
   }
-  return authors[id] || 'not existing author'
+  return authors[id] || <NotExistingAuthor />
 }
 
 export default function AuthorPage (props) {

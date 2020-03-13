@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author';
-import CustomList from '@components/List/List.jsx';
+import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author'
+import CustomList from '@components/List'
 
 export default function AuthorsList () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAuthorsRequest());
+    dispatch(fetchAuthorsRequest())
     return () => {
       dispatch(fetchAuthorsCancel())
     }
-  }, [dispatch]);
+  }, [dispatch])
 
   const { fetchError, fetching, authors } = useSelector((state) => state.author)
 
@@ -24,23 +23,22 @@ export default function AuthorsList () {
   if (fetchError) {
     return <div>{fetchError.message}</div>
   }
-  
-  console.log(authors)
+
   return (
     <>
       {
-        authors ?
-        <CustomList 
-          array={authors}
-          renderItem={(author) => (
-            <CustomList.Tile key={author.id}>
-              {author}
-            </CustomList.Tile>
-          )}
-        >
-          <CustomList.Header title="Authors" />
-        </CustomList> :
-        <div>No authors available</div>
+        authors
+          ? <CustomList
+            array={authors}
+            renderItem={(author) => (
+              <CustomList.Tile key={author.id}>
+                {author}
+              </CustomList.Tile>
+            )}
+          >
+            <CustomList.Header title='Authors' />
+          </CustomList>
+          : <div>No authors available</div>
       }
     </>
   )

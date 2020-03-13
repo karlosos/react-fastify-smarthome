@@ -1,5 +1,5 @@
-const app = require('./../src/app.js')
-const authors = require('../src/public/authors.json')
+const app = require('../../src/app.js')
+const authors = require('../../src/public/authors.json')
 
 describe('/authors/4', function () {
   let instance

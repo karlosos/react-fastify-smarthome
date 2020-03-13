@@ -4,12 +4,11 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
   header: {
     fontSize: '30px',
-    letterSpacing: '25px',
-    color: '#383838',
+    letterSpacing: '15px',
+    color: 'black',
     textTransform: 'uppercase',
-    textAlign: 'left',
-    margin: '8px 16px',
-    fontWeight: '700'
+    wordWrap: 'break-word',
+    marginBottom: '20px'
   }
 }))
 
