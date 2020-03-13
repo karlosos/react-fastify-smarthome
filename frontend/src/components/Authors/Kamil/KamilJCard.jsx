@@ -32,7 +32,7 @@ export default function KamilJCard () {
   const [dataState, setDataState] = useState([])
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:3000/api/v1/authors/3')
+    axios.get('http://localhost:3000/api/v1/authors/3')
       .then(res => { setDataState(res.data) })
       .catch(err => { throw err })
   }, [])

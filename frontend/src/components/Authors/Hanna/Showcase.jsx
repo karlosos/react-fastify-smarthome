@@ -1,26 +1,26 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Container from '@material-ui/core/Container';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Container from '@material-ui/core/Container'
 
-import Section from '@components/Authors/ShowcaseHanna/Section.jsx';
+import Section from '@components/Authors/Hanna/Section.jsx'
 
 const useStyles = makeStyles(theme => ({
   container: {
     backgroundColor: '#6868a0',
-    padding: '40px',
+    padding: '40px'
   },
   content: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-}));
+  }
+}))
 
 const Showcase = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Container className={classes.container}>
@@ -33,6 +33,6 @@ const Showcase = (props) => {
   )
 }
 
-Showcase.Section = Section;
+Showcase.Section = Section
 
-export default Showcase;
+export default Showcase

@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import ShowcaseJakub from './ShowcaseJakub.jsx'
+import ShowcaseJakub from '../ShowcaseJakub.jsx'
 
 describe('<ShowcaseJakub />', () => {
   it('renders author Jakub page', () => {

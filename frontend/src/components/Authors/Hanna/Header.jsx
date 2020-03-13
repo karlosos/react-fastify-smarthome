@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -10,16 +10,16 @@ const useStyles = makeStyles(theme => ({
     wordWrap: 'break-word',
     marginBottom: '20px'
   }
-}));
+}))
 
 const Header = (props) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.header}>
-      { props.title }
+      {props.title}
     </div>
   )
 }
 
-export default Header;
+export default Header

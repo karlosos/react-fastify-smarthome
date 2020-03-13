@@ -1,6 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   field: {
@@ -20,18 +20,19 @@ const InfoField = (props) => {
   const { infoName, infoValue } = props
 
   return (
-    <Grid 
-      container 
+    <Grid
+      container
       spacing={1} 
-      className={classes.field} >
+      className={classes.field}
+    >
       <Grid item xs={6}>
         <p className={classes.uppercase}>{infoName}</p>
       </Grid>
       <Grid item xs={6}>
-        <p>{ infoValue }</p>
+        <p>{infoValue}</p>
       </Grid>
     </Grid>
   )
 }
 
-export default InfoField;
+export default InfoField
