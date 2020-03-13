@@ -59,7 +59,7 @@ const Tile = (props) => {
             </IconButton>
           }
           title={name}
-          subheader={name || SHAME_MESSAGE}
+          subheader={' ' || SHAME_MESSAGE}
         />
       </Card>
       <Divider variant='inset' />
