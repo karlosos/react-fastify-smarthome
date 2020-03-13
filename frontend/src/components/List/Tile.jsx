@@ -53,8 +53,7 @@ const Tile = (props) => {
           }
           action={
             <IconButton
-              aria-label='ArrowForwardIos'
-            >
+              aria-label='ArrowForwardIos'>
               <ArrowRightIcon />
             </IconButton>
           }

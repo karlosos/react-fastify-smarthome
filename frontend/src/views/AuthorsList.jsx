@@ -23,7 +23,6 @@ export default function AuthorsList () {
   if (fetchError) {
     return <div>{fetchError.message}</div>
   }
-
   return (
     <>
       {
