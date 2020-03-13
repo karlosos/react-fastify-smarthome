@@ -9,7 +9,6 @@ import { fetchAuthorSuccess, fetchAuthorError } from '@data/actions/author'
 
 /**
  * Factory function that returns saga for handling fetch one author request actions.
- * 
  * @param getAuthor Function for calling API to obtain one author by id.
  * @returns Saga for handling fetch one author request actions.
  */

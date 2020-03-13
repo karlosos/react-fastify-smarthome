@@ -5,7 +5,6 @@ const initialState = {
   author: undefined,
   fetchError: undefined,
   fetching: false,
-  author: undefined,
   fetchingSingle: false,
   fetchSingleError: undefined
 }

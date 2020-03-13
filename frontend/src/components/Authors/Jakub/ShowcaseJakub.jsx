@@ -84,7 +84,7 @@ class ShowcaseJakub extends React.Component {
   }
 
   componentDidMount () {
-    axios.get('http://localhost:3000/api/v1/authors/' + this.state.id).then(
+    axios.get('/api/v1/authors/' + this.state.id).then(
       (response) => {
         if (response.status !== 200) throw new Error()
         this.setState({ data: response.data })
