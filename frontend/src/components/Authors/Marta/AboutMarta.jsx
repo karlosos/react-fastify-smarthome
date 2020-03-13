@@ -7,10 +7,16 @@ import { useStyles, particlesOptions, ColorCircularProgress } from './index'
 import Card from './Card.jsx'
 
 const AboutMarta = () => {
-  const [authorState, setAuthorState] = useState([])
+  const defaultData = {
+    id: 1,
+    name: '',
+    github: '',
+    avatar: ''
+  }
+  const [authorState, setAuthorState] = useState(defaultData)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/v1/authors/1')
+    axios.get(`/api/v1/authors/${authorState.id}`)
       .then(res => { setAuthorState(res.data) })
       .catch(err => { throw err })
   }, [])
