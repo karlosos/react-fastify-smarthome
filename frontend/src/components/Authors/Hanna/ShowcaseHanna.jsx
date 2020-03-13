@@ -6,10 +6,9 @@ import Showcase from '@components/Authors/Hanna/Showcase.jsx'
 
 export default function ShowcaseHanna (props) {
   const dispatch = useDispatch()
-  const { id = '1', name = '', github = '', avatar = '' } = props;
 
   useEffect(() => {
-    dispatch(fetchAuthorRequest(id))
+    dispatch(fetchAuthorRequest(2))
     return () => {
       dispatch(fetchAuthorCancel())
     }
