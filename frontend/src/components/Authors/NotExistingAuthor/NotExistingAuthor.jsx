@@ -25,7 +25,7 @@ export default function NotExistingAuthor () {
       <CssBaseline />
       <Container component='main' className={classes.main} maxWidth='lg'>
         <Typography variant='h2' component='h1' gutterBottom>
-          {'<h1>'}404 - Autor się rozmyślił...{'</h1>'}
+          404 - Autor się rozmyślił...
         </Typography>
       </Container>
     </div>

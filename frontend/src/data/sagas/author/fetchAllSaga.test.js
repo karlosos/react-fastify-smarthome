@@ -1,8 +1,10 @@
-import sagaHelper from 'redux-saga-testing';
-import { call, put, select, race, take } from 'redux-saga/effects';
+/* globals describe, expect */
 
-import actionTypes from '@constants/actionTypes.js';
-import { makeFetchAuthorsSaga } from './fetchAllSaga';
+import sagaHelper from 'redux-saga-testing'
+import { call, put, race, take } from 'redux-saga/effects'
+
+import actionTypes from '@constants/actionTypes.js'
+import { makeFetchAuthorsSaga } from './fetchAllSaga'
 
 describe('Testing author saga', () => {
   describe('Successful fetch data from api', () => {
@@ -12,7 +14,6 @@ describe('Testing author saga', () => {
       res => res,
       err => err
     )())
-
 
     callNextSagaYield('should start race between api call and cancelation action', (result) => {
       expect(result).toEqual(race({
@@ -36,4 +37,4 @@ describe('Testing author saga', () => {
   })
 
   // TO DO: cancel, error
-});
+})

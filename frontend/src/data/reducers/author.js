@@ -1,14 +1,13 @@
-import actionTypes from '@constants/actionTypes';
+import actionTypes from '@constants/actionTypes'
 
 const initialState = {
   authors: [],
   author: undefined,
   fetchError: undefined,
   fetching: false,
-  author: undefined,
   fetchingSingle: false,
   fetchSingleError: undefined
-};
+}
 
 export default function author (state = initialState, action = {}) {
   switch (action.type) {

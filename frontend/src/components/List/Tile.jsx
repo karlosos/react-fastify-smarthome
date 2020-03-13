@@ -13,7 +13,10 @@ const SHAME_MESSAGE = 'Author is ashamed of his name'
 
 const useStyles = makeStyles(theme => ({
   tile: {
-    width: '100%'
+    width: '100%',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   },
   infoText: {
     fontSize: '35px',
@@ -34,7 +37,11 @@ const Tile = (props) => {
 
   return (
     <ListItem>
-      <Card className={classes.tile}>
+      <Card
+        className={classes.tile}
+        onClick={() => history.push(`/authors/${id}`)}
+        aria-label='ArrowForwardIos'
+      >
         <CardHeader
           avatar={
             <Avatar
@@ -46,13 +53,12 @@ const Tile = (props) => {
           }
           action={
             <IconButton
-              onClick={() => history.push(`/authors/${id}`)}
               aria-label='ArrowForwardIos'
             >
               <ArrowRightIcon />
             </IconButton>
           }
-          title='Name'
+          title={name}
           subheader={name || SHAME_MESSAGE}
         />
       </Card>
