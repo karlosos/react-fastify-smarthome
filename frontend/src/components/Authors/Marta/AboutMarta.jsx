@@ -23,7 +23,7 @@ const AboutMarta = () => {
 
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid='about-marta'>
       <Particles className={classes.particles} params={particlesOptions} />
       <Grid container justify='center' alignItems='center' direction='row'>
         {
