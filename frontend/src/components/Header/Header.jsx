@@ -16,10 +16,6 @@ const useStyles = makeStyles(theme => ({
     margin: '0',
     height: '100%'
   },
-  tab: {
-    backgroundColor: '#DFDFDF',
-    color: '#334455'
-  },
   tabs: {
     borderTop: '1px white solid'
   }
@@ -46,7 +42,7 @@ function checkActive (url) {
 export default function Header () {
   const classes = useStyles()
   const location = useLocation()
-  
+
   const [value, setValue] = React.useState(checkActive(location.pathname))
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -74,7 +70,6 @@ export default function Header () {
           value={value}
           onChange={handleChange}
           aria-label='Navigation tabs'
-          classes={classes.tab}
         >
           <LinkTab label='Dashboard' href='/' data-testid='dashboard-id' />
           <LinkTab label='HVAC' href='/hvac' />

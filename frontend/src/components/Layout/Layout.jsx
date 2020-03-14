@@ -1,9 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-// two solutions for navbar tabs
 import Header from '../Header'
-import Header2 from '../Header2'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,7 +43,7 @@ export default function Layout (props) {
           xs={12}
           className={path.match(authorsRe) ? classes.hide : classes.h}
         >
-          <Header2 />
+          <Header />
         </Grid>
         <Grid item xs={12} className={classes.c}>
           {props.children}
