@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 // two solutions for navbar tabs
 import Header from '../Header'
 import Header2 from '../Header2'
-import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
   root: {
