@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import actionTypes from '@constants/actionTypes'
-import SampleCard from '@components/SampleCard'
+import React from 'react'
+
+import Layout from '@components/Layout'
+import AuthorsList from './AuthorsList.jsx'
+
+function switchAuthors (site) {
+  const sites = {
+    '/': 'Dashboard',
+    '/hvac': 'formularz HVAC',
+    '/authors': <AuthorsList />
+  }
+  return sites[site] || 'Coś poszło nie tak'
+}
 
 export default function Home () {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch({ type: actionTypes.HOME_LOADED_ACTION })
-  }, [])
   return (
-    <div>
-      <h1>Patronage 2020 JS!</h1>
-      <SampleCard />
-    </div>
+    <Layout site={switchAuthors(window.location.pathname)} />
   )
 }
