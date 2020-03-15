@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author'
 import CustomList from '@components/List'
+import Spinner from '../components/Spinner'
+import Page404 from '../components/Page404'
 
 export default function AuthorsList () {
   const dispatch = useDispatch()
@@ -17,11 +19,11 @@ export default function AuthorsList () {
   const { fetchError, fetching, authors } = useSelector((state) => state.author)
 
   if (fetching) {
-    return <div>Loading...</div>
+    return <><Spinner /></>
   }
 
   if (fetchError) {
-    return <div>{fetchError.message}</div>
+    return <><Page404 /></>
   }
   return (
     <>

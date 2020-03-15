@@ -1,6 +1,6 @@
 /* globals describe, it, expect */
 
-import author from './author'
+import author from '../author'
 import actionTypes from '@constants/actionTypes'
 
 describe('author reducer test suite', () => {

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 // two solutions for navbar tabs
 import Header from '../Header'
 import Header2 from '../Header2'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
     height: '20vh',
     color: '#FFF'
   },
+  hide: {
+    display: 'none'
+  },
   c: {
     margin: '0',
     padding: '0',
@@ -31,14 +35,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function Layout (props) {
   const classes = useStyles()
+  const path = window.location.pathname
+  const authorsRe = /authors\/.*/
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={12} className={classes.h}>
-          <Header />
+        <Grid
+          item
+          xs={12}
+          className={path.match(authorsRe) ? classes.hide : classes.h}
+        >
+          <Header2 />
         </Grid>
         <Grid item xs={12} className={classes.c}>
-          {props.site}
+          {props.children}
         </Grid>
       </Grid>
     </div>

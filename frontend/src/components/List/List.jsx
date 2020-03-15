@@ -8,8 +8,8 @@ import Tile from './Tile.jsx'
 const useStyles = makeStyles(theme => ({
   list: {
     backgroundColor: '#e6e6e6',
-    width: '50%vw',
-    height: '50%vh'
+    width: '100%',
+    height: '100%'
   }
 }))
 

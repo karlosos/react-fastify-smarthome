@@ -1,4 +1,4 @@
-import authors from '@constants/urls.js';
+import authors from '@constants/urls.js'
 
 /**
  * Calls API to fetch list of authots, then returns parsed response or error.
@@ -11,7 +11,7 @@ export async function fetchAuthors () {
     if (response.status === 200) {
       return await response.json()
     }
-    
+
     throw new Error(`Error while fetching authors, status code: ${response.status}`)
   } catch (error) {
     return error

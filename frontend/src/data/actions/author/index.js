@@ -1,2 +1,2 @@
-export * from './fetchAll';
-export * from './fetchOne';
+export * from './fetchAll'
+export * from './fetchOne'
