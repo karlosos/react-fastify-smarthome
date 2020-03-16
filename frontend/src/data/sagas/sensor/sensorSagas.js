@@ -1,8 +1,8 @@
-import * as actions from '../../actions/dashboard'
-import { put, delay, all } from 'redux-saga/effects'
+import * as actions from '../../actions/sensor'
+import { put, delay } from 'redux-saga/effects'
 import axios from 'axios'
 
-function * fetchSensorsSaga () {
+export function * loadSensorsSaga () {
   yield put(actions.fetchSensorsStart())
   try {
     yield delay(1000) // mock async, should be removed once real async requests are made
@@ -23,25 +23,6 @@ function * fetchSensorsSaga () {
   } catch (error) {
     yield put(actions.fetchSensorsFail(error))
   }
-}
-
-function * fetchMapSaga () {
-  yield put(actions.fetchMapStart())
-  try {
-    yield delay(500) // mock async, should be removed once real async requests are made
-    // const response = yield axios.get('/api/v1/map') // exchange with real async
-    const mapMock = 'map'
-    yield put(actions.fetchMapSuccess(mapMock))
-  } catch (error) {
-    yield put(actions.fetchMapFail(error))
-  }
-}
-
-export function * loadDashboardSaga () {
-  yield all([
-    fetchSensorsSaga(),
-    fetchMapSaga()
-  ])
 }
 
 export function * changeSensorStatusSaga (action) {

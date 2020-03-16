@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadDashboard, changeSensorStatus } from '@data/actions/dashboard'
+import { loadSensors, changeSensorStatus } from '@data/actions/sensor'
 import Spinner from '../components/Spinner'
 
 import Page404 from '../components/Page404'
@@ -25,29 +25,25 @@ export default function Dashboard (props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadDashboard())
+    dispatch(loadSensors())
   }, [])
 
   const {
     sensors,
-    map,
     loadingSensors,
-    loadingMap,
-    error
-  } = useSelector((state) => state.dashboard)
+    loadingError
+  } = useSelector((state) => state.sensor)
 
   let content = <Spinner />
-  const loading = loadingSensors || loadingMap
 
-  if (!loading) {
-    if (!error) {
+  if (!loadingSensors) {
+    if (!loadingError) {
       const sensorsList = mapSensorsToList(sensors)
       content = (
         <div>
           <ul>
             {sensorsList}
           </ul>
-          <h1>{map}</h1>
         </div>
       )
     } else {
