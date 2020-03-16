@@ -1,25 +1,12 @@
 import * as actions from '../../actions/sensor'
-import { put, delay } from 'redux-saga/effects'
-import axios from 'axios'
+import { put, call } from 'redux-saga/effects'
+import { getSensors, changeSensorStatus } from '../../api/sensor'
 
 export function * loadSensorsSaga () {
   yield put(actions.fetchSensorsStart())
   try {
-    yield delay(1000) // mock async, should be removed once real async requests are made
-    // const response = yield axios.get('/api/v1/sensors') // exchange with real async
-    const sensorsMock = [
-      {
-        id: 2,
-        type: 'mocksens1',
-        isOn: true
-      },
-      {
-        id: 3,
-        type: 'mocksens2',
-        isOn: false
-      }
-    ]
-    yield put(actions.fetchSensorsSuccess(sensorsMock))
+    const sensors = yield call(getSensors) // exchange with real async inside getSensors
+    yield put(actions.fetchSensorsSuccess(sensors))
   } catch (error) {
     yield put(actions.fetchSensorsFail(error))
   }
@@ -28,10 +15,8 @@ export function * loadSensorsSaga () {
 export function * changeSensorStatusSaga (action) {
   yield put(actions.changeSensorStatusStart())
   try {
-    yield delay(500) // mock async, should be removed once real async requests are made
-    console.log('mock response')
-    // const response = yield axios.put('/on-off/endpoint/action.sensorId') // exchange with real async
-    yield put(actions.changeSensorStatusSuccess())
+    const response = yield call(changeSensorStatus, action.sensorId) // exchange with real async inside changeSensorStatus
+    yield put(actions.changeSensorStatusSuccess(response))
   } catch (error) {
     yield put(actions.changeSensorStatusFail(error))
   }
