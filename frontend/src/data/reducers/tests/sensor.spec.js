@@ -49,27 +49,6 @@ describe('sensor reducer', () => {
     })
   })
 
-  test(`should handle ${actionTypes.SENSORS_FETCH_SUCCESS}`, () => {
-    const testSensors = [
-      {
-        id: 2,
-        type: 'mocksens1',
-        isOn: true
-      },
-      {
-        id: 3,
-        type: 'mocksens2',
-        isOn: false
-      }
-    ]
-
-    expect(reducer(initialState, actions.fetchSensorsSuccess(testSensors))).toEqual({
-      ...initialState,
-      sensors: testSensors,
-      loadingSensors: false
-    })
-  })
-
   test(`should handle ${actionTypes.SENSORS_FETCH_FAIL}`, () => {
     const testError = 'Error'
 
