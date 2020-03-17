@@ -1,0 +1,23 @@
+{
+  "title": "Temperature Sensor",
+  "type": "object",
+  "description": "Temperature Sensor data",
+  "required": ["id", "type", "value"],
+  "properties": {
+    "id": {
+      "$ref": "sensor-id.json"
+    },
+    "type": {
+      "type": "string",
+      "const": "temperatureSensor"
+    },
+    "value": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Degrees in celsius"
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$id": "schemas/responses/generic-error",
+  "title": "GenericError",
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "integer",
+      "example": 6
+    },
+    "error": {
+      "type": "string",
+      "example": "Not Found"
+    },
+    "message": {
+      "type": "string",
+      "description": "translated description of the error",
+      "example": "Something went wrong"
+    }
+  },
+  "required": [
+    "statusCode",
+    "error",
+    "message"
+  ]
+}

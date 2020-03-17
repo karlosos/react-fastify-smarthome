@@ -1,0 +1,20 @@
+{
+  "$id": "schemas/responses/smoke-sensor",
+  "title": "Smoke Sensor",
+  "type": "object",
+  "description": "Smoke Sensor data",
+  "required": ["id", "type", "isSmokeDetected"],
+  "properties": {
+    "id": {
+      "$ref": "sensor-id.json"
+    },
+    "type": {
+      "type": "string",
+      "const": "smokeSensor"
+    },
+    "isSmokeDetected": {
+      "type": "boolean",
+      "description": "Flag indicating if the smoke sensor detected smoke"
+    }
+  }
+}

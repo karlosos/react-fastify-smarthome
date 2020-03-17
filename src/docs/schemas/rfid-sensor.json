@@ -1,0 +1,19 @@
+{
+  "$id": "schemas/responses/rfid-sensor",
+  "title": "RFID Sensor",
+  "type": "object",
+  "description": "RFID Sensor data",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "$ref": "sensor-id.json"
+    },
+    "type": {
+      "type": "string",
+      "const": "RFIDSensor"
+    },
+    "lastTag": {
+      "$ref": "rfid-tag.json"
+    }
+  }
+}
