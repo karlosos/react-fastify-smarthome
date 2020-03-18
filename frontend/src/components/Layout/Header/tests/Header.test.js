@@ -25,6 +25,6 @@ describe('<Header />', () => {
         <Header />
       </MemoryRouter>
     )
-    expect(queryByTestId('dashboard-id')).toBeTruthy()
+    expect(queryByTestId('dashboard-tab-id')).toBeTruthy()
   })
 })

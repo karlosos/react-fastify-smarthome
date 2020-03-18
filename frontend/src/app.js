@@ -10,7 +10,7 @@ const App = () => {
     <Switch>
       <Route path='/authors/:id' component={AuthorPage} />
       <Route path='/authors' component={AuthorsList} />
-      <Route path='/hvac' render={() => 'hvac'} />
+      <Route path='/hvac' render={() => 'HVAC'} />
       <Route path='/' exact component={Dashboard} />
       <Redirect to='/' />
     </Switch>
@@ -21,4 +21,5 @@ const App = () => {
     </Layout>
   )
 }
+
 export default App

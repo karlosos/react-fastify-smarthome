@@ -71,7 +71,7 @@ export default function Header () {
           onChange={handleChange}
           aria-label='Navigation tabs'
         >
-          <LinkTab label='Dashboard' href='/' data-testid='dashboard-id' />
+          <LinkTab label='Dashboard' href='/' data-testid='dashboard-tab-id' />
           <LinkTab label='HVAC' href='/hvac' />
           <LinkTab label='Autorzy' href='/authors' />
         </Tabs>
