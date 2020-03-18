@@ -1,59 +1,55 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadSensors, changeSensorStatus } from '@data/actions/sensor'
-import Spinner from '../components/Spinner'
+import React from 'react'
+import { useRouteMatch } from 'react-router-dom'
+import { Grid, makeStyles } from '@material-ui/core'
 
-import Page404 from '../components/Page404'
+import Header from '@components/Header'
 
-function mapSensorsToList (sensors) { // only for debuging purposes, replace this once implementing real sensors list
-  const dispatch = useDispatch()
-  return sensors.map((sensor) => {
-    return (
-      <li
-        key={sensor.id}
-        onClick={() => {
-          dispatch(changeSensorStatus(sensor.id))
-        }}
-      >
-        <p>{sensor.type} </p>
-      </li>
-    )
-  })
-}
-
-export default function Dashboard (props) {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(loadSensors())
-  }, [])
-
-  const {
-    sensors,
-    loadingSensors,
-    loadingError
-  } = useSelector((state) => state.sensor)
-
-  let content = <Spinner />
-
-  if (!loadingSensors) {
-    if (!loadingError) {
-      const sensorsList = mapSensorsToList(sensors)
-      content = (
-        <div>
-          <ul>
-            {sensorsList}
-          </ul>
-        </div>
-      )
-    } else {
-      content = <Page404 />
-    }
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: '100vh'
+  },
+  hide: {
+    display: 'none'
+  },
+  navigation: {
+    height: 150, // change navigation height if needed
+    borderBottom: '0.5px solid lightgray' // remove if needed
+  },
+  content: {
+    height: 'calc(100vh - 150px)', // change navigation height if needed
+    boxSizing: 'border-box'
+  },
+  map: {
+    backgroundColor: 'white'
+  },
+  image: {
+    maxWidth: '100%',
+    height: 'calc(100vh - 30px - 150px)', // change navigation height if needed
+    objectFit: 'contain'
+    // margin: '15px 0'
+  },
+  list: {
+    borderLeft: '0.5px solid lightgray' // remove if needed
   }
+}))
 
+const Dashboard = (props) => {
+  const classes = useStyles()
+  const match = useRouteMatch('/authors/:id')
   return (
-    <>
-      {content}
-    </>
+    <Grid container maxwidth='xs' className={classes.root}>
+      <Grid
+        item
+        xs={12}
+        className={match ? classes.hide : classes.navigation}
+      >
+        <Header />
+      </Grid>
+      <Grid container maxwidth='xs' className={classes.content}>
+        {props.children}
+      </Grid>
+    </Grid>
   )
 }
+
+export default Dashboard

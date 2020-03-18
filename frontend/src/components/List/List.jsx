@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
   list: {
     backgroundColor: '#e6e6e6',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    alignContent: 'center'
   }
 }))
 
