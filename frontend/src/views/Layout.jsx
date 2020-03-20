@@ -1,6 +1,10 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import Navigation from '../components/Navigation/NavigationBar/Navigation'
+import WarningSnackbar from '../components/Snackbar'
+import axios from 'axios'
+
+const pingEndpoint = () => axios.get('/.well-known/health-check', { timeout: 5000 })
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,10 +16,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+// eslint-disable-next-line react/prop-types
 const Layout = ({ children }) => {
   const classes = useStyles()
   return (
     <Grid container maxwidth='xs' className={classes.root} data-testid='dashboard-id'>
+      <WarningSnackbar pingEndpoint={pingEndpoint} />
       <Navigation />
       <Grid container maxwidth='xs' className={classes.content}>
         {children}
