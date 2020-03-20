@@ -68,5 +68,10 @@
       "^@constants(.*)$": "<rootDir>/frontend/src/common/constants$1",
       "^@data(.*)$": "<rootDir>/frontend/src/data$1"
     }
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }

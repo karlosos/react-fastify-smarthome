@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { delay } from 'redux-saga/effects'
+import mockSensors from './mockSensors'
 
 export function * getSensors () {
   // const res = yield axios.get('/api/v1/sensors')
@@ -7,18 +8,6 @@ export function * getSensors () {
 
   yield delay(1000) // mock async, should be removed once real async requests are made
 
-  const mockSensors = [
-    {
-      id: 2,
-      type: 'mocksens1',
-      isOn: true
-    },
-    {
-      id: 3,
-      type: 'mocksens2',
-      isOn: false
-    }
-  ]
   return mockSensors
 }
 
