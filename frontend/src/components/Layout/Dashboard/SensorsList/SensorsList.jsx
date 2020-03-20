@@ -3,16 +3,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useSelector } from 'react-redux'
 import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
-import Paper from '@material-ui/core/Paper'
 import { Grid } from '@material-ui/core'
 import Item from './Item'
+import { useWindowSize } from 'react-use'
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  root: props => ({
     width: '100%',
-    height: '100vh',
-    backgroundColor: theme.palette.background.paper
-  },
+    height: props.sidebarHeight + 'px'
+  }),
   list: {
     backgroundColor: theme.palette.background.paper
   }
@@ -40,7 +39,10 @@ const divideSensors = (sensors) => {
 }
 
 export default function SensorsList () {
-  const classes = useStyles()
+  const { width, height } = useWindowSize()
+  console.log({ width, height })
+  const sidebarHeight = height - 150
+  const classes = useStyles({ sidebarHeight })
 
   const {
     connectedSensors, notConnectedSensors

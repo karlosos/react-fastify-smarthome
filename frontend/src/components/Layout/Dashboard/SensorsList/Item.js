@@ -42,6 +42,23 @@ function drawItemInfo (sensorType, sensorData) {
   }
 }
 
+function itemTypeText (sensorType) {
+  switch (sensorType) {
+    case 'temperatureSensors':
+      return 'Temperatura'
+    case 'windowSensors':
+      return 'Okno'
+    case 'windowBlinds':
+      return 'Zasłony'
+    case 'RFIDSensors':
+      return 'RFID'
+    case 'smokeSensors':
+      return 'Czujnik dymu'
+    case 'lights':
+      return 'Światło'
+  }
+}
+
 function getItemAccentColor (sensorType) {
   switch (sensorType) {
     case 'temperatureSensors':
@@ -59,7 +76,7 @@ function getItemAccentColor (sensorType) {
   }
 }
 
-export default function Item ({ sensorData, sensorType }) {
+const Item = ({ sensorData, sensorType }) => {
   const accentColor = getItemAccentColor(sensorType)
   const props = { accentColor: accentColor }
   const classes = useStyles(props)
@@ -79,7 +96,7 @@ export default function Item ({ sensorData, sensorType }) {
               className={classes.inline}
               color='textPrimary'
             >
-                           Light
+              {itemTypeText(sensorType)}
             </Typography>
           </>
         }
@@ -88,3 +105,5 @@ export default function Item ({ sensorData, sensorType }) {
     </ListItem>
   )
 }
+
+export default Item

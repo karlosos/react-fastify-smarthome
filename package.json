@@ -16,6 +16,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-swipeable-views": "^0.13.9",
+    "react-use": "^13.27.0",
     "redux": "^4.0.5",
     "redux-react-hook": "^4.0.1",
     "redux-saga": "^1.1.3",
