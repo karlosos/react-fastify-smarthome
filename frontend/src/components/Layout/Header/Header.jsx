@@ -40,7 +40,7 @@ function checkActive (url) {
 }
 
 export default function Header () {
-  const classes = useStyles()
+  const myClasses = useStyles()
   const location = useLocation()
 
   const [value, setValue] = React.useState(checkActive(location.pathname))
@@ -49,7 +49,7 @@ export default function Header () {
   }
 
   return (
-    <Grid container className={classes.bar} data-testid='header-id'>
+    <Grid container className={myClasses.bar} data-testid='header-id'>
       <Grid item xs={12}>
         <Box display='flex' p={1}>
           <Box p={1} flexGrow={1} textAlign='left'>
@@ -64,7 +64,7 @@ export default function Header () {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} className={classes.tabs}>
+      <Grid item xs={12} className={myClasses.tabs}>
         <Tabs
           variant='fullWidth'
           value={value}
