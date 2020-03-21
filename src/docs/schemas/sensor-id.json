@@ -1,0 +1,8 @@
+{
+  "title": "Sensor ID",
+  "type": "int",
+  "format": "int32",
+  "minimum": 0,
+  "description": "Sensor ID",
+  "example": 1234567890
+}

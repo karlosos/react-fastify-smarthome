@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<KamilJCard /> renders author KamilJCard component 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-5 makeStyles-root-2"
+>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1"
+    >
+      <div>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#0087e4",
+                }
+              }
+            />
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#0096fe",
+                }
+              }
+            />
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#3badfc",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-143 makeStyles-container-139"
+      >
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+          >
+            <h1
+              className="MuiTypography-root makeStyles-text-141 MuiTypography-h1"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-174"
+                style={
+                  Object {
+                    "fontSize": "3.3rem",
+                    "marginBottom": "0.5rem",
+                  }
+                }
+              >
+                Kamil Jałowiczor
+              </div>
+            </h1>
+          </div>
+          <div
+            className="MuiGrid-root makeStyles-center-140 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+          >
+            <div
+              className="MuiAvatar-root MuiAvatar-circle makeStyles-avatar-138 MuiAvatar-colorDefault"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root MuiAvatar-fallback"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-10 MuiGrid-grid-lg-6"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-193 makeStyles-container-191"
+            >
+              <h3
+                className="MuiTypography-root makeStyles-header-192 MuiTypography-h3"
+              >
+                <div
+                  className="MuiBox-root MuiBox-root-194"
+                >
+                  About me
+                </div>
+              </h3>
+              <div
+                className="MuiTypography-root MuiTypography-body1"
+              >
+                <div
+                  className="MuiBox-root MuiBox-root-195"
+                >
+                  Currently, I'm an aspiring full stack developer. I think of every challenge I approach as an opportunity to gain experience and to learn new things. Smart Home might be the biggest one I've ever encountered and so I am really eager to work on this project.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-10 MuiGrid-grid-lg-6"
+          >
+            <div
+              className="MuiBox-root MuiBox-root-199 makeStyles-container-196"
+            >
+              <div
+                className="MuiBox-root MuiBox-root-200 makeStyles-content-197"
+              >
+                <a
+                  className="makeStyles-link-198"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="MuiSvgIcon-root"
+                    focusable="false"
+                    role="presentation"
+                    style={
+                      Object {
+                        "fontSize": 55,
+                      }
+                    }
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-1"
+    >
+      <div>
+        <div
+          className="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center"
+        >
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#3badfc",
+                }
+              }
+            />
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#59d4ff",
+                }
+              }
+            />
+          </div>
+          <div
+            className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4"
+          >
+            <div
+              className="MuiPaper-root makeStyles-stripe-109 MuiPaper-elevation0 MuiPaper-rounded"
+              style={
+                Object {
+                  "backgroundColor": "#9debff",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

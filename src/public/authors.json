@@ -3,36 +3,31 @@
     "id": 1,
     "name": "Marta",
     "github": "https://github.com/MartaJaszewska",
-    "avatar": "avatar"
+    "avatar": "http://bit.ly/334tOSf"
   },
   {
     "id": 2,
-    "name": "",
-    "github": "https://github.com/",
-    "avatar": "avatar"
+    "name": "Hania",
+    "github": "https://gitlab.com/parsleyyy",
+    "avatar": "https://cdn4.vectorstock.com/i/1000x1000/38/23/female-face-avatar-round-flat-icon-with-women-vector-11333823.jpg"
   },
   {
     "id": 3,
-    "name": "",
-    "github": "https://github.com/",
-    "avatar": "avatar"
+    "name": "Kamil",
+    "github": "https://github.com/kamiljalowiczor",
+    "avatar": "https://cdn.discordapp.com/attachments/418574529972142081/687054642940739609/myAvatar.png"
   },
   {
     "id": 4,
-    "name": "Kamil",
-    "github": "https://github.com/",
-    "avatar": "avatar"
+    "name": "Jakub",
+    "github": "https://github.com/jwieckowski",
+    "avatar": "https://cdn.discordapp.com/attachments/635558831258206210/686957826605580292/myAvatar.png"
   },
   {
     "id": 5,
-    "name": "",
-    "github": "https://github.com/",
-    "avatar": "avatar"
-  },
-  {
-    "id": 6,
-    "name": "",
-    "github": "https://github.com/",
-    "avatar": "avatar"
+    "name": "Karol",
+    "github": "https://github.com/karlosos",
+    "avatar": "https://www.gravatar.com/avatar/5721fbdfcafc3269ac39d9f98c6eba02?s=400",
+    "linkedin": "https://www.linkedin.com/in/karol-dzialowski/"
   }
 ]

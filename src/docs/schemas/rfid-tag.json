@@ -1,0 +1,21 @@
+{
+  "$id": "responses/rfid-tag",
+  "title": "RFID Tag",
+  "type": "object",
+  "description": "RFID Tag data",
+  "required": ["id", "type", "timestamp"],
+  "properties": {
+    "id": {
+      "$ref": "sensor-id.json"
+    },
+    "type": {
+      "type": "string",
+      "const": "RFIDTag"
+    },
+    "timestamp": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unix epoch time"
+    }
+  }
+}

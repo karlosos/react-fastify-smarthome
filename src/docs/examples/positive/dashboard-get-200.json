@@ -1,0 +1,38 @@
+{
+  "summary": "positive",
+  "value": {
+    "temperatureSensors": [{
+      "id": 1234567890,
+      "type": "temperatureSensor",
+      "value": 12.2
+    }],
+    "windowSensors": [{
+      "id": 1234567890,
+      "type": "windowSensor",
+      "status": "open"
+    }],
+    "windowBlinds": [{
+      "id": 1234567890,
+      "type": "windowBlind",
+      "position": 50
+      }],
+    "RFIDSensors": [{
+      "id": 1234567890,
+      "type": "RFIDSensor",
+      "lastTag": {
+        "id": 1234567890,
+        "type": "RFIDTag",
+        "timestamps": 0
+      }
+    }],
+    "smokeSensors": [{
+      "id": 1234567890,
+      "type": "smokeSensor",
+      "isSmokeDetected": true
+    }],
+    "HVACStatus": {
+      "heating": true,
+      "cooling": false
+    }
+  }
+}

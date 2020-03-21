@@ -1,0 +1,20 @@
+{
+  "$id": "schemas/responses/window-sensor",
+  "title": "Window Sensor",
+  "type": "object",
+  "description": "Window Sensor data",
+  "required": ["id", "type", "status"],
+  "properties": {
+    "id": {
+      "$ref": "sensor-id.json"
+    },
+    "type": {
+      "type": "string",
+      "const": "windowSensor"
+    },
+    "status": {
+      "type": "boolean",
+      "description": "status of the window sensor"
+    }
+  }
+}
