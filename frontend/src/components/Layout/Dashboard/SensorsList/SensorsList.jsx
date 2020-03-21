@@ -39,8 +39,7 @@ const divideSensors = (sensors) => {
 }
 
 export default function SensorsList () {
-  const { width, height } = useWindowSize()
-  console.log({ width, height })
+  const { height } = useWindowSize()
   const sidebarHeight = height - 150
   const classes = useStyles({ sidebarHeight })
 
@@ -60,14 +59,14 @@ export default function SensorsList () {
       <List
         className={classes.list}
         data-testid='not-connected-sensors-list'
-        subheader={<ListSubheader>Not placed on map</ListSubheader>}
+        subheader={<ListSubheader>Nie umieszczone na mapie</ListSubheader>}
       >
         {drawItems(notConnectedSensors)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
-        subheader={<ListSubheader>Placed on map</ListSubheader>}
+        subheader={<ListSubheader>Widoczne na mapie</ListSubheader>}
       >
         {drawItems(connectedSensors)}
       </List>

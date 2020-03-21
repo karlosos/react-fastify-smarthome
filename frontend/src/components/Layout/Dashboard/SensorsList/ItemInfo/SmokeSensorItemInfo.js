@@ -6,7 +6,7 @@ export default function SmokeSensorItemInfo ({ sensorData }) {
   return (
     <ListItemSecondaryAction>
       <ListItemText
-        primary={sensorData.isSmokeDetected ? 'DETECTED' : 'NOT DETECTED'}
+        primary={sensorData.isSmokeDetected ? 'WYKRYTO' : 'BRAK'}
       />
     </ListItemSecondaryAction>
   )

@@ -6,7 +6,7 @@ export default function WindowSensorItem ({ sensorData }) {
   return (
     <ListItemSecondaryAction>
       <ListItemText
-        primary={sensorData.status ? 'OPEN' : 'CLOSED'}
+        primary={sensorData.status ? 'OTWARTE' : 'ZAMKNIĘTE'}
       />
     </ListItemSecondaryAction>
   )

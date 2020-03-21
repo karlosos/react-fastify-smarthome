@@ -62,7 +62,7 @@ const mockSensors = {
     {
       id: 3,
       type: 'windowBlind',
-      mapPosition: 90
+      position: 90
     }
   ],
   RFIDSensors: [

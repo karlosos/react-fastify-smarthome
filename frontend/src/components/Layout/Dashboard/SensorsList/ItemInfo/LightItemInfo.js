@@ -8,9 +8,9 @@ export default function LightItemInfo ({ sensorData }) {
       <ListItemText
         secondary={
           <>
-              hue: {sensorData.hue} <br />
-              saturation: {sensorData.saturation} <br />
-              value: {sensorData.value} <br />
+              odcień: {sensorData.hue} <br />
+              nasycenie: {sensorData.saturation} <br />
+              jasność: {sensorData.value} <br />
           </>
         }
       />

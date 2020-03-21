@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import SensorsList from '../SensorsList'
-import mockSensors from '../../../data/api/sensor/mockSensors'
+import mockSensors from '../../../../../data/api/sensor/mockSensors'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 const mockStore = configureStore([])
@@ -26,6 +26,8 @@ describe('<SensorsList />', () => {
 
     )
     expect(queryByTestId('sensors-list')).toBeTruthy()
+    expect(queryByTestId('connected-sensors-list').childElementCount).toBe(8)
+    expect(queryByTestId('not-connected-sensors-list').childElementCount).toBe(6)
   })
 
   test('should render <SensorsList> with no elements', () => {

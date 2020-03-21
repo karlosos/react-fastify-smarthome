@@ -14,7 +14,7 @@ export default function RFIDSensorItemInfo ({ sensorData }) {
   return (
     <ListItemSecondaryAction className={classes.secondary}>
       <ListItemText
-        primary='Last tag:'
+        primary='Ostatnia akcja:'
         secondary={
           <>
             {sensorData.lastTag.type} {sensorData.lastTag.id} <br />
