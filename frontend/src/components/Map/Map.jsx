@@ -64,7 +64,7 @@ const HomeMap = () => {
 
   /**
    * Transfroms sensors from store to appropriate format.
-   * 
+   *
    * @returns {Array} array od sensors objects: { x: number, y: number }
    */
   const sensors = useSelector((state) => {
@@ -99,7 +99,7 @@ const HomeMap = () => {
       offsetY - (mapWidth / SENSOR_COEFFICIENT / 2), mapHeight)
     /** Sensors fetched from store and mapper to appropriate format. */
     const storeSensors = sensors
-      .map((sensor) =>  Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
+      .map((sensor) => Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
 
     /** Checks if point could be located in specific position on map. */
     if (isFieldOccupied(xCoordinate, yCoordinate, points.concat(storeSensors))) {
@@ -131,21 +131,20 @@ const HomeMap = () => {
       {
         sensors && sensors.concat(points
           .map(point => Object.assign(point, { mapPosition: { x: point.x, y: point.y } })))
-            .map((point) => (
-              validPointData(point) && <Sensor
-                data-testid="sensor-id"
-                key={`${point.mapPosition.x}${point.mapPosition.y}${Math.random}`}
-                sensorSize={
-                  { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
-                }
-                position={{
-                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
-                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth),
-                  position: 'absolute'
-                }} 
-              />
-            )
-          )
+          .map((point) => (
+            validPointData(point) && <Sensor
+              data-testid="sensor-id"
+              key={`${point.mapPosition.x}${point.mapPosition.y}${Math.random}`}
+              sensorSize={
+                { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
+              }
+              position={{
+                top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
+                left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth),
+                position: 'absolute'
+              }}
+            />
+          ))
       }
       <MapModal
         data-testid="modal-test-id"

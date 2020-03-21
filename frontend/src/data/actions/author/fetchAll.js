@@ -39,7 +39,7 @@ export function fetchAuthorsError (error) {
 
 /**
  * Returns action that cancels pending author fetching.
- * 
+ *
  * @returns Action for author reducer.
  */
 export function fetchAuthorsCancel () {
