@@ -37,7 +37,7 @@ export default function AuthorsList () {
               </CustomList.Tile>
             )}
           >
-            <CustomList.Header title='Authors' />
+            <CustomList.Header title='Autorzy' />
           </CustomList>
           : <div>No authors available</div>
       }

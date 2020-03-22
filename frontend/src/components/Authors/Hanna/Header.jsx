@@ -3,21 +3,22 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   header: {
-    fontSize: '30px',
+    fontSize: '20px',
     letterSpacing: '15px',
-    color: 'black',
+    color: '#355C7D',
     textTransform: 'uppercase',
     wordWrap: 'break-word',
-    marginBottom: '20px'
+    marginBottom: '30px'
   }
 }))
 
 const Header = (props) => {
   const classes = useStyles()
+  const { title } = props
 
   return (
     <div className={classes.header}>
-      {props.title}
+      {title}
     </div>
   )
 }

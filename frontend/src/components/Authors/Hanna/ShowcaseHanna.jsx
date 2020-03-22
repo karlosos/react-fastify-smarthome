@@ -1,10 +1,69 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { Grid, Box } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import { fetchAuthorRequest, fetchAuthorCancel } from '@data/actions/author'
 import Showcase from '@components/Authors/Hanna/Showcase.jsx'
 
+const useStyles = makeStyles(() => ({
+  info: {
+    backgroundColor: '#F5F5F5',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    filter: 'grayscale(70%)',
+    height: '80%',
+    width: '100%',
+    margin: '0px auto'
+  },
+  main: {
+    height: '100vh',
+    resize: 'none',
+    overflow: 'hidden'
+  },
+  motto: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'red'
+  },
+  header: {
+    fontSize: 50,
+    letterSpacing: 5,
+    marginLeft: '30px',
+    marginTop: '50px',
+    textTransform: 'uppercase',
+    padding: 0,
+    margin: '0px',
+    color: '#6C5B7B'
+  },
+  headerDescription: {
+    color: '#6C5B7B',
+    marginLeft: '30px',
+    fontSize: 30,
+    marginBottom: '40px',
+    fontVariant: 'small-caps',
+    padding: 0,
+    letterSpacing: 2
+  },
+  quoteSection: {
+    height: '20%'
+  },
+  mainQuote: {
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    fontSize: '25px'
+  },
+  mainQuoteMotto: {
+    fontSize: '15px',
+    textAlign: 'center',
+    letterSpacing: '5px',
+    padding: '0px',
+    paddingTop: '15px',
+    textTransform: 'uppercase'
+  }
+}))
+
 export default function ShowcaseHanna (props) {
+  const classes = useStyles()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -14,7 +73,7 @@ export default function ShowcaseHanna (props) {
     }
   }, [dispatch])
 
-  const { 
+  const {
     fetchSingleError,
     fetchingSingle,
     author
@@ -29,45 +88,63 @@ export default function ShowcaseHanna (props) {
   }
 
   return (
-    <>
-      {
-        author
-          ? <Showcase>
+    <Grid container direction="column" className={classes.main}>
+      <Grid container direction="column" className={classes.info}>
+        <p className={classes.header}>Hanna Gałuszka</p>
+        <p className={classes.headerDescription}>Junior Fullstack Developer</p>
+        <Box display="flex" flexDirection="row" alignItems="center" flexWrap="no-wrap" m="0">
+          <Box p={4} width="25%">
             <Showcase.Section>
-              <Showcase.Section.Header title='Fetched Info' />
+              <Showcase.Section.InfoIcon color="#F67280" iconName="school" />
+              <Showcase.Section.Header title='EDUCATION' />
+              <Showcase.Section.InfoField infoName='College' infoValue='ZUT' />
+              <Showcase.Section.InfoField infoName='City' infoValue='Szczecin' />
+              <Showcase.Section.InfoField infoName='Field of study' infoValue='Automation and Robotics' />
+              <Showcase.Section.InfoField infoName='Year' infoValue='2017-2020' />
+            </Showcase.Section>
+          </Box>
+          <Box p={4} width="25%">
+            <Showcase.Section>
+              <Showcase.Section.InfoIcon color="#355C7D" iconName="work" />
+              <Showcase.Section.Header title='BASE INFO' />
               {
-                Object.keys(author).map((key) => (
-                  <Showcase.Section.InfoField
-                    key={key}
-                    infoName={key}
-                    infoValue={author[key]}
-                  />
+                author && Object.keys(author).map((key) => (
+                  key === 'github' ? <Showcase.Section.InfoLink
+                    infoName='Gitlab' infoValue={author.github}></Showcase.Section.InfoLink>
+                    : key !== 'avatar' && <Showcase.Section.InfoField
+                      key={key}
+                      infoName={key}
+                      infoValue={author[key]}
+                    />
                 ))
               }
             </Showcase.Section>
+          </Box>
+          <Box p={4} width="25%">
             <Showcase.Section>
-              <Showcase.Section.Header title='Address' />
+              <Showcase.Section.InfoIcon color="#6C5B7B" iconName="favorite" />
+              <Showcase.Section.Header title='CONTACT' />
               <Showcase.Section.InfoField infoName='Street' infoValue='Przykładowa' />
               <Showcase.Section.InfoField infoName='Home' infoValue='13' />
               <Showcase.Section.InfoField infoName='Zip code' infoValue='99-999' />
-              <Showcase.Section.InfoField infoName='Phone number' infoValue='111 222 333' />
             </Showcase.Section>
+          </Box>
+          <Box p={4} width="25%">
             <Showcase.Section>
-              <Showcase.Section.Header title='Languages' />
-              <Showcase.Section.InfoField infoName='Polish' infoValue='*****' />
-              <Showcase.Section.InfoField infoName='English' infoValue='***' />
-              <Showcase.Section.InfoField infoName='German' infoValue='***' />
-              <Showcase.Section.InfoField infoName='Spanish' infoValue='' />
+              <Showcase.Section.InfoIcon color="#F67280" iconName="contacts" />
+              <Showcase.Section.Header title='HOBBY' />
+              <Showcase.Section.InfoField infoName='Powerlifting' infoValue='****' />
+              <Showcase.Section.InfoField infoName='Cooking' infoValue='***' />
+              <Showcase.Section.InfoField infoName='Caligraphing' infoValue='*' />
+              <Showcase.Section.InfoField infoName='Coffee' infoValue='*****' />
             </Showcase.Section>
-            <Showcase.Section>
-              <Showcase.Section.Header title='Hobby' />
-              <Showcase.Section.InfoField infoName='Cooking' infoValue='*****' />
-              <Showcase.Section.InfoField infoName='Caligraphing' infoValue='***' />
-              <Showcase.Section.InfoField infoName='Drinking coffee' infoValue='*****' />
-            </Showcase.Section>
-          </Showcase> 
-          : <div>No author showcase available :(</div>
-      }
-    </>
+          </Box>
+        </Box>
+      </Grid>
+      <Grid container direction="column" alignContent="center" alignItems="center" className="quoteSection">
+        <p className={classes.mainQuoteMotto}>motto</p>
+        <p className={classes.mainQuote}>&quot;Whenever you find yourself on the side of the majority, it is time to reform (or pause and reflect).&quot;</p>
+      </Grid>
+    </Grid>
   )
 }

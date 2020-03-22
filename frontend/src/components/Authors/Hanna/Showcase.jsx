@@ -1,21 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Container from '@material-ui/core/Container'
+import { Grid } from '@material-ui/core'
 
 import Section from '@components/Authors/Hanna/Section.jsx'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   container: {
-    backgroundColor: '#6868a0',
-    padding: '40px'
-  },
-  content: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: '#DAA520',
+    padding: '0px'
   }
 }))
 
@@ -23,13 +15,9 @@ const Showcase = (props) => {
   const classes = useStyles()
 
   return (
-    <Container className={classes.container}>
-      <Card>
-        <CardContent className={classes.content}>
-          {props.children}
-        </CardContent>
-      </Card>
-    </Container>
+    <Grid className={classes.container}>
+      {props.children}
+    </Grid>
   )
 }
 

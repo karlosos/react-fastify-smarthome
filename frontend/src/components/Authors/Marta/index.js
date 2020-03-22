@@ -12,6 +12,7 @@ export const ColorCircularProgress = withStyles({
 
 export const useStyles = makeStyles(theme => ({
   root: {
+    width: '100vw',
     height: '100vh',
     display: 'flex',
     alignSelf: 'center',

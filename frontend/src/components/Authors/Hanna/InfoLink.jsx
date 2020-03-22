@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Brightness1Icon from '@material-ui/icons/Brightness1'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   field: {
     fontSize: '15px',
     color: '#355C7D',
@@ -22,7 +22,9 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'uppercase',
     textAlign: 'right',
     margin: '0px',
-    padding: '5px'
+    padding: '5px',
+    textDecoration: 'none',
+    color: '#355C7D'
   },
   icon: {
     fontSize: '10px',
@@ -31,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const InfoField = (props) => {
+const InfoLink = (props) => {
   const classes = useStyles()
   const { infoName, infoValue } = props
 
@@ -46,10 +48,10 @@ const InfoField = (props) => {
         <p className={classes.infoName}>{infoName}</p>
       </Grid>
       <Grid item xs={6}>
-        <p className={classes.infoValue}>{infoValue}</p>
+        <a href={infoValue} className={classes.infoValue}>{infoValue}</a>
       </Grid>
     </Grid>
   )
 }
 
-export default InfoField
+export default InfoLink

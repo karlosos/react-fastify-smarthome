@@ -1,13 +1,14 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
+import Map from '@components/Map'
 
 const useStyles = makeStyles(theme => ({
   mapBackground: {
     backgroundColor: 'white'
   },
-  mapContainer: { // use or replace
+  mapContainer: {
     maxWidth: '100%',
-    height: 'calc(100vh - 150px)', // change navigation height if needed
+    height: 'calc(100vh - 150px)',
     objectFit: 'contain'
   }
 }))
@@ -21,13 +22,8 @@ const SmartHomeMap = () => {
       justify='center'
       alignItems='center'
     >
-      <div className={classes.mapContainer}> {/* use or replace */}
-        {/* Map Component */}
-        {/* delete img tag below */}
-        <img
-          src='/frontend/src/assets/changeMe.jpg'
-          alt='Your Smart Home Map'
-        />
+      <div className={classes.mapContainer}>
+        <Map />
       </div>
     </Grid>
   )

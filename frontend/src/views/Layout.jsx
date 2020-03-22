@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Dashboard = ({ children }) => {
+const Layout = ({ children }) => {
   const classes = useStyles()
   return (
     <Grid container maxwidth='xs' className={classes.root} data-testid='dashboard-id'>
@@ -24,4 +24,4 @@ const Dashboard = ({ children }) => {
   )
 }
 
-export default Dashboard
+export default Layout

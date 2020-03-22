@@ -56,7 +56,7 @@ const styles = theme => ({
     width: 200
   },
   footer: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: '0',
     right: '0',
     width: '100%',
