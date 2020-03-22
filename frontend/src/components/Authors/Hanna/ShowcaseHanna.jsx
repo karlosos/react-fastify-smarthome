@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Grid, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
 import { fetchAuthorRequest, fetchAuthorCancel } from '@data/actions/author'
 import Showcase from '@components/Authors/Hanna/Showcase.jsx'
 
@@ -15,6 +16,11 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     margin: '0px auto'
   },
+  title: {
+    width: '50%',
+    marginTop: '15px',
+    marginLeft: '30px'
+  },
   main: {
     height: '100vh',
     resize: 'none',
@@ -26,22 +32,26 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'red'
   },
   header: {
-    fontSize: 50,
-    letterSpacing: 5,
-    marginLeft: '30px',
-    marginTop: '50px',
+    margin: '50px 0px 50px 20px'
+  },
+  avatar: {
+    width: '120px',
+    height: '120px'
+  },
+  name: {
     textTransform: 'uppercase',
     padding: 0,
     margin: '0px',
-    color: '#6C5B7B'
+    color: '#6C5B7B',
+    fontSize: 50,
+    letterSpacing: 5
   },
   headerDescription: {
     color: '#6C5B7B',
-    marginLeft: '30px',
     fontSize: 30,
-    marginBottom: '40px',
     fontVariant: 'small-caps',
     padding: 0,
+    margin: '0',
     letterSpacing: 2
   },
   quoteSection: {
@@ -90,8 +100,18 @@ export default function ShowcaseHanna (props) {
   return (
     <Grid container direction="column" className={classes.main}>
       <Grid container direction="column" className={classes.info}>
-        <p className={classes.header}>Hanna Gałuszka</p>
-        <p className={classes.headerDescription}>Junior Fullstack Developer</p>
+        <Grid container direction="row" className={classes.header}>
+          { author && <Avatar
+            alt='Avatar'
+            aria-label='avatar'
+            className={classes.avatar}
+            src={author.avatar} />
+          }
+          <Grid container direction="column" className={classes.title}>
+            <p className={classes.name}>Hanna Gałuszka</p>
+            <p className={classes.headerDescription}>Junior Fullstack Developer</p>
+          </Grid>
+        </Grid>
         <Box display="flex" flexDirection="row" alignItems="center" flexWrap="no-wrap" m="0">
           <Box p={4} width="25%">
             <Showcase.Section>
@@ -110,7 +130,7 @@ export default function ShowcaseHanna (props) {
               {
                 author && Object.keys(author).map((key) => (
                   key === 'github' ? <Showcase.Section.InfoLink
-                    infoName='Gitlab' infoValue={author.github}></Showcase.Section.InfoLink>
+                    infoName='Github' infoValue={author.github}></Showcase.Section.InfoLink>
                     : key !== 'avatar' && <Showcase.Section.InfoField
                       key={key}
                       infoName={key}
