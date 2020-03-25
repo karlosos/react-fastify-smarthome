@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author'
-import CustomList from '@components/List'
-import Spinner from '../components/Spinner'
-import Page404 from '../components/Page404'
+import CustomList from '../components/Authors/List'
+import Spinner from '../components/UI/Spinner'
+import Page404 from '../components/UI/Page404'
 
 export default function AuthorsList () {
   const dispatch = useDispatch()

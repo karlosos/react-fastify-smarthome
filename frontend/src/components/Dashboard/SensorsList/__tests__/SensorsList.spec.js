@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import SensorsList from '../SensorsList'
-import mockSensors from '../../../../../data/api/sensor/mockSensors'
+import mockSensors from '../../../../data/api/sensor/mockSensors'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 const mockStore = configureStore([])

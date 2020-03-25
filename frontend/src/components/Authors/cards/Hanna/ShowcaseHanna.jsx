@@ -4,7 +4,7 @@ import { Grid, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import { fetchAuthorRequest, fetchAuthorCancel } from '@data/actions/author'
-import Showcase from '@components/Authors/Hanna/Showcase.jsx'
+import Showcase from '@components/Authors/cards/Hanna/Showcase.jsx'
 
 const useStyles = makeStyles(() => ({
   info: {

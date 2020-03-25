@@ -5,8 +5,8 @@ import { loadSensors, changeSensorStatus } from '@data/actions/sensor'
 
 import SmartHomeMap from './SmartHomeMap'
 import SensorsList from './SensorsList'
-import Spinner from '../../Spinner'
-import Page404 from '../../Page404'
+import Spinner from '../UI/Spinner'
+import Page404 from '../UI/Page404'
 
 function mapSensorsToList (sensors) { // only for debuging purposes, replace this once implementing real sensors list
   const dispatch = useDispatch()

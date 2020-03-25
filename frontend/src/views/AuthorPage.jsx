@@ -1,10 +1,10 @@
 import React from 'react'
-import Marta from '@components/Authors/Marta'
-import Hanna from '@components/Authors/Hanna'
-import Kamil from '@components/Authors/Kamil'
-import Jakub from '@components/Authors/Jakub'
-import Karol from '@components/Authors/Karol'
-import NotExistingAuthor from '@components/Authors/NotExistingAuthor'
+import Marta from '@components/Authors/cards/Marta'
+import Hanna from '@components/Authors/cards/Hanna'
+import Kamil from '@components/Authors/cards/Kamil'
+import Jakub from '@components/Authors/cards/Jakub'
+import Karol from '@components/Authors/cards/Karol'
+import NotExistingAuthor from '@components/Authors/cards/NotExistingAuthor'
 
 function switchAuthors (id) {
   const authors = {

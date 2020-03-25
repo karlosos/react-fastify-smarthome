@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import Navigation from '../components/Layout/Navigation'
+import Navigation from '../components/Navigation/NavigationBar/Navigation'
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 import Dashboard from '../index'
 
-import myStore from '../../../../store'
+import myStore from '../../../store'
 
 describe('<Dashboard />', () => {
   let component

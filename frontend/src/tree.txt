@@ -1,0 +1,219 @@
+Folder PATH listing for volume DYSK SUPER
+Volume serial number is C888-860C
+F:.
+³   app.js
+³   index.css
+³   index.html
+³   index.jsx
+³   store.js
+³   tree.txt
+³   
+ÃÄÄÄcommon
+³   ÃÄÄÄassets
+³   ³       homePlan.jpg
+³   ³       house.svg
+³   ³       
+³   ÀÄÄÄconstants
+³           actionTypes.js
+³           sensorsInfo.js
+³           urls.js
+³           
+ÃÄÄÄcomponents
+³   ÃÄÄÄAuthors
+³   ³   ÃÄÄÄcards
+³   ³   ³   ÃÄÄÄHanna
+³   ³   ³   ³       Header.jsx
+³   ³   ³   ³       index.js
+³   ³   ³   ³       InfoField.jsx
+³   ³   ³   ³       InfoIcon.jsx
+³   ³   ³   ³       InfoLink.jsx
+³   ³   ³   ³       Section.jsx
+³   ³   ³   ³       Showcase.jsx
+³   ³   ³   ³       ShowcaseHanna.jsx
+³   ³   ³   ³       
+³   ³   ³   ÃÄÄÄJakub
+³   ³   ³   ³   ³   index.js
+³   ³   ³   ³   ³   ShowcaseJakub.jsx
+³   ³   ³   ³   ³   
+³   ³   ³   ³   ÀÄÄÄSwipeableTabs
+³   ³   ³   ³           index.js
+³   ³   ³   ³           SwipeableTabs.jsx
+³   ³   ³   ³           
+³   ³   ³   ÃÄÄÄKamil
+³   ³   ³   ³   ³   index.js
+³   ³   ³   ³   ³   InfoCard.js
+³   ³   ³   ³   ³   KamilJCard.jsx
+³   ³   ³   ³   ³   Links.js
+³   ³   ³   ³   ³   Showcase.js
+³   ³   ³   ³   ³   Stripes.js
+³   ³   ³   ³   ³   
+³   ³   ³   ³   ÀÄÄÄtests
+³   ³   ³   ³       ³   KamilJCard.spec.js
+³   ³   ³   ³       ³   
+³   ³   ³   ³       ÀÄÄÄ__snapshots__
+³   ³   ³   ³               KamilJCard.spec.js.snap
+³   ³   ³   ³               
+³   ³   ³   ÃÄÄÄKarol
+³   ³   ³   ³   ³   Highlight.js
+³   ³   ³   ³   ³   Illustration.js
+³   ³   ³   ³   ³   index.js
+³   ³   ³   ³   ³   Karol.jsx
+³   ³   ³   ³   ³   styles.js
+³   ³   ³   ³   ³   WaveLower.js
+³   ³   ³   ³   ³   WaveUpper.js
+³   ³   ³   ³   ³   
+³   ³   ³   ³   ÀÄÄÄ__tests__
+³   ³   ³   ³           Karol.spec.js
+³   ³   ³   ³           
+³   ³   ³   ÃÄÄÄMarta
+³   ³   ³   ³       AboutMarta.jsx
+³   ³   ³   ³       Card.jsx
+³   ³   ³   ³       index.js
+³   ³   ³   ³       
+³   ³   ³   ÀÄÄÄNotExistingAuthor
+³   ³   ³           index.js
+³   ³   ³           NotExistingAuthor.jsx
+³   ³   ³           
+³   ³   ÀÄÄÄList
+³   ³           Header.jsx
+³   ³           index.js
+³   ³           List.jsx
+³   ³           Tile.jsx
+³   ³           
+³   ÃÄÄÄDashboard
+³   ³   ³   Dashboard.jsx
+³   ³   ³   index.js
+³   ³   ³   
+³   ³   ÃÄÄÄSensorsList
+³   ³   ³   ³   index.js
+³   ³   ³   ³   Item.js
+³   ³   ³   ³   SensorsList.jsx
+³   ³   ³   ³   
+³   ³   ³   ÃÄÄÄItemInfo
+³   ³   ³   ³       LightItemInfo.js
+³   ³   ³   ³       RFIDSensorItemInfo.js
+³   ³   ³   ³       SmokeSensorItemInfo.js
+³   ³   ³   ³       TemperatureSensorItemInfo.js
+³   ³   ³   ³       WindowBlindsItemInfo.js
+³   ³   ³   ³       WindowSensorItemInfo.js
+³   ³   ³   ³       
+³   ³   ³   ÀÄÄÄ__tests__
+³   ³   ³           SensorsList.spec.js
+³   ³   ³           
+³   ³   ÃÄÄÄSmartHomeMap
+³   ³   ³   ³   index.js
+³   ³   ³   ³   SmartHomeMap.jsx
+³   ³   ³   ³   
+³   ³   ³   ÀÄÄÄMap
+³   ³   ³       ³   helpers.js
+³   ³   ³       ³   helpers.test.js
+³   ³   ³       ³   index.js
+³   ³   ³       ³   Map.jsx
+³   ³   ³       ³   Map.test.jsx
+³   ³   ³       ³   
+³   ³   ³       ÃÄÄÄMapModal
+³   ³   ³       ³       index.js
+³   ³   ³       ³       MapModal.jsx
+³   ³   ³       ³       MapModal.test.jsx
+³   ³   ³       ³       
+³   ³   ³       ÀÄÄÄSensor
+³   ³   ³               index.js
+³   ³   ³               Sensor.jsx
+³   ³   ³               Sensor.test.jsx
+³   ³   ³               
+³   ³   ÀÄÄÄtests
+³   ³           Dashboard.test.js
+³   ³           
+³   ÃÄÄÄNavigation
+³   ³   ÀÄÄÄNavigationBar
+³   ³       ÃÄÄÄHeader
+³   ³       ³   ³   Header.jsx
+³   ³       ³   ³   index.js
+³   ³       ³   ³   
+³   ³       ³   ÀÄÄÄtests
+³   ³       ³           Header.test.js
+³   ³       ³           
+³   ³       ÀÄÄÄNavigation
+³   ³               index.js
+³   ³               Navigation.jsx
+³   ³               
+³   ÀÄÄÄUI
+³       ÃÄÄÄPage404
+³       ³   ³   index.js
+³       ³   ³   Page404.jsx
+³       ³   ³   Page404.spec.js
+³       ³   ³   
+³       ³   ÀÄÄÄ__snapshots__
+³       ³           Page404.spec.js.snap
+³       ³           
+³       ÀÄÄÄSpinner
+³           ³   index.js
+³           ³   Spinner.jsx
+³           ³   spinner.spec.js
+³           ³   
+³           ÀÄÄÄ__snapshots__
+³                   spinner.spec.js.snap
+³                   
+ÃÄÄÄdata
+³   ÃÄÄÄactions
+³   ³   ³   homeActions.js
+³   ³   ³   
+³   ³   ÃÄÄÄauthor
+³   ³   ³       fetchAll.js
+³   ³   ³       fetchOne.js
+³   ³   ³       index.js
+³   ³   ³       
+³   ³   ÀÄÄÄsensor
+³   ³           index.js
+³   ³           sensorActions.js
+³   ³           
+³   ÃÄÄÄapi
+³   ³   ÃÄÄÄauthor
+³   ³   ³       fetch.js
+³   ³   ³       fetchOne.js
+³   ³   ³       index.js
+³   ³   ³       
+³   ³   ÀÄÄÄsensor
+³   ³           index.js
+³   ³           mockSensors.js
+³   ³           sensorApi.js
+³   ³           
+³   ÃÄÄÄreducers
+³   ³   ³   author.js
+³   ³   ³   homeReducer.js
+³   ³   ³   sensor.js
+³   ³   ³   
+³   ³   ÀÄÄÄtests
+³   ³           author.test.js
+³   ³           sensor.spec.js
+³   ³           
+³   ÀÄÄÄsagas
+³       ³   homeSaga.js
+³       ³   
+³       ÃÄÄÄauthor
+³       ³       fetchAllSaga.js
+³       ³       fetchAllSaga.test.js
+³       ³       fetchOne.js
+³       ³       index.js
+³       ³       
+³       ÀÄÄÄsensor
+³               index.js
+³               sensorSagas.js
+³               sensorSagas.spec.js
+³               
+ÃÄÄÄredux
+³   ÃÄÄÄreducer
+³   ³       index.js
+³   ³       
+³   ÀÄÄÄsaga
+³           index.js
+³           
+ÀÄÄÄviews
+    ³   AuthorPage.jsx
+    ³   AuthorsList.jsx
+    ³   Home.jsx
+    ³   Layout.jsx
+    ³   
+    ÀÄÄÄ__tests__
+            Layout.test.js
+            

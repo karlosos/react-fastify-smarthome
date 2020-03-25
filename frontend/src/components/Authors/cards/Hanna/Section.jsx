@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@material-ui/core'
 
-import InfoField from '@components/Authors/Hanna/InfoField.jsx'
-import Header from '@components/Authors/Hanna/Header.jsx'
-import InfoIcon from '@components/Authors/Hanna/InfoIcon.jsx'
+import InfoField from '@components/Authors/cards/Hanna/InfoField.jsx'
+import Header from '@components/Authors/cards/Hanna/Header.jsx'
+import InfoIcon from '@components/Authors/cards/Hanna/InfoIcon.jsx'
 import InfoLink from './InfoLink.jsx'
 
 const useStyles = makeStyles(() => ({

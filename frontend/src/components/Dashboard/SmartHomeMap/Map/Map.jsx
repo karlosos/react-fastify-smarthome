@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 
 import house from '@assets/house.svg'
-import Sensor from '@components/Map/Sensor'
-import MapModal from '@components/Map/MapModal'
+import Sensor from '@components/Dashboard/SmartHomeMap/Map/Sensor'
+import MapModal from '@components/Dashboard/SmartHomeMap/Map/MapModal'
 import { loadSensors } from '@data/actions/sensor/sensorActions.js'
 import {
   fromCoordinateToPercentMapper,

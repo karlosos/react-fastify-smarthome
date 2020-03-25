@@ -10,7 +10,7 @@ import SmokeSensorItemInfo from './ItemInfo/SmokeSensorItemInfo'
 import TemperatureSensorItemInfo from './ItemInfo/TemperatureSensorItemInfo'
 import WindowBlindsItemInfo from './ItemInfo/WindowBlindsItemInfo'
 import WindowSensorItemInfo from './ItemInfo/WindowSensorItemInfo'
-import sensorsInfo from '../../../../common/constants/sensorsInfo'
+import sensorsInfo from '../../../common/constants/sensorsInfo'
 
 const useStyles = makeStyles({
   row: props => ({

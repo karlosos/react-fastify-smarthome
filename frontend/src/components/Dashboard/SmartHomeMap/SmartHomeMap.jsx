@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import Map from '@components/Map'
+import Map from './Map'
 
 const useStyles = makeStyles(theme => ({
   mapBackground: {
