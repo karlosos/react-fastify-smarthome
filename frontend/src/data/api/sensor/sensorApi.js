@@ -3,7 +3,8 @@ import { delay } from 'redux-saga/effects'
 
 export function * getSensors () {
   const res = yield axios.get('/api/v1/dashboard')
-  return res.data
+
+ return res.data
 }
 
 export function * changeSensorStatus (sensorId) {

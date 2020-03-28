@@ -13,6 +13,7 @@
     "fastify": "^2.13.0",
     "fastify-cookie": "^3.6.0",
     "fastify-env": "^1.0.1",
+    "fastify-mongodb": "^2.0.0",
     "fastify-swagger": "^2.5.0",
     "notistack": "^0.9.9",
     "react": "^16.13.1",

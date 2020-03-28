@@ -15,6 +15,8 @@ import {
   validPointData
 } from './helpers'
 
+import axios from 'axios'
+
 /** Defines how many times sensor is smaller than map. */
 const SENSOR_COEFFICIENT = 50
 
@@ -48,8 +50,18 @@ const useStyles = makeStyles((props) => ({
   }
 }))
 
+function sendPoint (sensor) {
+  axios.post('api/v1/dashboard', {
+    sensor: sensor
+  }).catch(err => {
+    console.log(err)
+    // set error flag to display snackbar
+  })
+}
+
 const HomeMap = () => {
   const dispatch = useDispatch()
+  const [id, changeID] = useState(1)
   const picRef = useRef(null)
   const [points, addPoint] = useState([])
   const [mapHeight, setMapHeight] = useState(null)
@@ -91,6 +103,8 @@ const HomeMap = () => {
         setMapWidth(width)
       }
     }
+    const currentID = (Object.keys(sensors).length + 1) || 1
+    changeID(currentID)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -134,7 +148,9 @@ const HomeMap = () => {
     ))
 
     dispatch(updateSensors(newSensors))
-    addPoint([...points, { x: xCoordinate, y: yCoordinate }])
+    addPoint([...points, { _id: id, x: xCoordinate, y: yCoordinate }])
+    sendPoint({ _id: id, type: 'sensor', mapPosition: { x: xCoordinate, y: yCoordinate } })
+    changeID(id + 1)
   }
 
   /** Function sets starting map size after image loading. **/
@@ -147,18 +163,19 @@ const HomeMap = () => {
   return (
     <div className={classes.container}>
       <img
-        data-testid="image-id"
+        data-testid='image-id'
         ref={picRef}
         onClick={addNewSensor}
         src={house}
-        alt="Home plan"
+        alt='Home plan'
         className={classes.image}
-        onLoad={setOnLoadMapSize}/>
+        onLoad={setOnLoadMapSize}
+      />
       {
         sensors
           .map((point) => (
             validPointData(point) && <Sensor
-              data-testid="sensor-id"
+              data-testid='sensor-id'
               key={`${point.mapPosition.x}${point.mapPosition.y}${Math.random}`}
               sensorSize={
                 { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
@@ -174,11 +191,12 @@ const HomeMap = () => {
       }
 
       <MapModal
-        data-testid="modal-test-id"
+        data-testid='modal-test-id'
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Gap needed!"
-        content="Leave a gap between sensors, please." />
+        title='Gap needed!'
+        content='Leave a gap between sensors, please.'
+      />
     </div>
   )
 }
