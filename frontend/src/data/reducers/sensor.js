@@ -112,6 +112,7 @@ export default function sensor (state = initialState, action) {
       return changeSensorStatusSuccess(state, action)
     case actionTypes.SENSOR_CHANGE_STATUS_FAIL:
       return changeSensorStatusFail(state, action)
+
     case actionTypes.SENSORS_UPDATE_ACTION:
       return updateSensors(state, action)
 

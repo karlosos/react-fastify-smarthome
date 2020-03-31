@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadSensors, changeSensorStatus } from '@data/actions/sensor'
+import { loadSensors } from '@data/actions/sensor'
 
 import SmartHomeMap from './SmartHomeMap'
 import SensorsList from './SensorsList'
