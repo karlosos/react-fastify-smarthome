@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import { Grid } from '@material-ui/core'
 import Item from './Item'
 import { useWindowSize } from 'react-use'
+
+import { refreshSensors } from '@data/actions/sensor'
 
 const useStyles = makeStyles((theme) => ({
   root: props => ({
@@ -46,6 +48,11 @@ export default function SensorsList () {
   const { height } = useWindowSize()
   const sidebarHeight = height - 150
   const classes = useStyles({ sidebarHeight })
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    setInterval(function () { dispatch(refreshSensors()) }, 5000)
+  }, [])
 
   const {
     connectedSensors, notConnectedSensors

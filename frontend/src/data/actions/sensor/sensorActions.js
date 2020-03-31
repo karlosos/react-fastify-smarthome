@@ -65,3 +65,29 @@ export function changeSensorStatusFail (error) {
     error
   }
 }
+
+export function refreshSensors () {
+  return {
+    type: actionTypes.SENSORS_REFRESH_ACTION
+  }
+}
+
+export function refreshSensorsStart () {
+  return {
+    type: actionTypes.SENSORS_REFRESH_START
+  }
+}
+
+export function refreshSensorsSuccess (sensors) {
+  return {
+    type: actionTypes.SENSORS_REFRESH_SUCCESS,
+    sensors
+  }
+}
+
+export function refreshSensorsFail (error) {
+  return {
+    type: actionTypes.SENSORS_REFRESH_FAIL,
+    error
+  }
+}

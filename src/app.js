@@ -34,6 +34,10 @@ module.exports = function ({ port }) {
       prefix: '.well-known'
     })
 
+  app.register(require('./routes/dashboard'), {
+    prefix: '/api/v1/dashboard'
+  })
+
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'
   })

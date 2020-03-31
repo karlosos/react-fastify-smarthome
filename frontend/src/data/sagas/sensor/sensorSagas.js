@@ -5,7 +5,7 @@ import { getSensors, changeSensorStatus } from '../../api/sensor'
 export function * loadSensorsSaga () {
   yield put(actions.fetchSensorsStart())
   try {
-    const sensors = yield call(getSensors) // exchange with real async inside getSensors
+    const sensors = yield call(getSensors)
     yield put(actions.fetchSensorsSuccess(sensors))
   } catch (error) {
     yield put(actions.fetchSensorsFail(error))
@@ -19,5 +19,15 @@ export function * changeSensorStatusSaga (action) {
     yield put(actions.changeSensorStatusSuccess(response))
   } catch (error) {
     yield put(actions.changeSensorStatusFail(error))
+  }
+}
+
+export function * refreshSensorsSaga () {
+  yield put(actions.refreshSensorsStart())
+  try {
+    const sensors = yield call(getSensors) // exchange with real async inside getSensors
+    yield put(actions.refreshSensorsSuccess(sensors))
+  } catch (error) {
+    yield put(actions.refreshSensorsFail(error))
   }
 }

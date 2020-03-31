@@ -7,6 +7,7 @@ import SmartHomeMap from './SmartHomeMap'
 import SensorsList from './SensorsList'
 import Spinner from '../UI/Spinner'
 import Page404 from '../UI/Page404'
+import SensorsWarning from '../UI/SensorsWarning'
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const Dashboard = () => {
     if (!loadingError) {
       content = (
         <Grid container maxwidth='xs' data-testid='dashboard-content-id'>
+          <SensorsWarning />
           <SmartHomeMap />
           <SensorsList />
         </Grid>
