@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/generic-error",
+  "$id": "generic-error.json",
   "title": "GenericError",
   "type": "object",
   "properties": {

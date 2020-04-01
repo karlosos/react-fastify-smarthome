@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/window-sensor",
+  "$id": "window-sensor.json",
   "title": "Window Sensor",
   "type": "object",
   "description": "Window Sensor data",

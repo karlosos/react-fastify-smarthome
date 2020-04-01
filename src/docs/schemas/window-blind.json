@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/window-blind",
+  "$id": "window-blind.json",
   "title": "Window Blind",
   "type": "object",
   "description": "Window Blind data",

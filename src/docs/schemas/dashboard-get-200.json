@@ -1,4 +1,5 @@
 {
+  "$id": "dashboard-get-200.json",
   "title": "Dashboard",
   "type": "object",
   "description": "System information",

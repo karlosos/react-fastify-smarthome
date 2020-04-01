@@ -11,32 +11,33 @@ module.exports = function ({ port }) {
 
   app
     .register(require('./plugins/schemas'))
-    .register((instance, opts, next) => {
-      instance.register(require('fastify-swagger'), {
-        mode: 'static',
-        routePrefix: '/documentation',
-        specification: {
-          path: './src/docs/openapi.json',
-          baseDir: path.join(__dirname, 'docs')
-        },
-        exposeRoute: true
-      })
-        .ready(err => {
-          if (err) throw err
-          instance.swagger()
-        })
+    // .register((instance, opts, next) => {
+    //   instance.register(require('fastify-swagger'), {
+    //     mode: 'static',
+    //     routePrefix: '/documentation',
+    //     specification: {
+    //       path: './src/docs/openapi.json',
+    //       baseDir: path.join(__dirname, 'docs')
+    //     },
+    //     exposeRoute: true
+    //   })
+    //     .ready(err => {
+    //       if (err) throw err
+    //       instance.swagger()
+    //     })
 
-      instance.register(require('./routes/well-known/health-check'))
+  //   instance.register(require('./routes/well-known/health-check'))
 
-      next()
-    },
-    {
-      prefix: '.well-known'
+  //   next()
+  // },
+  // {
+  //   prefix: '.well-known'
+  // })
+
+  app
+    .register(require('./routes/dashboard'), {
+      prefix: '/api/v1/dashboard'
     })
-
-  app.register(require('./routes/dashboard'), {
-    prefix: '/api/v1/dashboard'
-  })
 
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'

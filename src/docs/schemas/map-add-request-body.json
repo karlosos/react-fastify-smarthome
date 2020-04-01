@@ -1,5 +1,6 @@
 {
   "title": "Map add request body",
+  "$id": "map-add-request-body.json",
   "type": "object",
   "properties": {
     "sensorId": {

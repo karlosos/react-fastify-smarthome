@@ -1,5 +1,5 @@
 {
-  "$id": "responses/rfid-tag",
+  "$id": "rfid-tag.json",
   "title": "RFID Tag",
   "type": "object",
   "description": "RFID Tag data",

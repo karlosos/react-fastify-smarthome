@@ -1,5 +1,5 @@
 {
-  "$id": "responses/map-point",
+  "$id": "map-point.json",
   "title": "Map point",
   "type": "object",
   "description": "Coordinates for a sensor placed on map",

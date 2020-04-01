@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/hvac-status",
+  "$id": "hvac-status.json",
   "title": "Hvac status",
   "type": "object",
   "description": "hvac status data",

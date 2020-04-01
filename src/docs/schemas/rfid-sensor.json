@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/rfid-sensor",
+  "$id": "rfid-sensor.json",
   "title": "RFID Sensor",
   "type": "object",
   "description": "RFID Sensor data",

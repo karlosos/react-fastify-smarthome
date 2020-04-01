@@ -4,11 +4,15 @@ const fp = require('fastify-plugin')
 module.exports = fp(function (fastify, options, next) {
   const schema = {
     type: 'object',
-    required: ['COOKIE_SECRET'],
+    required: ['COOKIE_SECRET', 'GATEWAY_URL'],
     properties: {
       COOKIE_SECRET: {
         type: 'string',
         default: ''
+      },
+      GATEWAY_URL: {
+        type: 'string',
+        default: 'https://patronage20-concept-master.herokuapp.com/dashboard'
       }
     }
   }

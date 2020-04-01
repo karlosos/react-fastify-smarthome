@@ -1,4 +1,5 @@
 {
+  "$id": "temperature-sensor.json",
   "title": "Temperature Sensor",
   "type": "object",
   "description": "Temperature Sensor data",

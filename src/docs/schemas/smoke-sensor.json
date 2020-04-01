@@ -1,5 +1,5 @@
 {
-  "$id": "schemas/responses/smoke-sensor",
+  "$id": "smoke-sensor.json",
   "title": "Smoke Sensor",
   "type": "object",
   "description": "Smoke Sensor data",
