@@ -10,6 +10,8 @@
     "@testing-library/react": "^9.5.0",
     "axios": "^0.19.2",
     "fastify": "^2.13.0",
+    "fastify-cookie": "^3.6.0",
+    "fastify-env": "^1.0.1",
     "fastify-swagger": "^2.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
