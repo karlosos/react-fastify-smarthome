@@ -26,8 +26,6 @@ module.exports = fp(function (fastify, options, next) {
     .register(fastifyEnv, envOptions)
     .ready((err) => {
       if (err) console.error(err)
-
-      console.log(fastify.config)
     })
 
   next()

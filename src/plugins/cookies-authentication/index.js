@@ -10,8 +10,7 @@ module.exports = fp(function (fastify, options, next) {
     if (serverSecret !== '') {
       const requestSecret = request.cookies.secret
       if (serverSecret !== requestSecret) {
-        reply.code(401)
-        reply.send({
+        reply.code(401).send({
           error: 'Unauthorized Error'
         })
       }
