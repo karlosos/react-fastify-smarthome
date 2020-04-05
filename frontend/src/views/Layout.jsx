@@ -1,8 +1,9 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import Navigation from '../components/Navigation/NavigationBar/Navigation'
-import WarningSnackbar from '../components/Snackbar'
+import WarningSnackbar from '../components/UI/Snackbars/ConnectionWarningSnackbar'
 import axios from 'axios'
+import CustomSnackbarProvider from '../components/UI/Snackbars/CustomSnackbarProvider'
 
 const pingEndpoint = () => axios.get('/.well-known/health-check', { timeout: 5000 })
 
@@ -21,11 +22,13 @@ const Layout = ({ children }) => {
   const classes = useStyles()
   return (
     <Grid container maxwidth='xs' className={classes.root} data-testid='dashboard-id'>
-      <WarningSnackbar pingEndpoint={pingEndpoint} />
-      <Navigation />
-      <Grid container maxwidth='xs' className={classes.content}>
-        {children}
-      </Grid>
+      <CustomSnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpoint} />
+        <Navigation />
+        <Grid container maxwidth='xs' className={classes.content}>
+          {children}
+        </Grid>
+      </CustomSnackbarProvider>
     </Grid>
   )
 }

@@ -2,7 +2,7 @@
 
 import { takeLatest, put, call } from 'redux-saga/effects'
 import { watchSensors } from './index'
-import { loadSensorsSaga, changeSensorStatusSaga } from './sensorSagas'
+import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
 import { getSensors, changeSensorStatus } from '../../api/sensor'
@@ -19,6 +19,9 @@ describe('sensors watcher', () => {
 
     expect(gen.next().value)
       .toEqual(takeLatest(actionTypes.SENSOR_CHANGE_STATUS_ACTION, changeSensorStatusSaga))
+
+    expect(gen.next().value)
+      .toEqual(takeLatest(actionTypes.SENSORS_REFRESH_ACTION, refreshSensorsSaga))
 
     expect(gen.next().done)
       .toEqual(true)

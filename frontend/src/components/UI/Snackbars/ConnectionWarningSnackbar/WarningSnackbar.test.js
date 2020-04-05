@@ -6,6 +6,7 @@ import { create } from 'react-test-renderer'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import WarningSnackbar from './index'
+import { SnackbarProvider } from 'notistack'
 
 const axiosMock = new MockAdapter(axios)
 
@@ -28,24 +29,31 @@ describe.only('WarningSnackbar component', () => {
   })
 
   it('Matches the snapshot', () => {
-    const snackbar = create(<WarningSnackbar />)
+    const snackbar = create(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>)
     expect(snackbar.toJSON()).toMatchSnapshot()
   })
 
-  it('should ping the health-check endpoint after 10 second and still be hidden', (done) => {
+  it('should ping the health-check endpoint after 10 second and still be hidden', async (done) => {
     const callMock = jest
       .fn()
       .mockReturnValue([200, {}])
       .mockName('serverEndpoint')
     axiosMock.onGet('/health-check')
       .reply(callMock)
-    const { container } = render(<WarningSnackbar pingEndpoint={pingEndpointMock} />)
+    const { container } = render(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>
+    )
     jest.advanceTimersByTime(20100)
-    setImmediate(() => {
-      expect(callMock).toHaveBeenCalledTimes(3)
-      expect(container.firstChild).toBeNull()
-      done()
-    })
+
+    await waitForElement(() => container)
+    expect(callMock).toHaveBeenCalledTimes(3)
+    expect(container.firstChild).toBeNull()
+    done()
   })
 
   it('should open the snackabar when the HTTP code is 408', async () => {
@@ -56,16 +64,24 @@ describe.only('WarningSnackbar component', () => {
     axiosMock
       .onGet('/health-check')
       .reply(callMock)
-    const { getByTestId } = render(<WarningSnackbar pingEndpoint={pingEndpointMock} />)
+    const { getByText } = render(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>
+    )
     jest.advanceTimersByTime(11000)
-    await waitForElement(() => getByTestId('snackbar'))
+    await waitForElement(() => getByText('Hej, coś nie styka! Sprawdź połączenie.'))
     expect(callMock).toHaveBeenCalledTimes(2)
   })
 
   it('should open the snackabar when there is a network error', async () => {
     isOnlineGetter.mockReturnValue(false)
     axiosMock.onGet('/health-check')
-    const { getByTestId } = render(<WarningSnackbar pingEndpoint={pingEndpointMock} />)
-    await waitForElement(() => getByTestId('snackbar'))
+    const { getByText } = render(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>
+    )
+    await waitForElement(() => getByText('Hej, coś nie styka! Sprawdź połączenie.'))
   })
 })

@@ -64,23 +64,13 @@ const changeSensorStatusFail = (state, action) => {
 }
 
 const refreshSensorsStart = (state, action) => {
-  return {
-    ...state
-  }
+  return { ...state }
 }
 
 const refreshSensorsSuccess = (state, action) => {
-  delete action.sensors.HVACStatus // not sure what to do with these
-  delete action.sensors.HVACRooms // not sure what to do with these
-  delete action.sensors.lights // not sure what to do with these
-
-  // for (const type in action.sensors) { // adding random id to the sensors. not needed hence its commented out for now.
-  //   action.sensors[type].forEach((sensor) => {
-  //     if (sensor.id === null) {
-  //       sensor.id = Math.floor(Math.random() * (100))
-  //     }
-  //   })
-  // }
+  delete action.sensors.HVACStatus
+  delete action.sensors.HVACRooms
+  delete action.sensors.lights
 
   return {
     ...state,
@@ -90,7 +80,6 @@ const refreshSensorsSuccess = (state, action) => {
 }
 
 const refreshSensorsFail = (state, action) => {
-  console.log('refreshSensorsFail')
   return {
     ...state,
     refreshError: action.error

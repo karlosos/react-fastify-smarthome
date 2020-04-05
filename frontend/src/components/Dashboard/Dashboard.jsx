@@ -7,7 +7,7 @@ import SmartHomeMap from './SmartHomeMap'
 import SensorsList from './SensorsList'
 import Spinner from '../UI/Spinner'
 import Page404 from '../UI/Page404'
-import SensorsWarning from '../UI/SensorsWarning'
+import SensorsWarning from '../UI/Snackbars/SensorsWarning'
 
 const Dashboard = () => {
   const dispatch = useDispatch()
