@@ -12,7 +12,7 @@ module.exports = fp(function (fastify, options, next) {
       },
       GATEWAY_URL: {
         type: 'string',
-        default: 'https://patronage20-concept-master.herokuapp.com/dashboard'
+        default: ''
       }
     }
   }
