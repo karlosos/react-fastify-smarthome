@@ -4,6 +4,9 @@ module.exports = function ({ port }) {
   const app = require('fastify')({ logger: true })
   const serveStatic = require('serve-static')
 
+  app.register(require('./plugins/env'))
+  app.register(require('./plugins/cookies-authentication'))
+
   app.use('/', serveStatic(path.join(__dirname, '..', 'frontend', 'dist')))
 
   app
