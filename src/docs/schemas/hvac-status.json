@@ -1,0 +1,15 @@
+{
+  "$id": "schemas/responses/hvac-status",
+  "title": "Hvac status",
+  "type": "object",
+  "description": "hvac status data",
+  "required": ["heating", "cooling"],
+  "properties": {
+    "heating": {
+      "type": "boolean"
+    },
+    "cooling": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Patronage20 API",
+    "description": "Backend service for smart-home application.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [],
+  "components": {
+    "schemas": {
+      "DashboardGet200": {
+        "$ref": "schemas/dashboard-get-200.json"
+      },
+      "GenericError": {
+        "$ref": "schemas/generic-error.json"
+      },
+      "MapAddRequestBody":{
+        "$ref": "schemas/map-add-request-body.json"
+      },
+      "SensorId": {
+        "$ref": "schemas/sensor-id.json"
+      }
+    },
+    "parameters": {
+      "sensorID": {
+        "$ref": "schemas/sensor-id.json"
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Request malformed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GenericError"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Entity not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GenericError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/.well-known/documentation": {
+      "get": {
+        "summary": "This documentation",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard": {
+      "get": {
+        "summary": "Endpoint with all data needed for dashboard visualisation.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardGet200"
+                },
+                "examples": {
+                  "positive": {
+                    "$ref": "examples/positive.json#/dashboard-get-200"
+                  },
+                  "positive_example": {
+                    "$ref": "examples/positive_example.json#/dashboard-get-200"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/v1/map/{sensorID}": {
+      "summary": "Add sensor to map",
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MapAddRequestBody"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MapAddRequestBody"
+              },
+              "examples": {
+                "positive": {
+                  "$ref": "examples/positive.json#/api-v1-map-{sensorID}-add"
+                },
+                "positive_example": {
+                  "$ref": "examples/positive_example.json#/api-v1-map-{sensorID}-add"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ module.exports = {
   resolve: {
     alias: {
       '@constants': path.resolve(__dirname, 'frontend/src/common/constants'),
+      '@assets': path.resolve(__dirname, 'frontend/src/common/assets'),
       '@data': path.resolve(__dirname, 'frontend/src/data'),
       '@redux': path.resolve(__dirname, 'frontend/src/redux'),
       '@views': path.resolve(__dirname, 'frontend/src/views'),
@@ -19,12 +20,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
-        ]
-      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -41,6 +36,14 @@ module.exports = {
         use: [
           {
             loader: 'html-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader'
           }
         ]
       }

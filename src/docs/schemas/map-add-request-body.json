@@ -1,0 +1,16 @@
+{
+  "title": "Map add request body",
+  "type": "object",
+  "properties": {
+    "sensorId": {
+      "$ref": "sensor-id.json"
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
+    }
+  },
+  "required": [
+    "sensorId",
+    "mapPosition"
+  ]
+}

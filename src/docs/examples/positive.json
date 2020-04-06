@@ -1,0 +1,81 @@
+{
+  "dashboard-get-200": {
+    "summary": "positive",
+    "value": {
+      "temperatureSensors": [
+        {
+          "id": 1,
+          "type": "temperatureSensor",
+          "value": 12.2
+        },
+        {
+          "id": 2,
+          "type": "temperatureSensor",
+          "value": 19
+        },
+        {
+          "id": 3,
+          "type": "temperatureSensor",
+          "value": 20
+        }
+      ],
+      "windowSensors": [
+        {
+          "id": 1,
+          "type": "windowSensor",
+          "isOpen": true
+        },
+        {
+          "id": 2,
+          "type": "windowSensor",
+          "isOpen": true
+        },
+        {
+          "id": 3,
+          "type": "windowSensor",
+          "isOpen": false
+        }
+      ],
+      "windowBlinds": [
+        {
+          "id": 1,
+          "type": "windowBlind",
+          "position": 50
+        }
+      ],
+      "RFIDSensors": [
+        {
+          "id": 1,
+          "type": "RFIDSensor",
+          "lastTag": {
+            "id": 1234567890,
+            "type": "RFIDTag",
+            "timestamps": 0
+          }
+        }
+      ],
+      "smokeSensors": [
+        {
+          "id": 1,
+          "type": "smokeSensor",
+          "isSmokeDetected": true
+        }
+      ],
+      "HVACStatus": {
+        "heating": true,
+        "cooling": false
+      }
+    }
+  },
+  "api-v1-map-{sensorID}-add": {
+    "summary": "",
+    "value": {
+      "sensroId": "123",
+      "mapPosition": {
+        "widthPos": 13,
+        "heightPos": 15
+      }
+    }
+  }
+
+}

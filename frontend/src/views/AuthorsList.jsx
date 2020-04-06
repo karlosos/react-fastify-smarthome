@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author'
-import CustomList from '@components/List'
+import CustomList from '../components/Authors/List'
+import Spinner from '../components/UI/Spinner'
+import Page404 from '../components/UI/Page404'
 
 export default function AuthorsList () {
   const dispatch = useDispatch()
@@ -17,11 +19,11 @@ export default function AuthorsList () {
   const { fetchError, fetching, authors } = useSelector((state) => state.author)
 
   if (fetching) {
-    return <div>Loading...</div>
+    return <><Spinner /></>
   }
 
   if (fetchError) {
-    return <div>{fetchError.message}</div>
+    return <><Page404 /></>
   }
   return (
     <>
@@ -35,7 +37,7 @@ export default function AuthorsList () {
               </CustomList.Tile>
             )}
           >
-            <CustomList.Header title='Authors' />
+            <CustomList.Header title='Autorzy' />
           </CustomList>
           : <div>No authors available</div>
       }
