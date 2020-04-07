@@ -5,6 +5,7 @@
 * [fastify](https://www.fastify.io/)
 * [fastify-swagger](https://github.com/fastify/fastify-swagger)
 
+
 ## Testing setup
 
 * [Jest](https://jestjs.io/)
@@ -35,3 +36,29 @@ with any example provided in the `./src/docs/examples/` directory.
 1. Follow the `positive_example` example.
   1. Go to `openapi.json` and set what's needed.
   1. Go to `./src/docs/examples` and create what's needed.
+
+## Setting environment variables
+
+When deploying app in local environment create `.env` file in root directory which contains:
+
+```
+GATEWAY_URL='https://patronage20-concept-master.herokuapp.com'
+COOKIE_NAME=secret_cookie
+COOKIE_VALUE=3241231213fsdj23kj4kl32j4
+```
+
+`COOKIE_NAME` and `COOKIE_VALUE` are optional and should be both defined when cookie authentication is desirable.
+
+### Setting cookie in browser
+
+To set cookie in browser, paste following code into browser console. It is required when `COOKIE_NAME` and `COOKIE_VALUE` are defined in environment variables.
+
+```
+var doSetCookie = function setCookie (c_name, value, exdays) {
+  var exdate = new Date()
+  exdate.setDate(exdate.getDate() + exdays)
+  var c_value = escape(value) + ((exdays == null) ? '' : '; expires=' + exdate.toUTCString())
+  document.cookie = c_name + '=' + c_value + '; samesite=Lax'
+}
+doSetCookie('secret_cookie', '3241231213fsdj23kj4kl32j4', 1)
+```

@@ -21,19 +21,35 @@ describe('Environment variables', () => {
     restore()
   })
 
-  describe('COOKIE_SECRET', () => {
-    test('should set fastify.config.COOKIE_SECRET to empty string when COOKIE_SECRET environment variable do not exists', async () => {
+  describe('COOKIE_VALUE', () => {
+    test('should set fastify.config.COOKIE_VALUE to empty string when COOKIE_VALUE environment variable do not exists', async () => {
       instance = await app({ port: 3000 }).ready()
-      expect(instance.config.COOKIE_SECRET).toBe('')
+      expect(instance.config.COOKIE_VALUE).toBe('')
     })
 
-    test('should set fastify.config.COOKIE_SECRET when COOKIE_SECRET environment variable exists', async () => {
+    test('should set fastify.config.COOKIE_VALUE when COOKIE_VALUE environment variable exists', async () => {
       restore = mockedEnv({
-        COOKIE_SECRET: 'abcdef'
+        COOKIE_VALUE: 'abcdef'
       })
 
       instance = await app({ port: 3000 }).ready()
-      expect(instance.config.COOKIE_SECRET).toBe('abcdef')
+      expect(instance.config.COOKIE_VALUE).toBe('abcdef')
+    })
+  })
+
+  describe('COOKIE_NAME', () => {
+    test('should set fastify.config.COOKIE_NAME to empty string when COOKIE_NAME environment variable do not exists', async () => {
+      instance = await app({ port: 3000 }).ready()
+      expect(instance.config.COOKIE_NAME).toBe('')
+    })
+
+    test('should set fastify.config.COOKIE_NAME when COOKIE_NAME environment variable exists', async () => {
+      restore = mockedEnv({
+        COOKIE_NAME: 'secret'
+      })
+
+      instance = await app({ port: 3000 }).ready()
+      expect(instance.config.COOKIE_NAME).toBe('secret')
     })
   })
 })

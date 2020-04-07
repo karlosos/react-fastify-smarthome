@@ -4,9 +4,13 @@ const fp = require('fastify-plugin')
 module.exports = fp(function (fastify, options, next) {
   const schema = {
     type: 'object',
-    required: ['COOKIE_SECRET', 'GATEWAY_URL'],
+    required: ['COOKIE_NAME', 'COOKIE_VALUE', 'GATEWAY_URL'],
     properties: {
-      COOKIE_SECRET: {
+      COOKIE_NAME: {
+        type: 'string',
+        default: ''
+      },
+      COOKIE_VALUE: {
         type: 'string',
         default: ''
       },
