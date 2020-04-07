@@ -25,8 +25,6 @@ const fetchSensorsSuccess = (state, action) => {
     smokeSensors: action.sensors.smokeSensors
   }
 
-  console.log(sensors)
-
   return {
     ...state,
     sensors,
