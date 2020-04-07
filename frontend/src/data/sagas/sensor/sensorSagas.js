@@ -25,7 +25,7 @@ export function * changeSensorStatusSaga (action) {
 export function * refreshSensorsSaga () {
   yield put(actions.refreshSensorsStart())
   try {
-    const sensors = yield call(getSensors) // exchange with real async inside getSensors
+    const sensors = yield call(getSensors)
     yield put(actions.refreshSensorsSuccess(sensors))
   } catch (error) {
     yield put(actions.refreshSensorsFail(error))

@@ -12,6 +12,19 @@ describe('sensor reducer', () => {
     sensorError: null
   }
 
+  const testSensors = [
+    {
+      id: 2,
+      type: 'mocksens1',
+      isOn: true
+    },
+    {
+      id: 3,
+      type: 'mocksens2',
+      isOn: false
+    }
+  ]
+
   test('should return the initial state', () => {
     expect(reducer(initialState, {})).toEqual(initialState)
   })
@@ -29,19 +42,6 @@ describe('sensor reducer', () => {
   })
 
   test(`should handle ${actionTypes.SENSORS_FETCH_SUCCESS}`, () => {
-    const testSensors = [
-      {
-        id: 2,
-        type: 'mocksens1',
-        isOn: true
-      },
-      {
-        id: 3,
-        type: 'mocksens2',
-        isOn: false
-      }
-    ]
-
     expect(reducer(initialState, actions.fetchSensorsSuccess(testSensors))).toEqual({
       ...initialState,
       sensors: testSensors,
@@ -78,6 +78,28 @@ describe('sensor reducer', () => {
     expect(reducer(initialState, actions.changeSensorStatusFail(testError))).toEqual({
       ...initialState,
       sensorError: testError
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSORS_REFRESH_START}`, () => {
+    expect(reducer(initialState, actions.refreshSensorsStart())).toEqual({
+      ...initialState
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSORS_REFRESH_SUCCESS}`, () => {
+    expect(reducer(initialState, actions.refreshSensorsSuccess(testSensors))).toEqual({
+      ...initialState,
+      sensors: testSensors,
+      refreshError: null
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSORS_REFRESH_FAIL}`, () => {
+    const testError = 'Error'
+    expect(reducer(initialState, actions.refreshSensorsFail(testError))).toEqual({
+      ...initialState,
+      refreshError: testError
     })
   })
 })

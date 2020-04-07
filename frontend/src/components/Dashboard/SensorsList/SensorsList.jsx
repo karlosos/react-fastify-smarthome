@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
+
 import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import { Grid } from '@material-ui/core'
@@ -27,7 +28,8 @@ function drawItems (sensors, disabled) {
           disabled={disabled}
           sensorData={sensorData}
           key={sensorData.id}
-          sensorType={keyName} />
+          sensorType={keyName}
+        />
       )
     }))
   }))

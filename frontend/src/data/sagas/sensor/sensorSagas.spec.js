@@ -134,3 +134,59 @@ describe('changeSensorStatusSaga', () => {
     })
   })
 })
+
+describe('refreshSensorsSaga', () => {
+  describe('should refresh sensors successfuly', () => {
+    const it = sagaHelper(refreshSensorsSaga())
+    const testSensors = [{
+      id: 52,
+      type: 'testsens421',
+      isOn: true
+    },
+    {
+      id: 36,
+      type: 'testsens352',
+      isOn: true
+    }]
+
+    it('should put refreshSensorsStart action', result => {
+      expect(result).toEqual(put(actions.refreshSensorsStart()))
+    })
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(getSensors))
+
+      return testSensors
+    })
+
+    it('should put refreshSensorsSuccess action', result => {
+      expect(result).toEqual(put(actions.refreshSensorsSuccess(testSensors)))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+
+  describe('should throw an exception on unsuccessful sensors load', () => {
+    const it = sagaHelper(refreshSensorsSaga())
+
+    it('should put fetchSensorsStart action', result => {
+      expect(result).toEqual(put(actions.refreshSensorsStart()))
+    })
+
+    it('should make an unsuccessful request to API', result => {
+      expect(result).toEqual(call(getSensors))
+
+      return new Error('test error')
+    })
+
+    it('should put refreshSensorsFail action', result => {
+      expect(result).toEqual(put(actions.refreshSensorsFail(new Error('test error'))))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+})

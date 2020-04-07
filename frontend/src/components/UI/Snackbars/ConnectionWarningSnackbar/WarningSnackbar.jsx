@@ -20,7 +20,7 @@ const WarningSnackbar = ({ pingEndpoint }) => {
   }
 
   const showSnackbar = (error) => {
-    error.response.status === 408
+    !error.response || error.response.status === 408
       ? handleSnackbarEnqueueing()
       : console.error(error)
   }

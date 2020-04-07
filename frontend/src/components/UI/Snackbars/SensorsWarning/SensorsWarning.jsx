@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useSnackbar } from 'notistack'
 
-export default function SensorsWarnin () {
+export default function SensorsWarning () {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const refreshError = useSelector((state) => state.sensor.refreshError)
 
