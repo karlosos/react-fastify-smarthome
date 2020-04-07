@@ -12,18 +12,47 @@ describe('sensor reducer', () => {
     sensorError: null
   }
 
-  const testSensors = [
-    {
-      id: 2,
-      type: 'mocksens1',
-      isOn: true
-    },
-    {
-      id: 3,
-      type: 'mocksens2',
-      isOn: false
-    }
-  ]
+  const testSensors = {
+    temperatureSensors: [
+      {
+        id: 1,
+        type: 'temperatureSensor',
+        value: 25
+      }
+    ],
+    windowSensors: [
+      {
+        id: 2,
+        type: 'windowSensor',
+        status: 'closed'
+      }
+    ],
+    windowBlinds: [
+      {
+        id: 3,
+        type: 'windowBlind',
+        position: 5
+      }
+    ],
+    RFIDSensors: [
+      {
+        id: 4,
+        type: 'RFIDSensor',
+        lastTag: {
+          id: 55,
+          type: 'RFIDTag',
+          timestamp: 11241524
+        }
+      }
+    ],
+    smokeSensors: [
+      {
+        id: 5,
+        type: 'smokeSensor',
+        isSmokeDetected: true
+      }
+    ]
+  }
 
   test('should return the initial state', () => {
     expect(reducer(initialState, {})).toEqual(initialState)

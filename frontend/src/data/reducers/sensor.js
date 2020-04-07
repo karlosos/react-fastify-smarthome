@@ -17,13 +17,19 @@ const fetchSensorsStart = (state, action) => {
 }
 
 const fetchSensorsSuccess = (state, action) => {
-  delete action.sensors.HVACStatus
-  delete action.sensors.HVACRooms
-  delete action.sensors.lights
+  const sensors = {
+    temperatureSensors: action.sensors.temperatureSensors,
+    windowSensors: action.sensors.windowSensors,
+    windowBlinds: action.sensors.windowBlinds,
+    RFIDSensors: action.sensors.RFIDSensors,
+    smokeSensors: action.sensors.smokeSensors
+  }
+
+  console.log(sensors)
 
   return {
     ...state,
-    sensors: action.sensors,
+    sensors,
     loadingSensors: false
   }
 }
@@ -68,13 +74,17 @@ const refreshSensorsStart = (state, action) => {
 }
 
 const refreshSensorsSuccess = (state, action) => {
-  delete action.sensors.HVACStatus
-  delete action.sensors.HVACRooms
-  delete action.sensors.lights
+  const sensors = {
+    temperatureSensors: action.sensors.temperatureSensors,
+    windowSensors: action.sensors.windowSensors,
+    windowBlinds: action.sensors.windowBlinds,
+    RFIDSensors: action.sensors.RFIDSensors,
+    smokeSensors: action.sensors.smokeSensors
+  }
 
   return {
     ...state,
-    sensors: action.sensors,
+    sensors,
     refreshError: null
   }
 }
