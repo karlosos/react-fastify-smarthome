@@ -1,22 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 
-// eslint-disable-next-line react/prop-types
 const WarningSnackbar = ({ pingEndpoint }) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const [key, setKey] = useState(false)
+
+  let key
 
   const handleSnackbarEnqueueing = () => {
-    setKey(enqueueSnackbar('Hej, coś nie styka! Sprawdź połączenie.', {
-      variant: 'warning',
-      persist: true,
-      onExiting: () => setKey(null)
-    }))
+    if (!key) {
+      key = enqueueSnackbar('Hej, coś nie styka! Sprawdź połączenie.', {
+        variant: 'warning',
+        persist: true,
+        onExiting: () => { key = null }
+      })
+    }
   }
 
   const handleSnackbarClosing = () => {
-    closeSnackbar(key)
-    setKey(null)
+    if (key) {
+      closeSnackbar(key)
+      key = null
+    }
   }
 
   const showSnackbar = (error) => {
@@ -31,7 +35,7 @@ const WarningSnackbar = ({ pingEndpoint }) => {
     } else {
       pingEndpoint()
         .then(() => handleSnackbarClosing())
-        .catch(showSnackbar)
+        .catch((err) => showSnackbar(err))
     }
   }
 
