@@ -28,7 +28,7 @@ describe('/api/v1/dashboard', function () {
 
   test('should assign value fastify.config.GATEWAY_URL when there is GATEWAY_URL environment variable and return status code 200 with an object in response', async function () {
     restore = mockedEnv({
-      GATEWAY_URL: 'https://patronage20-concept-master.herokuapp.com/dashboard'
+      GATEWAY_URL: 'https://patronage20-concept-master.herokuapp.com'
     })
 
     instance = await app({ port: 3000 }).ready()
@@ -38,7 +38,7 @@ describe('/api/v1/dashboard', function () {
       url: '/api/v1/dashboard'
     })
 
-    expect(instance.config.GATEWAY_URL).toBe('https://patronage20-concept-master.herokuapp.com/dashboard')
+    expect(instance.config.GATEWAY_URL).toBe('https://patronage20-concept-master.herokuapp.com')
     expect(result.statusCode).toBe(200)
     expect(typeof (JSON.parse(result.payload))).toBe('object')
   })
