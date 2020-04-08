@@ -15,6 +15,9 @@
     "isSmokeDetected": {
       "type": "boolean",
       "description": "Flag indicating if the smoke sensor detected smoke"
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
     }
   }
 }

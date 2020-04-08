@@ -8,6 +8,7 @@ import house from '@assets/house.svg'
 import Sensor from '@components/Dashboard/SmartHomeMap/Map/Sensor'
 import MapModal from '@components/Dashboard/SmartHomeMap/Map/MapModal'
 import { loadSensors, updateSensors } from '@data/actions/sensor/sensorActions.js'
+import { dbAddPoint } from '@data/actions/dbActions.js'
 import {
   fromCoordinateToPercentMapper,
   fromPercentToCoordinateMapper,
@@ -15,7 +16,7 @@ import {
   validPointData
 } from './helpers'
 
-import axios from 'axios'
+import { useSnackbar } from 'notistack'
 
 /** Defines how many times sensor is smaller than map. */
 const SENSOR_COEFFICIENT = 50
@@ -50,29 +51,34 @@ const useStyles = makeStyles((props) => ({
   }
 }))
 
-function sendPoint (sensor) {
-  axios.post('api/v1/dashboard', {
-    sensor: sensor
-  }).catch(err => {
-    console.log(err)
-    // set error flag to display snackbar
-  })
-}
-
 const HomeMap = () => {
   const dispatch = useDispatch()
-  const [id, changeID] = useState(1)
   const picRef = useRef(null)
-  const [points, addPoint] = useState([])
+  const [errorPoints, setErrorPoints] = useState([])
+
+  const [points, setPoints] = useState([])
   const [mapHeight, setMapHeight] = useState(null)
   const [mapWidth, setMapWidth] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
+
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     return () => {
       dispatch(loadSensors())
     }
   }, [dispatch])
+
+  const { _id, dbError } = useSelector((state) => state.dbInteraction)
+
+  useEffect(() => {
+    if (dbError !== undefined) {
+      enqueueSnackbar(`Punkt ${_id} nie został dodany`, {
+        variant: 'error'
+      })
+      setErrorPoints([...errorPoints, _id])
+    }
+  }, [dbError])
 
   /**
    * Transfroms sensors from store to appropriate format.
@@ -103,8 +109,6 @@ const HomeMap = () => {
         setMapWidth(width)
       }
     }
-    const currentID = (Object.keys(sensors).length + 1) || 1
-    changeID(currentID)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -118,6 +122,9 @@ const HomeMap = () => {
     if (!mapListCommunication.waitingForSensorLocation) {
       return
     }
+    const removedErrorPoints = points.filter(p => !errorPoints.includes(p._id))
+    setPoints([...removedErrorPoints])
+    setErrorPoints([])
 
     const { offsetX = 0, offsetY = 0 } = e.nativeEvent
     /** Offset defined in map's width in percent. */
@@ -138,19 +145,18 @@ const HomeMap = () => {
 
     dispatch(onMapClick())
 
+    let clickedSensor
     const newSensors = Object.values(nonMappedSensors).map((sensorGroup) => (
       sensorGroup.map((sensor) => {
         if (sensor.id === mapListCommunication.sensorData.id && sensor.type === mapListCommunication.sensorData.type) {
+          clickedSensor = sensor
           return { ...sensor, mapPosition: { x: xCoordinate, y: yCoordinate } }
         }
         return sensor
       })
     ))
-
     dispatch(updateSensors(newSensors))
-    addPoint([...points, { _id: id, x: xCoordinate, y: yCoordinate }])
-    sendPoint({ _id: id, type: 'sensor', mapPosition: { x: xCoordinate, y: yCoordinate } })
-    changeID(id + 1)
+    dispatch(dbAddPoint({ _id: clickedSensor.id, type: clickedSensor.type, mapPosition: { x: xCoordinate, y: yCoordinate } }))
   }
 
   /** Function sets starting map size after image loading. **/

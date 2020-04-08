@@ -3,15 +3,18 @@
   "$id": "map-add-request-body.json",
   "type": "object",
   "properties": {
-    "sensorId": {
+    "_id": {
       "$ref": "sensor-id.json"
+    },
+    "sensorType": {
+      "type": "string"
     },
     "mapPosition": {
       "$ref": "map-point.json"
     }
   },
   "required": [
-    "sensorId",
+    "_id",
     "mapPosition"
   ]
 }

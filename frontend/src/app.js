@@ -12,7 +12,7 @@ const App = () => (
       <Route path='/authors' component={AuthorsList} />
       <Route path='/hvac' render={() => 'HVAC'} />
       <Route path='/' exact component={Dashboard} />
-      {/* <Redirect to='/' /> */}
+      <Redirect to='/' />
     </Switch>
   </Layout>
 )

@@ -1,8 +1,7 @@
 {
   "$id": "sensor-id.json",
   "title": "Sensor ID",
-  "type": "integer",
-  "format": "int32",
+  "type": "number",
   "minimum": 0,
   "description": "Sensor ID",
   "example": 1234567890

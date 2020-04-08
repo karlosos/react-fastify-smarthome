@@ -3,16 +3,16 @@
   "title": "Map point",
   "type": "object",
   "description": "Coordinates for a sensor placed on map",
-  "required": ["widthPos", "heightPos"],
+  "required": ["x", "y"],
   "properties": {
-    "widthPos": {
+    "x": {
       "type": "number",
       "description": "The width value in percentages according to the image",
       "minimum": 0,
       "maximum": 100,
       "example": 56
     },
-    "heightPos": {
+    "y": {
       "type": "number",
       "description": "The height value in percentages according to the image",
       "minimum": 0,
@@ -21,3 +21,4 @@
     }
   }
 }
+

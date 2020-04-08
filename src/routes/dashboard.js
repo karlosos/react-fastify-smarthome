@@ -14,7 +14,11 @@ const dashboard = async function (fastify, options, done) {
   fastify.get('/', schema, async (request, reply) => {
     const gatewayUrl = fastify.config.GATEWAY_URL
     const gatewayResponse = await axios.get(`${gatewayUrl}/dashboard`)
-    return gatewayResponse.data
+    fastify.db.getAllSensors(fastify.mongo.db, gatewayResponse.data, reply)
+  })
+
+  fastify.get('/delete', async function (req, reply) {
+    this.db.removeAllSensors(this.mongo.db, reply)
   })
 }
 

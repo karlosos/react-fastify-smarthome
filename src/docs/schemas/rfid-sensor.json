@@ -14,6 +14,9 @@
     },
     "lastTag": {
       "$ref": "rfid-tag.json"
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
     }
   }
 }

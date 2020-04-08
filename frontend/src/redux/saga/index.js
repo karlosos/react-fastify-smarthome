@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects'
 import { watchHome } from '@data/sagas/homeSaga'
 import { watchAuthors, watchAuthor } from '@data/sagas/author'
 import { watchSensors } from '@data/sagas/sensor'
+import { watchDB } from '@data/sagas/db'
 
 // Here should be added future sagas watchers
 export default function * rootSaga () {
@@ -9,6 +10,7 @@ export default function * rootSaga () {
     watchHome(),
     watchAuthors(),
     watchAuthor(),
-    watchSensors()
+    watchSensors(),
+    watchDB()
   ])
 }

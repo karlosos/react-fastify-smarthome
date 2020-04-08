@@ -15,6 +15,9 @@
     "status": {
       "type": "boolean",
       "description": "status of the window sensor"
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
     }
   }
 }
