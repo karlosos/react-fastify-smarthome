@@ -6,7 +6,11 @@
         {
           "id": 1,
           "type": "temperatureSensor",
-          "value": 12.2
+          "value": 12.2,
+          "mapPosition": {
+            "x": 5,
+            "y": 25
+          }
         },
         {
           "id": 2,
@@ -28,7 +32,11 @@
         {
           "id": 2,
           "type": "windowSensor",
-          "isOpen": true
+          "isOpen": true,
+          "mapPosition": {
+            "x": 5,
+            "y": 25
+          }
         },
         {
           "id": 3,
@@ -70,7 +78,7 @@
   "api-v1-map-{sensorID}-add": {
     "summary": "",
     "value": {
-      "id": "123",
+      "_id": "123",
       "mapPosition": {
         "x": 13,
         "y": 15

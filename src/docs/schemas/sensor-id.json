@@ -4,5 +4,5 @@
   "type": "number",
   "minimum": 0,
   "description": "Sensor ID",
-  "example": 1234567890
+  "example": 12
 }

@@ -4,7 +4,11 @@
     "temperatureSensors": [{
       "id": 1234567890,
       "type": "temperatureSensor",
-      "value": 12.2
+      "value": 12.2,
+      "mapPosition": {
+        "x": 5,
+        "y": 25
+      }
     }],
     "windowSensors": [{
       "id": 1234567890,

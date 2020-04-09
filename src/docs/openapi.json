@@ -37,7 +37,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/GenericError"
+              "$ref": "schemas/generic-error.json"
             }
           }
         }
@@ -47,7 +47,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/GenericError"
+              "$ref": "schemas/generic-error.json"
             }
           }
         }
@@ -76,7 +76,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DashboardGet200"
+                  "$ref": "schemas/dashboard-get-200.json"
                 },
                 "examples": {
                   "positive": {
@@ -94,7 +94,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenericError"
+                  "$ref": "schemas/generic-error.json"
                 }
               }
             }
@@ -104,20 +104,21 @@
     },
 
     "/api/v1/map/{sensorID}": {
-      "summary": "Add sensor to map",
       "post": {
+        "summary": "Endpoint to add sensor to map",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MapAddRequestBody"
+                "$ref": "schemas/map-add-request-body.json"
               }
             }
           }
         }
       },
       "delete": {
+        "summary": "Endpoint to delete sensor from map",
         "requestBody": {
           "required": false,
           "content": {
@@ -131,7 +132,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MapAddRequestBody"
+                "$ref": "schemas/map-add-request-body.json"
               },
               "examples": {
                 "positive": {
