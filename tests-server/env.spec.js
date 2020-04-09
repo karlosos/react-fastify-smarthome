@@ -5,10 +5,11 @@ const app = require('../src/app.js')
 describe('Environment variables', () => {
   let instance
   let restore
-  beforeAll(async () => {
+  beforeEach(async () => {
     instance = await app({ port: 3000 }).ready()
     restore = mockedEnv({
-      COOKIE_SECRET: undefined
+      COOKIE_VALUE: '',
+      COOKIE_NAME: ''
     })
   })
 
@@ -18,7 +19,6 @@ describe('Environment variables', () => {
 
   afterAll(async () => {
     instance.stop()
-    restore()
   })
 
   describe('COOKIE_VALUE', () => {

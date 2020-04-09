@@ -6,11 +6,13 @@ describe('/api/v1/dashboard', function () {
   let instance
   let restore
 
-  beforeAll(async () => {
-    instance = await app({ port: 3000 }).ready()
+  beforeEach(async () => {
     restore = mockedEnv({
-      GATEWAY_URL: undefined
+      GATEWAY_URL: '',
+      COOKIE_NAME: '',
+      COOKIE_VALUE: ''
     })
+    instance = await app({ port: 3000 }).ready()
   })
 
   afterEach(() => {
@@ -19,11 +21,16 @@ describe('/api/v1/dashboard', function () {
 
   afterAll(async () => {
     instance.stop()
-    restore()
   })
 
   test('should assign empty string to fastify.config.GATEWAY_URL when there is no GATEWAY_URL environment variable', async function () {
+    restore = mockedEnv({
+      GATEWAY_URL: '',
+      COOKIE_VALUE: '',
+      COOKIE_NAME: ''
+    })
     expect(instance.config.GATEWAY_URL).toBe('')
+    restore()
   })
 
   test('should assign value fastify.config.GATEWAY_URL when there is GATEWAY_URL environment variable and return status code 200 with an object in response', async function () {
@@ -41,5 +48,6 @@ describe('/api/v1/dashboard', function () {
     expect(instance.config.GATEWAY_URL).toBe('https://patronage20-concept-master.herokuapp.com')
     expect(result.statusCode).toBe(200)
     expect(typeof (JSON.parse(result.payload))).toBe('object')
+    restore()
   })
 })

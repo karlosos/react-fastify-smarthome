@@ -1,14 +1,21 @@
 /* globals beforeAll, afterAll, describe, test, expect */
-
+const mockedEnv = require('mocked-env')
 const app = require('../src/app.js')
 
 describe('/*', () => {
   let instance
+  let restore
+
   beforeAll(async () => {
+    restore = mockedEnv({
+      COOKIE_VALUE: '',
+      COOKIE_NAME: ''
+    })
     instance = await app({ port: 3000 }).ready()
   })
 
   afterAll(async () => {
+    restore()
     instance.stop()
   })
 

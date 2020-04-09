@@ -1,15 +1,25 @@
 /* globals beforeAll, afterAll, describe, test, expect */
 const app = require('../../src/app.js')
 const authors = require('../../src/public/authors.json')
+const mockedEnv = require('mocked-env')
 
 describe('/authors/1', function () {
   let instance
+  let restore
+
   beforeAll(async () => {
+    restore = mockedEnv({
+      COOKIE_VALUE: '',
+      COOKIE_NAME: ''
+    })
     instance = await app({ port: 3000 }).ready()
   })
+
   afterAll(async () => {
+    restore()
     instance.stop()
   })
+
   describe('GET author with id 1', () => {
     test('should return author with id 1 and status code 200', async function () {
       const result = await instance.inject({
@@ -20,6 +30,7 @@ describe('/authors/1', function () {
       expect(JSON.parse(result.payload)).toEqual(authors[0])
     })
   })
+
   describe('GET author with not existing id', () => {
     test('should return undefined id and status code 404', async function () {
       const requestedID = authors.length + 1
