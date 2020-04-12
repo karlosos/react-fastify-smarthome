@@ -8,7 +8,8 @@ const schema = {
 
 const routes = async (fastify, options) => {
   fastify.post('/:id', schema, async function (req, reply) {
-    this.db.postOneSensor(this.mongo.db, req.body, reply)
+    const res = await this.db.postOneSensor(this.mongo.db, req.body)
+    reply.code(200).send(res)
   })
 }
 

@@ -1,13 +1,13 @@
-/* globals beforeAll, afterAll, describe, test, expect */
+/* globals beforeEach, afterEach, describe, test, expect */
 const mockedEnv = require('mocked-env')
 const app = require('./../src/app.js')
 
 // Start application before running the test case
-describe.skip('/.well-known/health-check', function () {
+describe('/.well-known/health-check', function () {
   let instance
   let restore
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     restore = mockedEnv({
       COOKIE_VALUE: '',
       COOKIE_NAME: ''
@@ -16,9 +16,9 @@ describe.skip('/.well-known/health-check', function () {
   })
 
   // Stop application after running the test case
-  afterAll(async () => {
+  afterEach(async () => {
     restore()
-    instance.stop()
+    await instance.close()
   })
 
   describe('GET method', () => {

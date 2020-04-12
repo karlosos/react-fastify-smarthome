@@ -1,4 +1,4 @@
-/* globals beforeAll, afterAll, describe, test, expect */
+/* globals ,beforeEach afterEach, describe, test, expect */
 const app = require('../../src/app.js')
 const authors = require('../../src/public/authors.json')
 const mockedEnv = require('mocked-env')
@@ -7,7 +7,7 @@ describe('/authors/1', function () {
   let instance
   let restore
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     restore = mockedEnv({
       COOKIE_VALUE: '',
       COOKIE_NAME: ''
@@ -15,9 +15,9 @@ describe('/authors/1', function () {
     instance = await app({ port: 3000 }).ready()
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
     restore()
-    instance.stop()
+    await instance.close()
   })
 
   describe('GET author with id 1', () => {

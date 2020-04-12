@@ -6,7 +6,7 @@ describe('/authors/5', function () {
   let instance
   let restore
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     restore = mockedEnv({
       COOKIE_VALUE: '',
       COOKIE_NAME: ''
@@ -14,9 +14,9 @@ describe('/authors/5', function () {
     instance = await app({ port: 3000 }).ready()
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
     restore()
-    instance.stop()
+    await instance.close()
   })
 
   describe('GET author with id 5', () => {

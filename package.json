@@ -61,6 +61,7 @@
     "start:local:mock:watch": "nodemon --exec 'npm run start:local:mock'",
     "test": "npm run test:server",
     "test:server": "jest tests-server/",
+    "test:db": "jest plugins/db",
     "test:frontend": "jest frontend/",
     "start:frontend:dev": "webpack-dev-server --open --mode development",
     "build": "npm run build:frontend",

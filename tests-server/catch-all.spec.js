@@ -1,4 +1,4 @@
-/* globals beforeAll, afterAll, describe, test, expect */
+/* globals, describe, test, expect */
 const mockedEnv = require('mocked-env')
 const app = require('../src/app.js')
 
@@ -6,7 +6,7 @@ describe('/*', () => {
   let instance
   let restore
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     restore = mockedEnv({
       COOKIE_VALUE: '',
       COOKIE_NAME: ''
@@ -14,9 +14,9 @@ describe('/*', () => {
     instance = await app({ port: 3000 }).ready()
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
     restore()
-    instance.stop()
+    await instance.close()
   })
 
   describe('GET any url not starting with /api/', () => {
