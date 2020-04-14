@@ -29,7 +29,9 @@ const useStyles = makeStyles((props) => ({
     top: '20px'
   },
   image: props => ({
-    cursor: props.mapDisabled ? 'cell' : 'not-allowed',
+    cursor: props.mapDisabled
+      ? props.pointPressed ? 'pointer' : 'cell'
+      : 'not-allowed',
     height: 'auto',
     width: 'auto',
     minWidth: '100%',
@@ -101,7 +103,12 @@ const HomeMap = () => {
     return state.mapListCommunication
   })
 
-  const classes = useStyles({ mapDisabled: mapListCommunication.waitingForSensorLocation })
+  const classes = useStyles({
+    mapDisabled:
+      mapListCommunication.waitingForSensorLocation ||
+      mapListCommunication.mapPointPressed,
+    pointPressed: mapListCommunication.mapPointPressed
+  })
 
   useEffect(() => {
     function handleResize () {
@@ -121,6 +128,9 @@ const HomeMap = () => {
   * @param e Mouse click event.
   */
   const addNewSensor = (e) => {
+    if (mapListCommunication.mapPointPressed) {
+      dispatch(onMapClick())
+    }
     if (!mapListCommunication.waitingForSensorLocation) {
       return
     }
@@ -182,19 +192,22 @@ const HomeMap = () => {
       {
         sensors
           .map((point) => (
-            validPointData(point) && <Sensor
-              data-testid='sensor-id'
-              key={`${point.mapPosition.x}${point.mapPosition.y}${Math.random}`}
-              sensorSize={
-                { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
-              }
-              position={{
-                top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
-                left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth),
-                position: 'absolute'
-              }}
-              sensorColor={'black' && sensorsInfo[point.type] && sensorsInfo[point.type].color}
-            />
+            validPointData(point) &&
+              <Sensor
+                id={point.id}
+                type={point.type}
+                data-testid='sensor-id'
+                key={point.id}
+                sensorSize={
+                  { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
+                }
+                position={{
+                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
+                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth),
+                  position: 'absolute'
+                }}
+                sensorColor={'black' && sensorsInfo[point.type] && sensorsInfo[point.type].color}
+              />
           ))
       }
 

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import { Grid } from '@material-ui/core'
-import Item from './Item'
+import Item from './Item.jsx'
 import { useWindowSize } from 'react-use'
 
 import { refreshSensors } from '@data/actions/sensor'
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function drawItems (sensors, disabled) {
-  return (Object.keys(sensors).map((keyName, i) => {
+  return (Object.keys(sensors).map((keyName) => {
     return (sensors[keyName].map(sensorData => {
       return (
         <Item

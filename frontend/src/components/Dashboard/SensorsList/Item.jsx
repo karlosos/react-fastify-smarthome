@@ -63,10 +63,12 @@ const Item = ({ sensorData, disabled }) => {
   const bgColor = sensorData.id === mapListCommunication.pressedItemId
     ? 'white' && sensorsInfo[type] && sensorsInfo[type].color : 'white'
   const accentColor = 'black' && sensorsInfo[type] && sensorsInfo[type].color
-  const props = { accentColor, bgColor }
+  const clicked = sensorData.id === mapListCommunication.pressedItemId
+  const props = { accentColor, bgColor, clicked }
   const classes = useStyles(props)
   return (
     <ListItem
+      id={`sensor${id}`}
       button
       disabled={disabled}
       className={classes.row}

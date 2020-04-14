@@ -27,3 +27,11 @@ export function onMapClick () {
     type: actionTypes.MAP_CLICKED
   }
 }
+
+export function onPointClick (id, borderColor) {
+  return {
+    type: actionTypes.POINT_CLICKED,
+    id,
+    sensorBorderColor: borderColor
+  }
+}
