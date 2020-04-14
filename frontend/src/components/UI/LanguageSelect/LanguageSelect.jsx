@@ -50,7 +50,7 @@ export default function LanguageSelect () {
         }}
       >
         <MenuItem value='en'>EN</MenuItem>
-        <MenuItem data-testid='lang-menu-pl' value='pl'>PL</MenuItem>
+        <MenuItem value='pl'>PL</MenuItem>
       </Select>
     </FormControl>
   )
