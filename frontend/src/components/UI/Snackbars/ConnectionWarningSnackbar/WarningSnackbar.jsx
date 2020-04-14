@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
+import { useTranslation } from 'react-i18next'
 
 const WarningSnackbar = ({ pingEndpoint }) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const { t } = useTranslation()
 
   let key
 
   const handleSnackbarEnqueueing = () => {
     if (!key) {
-      key = enqueueSnackbar('Hej, coś nie styka! Sprawdź połączenie.', {
+      key = enqueueSnackbar(t('connection-warning'), {
         variant: 'warning',
         persist: true,
         onExiting: () => { key = null }

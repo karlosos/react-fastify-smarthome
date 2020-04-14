@@ -10,7 +10,8 @@ exports[`<Page404 /> renders Page404 component 1`] = `
     <div
       className="MuiBox-root MuiBox-root-35 makeStyles-errorMessage-2"
     >
-      Coś poszło nie tak...
+      Something went wrong...
+      .
     </div>
   </h2>
   <button
@@ -34,7 +35,7 @@ exports[`<Page404 /> renders Page404 component 1`] = `
     <span
       className="MuiButton-label"
     >
-      Odśwież
+      REFRESH
       <span
         className="MuiButton-endIcon MuiButton-iconSizeMedium"
       >

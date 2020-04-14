@@ -4,6 +4,9 @@ import SensorsList from '../SensorsList'
 import mockSensors from '../../../../data/api/sensor/mockSensors'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../../../../i18n'
+
 const mockStore = configureStore([])
 
 describe('<SensorsList />', () => {
@@ -24,9 +27,10 @@ describe('<SensorsList />', () => {
   test('should render <SensorsList>', () => {
     const { queryByTestId } = render(
       <Provider store={store}>
-        <SensorsList />
+        <I18nextProvider i18n={i18n}>
+          <SensorsList />
+        </I18nextProvider>
       </Provider>
-
     )
     expect(queryByTestId('sensors-list')).toBeTruthy()
     expect(queryByTestId('connected-sensors-list').childElementCount).toBe(7)

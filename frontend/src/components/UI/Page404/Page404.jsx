@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
+import { useTranslation } from 'react-i18next'
+
 const useStyles = makeStyles({
   root: {
     height: '100%',
@@ -30,10 +32,12 @@ const handlePageRefresh = () => {
 export default function Page404 () {
   const classes = useStyles()
 
+  const { t } = useTranslation()
+
   return (
     <Box className={classes.root}>
       <Typography component='h2'>
-        <Box className={classes.errorMessage}>Coś poszło nie tak...</Box>
+        <Box className={classes.errorMessage}>{t('something-went-wrong')}.</Box>
       </Typography>
       <Button
         variant='contained'
@@ -41,7 +45,7 @@ export default function Page404 () {
         endIcon={<RefreshIcon />}
         onClick={handlePageRefresh}
       >
-        Odśwież
+        {t('refresh')}
       </Button>
     </Box>
   )

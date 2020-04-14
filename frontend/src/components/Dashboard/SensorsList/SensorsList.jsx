@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
@@ -47,13 +48,18 @@ const divideSensors = (sensors) => {
 }
 
 export default function SensorsList () {
+  const { t } = useTranslation()
+
   const { height } = useWindowSize()
   const sidebarHeight = height - 150
   const classes = useStyles({ sidebarHeight })
 
   const dispatch = useDispatch()
   useEffect(() => {
-    setInterval(function () { dispatch(refreshSensors()) }, 5000)
+    const interval = setInterval(function () { dispatch(refreshSensors()) }, 5000)
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   const {
@@ -72,14 +78,14 @@ export default function SensorsList () {
       <List
         className={classes.list}
         data-testid='not-connected-sensors-list'
-        subheader={<ListSubheader>Nie umieszczone na mapie</ListSubheader>}
+        subheader={<ListSubheader>{t('dashboard:sensors-not-placed')}</ListSubheader>}
       >
         {drawItems(notConnectedSensors, false)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
-        subheader={<ListSubheader>Widoczne na mapie</ListSubheader>}
+        subheader={<ListSubheader>{t('dashboard:sensors-placed')}</ListSubheader>}
       >
         {drawItems(connectedSensors, true)}
       </List>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
@@ -8,6 +8,9 @@ import IconButton from '@material-ui/core/IconButton'
 import { makeStyles } from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import LanguageSelect from '../../../UI/LanguageSelect'
+
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
   bar: {
@@ -24,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 function LinkTab (props) {
   return (
     <Tab
-      component='a'
+      component={Link}
       {...props}
     />
   )
@@ -43,6 +46,8 @@ export default function Header () {
   const myClasses = useStyles()
   const location = useLocation()
 
+  const { t } = useTranslation()
+
   const [value, setValue] = React.useState(checkActive(location.pathname))
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -58,6 +63,7 @@ export default function Header () {
             </Typography>
           </Box>
           <Box p={1}>
+            <LanguageSelect />
             <IconButton aria-label='notifications' color='inherit'>
               <NotificationsIcon fontSize='large' />
             </IconButton>
@@ -71,9 +77,9 @@ export default function Header () {
           onChange={handleChange}
           aria-label='Navigation tabs'
         >
-          <LinkTab label='Dashboard' href='/' data-testid='dashboard-tab-id' />
-          <LinkTab label='HVAC' href='/hvac' />
-          <LinkTab label='Autorzy' href='/authors' />
+          <LinkTab label={t('nav-dashboard')} to='/' data-testid='dashboard-tab-id' />
+          <LinkTab label={t('nav-HVAC')} to='/hvac' />
+          <LinkTab label={t('nav-authors')} to='/authors' />
         </Tabs>
       </Grid>
     </Grid>

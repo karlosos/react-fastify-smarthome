@@ -4,6 +4,8 @@ import '@testing-library/jest-dom/extend-expect'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import HomeMap from './Map'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../../../../i18n'
 
 jest.mock('./helpers', () => {
   return {
@@ -36,17 +38,32 @@ describe('Map component tests', () => {
 
   describe('map render', () => {
     test('should render', () => {
-      expect(render(<Provider store={store}><HomeMap /></Provider>)).not.toBeNull()
+      expect(render(
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <HomeMap />
+          </I18nextProvider>
+        </Provider>)).not.toBeNull()
     })
   })
   describe('image tests', () => {
     test('image should appear in document', () => {
-      expect(render(<Provider store={store}><HomeMap /></Provider>).getByTestId('image-id')).toBeInTheDocument()
+      expect(render(
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <HomeMap />
+          </I18nextProvider>
+        </Provider>).getByTestId('image-id')).toBeInTheDocument()
     })
   })
   describe('map state tests', () => {
     test('should add sensor to state', () => {
-      const { queryByTestId, queryAllByTestId } = render(<Provider store={store}><HomeMap /></Provider>)
+      const { queryByTestId, queryAllByTestId } = render(
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <HomeMap />
+          </I18nextProvider>
+        </Provider>)
       const sensorsAmount = queryAllByTestId('sensor-id').length
 
       fireEvent.click(queryByTestId('image-id'), {

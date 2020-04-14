@@ -4,6 +4,7 @@ import AuthorPage from '@views/AuthorPage.jsx'
 import AuthorsList from '@views/AuthorsList.jsx'
 import Layout from '@views/Layout.jsx'
 import Dashboard from '@components/Dashboard'
+import './i18n'
 
 const App = () => (
   <Layout>

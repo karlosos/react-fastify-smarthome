@@ -1,0 +1,30 @@
+{
+  "sensors-placed": "Placed on the map",
+  "sensors-not-placed": "Not placed on the map",
+  "sensors-refresh-error": "Could not refresh sensors' status.",
+
+  "map-modal-title": "Gap needed!",
+  "map-modal-content": "Leave a gap between sensors, please.",
+
+  "light-hue": "hue",
+  "light-saturation": "saturation",
+  "light-brightness": "brightness",
+  "RFID-last-action": "Last action:",
+  "smoke-detected": "DETECTED",
+  "smoke-not-detected": "NO SMOKE",
+  "window-open": "OPEN",
+  "window-closed": "CLOSED",
+
+  "temperature-sensor-name": "Temperature sensor",
+  "temperature-sensor-desc": "Temperature",
+  "window-sensor-name": "Window sensor",
+  "window-sensor-desc": "Window",
+  "window-blind-name": "Window blind",
+  "window-blind-desc": "Window blind",
+  "RFID-sensor-name": "RFID sensor",
+  "RFID-sensor-desc": "RFID",
+  "smoke-sensor-name": "Smoke sensor",
+  "smoke-sensor-desc": "Smoke sensor",
+  "RGB-light-name": "RGB light",
+  "RGB-light-desc": "Light"
+}

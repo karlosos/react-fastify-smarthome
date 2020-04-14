@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles(theme => ({
   secondary: {
@@ -11,10 +12,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function RFIDSensorItemInfo ({ sensorData }) {
   const classes = useStyles()
+  const { t } = useTranslation()
+
   return (
     <ListItemSecondaryAction className={classes.secondary}>
       <ListItemText
-        primary='Ostatnia akcja:'
+        primary={t('dashboard:RFID-last-action')}
         secondary={
           <>
             {sensorData.lastTag.type} {sensorData.lastTag.id} <br />

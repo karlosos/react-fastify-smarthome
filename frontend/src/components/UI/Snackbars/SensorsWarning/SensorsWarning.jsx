@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useSnackbar } from 'notistack'
+import { useTranslation } from 'react-i18next'
 
 export default function SensorsWarning () {
+  const { t } = useTranslation()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const refreshError = useSelector((state) => state.sensor.refreshError)
 
@@ -10,7 +12,7 @@ export default function SensorsWarning () {
 
   useEffect(() => {
     if (refreshError && !key) {
-      setKey(enqueueSnackbar('Odświeżenie stanu czujników nie powiodło się.', {
+      setKey(enqueueSnackbar(t('dashboard:sensors-refresh-error'), {
         variant: 'warning',
         persist: true,
         onExiting: () => setKey(null)

@@ -14,6 +14,7 @@ import TemperatureSensorItemInfo from './ItemInfo/TemperatureSensorItemInfo'
 import WindowBlindsItemInfo from './ItemInfo/WindowBlindsItemInfo'
 import WindowSensorItemInfo from './ItemInfo/WindowSensorItemInfo'
 import sensorsInfo from '../../../common/constants/sensorsInfo'
+import ItemDisplayedInfo from './ItemDisplayedInfo'
 
 const useStyles = makeStyles({
   row: props => ({
@@ -69,11 +70,12 @@ const Item = ({ sensorData, disabled }) => {
       button
       disabled={disabled}
       className={classes.row}
-      onClick={() => clickDispatch(accentColor, sensorData) }>
+      onClick={() => clickDispatch(accentColor, sensorData)}
+    >
       <ListItemText
         primary={
           <>
-            <span className={classes.type}>{type}</span> <span className={classes.id}>{sensorData.id}</span>
+            <span className={classes.type}><ItemDisplayedInfo infoType='name' sensorType={type} /></span> <span className={classes.id}>{sensorData.id}</span>
           </>
         }
         secondary={
@@ -84,7 +86,8 @@ const Item = ({ sensorData, disabled }) => {
               className={classes.inline}
               color='textPrimary'
             >
-              {sensorsInfo[type] && sensorsInfo[type].description}
+              <ItemDisplayedInfo infoType='description' sensorType={type} />
+              {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
             </Typography>
           </>
         }

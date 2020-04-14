@@ -7,6 +7,8 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import WarningSnackbar from './index'
 import { SnackbarProvider } from 'notistack'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../../../../i18n'
 
 const axiosMock = new MockAdapter(axios)
 
@@ -31,7 +33,9 @@ describe.only('WarningSnackbar component', () => {
   it('Matches the snapshot', () => {
     const snackbar = create(
       <SnackbarProvider>
-        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+        <I18nextProvider i18n={i18n}>
+          <WarningSnackbar pingEndpoint={pingEndpointMock} />
+        </I18nextProvider>
       </SnackbarProvider>)
     expect(snackbar.toJSON()).toMatchSnapshot()
   })
@@ -45,7 +49,9 @@ describe.only('WarningSnackbar component', () => {
       .reply(callMock)
     const { container } = render(
       <SnackbarProvider>
-        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+        <I18nextProvider i18n={i18n}>
+          <WarningSnackbar pingEndpoint={pingEndpointMock} />
+        </I18nextProvider>
       </SnackbarProvider>
     )
     jest.advanceTimersByTime(20100)
@@ -56,7 +62,7 @@ describe.only('WarningSnackbar component', () => {
     done()
   })
 
-  it('should open the snackabar when the HTTP code is 408', async () => {
+  it('should open the snackbar when the HTTP code is 408', async () => {
     const callMock = jest.fn()
       .mockReturnValueOnce([200, {}])
       .mockReturnValueOnce([408, {}])
@@ -70,11 +76,11 @@ describe.only('WarningSnackbar component', () => {
       </SnackbarProvider>
     )
     jest.advanceTimersByTime(11000)
-    await waitForElement(() => getByText('Hej, coś nie styka! Sprawdź połączenie.'))
+    await waitForElement(() => getByText('Hey, something isn\'t quite right! Check your connection.'))
     expect(callMock).toHaveBeenCalledTimes(2)
   })
 
-  it('should open the snackabar when there is a network error', async () => {
+  it('should open the snackbar when there is a network error', async () => {
     isOnlineGetter.mockReturnValue(false)
     axiosMock.onGet('/health-check')
     const { getByText } = render(
@@ -82,6 +88,6 @@ describe.only('WarningSnackbar component', () => {
         <WarningSnackbar pingEndpoint={pingEndpointMock} />
       </SnackbarProvider>
     )
-    await waitForElement(() => getByText('Hej, coś nie styka! Sprawdź połączenie.'))
+    await waitForElement(() => getByText('Hey, something isn\'t quite right! Check your connection.'))
   })
 })

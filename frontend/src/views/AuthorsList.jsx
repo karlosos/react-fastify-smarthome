@@ -5,8 +5,10 @@ import { fetchAuthorsRequest, fetchAuthorsCancel } from '@data/actions/author'
 import CustomList from '../components/Authors/List'
 import Spinner from '../components/UI/Spinner'
 import Page404 from '../components/UI/Page404'
+import { useTranslation } from 'react-i18next'
 
 export default function AuthorsList () {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -37,9 +39,9 @@ export default function AuthorsList () {
               </CustomList.Tile>
             )}
           >
-            <CustomList.Header title='Autorzy' />
+            <CustomList.Header title={t('authors:authors')} />
           </CustomList>
-          : <div>No authors available</div>
+          : <div>{t('authors:no-authors-available')}</div>
       }
     </>
   )

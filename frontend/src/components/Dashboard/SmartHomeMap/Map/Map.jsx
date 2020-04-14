@@ -15,6 +15,7 @@ import {
   isFieldOccupied,
   validPointData
 } from './helpers'
+import { useTranslation } from 'react-i18next'
 
 import { useSnackbar } from 'notistack'
 
@@ -52,6 +53,7 @@ const useStyles = makeStyles((props) => ({
 }))
 
 const HomeMap = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const picRef = useRef(null)
   const [errorPoints, setErrorPoints] = useState([])
@@ -200,9 +202,8 @@ const HomeMap = () => {
         data-testid='modal-test-id'
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        title='Gap needed!'
-        content='Leave a gap between sensors, please.'
-      />
+        title={t('dashboard:map-modal-title')}
+        content={t('dashboard:map-modal-content')} />
     </div>
   )
 }
