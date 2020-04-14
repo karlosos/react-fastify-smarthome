@@ -21,12 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LanguageSelect () {
   const { i18n } = useTranslation()
+
   const [language, setLanguage] = React.useState(i18n.language)
 
-  const changeLanguage = event => {
-    const lang = event.target.value
+  const changeLanguage = lang => {
+    window.localStorage.setItem('language', lang)
     i18n.changeLanguage(lang)
     setLanguage(lang)
+  }
+
+  if (i18n.language !== 'en' && i18n.language !== 'pl') { // unknown language, fallback to en
+    changeLanguage('en')
   }
 
   const classes = useStyles()
@@ -34,15 +39,18 @@ export default function LanguageSelect () {
     <FormControl className={classes.formControl}>
       <Select
         value={language}
-        onChange={changeLanguage}
+        onChange={(e) => changeLanguage(e.target.value)}
         displayEmpty
         classes={{
           root: classes.whiteColor,
           icon: classes.whiteColor
         }}
+        inputProps={{
+          'data-testid': 'lang-menu'
+        }}
       >
         <MenuItem value='en'>EN</MenuItem>
-        <MenuItem value='pl'>PL</MenuItem>
+        <MenuItem data-testid='lang-menu-pl' value='pl'>PL</MenuItem>
       </Select>
     </FormControl>
   )

@@ -8,12 +8,9 @@ const ns = {
 }
 
 i18n
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    lng: navigator.language.slice(0, 2),
+    lng: window.localStorage.getItem('language') || navigator.language.slice(0, 2),
     fallbackLng: 'en',
     // debug: true,
     ns,
@@ -23,7 +20,7 @@ i18n
       useSuspense: false
     },
     interpolation: {
-      escapeValue: false // not needed for react as it escapes by default
+      escapeValue: false
     }
   })
 
