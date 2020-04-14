@@ -75,7 +75,7 @@ const HomeMap = () => {
 
   useEffect(() => {
     if (dbError !== undefined) {
-      enqueueSnackbar(`Punkt ${_id} nie został dodany`, {
+      enqueueSnackbar(t('dashboard:sensor-add-failed'), {
         variant: 'error'
       })
       setErrorPoints([...errorPoints, _id])

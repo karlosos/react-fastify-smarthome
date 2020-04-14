@@ -26,5 +26,7 @@
   "smoke-sensor-name": "Czujnik dymu",
   "smoke-sensor-desc": "Czujnik dymu",
   "RGB-light-name": "Światło RGB",
-  "RGB-light-desc": "Światło"
+  "RGB-light-desc": "Światło",
+
+  "sensor-add-failed": "Czujnik {{_id}} nie został dodany."
 }

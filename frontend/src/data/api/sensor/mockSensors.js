@@ -9,46 +9,46 @@ const mockSensors = {
       id: 9,
       type: 'temperatureSensor',
       value: 22,
-      // mapPosition: {
-      //   x: 40,
-      //   y: 60
-      // }
+      mapPosition: {
+        x: 40,
+        y: 60
+      }
     },
     {
       id: 10,
       type: 'temperatureSensor',
       value: 22,
-      // mapPosition: {
-      //   x: 77,
-      //   y: 56
-      // }
+      mapPosition: {
+        x: 77,
+        y: 56
+      }
     },
     {
       id: 11,
       type: 'temperatureSensor',
       value: 24,
-      // mapPosition: {
-      //   x: 40,
-      //   y: 23
-      // }
+      mapPosition: {
+        x: 40,
+        y: 23
+      }
     },
     {
       id: 12,
       type: 'temperatureSensor',
       value: 19.3,
-      // mapPosition: {
-      //   x: 0,
-      //   y: 0
-      // }
+      mapPosition: {
+        x: 0,
+        y: 0
+      }
     },
     {
       id: 13,
       type: 'temperatureSensor',
       value: 21,
-      // mapPosition: {
-      //   x: 35,
-      //   y: 77
-      // }
+      mapPosition: {
+        x: 35,
+        y: 77
+      }
     }
   ],
   windowSensors: [
@@ -86,10 +86,10 @@ const mockSensors = {
       id: 12,
       type: 'smokeSensor',
       isSmokeDetected: true,
-      // mapPosition: {
-      //   x: 88,
-      //   y: 43
-      // }
+      mapPosition: {
+        x: 88,
+        y: 43
+      }
     }
   ],
   lights: [

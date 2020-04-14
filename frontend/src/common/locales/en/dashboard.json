@@ -26,5 +26,7 @@
   "smoke-sensor-name": "Smoke sensor",
   "smoke-sensor-desc": "Smoke sensor",
   "RGB-light-name": "RGB light",
-  "RGB-light-desc": "Light"
+  "RGB-light-desc": "Light",
+
+  "sensor-add-failed": "Sensor {{_id}} could not be added."
 }
