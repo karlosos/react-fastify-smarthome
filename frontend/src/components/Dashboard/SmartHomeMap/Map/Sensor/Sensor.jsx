@@ -44,13 +44,13 @@ const Sensor = (props) => {
     ))
   }
 
-  const borderColor = id === mapListCommunication.pressedItemId
+  const sensorBorderColor = id === mapListCommunication.pressedItemId
     ? 'black' && sensorsInfo[`${type}Border`] && sensorsInfo[`${type}Border`].color : 'black'
   const clicked = id === mapListCommunication.pressedItemId
 
   const classes = useStyles({
     sensorColor: sensorColor,
-    sensorBorderColor: borderColor,
+    sensorBorderColor: sensorBorderColor,
     clicked: clicked
   })
 
@@ -59,7 +59,7 @@ const Sensor = (props) => {
       className={classes.container}
       style={Object.assign(position, sensorSize)}
       data-testid='sensor-id'
-      onClick={() => clickDispatch(borderColor)}
+      onClick={() => clickDispatch(sensorBorderColor)}
     />
   )
 }
