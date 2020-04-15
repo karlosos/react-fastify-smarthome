@@ -14,6 +14,7 @@ describe('<LanguageSelect />', () => {
 
   afterEach(() => {
     cleanup()
+    jest.clearAllMocks()
   })
 
   it('renders LanguageSelect component', () => {
@@ -42,16 +43,11 @@ describe('<LanguageSelect />', () => {
     expect(mocki18n.language).toBe('pl')
   })
 
-  it('changes language value in localStorage on language change', async () => {
+  it('changes language value in localStorage to \'pl\' on choosing polish language option', async () => {
     const localStorageMock = (function () {
-      const store = {}
       return {
-        getItem: function (key) {
-          return store[key] || null
-        },
-        setItem: function (key, value) {
-          store[key] = value.toString()
-        }
+        getItem: jest.fn(),
+        setItem: jest.fn()
       }
     })()
 
@@ -72,6 +68,35 @@ describe('<LanguageSelect />', () => {
     const menuItem = screen.getByText('PL')
     fireEvent.click(menuItem)
 
-    expect(window.localStorage.getItem('language')).toBe('pl')
+    expect(window.localStorage.setItem).toBeCalledWith('language', 'pl')
+  })
+
+  it('changes language value in localStorage to \'en\' on choosing english language option', async () => {
+    const localStorageMock = (function () {
+      return {
+        getItem: jest.fn(),
+        setItem: jest.fn()
+      }
+    })()
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock
+    })
+
+    mocki18n.changeLanguage('pl')
+    render(
+      <I18nextProvider i18n={mocki18n}>
+        <LanguageSelect />
+      </I18nextProvider>
+    )
+
+    const languageMenu = screen.getByRole('button')
+    fireEvent.mouseDown(languageMenu)
+
+    await waitForElement(() => screen.getByText('EN'))
+    const menuItem = screen.getByText('EN')
+    fireEvent.click(menuItem)
+
+    expect(window.localStorage.setItem).toBeCalledWith('language', 'en')
   })
 })

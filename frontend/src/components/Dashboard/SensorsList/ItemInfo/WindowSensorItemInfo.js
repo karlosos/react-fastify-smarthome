@@ -8,7 +8,7 @@ export default function WindowSensorItem ({ sensorData }) {
   return (
     <ListItemSecondaryAction>
       <ListItemText
-        primary={sensorData.status ? t('dashboard:window-open') : ('dashboard:window-closed')}
+        primary={sensorData.status ? t('dashboard:window-open') : t('dashboard:window-closed')}
       />
     </ListItemSecondaryAction>
   )
