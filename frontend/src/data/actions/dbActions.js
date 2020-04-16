@@ -34,3 +34,32 @@ export function dbAddPointFail (sensor, error) {
     error
   }
 }
+
+export function dbRemovePoint (sensor) {
+  return {
+    type: actionTypes.DB_REMOVE_POINT,
+    _id: sensor._id
+  }
+}
+
+export function dbRemovePointStart (sensor) {
+  return {
+    type: actionTypes.DB_REMOVE_POINT_START,
+    _id: sensor._id
+  }
+}
+
+export function dbRemovePointSuccess (sensor) {
+  return {
+    type: actionTypes.DB_REMOVE_POINT_SUCCESS,
+    _id: sensor._id
+  }
+}
+
+export function dbRemovePointFail (sensor, error) {
+  return {
+    type: actionTypes.DB_REMOVE_POINT_FAIL,
+    _id: sensor._id,
+    error
+  }
+}

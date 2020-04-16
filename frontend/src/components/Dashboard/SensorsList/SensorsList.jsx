@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -10,6 +10,11 @@ import Item from './Item.jsx'
 import { useWindowSize } from 'react-use'
 
 import { refreshSensors } from '@data/actions/sensor'
+import DeleteModal from './../../UI/Modals/DeleteModal'
+import { useSnackbar } from 'notistack'
+
+import { dbRemovePoint } from '@data/actions/dbActions.js'
+import { onMapClick } from '@data/actions/mapListCommunicationActions.js'
 
 const useStyles = makeStyles((theme) => ({
   root: props => ({
@@ -21,15 +26,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function drawItems (sensors, disabled) {
+function drawItems (sensors, isOnMap, handleRemoveClick) {
   return (Object.keys(sensors).map((keyName) => {
     return (sensors[keyName].map(sensorData => {
       return (
         <Item
-          disabled={disabled}
+          isOnMap={isOnMap}
           sensorData={sensorData}
           key={sensorData.id}
           sensorType={keyName}
+          handleRemoveClick={handleRemoveClick}
         />
       )
     }))
@@ -53,6 +59,9 @@ export default function SensorsList () {
   const { height } = useWindowSize()
   const sidebarHeight = height - 64
   const classes = useStyles({ sidebarHeight })
+  const [activeModal, setActiveModal] = useState(false)
+
+  const { enqueueSnackbar } = useSnackbar()
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -62,11 +71,32 @@ export default function SensorsList () {
     }
   }, [])
 
+  const { _id, removeError } = useSelector((state) => state.dbInteraction)
+  const { pressedItemId } = useSelector((state) => state.mapListCommunication)
+
+  useEffect(() => {
+    if (removeError !== undefined) {
+      enqueueSnackbar(t('dashboard:sensor-remove-failed'), {
+        variant: 'error'
+      })
+    }
+  }, [removeError])
+
   const {
     connectedSensors, notConnectedSensors
   } = useSelector((state) => {
     return divideSensors(state.sensor.sensors)
   })
+
+  function handleCancel () {
+    setActiveModal(false)
+  }
+
+  function handleOk () {
+    setActiveModal(false)
+    dispatch(dbRemovePoint({ _id: pressedItemId }))
+    dispatch(onMapClick())
+  }
 
   return (
     <Grid
@@ -80,15 +110,23 @@ export default function SensorsList () {
         data-testid='not-connected-sensors-list'
         subheader={<ListSubheader>{t('dashboard:sensors-not-placed')}</ListSubheader>}
       >
-        {drawItems(notConnectedSensors, false)}
+        {drawItems(notConnectedSensors, false, setActiveModal)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
         subheader={<ListSubheader>{t('dashboard:sensors-placed')}</ListSubheader>}
       >
-        {drawItems(connectedSensors, true)}
+        {drawItems(connectedSensors, true, setActiveModal)}
       </List>
+      <DeleteModal
+        data-testid='delete-modal-test-id'
+        open={activeModal}
+        handleCancel={handleCancel}
+        handleOk={handleOk}
+        title={t('dashboard:sensor-remove-modal')}
+        content={t('dashboard:sensor-remove-modal-content')}
+      />
     </Grid>
   )
 }

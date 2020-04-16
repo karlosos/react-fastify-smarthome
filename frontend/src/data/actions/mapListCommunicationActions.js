@@ -8,12 +8,13 @@ import actionTypes from '@constants/actionTypes'
  * @param {string} sensorData sensor info
  * @returns Action for mapListCommunication reducer.
  */
-export function onListClick (id, color, sensorData) {
+export function onListClick (id, color, sensorData, isOnMap) {
   return {
     type: actionTypes.LIST_CLICKED,
     id,
     sensorColor: color,
-    sensorData
+    sensorData,
+    isOnMap
   }
 }
 

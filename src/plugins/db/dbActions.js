@@ -15,11 +15,16 @@ async function removeSensors (db) {
   return db.collection(collectionName).drop()
 }
 
+async function removeSensor (db, id) {
+  return db.collection(collectionName).deleteOne({ "_id": id })
+}
+
 module.exports = fp(function (fastify, options, next) {
   fastify.decorate('db', {
     getAllSensors: getSensors,
     postOneSensor: postSensor,
-    removeAllSensors: removeSensors
+    removeAllSensors: removeSensors,
+    removeOneSensor: removeSensor
   })
 
   next()

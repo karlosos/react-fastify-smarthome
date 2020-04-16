@@ -5,6 +5,7 @@ import mockSensors from '../../../../data/api/sensor/mockSensors'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { I18nextProvider } from 'react-i18next'
+import { SnackbarProvider } from 'notistack'
 import i18n from '../../../../i18n'
 
 const mockStore = configureStore([])
@@ -20,6 +21,10 @@ describe('<SensorsList />', () => {
       },
       mapListCommunication: {
         pressedItemId: 3
+      },
+      dbInteraction: {
+        _id: 1,
+        removeError: false
       }
     })
   })
@@ -27,9 +32,11 @@ describe('<SensorsList />', () => {
   test('should render <SensorsList>', () => {
     const { queryByTestId } = render(
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <SensorsList />
-        </I18nextProvider>
+        <SnackbarProvider>
+          <I18nextProvider i18n={i18n}>
+            <SensorsList />
+          </I18nextProvider>
+        </SnackbarProvider>
       </Provider>
     )
     expect(queryByTestId('sensors-list')).toBeTruthy()
@@ -42,11 +49,20 @@ describe('<SensorsList />', () => {
       sensor: {
         sensors: [],
         loadingSensors: false
+      },
+      mapListCommunication: {
+        pressedItemId: 3
+      },
+      dbInteraction: {
+        _id: 1,
+        removeError: false
       }
     })
     const { queryByTestId } = render(
       <Provider store={store}>
-        <SensorsList />
+        <SnackbarProvider>
+          <SensorsList />
+        </SnackbarProvider>
       </Provider>
 
     )
@@ -86,12 +102,18 @@ describe('<SensorsList />', () => {
       mapListCommunication: {
         pressedItemId: 3
       },
+      dbInteraction: {
+        _id: 1,
+        removeError: false
+      },
       loadingSensors: false
     })
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <SensorsList />
+        <SnackbarProvider>
+          <SensorsList />
+        </SnackbarProvider>
       </Provider>
 
     )

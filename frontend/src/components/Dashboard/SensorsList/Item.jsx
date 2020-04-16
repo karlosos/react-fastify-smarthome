@@ -5,6 +5,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
+import CloseIcon from '@material-ui/icons/Close'
+import IconButton from '@material-ui/core/Button'
 
 import { onListClick } from '@data/actions/mapListCommunicationActions.js'
 import LightItemInfo from './ItemInfo/LightItemInfo'
@@ -29,7 +31,17 @@ const useStyles = makeStyles({
   id: {
     fontWeight: '200',
     fontStyle: 'italic'
-  }
+  },
+  item: {
+    display: 'flex',
+    justifyContent: 'start'
+  },
+  close: props => ({
+    display: props.clicked && props.isOnMap ? 'block' : 'none',
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  })
 })
 
 function drawItemInfo (sensorType, sensorData) {
@@ -44,7 +56,7 @@ function drawItemInfo (sensorType, sensorData) {
   return itemInfo[sensorType]
 }
 
-const Item = ({ sensorData, disabled }) => {
+const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
   const dispatch = useDispatch()
   const { id, type } = sensorData || { id: '', type: '' }
 
@@ -52,11 +64,12 @@ const Item = ({ sensorData, disabled }) => {
     return state.mapListCommunication
   })
 
-  function clickDispatch (sensorColor, sensorData) {
+  function clickDispatch (sensorColor, sensorData, isOnMap) {
     dispatch(onListClick(
       id,
       sensorColor,
-      sensorData
+      sensorData,
+      isOnMap
     ))
   }
 
@@ -64,36 +77,47 @@ const Item = ({ sensorData, disabled }) => {
     ? 'white' && sensorsInfo[type] && sensorsInfo[type].colorLight : ''
   const accentColor = 'black' && sensorsInfo[type] && sensorsInfo[type].color
   const clicked = sensorData.id === mapListCommunication.pressedItemId
-  const props = { accentColor, bgColor, clicked }
+  const props = { accentColor, bgColor, clicked, isOnMap }
   const classes = useStyles(props)
+
   return (
     <ListItem
       id={`sensor${id}`}
-      button
-      disabled={disabled}
+      buttonRef
       className={classes.row}
-      onClick={() => clickDispatch(accentColor, sensorData)}
+      onClick={() => clickDispatch(accentColor, sensorData, isOnMap)}
     >
-      <ListItemText
-        primary={
-          <>
-            <span className={classes.type}><ItemDisplayedInfo infoType='name' sensorType={type} /></span> <span className={classes.id}>{sensorData.id}</span>
-          </>
-        }
-        secondary={
-          <>
-            <Typography
-              component='span'
-              variant='body2'
-              className={classes.inline}
-              color='textPrimary'
-            >
-              <ItemDisplayedInfo infoType='description' sensorType={type} />
-              {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
-            </Typography>
-          </>
-        }
-      />
+      <div className={classes.item}>
+        <IconButton
+          className={classes.close}
+          onClick={() => handleRemoveClick(true)}
+        >
+          <CloseIcon />
+        </IconButton>
+        <ListItemText
+          primary={
+            <>
+              <span className={classes.type}>
+                <ItemDisplayedInfo infoType='name' sensorType={type} />
+              </span>
+              <span className={classes.id}>{sensorData.id}</span>
+            </>
+          }
+          secondary={
+            <>
+              <Typography
+                component='span'
+                variant='body2'
+                className={classes.inline}
+                color='textPrimary'
+              >
+                <ItemDisplayedInfo infoType='description' sensorType={type} />
+                {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
+              </Typography>
+            </>
+          }
+        />
+      </div>
       {drawItemInfo(type, sensorData)}
     </ListItem>
   )
@@ -108,7 +132,7 @@ Item.propTypes = {
       y: PropTypes.number
     })
   }),
-  disabled: PropTypes.bool
+  isOnMap: PropTypes.bool
 }
 
 export default Item

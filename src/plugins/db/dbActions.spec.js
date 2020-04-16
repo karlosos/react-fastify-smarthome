@@ -59,6 +59,24 @@ describe('check database interactions', () => {
     expect(res.length).toEqual(2)
   })
 
+  it('should remove one sensor from db', async () => {
+    const id = 22
+    const res1 = await instance.db.removeOneSensor(db, id)
+    const res2 = await instance.db.getAllSensors(db)
+
+    expect(res1.result.n).toEqual(1)
+    expect(res2.length).toEqual(1)
+  })
+
+  it('should not remove sensor from db when id is not found', async () => {
+    const id = 25
+    const res1 = await instance.db.removeOneSensor(db, id)
+    const res2 = await instance.db.getAllSensors(db)
+
+    expect(res1.result.n).toEqual(0)
+    expect(res2.length).toEqual(1)
+  })
+
   it('should remove sensors from db', async () => {
     const res = await instance.db.removeAllSensors(db)
     const res2 = await instance.db.getAllSensors(db)

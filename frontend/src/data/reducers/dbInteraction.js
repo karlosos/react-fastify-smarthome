@@ -5,17 +5,18 @@ const initialState = {
   type: 'None',
   mapPosition: undefined,
   addingPoint: false,
-  dbError: undefined
+  addError: undefined,
+  removeError: undefined
 }
 
 const addPointStart = (state, action) => {
   return {
     ...state,
-    _id: action.id,
+    _id: action._id,
     type: action.sensorType,
     mapPosition: action.mapPosition,
     addingPoint: true,
-    dbError: undefined
+    addError: undefined
   }
 }
 
@@ -26,7 +27,7 @@ const addPointSucces = (state, action) => {
     type: action.sensorType,
     mapPosition: action.mapPosition,
     addingPoint: false,
-    dbError: undefined
+    addError: undefined
   }
 }
 
@@ -37,7 +38,40 @@ const addPointFail = (state, action) => {
     type: 'None',
     mapPosition: undefined,
     addingPoint: false,
-    dbError: action.error
+    addError: action.error
+  }
+}
+
+const removePointStart = (state, action) => {
+  return {
+    ...state,
+    _id: action._id,
+    type: undefined,
+    mapPosition: undefined,
+    addingPoint: false,
+    removeError: undefined
+  }
+}
+
+const removePointSuccess = (state, action) => {
+  return {
+    ...state,
+    _id: action._id,
+    type: undefined,
+    mapPosition: undefined,
+    addingPoint: false,
+    removeError: undefined
+  }
+}
+
+const removePointFail = (state, action) => {
+  return {
+    ...state,
+    _id: action._id,
+    type: 'None',
+    mapPosition: undefined,
+    addingPoint: false,
+    removeError: action.error
   }
 }
 
@@ -49,6 +83,12 @@ export default function dbInteraction (state = initialState, action) {
       return addPointSucces(state, action)
     case actionTypes.DB_ADD_POINT_FAIL:
       return addPointFail(state, action)
+    case actionTypes.DB_REMOVE_POINT_START:
+      return removePointStart(state, action)
+    case actionTypes.DB_REMOVE_POINT_SUCCESS:
+      return removePointSuccess(state, action)
+    case actionTypes.DB_REMOVE_POINT_FAIL:
+      return removePointFail(state, action)
     default:
       return state
   }

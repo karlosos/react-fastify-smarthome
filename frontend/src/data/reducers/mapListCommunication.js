@@ -15,7 +15,7 @@ const listClicked = (state, action) => {
     ...state,
     listItemPressed: true,
     mapPointPressed: false,
-    waitingForSensorLocation: true,
+    waitingForSensorLocation: !action.isOnMap,
     pressedItemId: action.id,
     sensorColor: action.sensorColor,
     sensorBorderColor: undefined,
