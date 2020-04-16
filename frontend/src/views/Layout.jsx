@@ -1,9 +1,9 @@
 import React from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
-import Navigation from '../components/Navigation/NavigationBar/Navigation'
-import WarningSnackbar from '../components/UI/Snackbars/ConnectionWarningSnackbar'
+import Navigation from '@components/Navigation/NavigationBar/Navigation'
+import WarningSnackbar from '@components/UI/Snackbars/ConnectionWarningSnackbar'
 import axios from 'axios'
-import CustomSnackbarProvider from '../components/UI/Snackbars/CustomSnackbarProvider'
+import CustomSnackbarProvider from '@components/UI/Snackbars/CustomSnackbarProvider'
 
 const pingApiEndpoint = () => axios.get('/.well-known/health-check', { timeout: 5000 })
 

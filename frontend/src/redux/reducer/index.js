@@ -6,11 +6,13 @@ import author from '@data/reducers/author.js'
 import sensor from '@data/reducers/sensor.js'
 import mapListCommunication from '@data/reducers/mapListCommunication.js'
 import dbInteraction from '@data/reducers/dbInteraction.js'
+import notification from '@data/reducers/notification.js'
 
 export default combineReducers({
   home,
   author,
   sensor,
   mapListCommunication,
-  dbInteraction
+  dbInteraction,
+  notification
 })

@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import IconButton from '@material-ui/core/IconButton'
+import Badge from '@material-ui/core/Badge'
 import { makeStyles } from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import LanguageSelect from '../../../UI/LanguageSelect'
+import LanguageSelect from '@components/UI/LanguageSelect'
+import { openNotificationDrawer } from '@data/actions/notification'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Badge from '@material-ui/core/Badge'
+import NotificationDrawer from '@components/UI/NotificationDrawer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,12 +65,20 @@ export default function Header () {
   const classes = useStyles()
   const location = useLocation()
 
+  const { notifications } = useSelector((state) => state.notification)
   const { t } = useTranslation()
 
-  const [value, setValue] = React.useState(checkActive(location.pathname))
+  const [value, setValue] = useState(checkActive(location.pathname))
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  const dispatch = useDispatch()
+  const handleDrawerOpen = () => {
+    dispatch(openNotificationDrawer())
+  }
+
+  const uncheckedNotifications = notifications => notifications.filter(notification => !notification.isChecked)
 
   return (
     <AppBar
@@ -94,13 +105,22 @@ export default function Header () {
         <Box
           className={classes.buttons}
         >
-
           <LanguageSelect />
-          <IconButton aria-label='notifications' color='inherit'>
-            <Badge badgeContent={4} color='secondary'>
-              <NotificationsIcon />
+          <IconButton
+            aria-label='notifications'
+            color='inherit'
+            onClick={handleDrawerOpen}
+          >
+            <Badge
+              badgeContent={uncheckedNotifications(notifications).length}
+              overlap='circle'
+              color='secondary'
+            >
+              <NotificationsIcon fontSize='large' />
             </Badge>
           </IconButton>
+          <NotificationDrawer uncheckedNotifications={() => uncheckedNotifications(notifications)} />
+
         </Box>
       </Toolbar>
 
