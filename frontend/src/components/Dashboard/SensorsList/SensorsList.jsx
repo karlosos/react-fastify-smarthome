@@ -14,10 +14,10 @@ import { refreshSensors } from '@data/actions/sensor'
 const useStyles = makeStyles((theme) => ({
   root: props => ({
     width: '100%',
-    height: props.sidebarHeight + 'px'
+    height: props.sidebarHeight + 'px',
+    backgroundColor: theme.palette.background.level2
   }),
   list: {
-    backgroundColor: theme.palette.background.paper
   }
 }))
 
@@ -51,7 +51,7 @@ export default function SensorsList () {
   const { t } = useTranslation()
 
   const { height } = useWindowSize()
-  const sidebarHeight = height - 150
+  const sidebarHeight = height - 64
   const classes = useStyles({ sidebarHeight })
 
   const dispatch = useDispatch()

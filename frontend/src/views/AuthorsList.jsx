@@ -30,17 +30,7 @@ export default function AuthorsList () {
   return (
     <>
       {
-        authors
-          ? <CustomList
-            array={authors}
-            renderItem={(author) => (
-              <CustomList.Tile key={author.id}>
-                {author}
-              </CustomList.Tile>
-            )}
-          >
-            <CustomList.Header title={t('authors:authors')} />
-          </CustomList>
+        authors ? <CustomList authors={authors} />
           : <div>{t('authors:no-authors-available')}</div>
       }
     </>

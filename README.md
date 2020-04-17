@@ -62,3 +62,14 @@ var doSetCookie = function setCookie (c_name, value, exdays) {
 }
 doSetCookie('secret_cookie', '3241231213fsdj23kj4kl32j4', 1)
 ```
+
+### Starting application in development environment
+
+In order to have hot reload run scripts:
+
+```
+npm run start:watch
+npm run build:frontend:dev
+```
+
+Backend wll serve new builds as frontend will be rebuilded on changes.

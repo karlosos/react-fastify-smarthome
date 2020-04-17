@@ -4,11 +4,11 @@ import Map from './Map'
 
 const useStyles = makeStyles(theme => ({
   mapBackground: {
-    backgroundColor: 'white'
+    backgroundColor: theme.palette.background.default
   },
   mapContainer: {
     maxWidth: '100%',
-    height: 'calc(100vh - 150px)',
+    height: 'calc(100vh - 64px)',
     objectFit: 'contain'
   }
 }))

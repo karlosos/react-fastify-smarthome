@@ -1,19 +1,11 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-
-import Header from './Header.jsx'
+import Grid from '@material-ui/core/Grid'
 import Tile from './Tile.jsx'
 
 const useStyles = makeStyles(theme => ({
-  list: {
-    backgroundColor: '#e6e6e6',
-    width: '100%',
-    height: '100%',
-    alignContent: 'center',
-    margin: '0',
-    padding: '0',
-    boxSizing: 'border-box'
+  root: {
+    padding: theme.spacing(3)
   }
 }))
 
@@ -21,18 +13,26 @@ const CustomList = (props) => {
   const classes = useStyles()
 
   return (
-    <List className={classes.list}>
-      <ul>
-        {props.children}
-        {
-          props.array.map(props.renderItem)
-        }
-      </ul>
-    </List>
+    <Grid
+      container
+      direction='row'
+      justify='space-evenly'
+      className={classes.root}
+      alignContent='flex-start'
+    >
+      {
+        props.authors.map(author => {
+          return (
+            <Tile
+              key={author.id}
+              authorInfo={author}
+            />
+          )
+        })
+      }
+    </Grid>
   )
 }
 
-CustomList.Header = Header
 CustomList.Tile = Tile
-
 export default CustomList

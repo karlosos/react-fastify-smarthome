@@ -45,7 +45,7 @@ const Sensor = (props) => {
   }
 
   const sensorBorderColor = id === mapListCommunication.pressedItemId
-    ? 'black' && sensorsInfo[`${type}Border`] && sensorsInfo[`${type}Border`].color : 'black'
+    ? 'black' && sensorsInfo[`${type}`] && sensorsInfo[`${type}`].colorDark : 'black'
   const clicked = id === mapListCommunication.pressedItemId
 
   const classes = useStyles({

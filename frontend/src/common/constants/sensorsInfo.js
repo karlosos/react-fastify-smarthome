@@ -1,17 +1,40 @@
 const sensorsInfo = {
-  temperatureSensor: { color: '#ff9933', description: 'Temperatura' },
-  windowSensor: { color: '#884dff', description: 'Okno' },
-  windowBlind: { color: '#e05194', description: 'Zasłony' },
-  RFIDSensor: { color: '#ff8d85', description: 'RFID' },
-  smokeSensor: { color: '#808080', description: 'Czujnik dymu' },
-  RGBLight: { color: '#29a03a', description: 'Światło' },
-  // border colors darker than sensor color
-  temperatureSensorBorder: { color: '#cc6600', description: 'Temperatura' },
-  windowSensorBorder: { color: '#551acc', description: 'Okno' },
-  windowBlindBorder: { color: '#b02061', description: 'Zasłony' },
-  RFIDSensorBorder: { color: '#cc5a52', description: 'RFID' },
-  smokeSensorBorder: { color: '#505050', description: 'Czujnik dymu' },
-  RGBLightBorder: { color: '#067007', description: 'Światło' }
+  temperatureSensor: {
+    color: 'HSL(30, 100%, 60%)',
+    colorLight: 'HSL(30, 100%, 90%)',
+    colorDark: 'HSL(30, 100%, 30%)',
+    description: 'Temperatura'
+  },
+  windowSensor: {
+    color: 'HSL(260, 100%, 65%)',
+    colorLight: 'HSL(260, 100%, 95%)',
+    colorDark: 'HSL(260, 100%, 35%)',
+    description: 'Okno'
+  },
+  windowBlind: {
+    color: 'HSL(332, 70%, 60%)',
+    colorLight: 'HSL(332, 70%, 90%)',
+    colorDark: 'HSL(332, 70%, 30%)',
+    description: 'Zasłony'
+  },
+  RFIDSensor: {
+    color: 'HSL(4, 100%, 76%)',
+    colorLight: 'HSL(4, 100%, 96%)',
+    colorDark: 'HSL(4, 100%, 46%)',
+    description: 'RFID'
+  },
+  smokeSensor: {
+    color: 'HSL(0, 0%, 50%)',
+    colorLight: 'HSL(0, 0%, 80%)',
+    colorDark: 'HSL(0, 0%, 20%)',
+    description: 'Czujnik dymu'
+  },
+  RGBLight: {
+    color: 'HSL(129, 59%, 39%)',
+    colorLight: 'HSL(129, 59%, 60%)',
+    colorDark: 'HSL(129, 59%, 12%)',
+    description: 'Światło'
+  }
 }
 
 export default sensorsInfo

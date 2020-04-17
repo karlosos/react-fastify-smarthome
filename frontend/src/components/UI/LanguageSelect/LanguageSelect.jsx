@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   whiteColor: {
     color: 'white'
+  },
+  select: {
+    padding: theme.spacing(1)
   }
 }))
 
@@ -36,14 +39,15 @@ export default function LanguageSelect () {
 
   const classes = useStyles()
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl className={classes.formControl} variant='outlined'>
       <Select
         value={language}
         onChange={(e) => changeLanguage(e.target.value)}
         displayEmpty
         classes={{
           root: classes.whiteColor,
-          icon: classes.whiteColor
+          icon: classes.whiteColor,
+          select: classes.select
         }}
         inputProps={{
           'data-testid': 'lang-menu'

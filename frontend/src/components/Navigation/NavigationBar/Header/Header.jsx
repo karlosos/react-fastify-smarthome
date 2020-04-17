@@ -1,6 +1,5 @@
 import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import NotificationsIcon from '@material-ui/icons/Notifications'
@@ -9,18 +8,28 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import LanguageSelect from '../../../UI/LanguageSelect'
-
 import { useTranslation } from 'react-i18next'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Badge from '@material-ui/core/Badge'
 
-const useStyles = makeStyles(theme => ({
-  bar: {
-    backgroundColor: '#334455',
-    color: '#FFFFFF',
-    margin: '0',
-    height: '100%'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  title: {
+    flexGrow: 1
   },
   tabs: {
-    borderTop: '1px white solid'
+    flexGrow: 1
+  },
+  buttons: {
+    display: 'flex',
+    flexGrow: 1,
+    textAlign: 'right',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   }
 }))
 
@@ -43,7 +52,7 @@ function checkActive (url) {
 }
 
 export default function Header () {
-  const myClasses = useStyles()
+  const classes = useStyles()
   const location = useLocation()
 
   const { t } = useTranslation()
@@ -54,34 +63,37 @@ export default function Header () {
   }
 
   return (
-    <Grid container className={myClasses.bar} data-testid='header-id'>
-      <Grid item xs={12}>
-        <Box display='flex' p={1}>
-          <Box p={1} flexGrow={1} textAlign='left'>
-            <Typography variant='h5'>
-              Smart Home
-            </Typography>
-          </Box>
-          <Box p={1}>
-            <LanguageSelect />
-            <IconButton aria-label='notifications' color='inherit'>
-              <NotificationsIcon fontSize='large' />
-            </IconButton>
-          </Box>
-        </Box>
-      </Grid>
-      <Grid item xs={12} className={myClasses.tabs}>
+    <AppBar position='static'>
+      <Toolbar className={classes.toolbar}>
+        <Typography variant='h6' className={classes.title}>
+            Smart Home
+        </Typography>
         <Tabs
-          variant='fullWidth'
+          edge='start'
+          className={classes.tabs}
           value={value}
           onChange={handleChange}
           aria-label='Navigation tabs'
+          indicatorColor='secondary'
+          centered
         >
           <LinkTab label={t('nav-dashboard')} to='/' data-testid='dashboard-tab-id' />
           <LinkTab label={t('nav-HVAC')} to='/hvac' />
           <LinkTab label={t('nav-authors')} to='/authors' />
         </Tabs>
-      </Grid>
-    </Grid>
+        <Box
+          className={classes.buttons}
+        >
+
+          <LanguageSelect />
+          <IconButton aria-label='notifications' color='inherit'>
+            <Badge badgeContent={4} color='secondary'>
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </Box>
+      </Toolbar>
+
+    </AppBar>
   )
 }

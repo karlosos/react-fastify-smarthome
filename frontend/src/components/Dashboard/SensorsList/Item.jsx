@@ -61,7 +61,7 @@ const Item = ({ sensorData, disabled }) => {
   }
 
   const bgColor = sensorData.id === mapListCommunication.pressedItemId
-    ? 'white' && sensorsInfo[type] && sensorsInfo[type].color : 'white'
+    ? 'white' && sensorsInfo[type] && sensorsInfo[type].colorLight : ''
   const accentColor = 'black' && sensorsInfo[type] && sensorsInfo[type].color
   const clicked = sensorData.id === mapListCommunication.pressedItemId
   const props = { accentColor, bgColor, clicked }

@@ -36,22 +36,7 @@ const useStyles = makeStyles((props) => ({
     width: 'auto',
     minWidth: '100%',
     maxHeight: 'calc(100vh - 250px)'
-  }),
-  paper: {
-    position: 'absolute',
-    width: '400px',
-    height: '150px',
-    backgroundColor: 'white',
-    border: '1px solid #000',
-    top: 50,
-    fontSize: '20px',
-    margin: '20% auto',
-    padding: '10px',
-    alignContent: 'center'
-  },
-  modalTitle: {
-    padding: '15px 0'
-  }
+  })
 }))
 
 const HomeMap = () => {

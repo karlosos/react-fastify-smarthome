@@ -67,7 +67,8 @@
     "test:frontend": "jest frontend/",
     "start:frontend:dev": "webpack-dev-server --open --mode development",
     "build": "npm run build:frontend",
-    "build:frontend": "webpack --mode production"
+    "build:frontend": "webpack --mode production",
+    "build:frontend:dev": "webpack --mode development --watch --progress"
   },
   "repository": {
     "type": "git",
