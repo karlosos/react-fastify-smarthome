@@ -7,6 +7,7 @@ const WarningSnackbar = ({ pingEndpoint }) => {
   const { t } = useTranslation()
 
   let key
+  const status = [408, 502, 504]
 
   const handleSnackbarEnqueueing = () => {
     if (!key) {
@@ -26,7 +27,7 @@ const WarningSnackbar = ({ pingEndpoint }) => {
   }
 
   const showSnackbar = (error) => {
-    !error.response || error.response.status === 408
+    !error.response || status.includes(error.response.status)
       ? handleSnackbarEnqueueing()
       : console.error(error)
   }
@@ -43,7 +44,6 @@ const WarningSnackbar = ({ pingEndpoint }) => {
 
   let interval
   useEffect(() => {
-    // clearInterval(interval)
     checkConnection()
     interval = setInterval(() => checkConnection(), 10000)
     return () => {

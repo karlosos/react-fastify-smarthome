@@ -5,7 +5,7 @@ import WarningSnackbar from '../components/UI/Snackbars/ConnectionWarningSnackba
 import axios from 'axios'
 import CustomSnackbarProvider from '../components/UI/Snackbars/CustomSnackbarProvider'
 
-const pingEndpoint = () => axios.get('/.well-known/health-check', { timeout: 5000 })
+const pingApiEndpoint = () => axios.get('/.well-known/health-check', { timeout: 5000 })
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
   return (
     <Grid container maxwidth='xs' className={classes.root} data-testid='dashboard-id'>
       <CustomSnackbarProvider>
-        <WarningSnackbar pingEndpoint={pingEndpoint} />
+        <WarningSnackbar pingEndpoint={pingApiEndpoint} />
         <Navigation />
         <Grid container maxwidth='xs' className={classes.content}>
           {children}

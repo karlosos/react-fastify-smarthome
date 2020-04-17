@@ -80,6 +80,42 @@ describe.only('WarningSnackbar component', () => {
     expect(callMock).toHaveBeenCalledTimes(2)
   })
 
+  it('should open the snackbar when the HTTP code is 502', async () => {
+    const callMock = jest.fn()
+      .mockReturnValueOnce([200, {}])
+      .mockReturnValueOnce([502, {}])
+      .mockName('serverEndpoint')
+    axiosMock
+      .onGet('/health-check')
+      .reply(callMock)
+    const { getByText } = render(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>
+    )
+    jest.advanceTimersByTime(11000)
+    await waitForElement(() => getByText('Hey, something isn\'t quite right! Check your connection.'))
+    expect(callMock).toHaveBeenCalledTimes(2)
+  })
+
+  it('should open the snackbar when the HTTP code is 504', async () => {
+    const callMock = jest.fn()
+      .mockReturnValueOnce([200, {}])
+      .mockReturnValueOnce([504, {}])
+      .mockName('serverEndpoint')
+    axiosMock
+      .onGet('/health-check')
+      .reply(callMock)
+    const { getByText } = render(
+      <SnackbarProvider>
+        <WarningSnackbar pingEndpoint={pingEndpointMock} />
+      </SnackbarProvider>
+    )
+    jest.advanceTimersByTime(11000)
+    await waitForElement(() => getByText('Hey, something isn\'t quite right! Check your connection.'))
+    expect(callMock).toHaveBeenCalledTimes(2)
+  })
+
   it('should open the snackbar when there is a network error', async () => {
     isOnlineGetter.mockReturnValue(false)
     axiosMock.onGet('/health-check')
@@ -89,5 +125,6 @@ describe.only('WarningSnackbar component', () => {
       </SnackbarProvider>
     )
     await waitForElement(() => getByText('Hey, something isn\'t quite right! Check your connection.'))
+    expect(getByText('Hey, something isn\'t quite right! Check your connection.')).not.toEqual(null)
   })
 })

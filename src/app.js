@@ -26,7 +26,9 @@ module.exports = function ({ port }) {
           instance.swagger()
         })
 
-      instance.register(require('./routes/well-known/health-check'))
+      instance.register(require('./routes/well-known/health-check'), {
+        GATEWAY_URL: app.config.GATEWAY_URL
+      })
 
       next()
     },
