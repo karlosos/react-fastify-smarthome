@@ -72,4 +72,4 @@ npm run start:watch
 npm run build:frontend:dev
 ```
 
-Backend wll serve new builds as frontend will be rebuilded on changes.
+Backend will serve new builds as frontend will be rebuilded on changes.
