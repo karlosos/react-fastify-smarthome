@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   tabs: {
-    flexGrow: 1
+    flexGrow: 1,
+    minHeight: theme.spacing(7)
   },
   buttons: {
     display: 'flex',
@@ -29,7 +30,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'right',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    minHeight: theme.spacing(7)
+  },
+  toolbar: {
+    paddingTop: '3px',
+    minHeight: theme.spacing(6),
+    alignItems: 'baseline'
   }
 }))
 
