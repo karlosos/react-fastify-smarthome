@@ -35,8 +35,27 @@
       "isSmokeDetected": true
     }],
     "HVACStatus": {
+      "type": "HVACStatus",
       "heating": true,
       "cooling": false
-    }
+    },
+    "HVACRooms": [{
+      "id": 1234567890,
+      "type": "HVACRoom",
+      "heating-temperature": 100,
+      "cooling-temperature": 100,
+      "hysteresis": 15,
+      "temperatureSensorId": 1,
+      "windowSensorIds": [
+        1234567890
+      ]
+    }],
+    "lights": [{
+      "id": 1234567890,
+      "type": "RGBLight",
+      "hue": 100,
+      "saturation": 50,
+      "value": 50
+    }]
   }
 }

@@ -13,7 +13,8 @@
       "const": "windowSensor"
     },
     "status": {
-      "type": "boolean",
+      "type": "string",
+      "enum": ["open", "closed"],
       "description": "status of the window sensor"
     },
     "mapPosition": {

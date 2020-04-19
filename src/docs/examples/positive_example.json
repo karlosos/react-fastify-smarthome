@@ -64,9 +64,40 @@
         }
       ],
       "HVACStatus": {
+        "type": "HVACStatus",
         "heating": true,
         "cooling": false
-      }
+      },
+      "HVACRooms": [
+        {
+          "id": 6,
+          "type": "HVACRoom",
+          "heating-temperature": 100,
+          "cooling-temperature": 100,
+          "hysteresis": 15,
+          "temperatureSensorId": 1,
+          "windowSensorIds": [
+            2
+          ]
+        },
+        {
+          "id": 7,
+          "type": "HVACRoom"
+        }
+      ],
+      "lights": [
+        {
+          "id": 7,
+          "type": "RGBLight",
+          "hue": 100,
+          "saturation": 50,
+          "value": 50
+        },
+        {
+          "id": 8,
+          "type": "RGBLight"
+        }
+      ]
     }
   },
   "api-v1-map-{sensorID}-add": {
@@ -79,5 +110,4 @@
       }
     }
   }
-
 }

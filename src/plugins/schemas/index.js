@@ -15,7 +15,8 @@ function registerSchemas (fastify, options, next) {
   fastify.addSchema(require(path.resolve('./src/docs/schemas/temperature-sensor.json')))
   fastify.addSchema(require(path.resolve('./src/docs/schemas/window-blind.json')))
   fastify.addSchema(require(path.resolve('./src/docs/schemas/window-sensor.json')))
-
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/hvac-room.json')))
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/light.json')))
   next()
 }
 

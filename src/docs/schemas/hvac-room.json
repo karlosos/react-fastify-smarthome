@@ -1,0 +1,45 @@
+{
+  "$id": "hvac-room.json",
+  "title": "HVAC Room",
+  "type": "object",
+  "description": "hvac room data",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "type": {
+      "type": "string"
+    },
+    "heating-temperature": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 50,
+      "maximum": 300
+    },
+    "cooling-temperature": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 100,
+      "maximum": 400
+    },
+    "hysteresis": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 5,
+      "maximum": 20
+    },
+    "temperatureSensorId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "windowSensorIds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }    
+    }   
+  }
+}
