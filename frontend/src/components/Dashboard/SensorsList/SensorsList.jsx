@@ -76,7 +76,7 @@ export default function SensorsList () {
 
   useEffect(() => {
     if (removeError !== undefined) {
-      enqueueSnackbar(t('dashboard:sensor-remove-failed'), {
+      enqueueSnackbar(t('dashboard:sensor-remove-failed', { id: _id }), {
         variant: 'error'
       })
     }

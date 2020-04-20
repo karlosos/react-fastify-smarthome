@@ -1,0 +1,12 @@
+{
+    "title": "Map params content",
+    "$id": "map-params-point.json",
+    "type": "object",
+    "required": ["id"],
+    "properties": {
+      "id": {
+        "$ref": "sensor-id.json"
+      }
+    }
+  }
+  

@@ -35,6 +35,6 @@
   "RGB-light-name": "Światło RGB",
   "RGB-light-desc": "Światło",
 
-  "sensor-add-failed": "Czujnik {{_id}} nie został dodany.",
+  "sensor-add-failed": "Czujnik {{id}} nie został dodany.",
   "sensor-remove-failed": "Błąd przy usuwaniu czujnika {{id}}"
 }

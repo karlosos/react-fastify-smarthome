@@ -5,8 +5,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
-import CloseIcon from '@material-ui/icons/Close'
-import IconButton from '@material-ui/core/Button'
 
 import { onListClick } from '@data/actions/mapListCommunicationActions.js'
 import LightItemInfo from './ItemInfo/LightItemInfo'
@@ -34,7 +32,8 @@ const useStyles = makeStyles({
   },
   item: {
     display: 'flex',
-    justifyContent: 'start'
+    justifyContent: 'start',
+    alignItems: 'center'
   },
   close: props => ({
     display: props.clicked && props.isOnMap ? 'block' : 'none',
@@ -44,14 +43,14 @@ const useStyles = makeStyles({
   })
 })
 
-function drawItemInfo (sensorType, sensorData) {
+function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
   const itemInfo = {
-    temperatureSensor: <TemperatureSensorItemInfo sensorData={sensorData} />,
-    windowSensor: <WindowSensorItemInfo sensorData={sensorData} />,
-    windowBlind: <WindowBlindsItemInfo sensorData={sensorData} />,
-    RFIDSensor: <RFIDSensorItemInfo sensorData={sensorData} />,
-    smokeSensor: <SmokeSensorItemInfo sensorData={sensorData} />,
-    RGBlight: <LightItemInfo sensorData={sensorData} />
+    temperatureSensor: <TemperatureSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
+    windowSensor: <WindowSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
+    windowBlind: <WindowBlindsItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
+    RFIDSensor: <RFIDSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
+    smokeSensor: <SmokeSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
+    RGBlight: <LightItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />
   }
   return itemInfo[sensorType]
 }
@@ -87,38 +86,30 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
       className={classes.row}
       onClick={() => clickDispatch(accentColor, sensorData, isOnMap)}
     >
-      <div className={classes.item}>
-        <IconButton
-          className={classes.close}
-          onClick={() => handleRemoveClick(true)}
-        >
-          <CloseIcon />
-        </IconButton>
-        <ListItemText
-          primary={
-            <>
-              <span className={classes.type}>
-                <ItemDisplayedInfo infoType='name' sensorType={type} />
-              </span>
-              <span className={classes.id}>{sensorData.id}</span>
-            </>
-          }
-          secondary={
-            <>
-              <Typography
-                component='span'
-                variant='body2'
-                className={classes.inline}
-                color='textPrimary'
-              >
-                <ItemDisplayedInfo infoType='description' sensorType={type} />
-                {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
-              </Typography>
-            </>
-          }
-        />
-      </div>
-      {drawItemInfo(type, sensorData)}
+      <ListItemText
+        primary={
+          <>
+            <span className={classes.type}>
+              <ItemDisplayedInfo infoType='name' sensorType={type} />
+            </span>
+            <span className={classes.id}>{sensorData.id}</span>
+          </>
+        }
+        secondary={
+          <>
+            <Typography
+              component='span'
+              variant='body2'
+              className={classes.inline}
+              color='textPrimary'
+            >
+              <ItemDisplayedInfo infoType='description' sensorType={type} />
+              {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
+            </Typography>
+          </>
+        }
+      />
+      {drawItemInfo(type, sensorData, classes, handleRemoveClick)}
     </ListItem>
   )
 }

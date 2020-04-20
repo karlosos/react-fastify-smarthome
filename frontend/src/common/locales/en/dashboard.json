@@ -34,6 +34,6 @@
   "RGB-light-name": "RGB light",
   "RGB-light-desc": "Light",
 
-  "sensor-add-failed": "Sensor {{_id}} could not be added.",
+  "sensor-add-failed": "Sensor {{id}} could not be added.",
   "sensor-remove-failed": "Error during removing sensor {{id}}"
 }
