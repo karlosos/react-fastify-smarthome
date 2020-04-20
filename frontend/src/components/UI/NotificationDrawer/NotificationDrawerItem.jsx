@@ -15,9 +15,10 @@ const NotificationDrawerItem = ({ notification: { id, timestamp }, handleNotific
   const classes = useStyles()
 
   return (
-    <ListItem button key={id}>
+    <ListItem button key={id} data-testid='drawer-item'>
       <ListItemText primary={id} secondary={timeConverter(timestamp)} />
       <IconButton
+        role='check-notification'
         aria-label='close'
         color='inherit'
         className={classes.close}

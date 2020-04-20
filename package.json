@@ -65,6 +65,7 @@
     "test:server": "jest tests-server/",
     "test:db": "jest plugins/db",
     "test:frontend": "jest frontend/",
+    "test:frontend:watch": "jest --watch frontend/",
     "start:frontend:dev": "webpack-dev-server --open --mode development",
     "build": "npm run build:frontend",
     "build:frontend": "webpack --mode production",

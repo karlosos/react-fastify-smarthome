@@ -81,10 +81,7 @@ export default function Header () {
   }
 
   return (
-    <AppBar
-      position='static'
-      data-testid='header-id'
-    >
+    <AppBar position='static' data-testid='header-id'>
       <Toolbar className={classes.toolbar}>
         <Typography variant='h6' className={classes.title}>
             Smart Home
@@ -107,6 +104,7 @@ export default function Header () {
         >
           <LanguageSelect />
           <IconButton
+            data-testid='drawer-open'
             aria-label='notifications'
             color='inherit'
             onClick={handleDrawerOpen}
