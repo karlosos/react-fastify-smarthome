@@ -8,7 +8,7 @@ import house from '@assets/house.svg'
 import Sensor from '@components/Dashboard/SmartHomeMap/Map/Sensor'
 import MapModal from '@components/Dashboard/SmartHomeMap/Map/MapModal'
 import { loadSensors, updateSensors } from '@data/actions/sensor/sensorActions.js'
-import { dbAddPoint } from '@data/actions/dbActions.js'
+import { dbAddPoint, dbUpdateAddErrorPoints } from '@data/actions/dbActions.js'
 import {
   fromCoordinateToPercentMapper,
   fromPercentToCoordinateMapper,
@@ -43,31 +43,16 @@ const HomeMap = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const picRef = useRef(null)
-  const [errorPoints, setErrorPoints] = useState([])
 
-  const [points, setPoints] = useState([])
   const [mapHeight, setMapHeight] = useState(null)
   const [mapWidth, setMapWidth] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
 
   const { enqueueSnackbar } = useSnackbar()
 
-  useEffect(() => {
-    return () => {
-      dispatch(loadSensors())
-    }
-  }, [dispatch])
-
-  const { _id, addError } = useSelector((state) => state.dbInteraction)
-
-  useEffect(() => {
-    if (addError !== undefined) {
-      enqueueSnackbar(t('dashboard:sensor-add-failed', { id: _id }), {
-        variant: 'error'
-      })
-      setErrorPoints([...errorPoints, _id])
-    }
-  }, [addError])
+  const nonMappedSensors = useSelector((state) => state.sensor.sensors)
+  const mapListCommunication = useSelector((state) => state.mapListCommunication)
+  const { addError, addErrorPoints } = useSelector((state) => state.dbInteraction)
 
   /**
    * Transfroms sensors from store to appropriate format.
@@ -79,21 +64,35 @@ const HomeMap = () => {
     return Object.keys(sensors).map(key => sensors[key]).flat().filter(sensor => sensor.mapPosition)
   })
 
-  const nonMappedSensors = useSelector((state) => {
-    const { sensors } = state.sensor
-    return sensors
-  })
-
-  const mapListCommunication = useSelector((state) => {
-    return state.mapListCommunication
-  })
-
   const classes = useStyles({
     mapDisabled:
       mapListCommunication.waitingForSensorLocation ||
       mapListCommunication.mapPointPressed,
     pointPressed: mapListCommunication.mapPointPressed
   })
+
+  useEffect(() => {
+    return () => {
+      dispatch(loadSensors())
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (addError !== undefined) {
+      addErrorPoints.forEach(p => {
+        enqueueSnackbar(t('dashboard:sensor-add-failed', { id: p }), {
+          variant: 'error'
+        })
+        dispatch(dbUpdateAddErrorPoints(p))
+      })
+
+      const newSensors = Object.values(nonMappedSensors).map((sensorGroup) => (sensorGroup.map((sensor) => {
+        addErrorPoints.includes(sensor.id) && delete sensor.mapPosition
+        return sensor
+      })))
+      dispatch(updateSensors(newSensors))
+    }
+  }, [addError])
 
   useEffect(() => {
     function handleResize () {
@@ -119,9 +118,6 @@ const HomeMap = () => {
     if (!mapListCommunication.waitingForSensorLocation) {
       return
     }
-    const removedErrorPoints = points.filter(p => !errorPoints.includes(p._id))
-    setPoints([...removedErrorPoints])
-    setErrorPoints([])
 
     const { offsetX = 0, offsetY = 0 } = e.nativeEvent
     /** Offset defined in map's width in percent. */
@@ -135,7 +131,7 @@ const HomeMap = () => {
       .map((sensor) => Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
 
     /** Checks if point could be located in specific position on map. */
-    if (isFieldOccupied(xCoordinate, yCoordinate, points.concat(storeSensors))) {
+    if (isFieldOccupied(xCoordinate, yCoordinate, storeSensors)) {
       setModalOpen(true)
       return
     }
@@ -152,6 +148,7 @@ const HomeMap = () => {
         return sensor
       })
     ))
+
     dispatch(updateSensors(newSensors))
     dispatch(dbAddPoint({ _id: clickedSensor.id, type: clickedSensor.type, mapPosition: { x: xCoordinate, y: yCoordinate } }))
   }

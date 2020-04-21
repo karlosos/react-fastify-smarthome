@@ -35,6 +35,13 @@ export function dbAddPointFail (sensor, error) {
   }
 }
 
+export function dbUpdateAddErrorPoints (id) {
+  return {
+    type: actionTypes.DB_UPDATE_ADD_ERROR_POINTS,
+    _id: id
+  }
+}
+
 export function dbRemovePoint (sensor) {
   return {
     type: actionTypes.DB_REMOVE_POINT,

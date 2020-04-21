@@ -70,7 +70,10 @@ export default function Header () {
   }
 
   return (
-    <AppBar position='static'>
+    <AppBar
+      position='static'
+      data-testid='header-id'
+    >
       <Toolbar className={classes.toolbar}>
         <Typography variant='h6' className={classes.title}>
             Smart Home

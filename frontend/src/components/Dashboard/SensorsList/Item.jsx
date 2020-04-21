@@ -92,7 +92,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
             <span className={classes.type}>
               <ItemDisplayedInfo infoType='name' sensorType={type} />
             </span>
-            <span className={classes.id}>{sensorData.id}</span>
+            <span className={classes.id}> {sensorData.id}</span>
           </>
         }
         secondary={
