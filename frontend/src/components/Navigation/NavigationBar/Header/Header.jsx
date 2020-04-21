@@ -61,6 +61,8 @@ function checkActive (url) {
   return sites[url] || 0
 }
 
+export const uncheckedNotifications = notifications => notifications.filter(notification => !notification.isChecked)
+
 export default function Header () {
   const classes = useStyles()
   const location = useLocation()
@@ -77,8 +79,6 @@ export default function Header () {
   const handleDrawerOpen = () => {
     dispatch(openNotificationDrawer())
   }
-
-  const uncheckedNotifications = notifications => notifications.filter(notification => !notification.isChecked)
 
   return (
     <AppBar
@@ -119,7 +119,7 @@ export default function Header () {
               <NotificationsIcon fontSize='large' />
             </Badge>
           </IconButton>
-          <NotificationDrawer uncheckedNotifications={() => uncheckedNotifications(notifications)} />
+          <NotificationDrawer />
 
         </Box>
       </Toolbar>

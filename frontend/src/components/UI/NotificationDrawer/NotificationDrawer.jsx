@@ -10,20 +10,20 @@ import {
   Box
 } from '@material-ui/core'
 import NotificationDrawerList from './NotificationDrawerList.jsx'
-import Spinner from '@components/UI/Spinner'
 import {
   fetchNotificationsRequest,
   closeNotificationDrawer,
   checkNotification,
   updateNotifications
 } from '@data/actions/notification'
+import { uncheckedNotifications } from '../../Navigation/NavigationBar/Header/Header.jsx'
 
-const NotificationDrawer = ({ uncheckedNotifications }) => {
+const NotificationDrawer = () => {
   const { t } = useTranslation()
 
   const {
+    notifications,
     fetchError,
-    fetching,
     isDrawerOpen,
     updateError
   } = useSelector(state => state.notification)
@@ -49,21 +49,20 @@ const NotificationDrawer = ({ uncheckedNotifications }) => {
   }
 
   const drawerContent = (
-    fetching && <Spinner />) || (
-    uncheckedNotifications().length === 0 &&
+    uncheckedNotifications(notifications).length === 0 &&
       <Box pt={3} align='center'>
-        <Typography variant='overline'>
+        <Typography variant='overline' data-testid='no-new-notifications'>
           {t('no-new-notifications')}
         </Typography>
       </Box>) || (
     (updateError || fetchError) &&
       <Box pt={3} align='center'>
-        <Typography variant='overline'>
+        <Typography variant='overline' data-testid='something-went-wrong'>
           {t('something-went-wrong')}
         </Typography>
       </Box>) ||
         <NotificationDrawerList
-          notifications={uncheckedNotifications()}
+          notifications={uncheckedNotifications(notifications)}
           handleNotificationCheck={handleNotificationCheck}
         />
 
