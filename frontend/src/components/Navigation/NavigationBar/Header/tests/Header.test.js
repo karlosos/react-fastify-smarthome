@@ -6,6 +6,11 @@ import { MemoryRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 import Header from '../Header.jsx'
 import i18n from '../../../../../i18n'
+import { SnackbarProvider } from 'notistack'
+
+jest.mock('notistack', () => ({
+  ...jest.requireActual('notistack')
+}))
 
 const mockStore = configureStore([])
 
@@ -55,31 +60,45 @@ describe('<Header />', () => {
         isDrawerOpen: false
       }
     }
+    jest.clearAllMocks()
   })
 
   it('renders header component', () => {
+    const notistack = require('notistack')
+
+    const closeSnackbar = jest.fn()
+    jest.spyOn(notistack, 'useSnackbar').mockImplementation(() => { return { closeSnackbar } })
+
     const { queryByTestId } = render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={initialRoute}>
-          <I18nextProvider i18n={i18n}>
-            <Header />
-          </I18nextProvider>
-        </MemoryRouter>
+        <SnackbarProvider>
+          <MemoryRouter initialEntries={initialRoute}>
+            <I18nextProvider i18n={i18n}>
+              <Header />
+            </I18nextProvider>
+          </MemoryRouter>
+        </SnackbarProvider>
       </Provider>
     )
     expect(queryByTestId('header-id')).toBeTruthy()
   })
 
   it('checks if the dashboard is in the tabs', () => {
+    const notistack = require('notistack')
+
+    const closeSnackbar = jest.fn()
+    jest.spyOn(notistack, 'useSnackbar').mockImplementation(() => { return { closeSnackbar } })
+
     const { queryByTestId } = render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={initialRoute}>
-          <I18nextProvider i18n={i18n}>
-            <Header />
-          </I18nextProvider>
-        </MemoryRouter>
+        <SnackbarProvider>
+          <MemoryRouter initialEntries={initialRoute}>
+            <I18nextProvider i18n={i18n}>
+              <Header />
+            </I18nextProvider>
+          </MemoryRouter>
+        </SnackbarProvider>
       </Provider>
-
     )
     expect(queryByTestId('dashboard-tab-id')).toBeTruthy()
   })

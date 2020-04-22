@@ -3,6 +3,11 @@ import { render, screen, fireEvent, waitForElement, cleanup } from '@testing-lib
 import LanguageSelect from './index'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../../../i18n'
+import { SnackbarProvider } from 'notistack'
+
+jest.mock('notistack', () => ({
+  ...jest.requireActual('notistack')
+}))
 
 describe('<LanguageSelect />', () => {
   let mocki18n
@@ -19,18 +24,22 @@ describe('<LanguageSelect />', () => {
 
   it('renders LanguageSelect component', () => {
     const root = render(
-      <I18nextProvider i18n={mocki18n}>
-        <LanguageSelect />
-      </I18nextProvider>
+      <SnackbarProvider>
+        <I18nextProvider i18n={mocki18n}>
+          <LanguageSelect />
+        </I18nextProvider>
+      </SnackbarProvider>
     )
     expect(root).not.toBeNull()
   })
 
   it('changes i18n.language on language change', async () => {
     render(
-      <I18nextProvider i18n={mocki18n}>
-        <LanguageSelect />
-      </I18nextProvider>
+      <SnackbarProvider>
+        <I18nextProvider i18n={mocki18n}>
+          <LanguageSelect />
+        </I18nextProvider>
+      </SnackbarProvider>
     )
 
     const languageMenu = screen.getByRole('button')
@@ -56,9 +65,11 @@ describe('<LanguageSelect />', () => {
     })
 
     render(
-      <I18nextProvider i18n={mocki18n}>
-        <LanguageSelect />
-      </I18nextProvider>
+      <SnackbarProvider>
+        <I18nextProvider i18n={mocki18n}>
+          <LanguageSelect />
+        </I18nextProvider>
+      </SnackbarProvider>
     )
 
     const languageMenu = screen.getByRole('button')
@@ -85,9 +96,11 @@ describe('<LanguageSelect />', () => {
 
     mocki18n.changeLanguage('pl')
     render(
-      <I18nextProvider i18n={mocki18n}>
-        <LanguageSelect />
-      </I18nextProvider>
+      <SnackbarProvider>
+        <I18nextProvider i18n={mocki18n}>
+          <LanguageSelect />
+        </I18nextProvider>
+      </SnackbarProvider>
     )
 
     const languageMenu = screen.getByRole('button')

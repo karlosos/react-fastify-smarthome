@@ -74,7 +74,8 @@ describe('sensor reducer', () => {
     expect(reducer(initialState, actions.fetchSensorsSuccess(testSensors))).toEqual({
       ...initialState,
       sensors: testSensors,
-      loadingSensors: false
+      loadingSensors: false,
+      refreshError: null
     })
   })
 

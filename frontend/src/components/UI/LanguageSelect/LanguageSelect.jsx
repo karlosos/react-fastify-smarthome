@@ -4,6 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 
+import { useSnackbar } from 'notistack'
 import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,13 +25,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LanguageSelect () {
   const { i18n } = useTranslation()
+  const { closeSnackbar } = useSnackbar()
 
   const [language, setLanguage] = React.useState(i18n.language)
 
   const changeLanguage = lang => {
+    if (lang === language) { return }
     window.localStorage.setItem('language', lang)
     i18n.changeLanguage(lang)
     setLanguage(lang)
+    closeSnackbar()
   }
 
   if (i18n.language !== 'en' && i18n.language !== 'pl') { // unknown language, fallback to en

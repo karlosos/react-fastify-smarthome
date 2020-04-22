@@ -28,7 +28,8 @@ const fetchSensorsSuccess = (state, action) => {
   return {
     ...state,
     sensors,
-    loadingSensors: false
+    loadingSensors: false,
+    refreshError: null
   }
 }
 
