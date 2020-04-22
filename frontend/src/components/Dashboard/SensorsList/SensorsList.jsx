@@ -13,7 +13,7 @@ import { refreshSensors } from '@data/actions/sensor'
 import DeleteModal from './../../UI/Modals/DeleteModal'
 import { useSnackbar } from 'notistack'
 
-import { dbRemovePoint } from '@data/actions/dbActions.js'
+import { dbRemovePoint, dbUpdateRemoveErrorPoints } from '@data/actions/dbActions.js'
 import { onMapClick } from '@data/actions/mapListCommunicationActions.js'
 
 const useStyles = makeStyles((theme) => ({
@@ -71,13 +71,16 @@ export default function SensorsList () {
     }
   }, [])
 
-  const { _id, removeError } = useSelector((state) => state.dbInteraction)
+  const { removeErrorPoints, removeError } = useSelector((state) => state.dbInteraction)
   const { pressedItemId } = useSelector((state) => state.mapListCommunication)
-
+  
   useEffect(() => {
     if (removeError !== undefined) {
-      enqueueSnackbar(t('dashboard:sensor-remove-failed', { id: _id }), {
-        variant: 'error'
+      removeErrorPoints.forEach(p => {
+        enqueueSnackbar(t('dashboard:sensor-remove-failed', { id: p }), {
+          variant: 'error'
+        })
+        dispatch(dbUpdateRemoveErrorPoints(p))
       })
     }
   }, [removeError])

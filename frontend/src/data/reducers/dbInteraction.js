@@ -7,7 +7,8 @@ const initialState = {
   addingPoint: false,
   addError: undefined,
   removeError: undefined,
-  addErrorPoints: []
+  addErrorPoints: [],
+  removeErrorPoints: []
 }
 
 const addPointStart = (state, action) => {
@@ -60,7 +61,8 @@ const removePointStart = (state, action) => {
     type: undefined,
     mapPosition: undefined,
     addingPoint: false,
-    removeError: undefined
+    removeError: undefined,
+    removeErrorPoints: Array.from(new Set([...state.removeErrorPoints, action._id]))
   }
 }
 
@@ -71,7 +73,8 @@ const removePointSuccess = (state, action) => {
     type: undefined,
     mapPosition: undefined,
     addingPoint: false,
-    removeError: undefined
+    removeError: undefined,
+    removeErrorPoints: [...state.removeErrorPoints.filter(p => p !== action._id)]
   }
 }
 
@@ -82,7 +85,15 @@ const removePointFail = (state, action) => {
     type: 'None',
     mapPosition: undefined,
     addingPoint: false,
-    removeError: action.error
+    removeError: action.error,
+    removeErrorPoints: [...state.removeErrorPoints]
+  }
+}
+
+const updateRemoveErrorPoints = (state, action) => {
+  return {
+    ...state,
+    removeErrorPoints: [...state.removeErrorPoints.filter(p => p !== action._id)]
   }
 }
 
@@ -102,6 +113,8 @@ export default function dbInteraction (state = initialState, action) {
       return removePointSuccess(state, action)
     case actionTypes.DB_REMOVE_POINT_FAIL:
       return removePointFail(state, action)
+    case actionTypes.DB_UPDATE_REMOVE_ERROR_POINTS:
+      return updateRemoveErrorPoints(state, action)
     default:
       return state
   }

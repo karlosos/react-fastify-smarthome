@@ -70,3 +70,10 @@ export function dbRemovePointFail (sensor, error) {
     error
   }
 }
+
+export function dbUpdateRemoveErrorPoints (id) {
+  return {
+    type: actionTypes.DB_UPDATE_REMOVE_ERROR_POINTS,
+    _id: id
+  }
+}
