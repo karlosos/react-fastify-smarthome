@@ -39,6 +39,13 @@ const useStyles = makeStyles((props) => ({
   })
 }))
 
+const newMapSensors = (nonMappedSensors, _id) => {
+  return Object.values(nonMappedSensors).map((sensorGroup) => (sensorGroup.map((sensor) => {
+    sensor.id === _id && delete sensor.mapPosition
+    return sensor
+})))
+}
+
 const HomeMap = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -52,7 +59,7 @@ const HomeMap = () => {
 
   const nonMappedSensors = useSelector((state) => state.sensor.sensors)
   const mapListCommunication = useSelector((state) => state.mapListCommunication)
-  const { addError, addErrorPoints } = useSelector((state) => state.dbInteraction)
+  const { _id, addError, addErrorPoints, removeSuccess } = useSelector((state) => state.dbInteraction)
 
   /**
    * Transfroms sensors from store to appropriate format.
@@ -93,6 +100,11 @@ const HomeMap = () => {
       dispatch(updateSensors(newSensors))
     }
   }, [addError])
+
+  useEffect(() => {
+    const newSensors = newMapSensors(nonMappedSensors, _id)
+    removeSuccess && dispatch(updateSensors(newSensors))
+  }, [removeSuccess])
 
   useEffect(() => {
     function handleResize () {

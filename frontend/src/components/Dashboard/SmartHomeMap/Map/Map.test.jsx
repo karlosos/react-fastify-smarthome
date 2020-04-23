@@ -37,7 +37,9 @@ const mockedDbInteractionState = {
   type: 'None',
   mapPosition: undefined,
   addingPoint: false,
-  dbError: undefined
+  addError: undefined,
+  removeSuccess: false,
+  addErrorPoints: []
 }
 
 describe('Map component tests', () => {

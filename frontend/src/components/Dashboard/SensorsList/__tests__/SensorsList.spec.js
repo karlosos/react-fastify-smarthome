@@ -24,7 +24,8 @@ describe('<SensorsList />', () => {
       },
       dbInteraction: {
         _id: 1,
-        removeError: false
+        removeError: false,
+        removeErrorPoints: []
       }
     })
   })
@@ -55,7 +56,8 @@ describe('<SensorsList />', () => {
       },
       dbInteraction: {
         _id: 1,
-        removeError: false
+        removeError: false,
+        removeErrorPoints: []
       }
     })
     const { queryByTestId } = render(
@@ -104,7 +106,8 @@ describe('<SensorsList />', () => {
       },
       dbInteraction: {
         _id: 1,
-        removeError: false
+        removeError: false,
+        removeErrorPoints: []
       },
       loadingSensors: false
     })

@@ -7,6 +7,7 @@ const initialState = {
   addingPoint: false,
   addError: undefined,
   removeError: undefined,
+  removeSuccess: false,
   addErrorPoints: [],
   removeErrorPoints: []
 }
@@ -62,6 +63,7 @@ const removePointStart = (state, action) => {
     mapPosition: undefined,
     addingPoint: false,
     removeError: undefined,
+    removeSuccess: false,
     removeErrorPoints: Array.from(new Set([...state.removeErrorPoints, action._id]))
   }
 }
@@ -74,6 +76,7 @@ const removePointSuccess = (state, action) => {
     mapPosition: undefined,
     addingPoint: false,
     removeError: undefined,
+    removeSuccess: true,
     removeErrorPoints: [...state.removeErrorPoints.filter(p => p !== action._id)]
   }
 }
@@ -86,6 +89,7 @@ const removePointFail = (state, action) => {
     mapPosition: undefined,
     addingPoint: false,
     removeError: action.error,
+    removeSuccess: false,
     removeErrorPoints: [...state.removeErrorPoints]
   }
 }
