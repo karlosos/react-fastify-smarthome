@@ -1,6 +1,6 @@
 import * as actions from '../../actions/sensor'
 import { put, call } from 'redux-saga/effects'
-import { getSensors, changeSensorStatus } from '../../api/sensor'
+import { getSensors, changeSensorStatus, refreshSensors } from '../../api/sensor'
 
 export function * loadSensorsSaga () {
   yield put(actions.fetchSensorsStart())
@@ -25,7 +25,7 @@ export function * changeSensorStatusSaga (action) {
 export function * refreshSensorsSaga () {
   yield put(actions.refreshSensorsStart())
   try {
-    const sensors = yield call(getSensors)
+    const sensors = yield call(refreshSensors)
     yield put(actions.refreshSensorsSuccess(sensors))
   } catch (error) {
     yield put(actions.refreshSensorsFail(error))

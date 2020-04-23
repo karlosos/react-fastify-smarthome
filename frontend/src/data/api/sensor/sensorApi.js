@@ -14,3 +14,9 @@ export function * changeSensorStatus (sensorId) {
   yield delay(1000) // mock async, should be removed once real async requests are made
   return 'mock response'
 }
+
+export function * refreshSensors () {
+  const res = yield axios.get('/api/v1/dashboard', { timeout: 4600 })
+
+  return res.data
+}

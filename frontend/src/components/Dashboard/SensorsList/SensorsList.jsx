@@ -73,7 +73,7 @@ export default function SensorsList () {
 
   const { removeErrorPoints, removeError } = useSelector((state) => state.dbInteraction)
   const { pressedItemId } = useSelector((state) => state.mapListCommunication)
-  
+
   useEffect(() => {
     if (removeError !== undefined) {
       removeErrorPoints.forEach(p => {

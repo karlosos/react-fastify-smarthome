@@ -5,7 +5,7 @@ import { watchSensors } from './index'
 import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
-import { getSensors, changeSensorStatus } from '../../api/sensor'
+import { getSensors, changeSensorStatus, refreshSensors } from '../../api/sensor'
 
 import actionTypes from '@constants/actionTypes'
 import * as actions from '../../actions/sensor'
@@ -154,7 +154,7 @@ describe('refreshSensorsSaga', () => {
     })
 
     it('should make a successful request to API', result => {
-      expect(result).toEqual(call(getSensors))
+      expect(result).toEqual(call(refreshSensors))
 
       return testSensors
     })
@@ -176,7 +176,7 @@ describe('refreshSensorsSaga', () => {
     })
 
     it('should make an unsuccessful request to API', result => {
-      expect(result).toEqual(call(getSensors))
+      expect(result).toEqual(call(refreshSensors))
 
       return new Error('test error')
     })
