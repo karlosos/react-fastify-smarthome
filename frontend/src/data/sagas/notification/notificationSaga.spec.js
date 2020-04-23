@@ -88,8 +88,6 @@ describe('updateNotificationsSaga', () => {
 
   it('should call delay', result =>
     expect(result).toEqual(delay(5000)))
-  it('should call delay', result =>
-    expect(result).toEqual(delay(5000)))
   it('should select store', result => {
     expect(result).toEqual(select())
     return fakeStore
@@ -111,8 +109,7 @@ describe('should throw an exception on unsuccessful updateNotificationsSaga', ()
       notifications: []
     }
   }
-  it('should call delay', result =>
-    expect(result).toEqual(delay(5000)))
+
   it('should call delay', result =>
     expect(result).toEqual(delay(5000)))
   it('should select store', result => {

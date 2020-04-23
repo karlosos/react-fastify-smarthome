@@ -61,13 +61,17 @@ function checkActive (url) {
   return sites[url] || 0
 }
 
-export const uncheckedNotifications = notifications => notifications.filter(notification => !notification.isChecked)
+export const notificationFilter = notifications => {
+  const uncheckedNotifications = notifications.filter(notification => !notification.isChecked)
+  const checkedNotifications = notifications.filter(notification => notification.isChecked)
+  return { checkedNotifications, uncheckedNotifications }
+}
 
 export default function Header () {
   const classes = useStyles()
   const location = useLocation()
 
-  const { notifications } = useSelector((state) => state.notification)
+  const { checkedNotifications, uncheckedNotifications } = useSelector((state) => notificationFilter(state.notification.notifications))
   const { t } = useTranslation()
 
   const [value, setValue] = useState(checkActive(location.pathname))
@@ -110,18 +114,16 @@ export default function Header () {
             onClick={handleDrawerOpen}
           >
             <Badge
-              badgeContent={uncheckedNotifications(notifications).length}
+              badgeContent={uncheckedNotifications.length}
               overlap='circle'
               color='secondary'
             >
               <NotificationsIcon fontSize='large' />
             </Badge>
           </IconButton>
-          <NotificationDrawer />
-
+          <NotificationDrawer uncheckedNotifications={uncheckedNotifications} checkedNotifications={checkedNotifications} />
         </Box>
       </Toolbar>
-
     </AppBar>
   )
 }

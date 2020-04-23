@@ -6,5 +6,6 @@
   "refresh": "REFRESH",
   "connection-warning": "Hey, something isn't quite right! Check your connection.",
   "notification-history": "Check notification history",
-  "no-new-notifications": "No new notifications"
+  "no-new-notifications": "No new notifications",
+  "notifications": "Notifications"
 }

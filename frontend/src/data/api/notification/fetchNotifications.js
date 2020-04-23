@@ -25,6 +25,6 @@ export function * fetchNotifications () {
 // when the gateway is ready, change in the function watchNotifications in frontend\src\data\sagas\notification\index.js from updateNotificationsSaga to fetchNotificationsSaga
 export function * updateNotifications () {
   // const result = yield axios.get('/api/v1/notifications')
-  // yield delay(1000)
+  yield delay(2000)
   return updated
 }

@@ -5,6 +5,7 @@ import { I18nextProvider } from 'react-i18next'
 import configureStore from 'redux-mock-store'
 import i18n from '../../../../i18n'
 import NotificationDrawer from '../index'
+import { notificationFilter } from '@components/Navigation/NavigationBar/Header/Header.jsx'
 
 const mockStore = configureStore([])
 
@@ -60,10 +61,11 @@ describe('<NotificationDrawer />', () => {
   })
 
   test('should render <NotificationDrawer>', () => {
+    const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
     const { queryByTestId, queryAllByTestId } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <NotificationDrawer />
+          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
         </I18nextProvider>
       </Provider>
     )
@@ -76,11 +78,12 @@ describe('<NotificationDrawer />', () => {
       ...initialStore.notification,
       notifications: []
     }
+    const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
 
     const { queryByTestId } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <NotificationDrawer />
+          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
         </I18nextProvider>
       </Provider>
     )
@@ -93,10 +96,13 @@ describe('<NotificationDrawer />', () => {
       fetchingError: true,
       updateError: true
     }
+
+    const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
+
     const { queryByTestId } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <NotificationDrawer />
+          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
         </I18nextProvider>
       </Provider>
     )
@@ -104,10 +110,12 @@ describe('<NotificationDrawer />', () => {
   })
 
   test('should remove one notification from list', () => {
+    const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
+
     const { queryAllByRole } = render(
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <NotificationDrawer />
+          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
         </I18nextProvider>
       </Provider>
     )

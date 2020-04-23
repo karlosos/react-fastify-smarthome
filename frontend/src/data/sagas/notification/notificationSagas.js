@@ -19,7 +19,7 @@ export function * fetchNotificationsSaga () {
 }
 
 export function * updateNotificationsSaga () {
-  yield delay(5000)
+  // yield delay(5000)
   while (true) {
     yield delay(5000)
     const store = yield select()

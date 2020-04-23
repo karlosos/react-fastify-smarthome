@@ -47,8 +47,6 @@ describe('/api/v1/dashboard', function () {
         url: '/api/v1/dashboard'
       })
 
-      console.log(result)
-
       expect(instance.config.GATEWAY_URL).toBe('https://patronage20-concept-master.herokuapp.com')
       expect(result.statusCode).toBe(200)
       expect(typeof (JSON.parse(result.payload))).toBe('object')

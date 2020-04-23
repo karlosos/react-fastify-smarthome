@@ -16,13 +16,11 @@ import {
   checkNotification,
   updateNotifications
 } from '@data/actions/notification'
-import { uncheckedNotifications } from '../../Navigation/NavigationBar/Header/Header.jsx'
 
-const NotificationDrawer = () => {
+const NotificationDrawer = ({ checkedNotifications, uncheckedNotifications }) => {
   const { t } = useTranslation()
 
   const {
-    notifications,
     fetchError,
     isDrawerOpen,
     updateError
@@ -49,7 +47,7 @@ const NotificationDrawer = () => {
   }
 
   const drawerContent = (
-    uncheckedNotifications(notifications).length === 0 &&
+    uncheckedNotifications.length === 0 &&
       <Box pt={3} align='center'>
         <Typography variant='overline' data-testid='no-new-notifications'>
           {t('no-new-notifications')}
@@ -62,7 +60,7 @@ const NotificationDrawer = () => {
         </Typography>
       </Box>) ||
         <NotificationDrawerList
-          notifications={uncheckedNotifications(notifications)}
+          notifications={uncheckedNotifications}
           handleNotificationCheck={handleNotificationCheck}
         />
 

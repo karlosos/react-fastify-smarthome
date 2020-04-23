@@ -6,5 +6,6 @@
   "refresh": "ODŚWIEŻ",
   "connection-warning": "Hej, coś nie styka! Sprawdź połączenie.",
   "notification-history": "Zobacz historię notyfikacji",
-  "no-new-notifications": "Brak nowych notyfikacji"
+  "no-new-notifications": "Brak nowych notyfikacji",
+  "notifications": "Notyfikacje"
 }

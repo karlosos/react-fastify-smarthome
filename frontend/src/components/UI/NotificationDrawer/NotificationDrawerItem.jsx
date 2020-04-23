@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { ListItem, ListItemText, IconButton } from '@material-ui/core'
+import { ListItem, ListItemText, IconButton, ListItemSecondaryAction } from '@material-ui/core'
 import Close from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles'
 import timeConverter from './timeConverter'
@@ -11,12 +11,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const NotificationDrawerItem = ({ notification: { id, timestamp }, handleNotificationCheck }) => {
+const NotificationDrawerItem = ({ notification: { id, timestamp, isChecked }, handleNotificationCheck }) => {
   const classes = useStyles()
 
-  return (
-    <ListItem button key={id} data-testid='drawer-item'>
-      <ListItemText primary={id} secondary={timeConverter(timestamp)} />
+  const checkButton = !isChecked && (
+    <ListItemSecondaryAction>
       <IconButton
         role='check-notification'
         aria-label='close'
@@ -27,6 +26,12 @@ const NotificationDrawerItem = ({ notification: { id, timestamp }, handleNotific
       >
         <Close />
       </IconButton>
+    </ListItemSecondaryAction>
+  )
+  return (
+    <ListItem button key={id} data-testid='drawer-item'>
+      <ListItemText primary={id} secondary={timeConverter(timestamp)} />
+      {checkButton}
     </ListItem>
   )
 }

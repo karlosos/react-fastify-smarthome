@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import List from '@material-ui/core/List'
-import NotificationDrawerItem from './NotificationDrawerItem.jsx'
+import NotificationDrawerItem from '@components/UI/NotificationDrawer/NotificationDrawerItem.jsx'
 
-const NotificationDrawerList = ({ notifications, handleNotificationCheck }) => {
+const NotificationList = ({ notifications, handleNotificationCheck }) => {
   return (
     <div role='presentation' data-testid='drawer-list'>
       <List>
@@ -19,4 +19,4 @@ const NotificationDrawerList = ({ notifications, handleNotificationCheck }) => {
   )
 }
 
-export default NotificationDrawerList
+export default NotificationList
