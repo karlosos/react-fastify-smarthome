@@ -96,8 +96,75 @@ describe('updateNotificationsSaga', () => {
     expect(result).toEqual(call(updateNotifications))
     return mockNewNotifications
   })
+  it('should select store', result => {
+    expect(result).toEqual(select())
+    return fakeStore
+  })
   it('should put updateNotificationsSuccess', result =>
     expect(result).toEqual(put(actions.updateNotificationsSuccess(mockNewNotifications))))
+  it('should not be done', result =>
+    expect(result).toBeDefined())
+})
+
+describe('should skip ongoing updating', () => {
+  const it = sagaHelper(updateNotificationsSaga())
+
+  const mockNotifications = [{
+    id: 1,
+    timestamp: 1500000100,
+    type: 'aleRFIDSensorrt',
+    sensorId: 55
+  }]
+
+  const mockChangedNotifications = [{
+    id: 1,
+    timestamp: 1500000100,
+    type: 'aleRFIDSensorrt',
+    sensorId: 55,
+    isChecked: true
+  }]
+
+  const mockNewNotifications = [
+    {
+      id: 1,
+      timestamp: 1500000100,
+      type: 'aleRFIDSensorrt',
+      sensorId: 55
+    },
+    {
+      id: 2,
+      timestamp: 1500000099,
+      type: 'doorbell',
+      sensorId: 22
+    }]
+
+  const fakeStore = {
+    notification: {
+      notifications: mockNotifications
+    }
+  }
+  const fakeChangedStore = {
+    notification: {
+      notifications: mockChangedNotifications
+    }
+  }
+
+  it('should call delay', result =>
+    expect(result).toEqual(delay(5000)))
+  it('should select store', result => {
+    expect(result).toEqual(select())
+    return fakeStore
+  })
+  it('should call updateNotifications', result => {
+    expect(result).toEqual(call(updateNotifications))
+    return mockNewNotifications
+  })
+  it('should select store', result => {
+    expect(result).toEqual(select())
+    return fakeChangedStore
+  })
+  it('should put updateNotificationsContinue', result =>
+    expect(result).toEqual(put(actions.updateNotificationsContinue())))
   it('should not be done', result =>
     expect(result).toBeDefined())
 })

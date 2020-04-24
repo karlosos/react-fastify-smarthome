@@ -41,7 +41,6 @@ export default function notification (state = initialState, action = {}) {
       }
     case actionTypes.NOTIFICATIONS_CHECK:
       return state
-
     case actionTypes.NOTIFICATIONS_CHECK_SUCCESS:
       return {
         ...state,
@@ -65,6 +64,9 @@ export default function notification (state = initialState, action = {}) {
         updating: false,
         updateError: action.error
       }
+    case actionTypes.NOTIFICATIONS_UPDATE_CONTINUE:
+      return state
+
     default:
       return state
   }
