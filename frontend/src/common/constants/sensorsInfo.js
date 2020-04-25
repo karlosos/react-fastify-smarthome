@@ -26,7 +26,7 @@ const sensorsInfo = {
   },
   RGBLight: {
     color: 'HSL(129, 59%, 39%)',
-    colorLight: 'HSL(129, 59%, 60%)',
+    colorLight: 'HSL(129, 59%, 85%)',
     colorDark: 'HSL(129, 59%, 12%)'
   }
 }

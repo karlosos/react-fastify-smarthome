@@ -9,7 +9,8 @@ const pingApiEndpoint = () => axios.get('/.well-known/health-check', { timeout: 
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100vh'
+    height: '100vh',
+    overflowY: 'hidden'
   },
   content: {
     height: 'calc(100vh - 65px)', // check navigation height in frontend\src\components\Navigation\Navigation.jsx if needed

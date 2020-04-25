@@ -29,6 +29,9 @@
       "format": "int32",
       "minimum": 0,
       "maximum": 100
+    },
+    "mapPosition": {
+      "$ref": "map-point.json"
     }
   }
 }

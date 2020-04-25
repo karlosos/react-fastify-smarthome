@@ -22,7 +22,8 @@ const fetchSensorsSuccess = (state, action) => {
     windowSensors: action.sensors.windowSensors,
     windowBlinds: action.sensors.windowBlinds,
     RFIDSensors: action.sensors.RFIDSensors,
-    smokeSensors: action.sensors.smokeSensors
+    smokeSensors: action.sensors.smokeSensors,
+    lights: action.sensors.lights
   }
 
   return {
@@ -78,7 +79,8 @@ const refreshSensorsSuccess = (state, action) => {
     windowSensors: action.sensors.windowSensors,
     windowBlinds: action.sensors.windowBlinds,
     RFIDSensors: action.sensors.RFIDSensors,
-    smokeSensors: action.sensors.smokeSensors
+    smokeSensors: action.sensors.smokeSensors,
+    lights: action.sensors.lights
   }
 
   return {
