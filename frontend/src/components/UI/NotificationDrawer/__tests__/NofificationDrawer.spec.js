@@ -5,7 +5,7 @@ import { I18nextProvider } from 'react-i18next'
 import configureStore from 'redux-mock-store'
 import i18n from '../../../../i18n'
 import NotificationDrawer from '../index'
-import { notificationFilter } from '@components/Navigation/NavigationBar/Header/Header.jsx'
+import { notificationFilter } from '@components/Notifications/notificationFilter'
 
 const mockStore = configureStore([])
 

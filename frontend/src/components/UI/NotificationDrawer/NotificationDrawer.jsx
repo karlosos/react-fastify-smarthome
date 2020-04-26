@@ -17,7 +17,7 @@ import {
   updateNotifications
 } from '@data/actions/notification'
 
-const NotificationDrawer = ({ checkedNotifications, uncheckedNotifications }) => {
+const NotificationDrawer = ({ uncheckedNotifications }) => {
   const { t } = useTranslation()
 
   const {

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import NotificationDrawer from '@components/UI/NotificationDrawer'
+import { notificationFilter } from '@components/Notifications/notificationFilter'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,12 +60,6 @@ function checkActive (url) {
     '/authors': 2
   }
   return sites[url] || 0
-}
-
-export const notificationFilter = notifications => {
-  const uncheckedNotifications = notifications.filter(notification => !notification.isChecked)
-  const checkedNotifications = notifications.filter(notification => notification.isChecked)
-  return { checkedNotifications, uncheckedNotifications }
 }
 
 export default function Header () {

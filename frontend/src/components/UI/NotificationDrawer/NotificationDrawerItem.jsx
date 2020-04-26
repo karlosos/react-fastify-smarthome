@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const NotificationDrawerItem = ({ notification: { id, timestamp, isChecked }, handleNotificationCheck }) => {
+const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck }) => {
   const classes = useStyles()
 
   const checkButton = !isChecked && (
@@ -28,9 +28,10 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, isChecked }, ha
       </IconButton>
     </ListItemSecondaryAction>
   )
+
   return (
-    <ListItem button key={id} data-testid='drawer-item'>
-      <ListItemText primary={id} secondary={timeConverter(timestamp)} />
+    <ListItem button key={id} data-testid='drawer-item' disabled={isChecked}>
+      <ListItemText primary={sensorId} secondary={timeConverter(timestamp)} />
       {checkButton}
     </ListItem>
   )
