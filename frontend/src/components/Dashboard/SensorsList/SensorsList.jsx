@@ -26,11 +26,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function drawItems (sensors, isOnMap, handleRemoveClick) {
+function drawItems (sensors, isOnMap, handleRemoveClick, expanded, handleChangeExpanded) {
   return (Object.keys(sensors).map((keyName) => {
     return (sensors[keyName].map(sensorData => {
       return (
         <Item
+          expanded={expanded}
+          handleChangeExpanded={handleChangeExpanded}
           isOnMap={isOnMap}
           sensorData={sensorData}
           key={sensorData.id}
@@ -99,6 +101,13 @@ export default function SensorsList () {
     setActiveModal(false)
     dispatch(dbRemovePoint({ _id: pressedItemId }))
     dispatch(onMapClick())
+    handleChangeExpanded()()
+  }
+
+  const [expanded, setExpanded] = useState(false)
+
+  const handleChangeExpanded = (panel) => (e, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
   }
 
   return (
@@ -113,14 +122,14 @@ export default function SensorsList () {
         data-testid='not-connected-sensors-list'
         subheader={<ListSubheader>{t('dashboard:sensors-not-placed')}</ListSubheader>}
       >
-        {drawItems(notConnectedSensors, false, setActiveModal)}
+        {drawItems(notConnectedSensors, false, setActiveModal, expanded, handleChangeExpanded)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
         subheader={<ListSubheader>{t('dashboard:sensors-placed')}</ListSubheader>}
       >
-        {drawItems(connectedSensors, true, setActiveModal)}
+        {drawItems(connectedSensors, true, setActiveModal, expanded, handleChangeExpanded)}
       </List>
       <DeleteModal
         data-testid='delete-modal-test-id'

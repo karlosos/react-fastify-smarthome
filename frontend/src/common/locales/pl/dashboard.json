@@ -12,10 +12,9 @@
   "sensor-remove-cancel": "Anuluj",
   "sensor-remove-confirm": "Potwierdź",
 
-
-  "light-hue": "odcień",
-  "light-saturation": "nasycenie",
-  "light-brightness": "jasność",
+  "light-hue": "Odcień",
+  "light-saturation": "Nasycenie",
+  "light-brightness": "Jasność",
   "RFID-last-action": "Ostatnia akcja:",
   "smoke-detected": "WYKRYTO",
   "smoke-not-detected": "BRAK",
@@ -36,5 +35,7 @@
   "RGB-light-desc": "Światło",
 
   "sensor-add-failed": "Czujnik {{id}} nie został dodany.",
-  "sensor-remove-failed": "Błąd przy usuwaniu czujnika {{id}}"
+  "sensor-remove-failed": "Błąd przy usuwaniu czujnika {{id}}",
+
+  "sensor-detail-confirm": "Ustaw"
 }

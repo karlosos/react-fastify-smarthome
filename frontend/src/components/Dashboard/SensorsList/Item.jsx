@@ -102,13 +102,19 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
 function drawExpansionPanelDetails (sensorType) {
   const itemDetails = {
     windowBlind: <WindowBlindsItemDetails />,
-    RGBLight: <LightItemDetails />
+    RGBLight: <LightItemDetails sensorData />
   }
-  return (
-    <ExpansionPanelDetails>
-      {itemDetails[sensorType]}
-    </ExpansionPanelDetails>
-  )
+
+  let details = null
+  if (itemDetails[sensorType]) {
+    details = (
+      <ExpansionPanelDetails>
+        {itemDetails[sensorType]}
+      </ExpansionPanelDetails>
+    )
+  }
+
+  return details
 }
 
 function isSensorEditable (sensorType, isOnMap) {
@@ -117,7 +123,7 @@ function isSensorEditable (sensorType, isOnMap) {
   }
 }
 
-const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
+const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeExpanded }) => {
   const dispatch = useDispatch()
   const { id, type } = sensorData || { id: '', type: '' }
 
@@ -142,12 +148,14 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
   const props = { accentColor, bgColor, clicked, isOnMap }
   const classes = useStyles(props)
 
-  const expansionPanelDetails = drawExpansionPanelDetails(type)
+  const expansionPanelDetails = drawExpansionPanelDetails(type, sensorData)
 
   return (
     <ExpansionPanel
       square
       className={classes.row}
+      expanded={expanded === id}
+      onChange={handleChangeExpanded(id)}
     >
       <ExpansionPanelSummary
         expandIcon={isSensorEditable(type, isOnMap) ? <SettingsIcon /> : null}
@@ -157,7 +165,12 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
           buttonRef
           onClick={(e) => {
             clickDispatch(accentColor, sensorData, isOnMap)
-            e.stopPropagation()
+            if (isSensorEditable(type, true)) {
+              if (expanded !== id) {
+                handleChangeExpanded()()
+              }
+              e.stopPropagation()
+            }
           }}
         >
           <ListItemText

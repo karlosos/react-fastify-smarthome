@@ -12,9 +12,9 @@
   "sensor-remove-cancel": "Cancel",
   "sensor-remove-confirm": "Ok",
 
-  "light-hue": "hue",
-  "light-saturation": "saturation",
-  "light-brightness": "brightness",
+  "light-hue": "Hue",
+  "light-saturation": "Saturation",
+  "light-brightness": "Brightness",
   "RFID-last-action": "Last action:",
   "smoke-detected": "DETECTED",
   "smoke-not-detected": "NO SMOKE",
@@ -35,5 +35,7 @@
   "RGB-light-desc": "Light",
 
   "sensor-add-failed": "Sensor {{id}} could not be added.",
-  "sensor-remove-failed": "Error during removing sensor {{id}}"
+  "sensor-remove-failed": "Error during removing sensor {{id}}",
+
+  "sensor-detail-confirm": "Confirm"
 }
