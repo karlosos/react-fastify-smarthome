@@ -1,4 +1,4 @@
-const appName = process.env.APP_NAME || 'default'
+const appName = process.env.APP_NAME || process.env.HEROKU_APP_NAME || 'default'
 const collectionName = `${appName}-map_sensors`
 
 async function getSensors (db) {

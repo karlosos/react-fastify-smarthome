@@ -8,5 +8,10 @@
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"
     }
-  ]
+  ],
+  "env": {
+    "HEROKU_APP_NAME": {
+      "required": true
+    }
+  }
 }
