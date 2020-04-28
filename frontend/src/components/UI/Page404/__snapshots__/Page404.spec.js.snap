@@ -3,6 +3,7 @@
 exports[`<Page404 /> renders Page404 component 1`] = `
 <div
   className="MuiBox-root MuiBox-root-4 makeStyles-root-1"
+  data-testid="page-404"
 >
   <h2
     className="MuiTypography-root MuiTypography-body1"

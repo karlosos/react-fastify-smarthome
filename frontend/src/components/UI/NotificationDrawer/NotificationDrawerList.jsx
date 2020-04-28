@@ -5,7 +5,7 @@ import NotificationDrawerItem from './NotificationDrawerItem.jsx'
 
 const NotificationDrawerList = ({ notifications, handleNotificationCheck }) => {
   return (
-    <div role='presentation' data-testid='drawer-list'>
+    <div role='presentation' data-testid='notification-list'>
       <List>
         {notifications.map(notification => (
           <NotificationDrawerItem

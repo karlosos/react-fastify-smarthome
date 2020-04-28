@@ -35,7 +35,7 @@ export default function Page404 () {
   const { t } = useTranslation()
 
   return (
-    <Box className={classes.root}>
+    <Box className={classes.root} data-testid='page-404'>
       <Typography component='h2'>
         <Box className={classes.errorMessage}>{t('something-went-wrong')}.</Box>
       </Typography>
