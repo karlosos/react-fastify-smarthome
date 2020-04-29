@@ -17,6 +17,11 @@ function registerSchemas (fastify, options, next) {
   fastify.addSchema(require(path.resolve('./src/docs/schemas/window-sensor.json')))
   fastify.addSchema(require(path.resolve('./src/docs/schemas/hvac-room.json')))
   fastify.addSchema(require(path.resolve('./src/docs/schemas/light.json')))
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/notifications-get-200.json')))
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/notifications-body.json')))
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/notifications-id.json')))
+  fastify.addSchema(require(path.resolve('./src/docs/schemas/timestamp.json')))
+
   next()
 }
 

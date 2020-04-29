@@ -13,7 +13,7 @@ import NotificationDrawerList from './NotificationDrawerList.jsx'
 import {
   fetchNotificationsRequest,
   closeNotificationDrawer,
-  checkNotification,
+  checkNotifications,
   updateNotifications
 } from '@data/actions/notification'
 
@@ -42,7 +42,7 @@ const NotificationDrawer = ({ uncheckedNotifications }) => {
 
   const handleNotificationCheck = (id, event) => {
     if ((event.type === 'keydown' && event.key === 'Enter') || event.type === 'click') {
-      dispatch(checkNotification(id))
+      dispatch(checkNotifications(id))
     }
   }
 

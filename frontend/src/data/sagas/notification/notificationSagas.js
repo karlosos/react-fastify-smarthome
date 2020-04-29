@@ -1,12 +1,13 @@
 import { put, call, select, delay } from 'redux-saga/effects'
-import { fetchNotifications, updateNotifications } from '@data/api/notification'
+import { fetchNotifications, checkNotifications } from '@data/api/notification'
 import {
   fetchNotificationsSuccess,
   fetchNotificationsError,
   updateNotificationsSuccess,
   updateNotificationsFail,
-  checkNotificationSuccess,
-  updateNotificationsContinue
+  checkNotificationsSuccess,
+  checkNotificationsStart,
+  checkNotificationsFail
 } from '@data/actions/notification'
 
 export function * fetchNotificationsSaga () {
@@ -25,15 +26,10 @@ export function * updateNotificationsSaga () {
     const store = yield select()
     const notificationsBefore = store.notification.notifications
     try {
-      const result = yield call(updateNotifications)
+      const result = yield call(fetchNotifications)
       const newNotifications = result.filter(item => !notificationsBefore.some(notification => notification.id === item.id))
       const updatedNotifications = newNotifications.concat(notificationsBefore).sort((a, b) => b.timestamp - a.timestamp)
-      const store = yield select()
-      const notificationsAfter = store.notification.notifications
-      const isStoreChanged = notificationsBefore.some((notification, i) => notification.isChecked !== notificationsAfter[i].isChecked)
-      if (!isStoreChanged) {
-        yield put(updateNotificationsSuccess(updatedNotifications))
-      } else { yield put(updateNotificationsContinue()) }
+      yield put(updateNotificationsSuccess(updatedNotifications))
     } catch (error) {
       yield put(updateNotificationsFail(error))
     }
@@ -43,7 +39,13 @@ export function * updateNotificationsSaga () {
 export function * checkNotificationsSaga (action) {
   const store = yield select()
   const { notifications } = store.notification
-  const checked = notifications.find(notification => notification.id === action.id)
-  notifications[notifications.indexOf(checked)].isChecked = true
-  yield put(checkNotificationSuccess(notifications))
+  const checked = notifications.filter(n => n.id === action.id)[0]
+  yield put(checkNotificationsStart(checked))
+  try {
+    yield call(checkNotifications, checked)
+    notifications[notifications.indexOf(checked)].isChecked = true
+    yield put(checkNotificationsSuccess(notifications))
+  } catch (error) {
+    yield put(checkNotificationsFail(notifications, error))
+  }
 }

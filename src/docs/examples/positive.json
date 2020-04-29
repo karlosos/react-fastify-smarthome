@@ -115,6 +115,47 @@
         "y": 15
       }
     }
+  },
+  "notifications-get-200.json": {
+    "summary": "positive",
+    "value": {
+      "notifications": [
+      {
+        "id": 5,
+        "timestamp": 1517902808,
+        "type": "alert",
+        "sensorId": 55,
+        "isChecked": true
+      },
+      {
+        "id": 2,
+        "timestamp": 1598162038,
+        "type": "doorbell",
+        "sensorId": 22,
+        "isChecked": false
+      },
+      {
+        "id": 4,
+        "timestamp": 153989218,
+        "type": "windowSensor",
+        "sensorId": 44,
+        "isChecked": true
+      },
+      {
+        "id": 3,
+        "timestamp": 1578075628,
+        "type": "hvac",
+        "sensorId": 33,
+        "isChecked": false
+      },
+      {
+        "id": 1,
+        "timestamp": 1558248448,
+        "type": "alert",
+        "sensorId": 11,
+        "isChecked": false
+      }
+    ]
+    }
   }
-
 }

@@ -82,7 +82,6 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
   return (
     <ListItem
       id={`sensor${id}`}
-      buttonRef
       className={classes.row}
       onClick={() => clickDispatch(accentColor, sensorData, isOnMap)}
     >

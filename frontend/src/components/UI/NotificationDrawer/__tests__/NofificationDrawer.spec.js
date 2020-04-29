@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 import configureStore from 'redux-mock-store'
 import i18n from '../../../../i18n'
+import { MemoryRouter } from 'react-router-dom'
 import NotificationDrawer from '../index'
 import { notificationFilter } from '@components/Notifications/notificationFilter'
 
@@ -32,8 +33,10 @@ describe('<NotificationDrawer />', () => {
     }
   }
   let store
+  let initialRoute
 
   beforeEach(() => {
+    initialRoute = ['/']
     store = mockStore(initialStore)
   })
 
@@ -66,9 +69,11 @@ describe('<NotificationDrawer />', () => {
     const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
     const { queryByTestId, queryAllByTestId } = render(
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
-        </I18nextProvider>
+        <MemoryRouter initialRoute={initialRoute}>
+          <I18nextProvider i18n={i18n}>
+            <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
+          </I18nextProvider>
+        </MemoryRouter>
       </Provider>
     )
 
@@ -84,9 +89,11 @@ describe('<NotificationDrawer />', () => {
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
-        </I18nextProvider>
+        <MemoryRouter initialRoute={initialRoute}>
+          <I18nextProvider i18n={i18n}>
+            <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
+          </I18nextProvider>
+        </MemoryRouter>
       </Provider>
     )
 
@@ -103,9 +110,11 @@ describe('<NotificationDrawer />', () => {
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
-        </I18nextProvider>
+        <MemoryRouter initialRoute={initialRoute}>
+          <I18nextProvider i18n={i18n}>
+            <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
+          </I18nextProvider>
+        </MemoryRouter>
       </Provider>
     )
     expect(queryByTestId('something-went-wrong')).toBeTruthy()
@@ -116,9 +125,11 @@ describe('<NotificationDrawer />', () => {
 
     const { queryAllByRole } = render(
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
-        </I18nextProvider>
+        <MemoryRouter initialRoute={initialRoute}>
+          <I18nextProvider i18n={i18n}>
+            <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
+          </I18nextProvider>
+        </MemoryRouter>
       </Provider>
     )
     const checkIcons = queryAllByRole('check-notification')

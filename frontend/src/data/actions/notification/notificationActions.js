@@ -22,14 +22,25 @@ export const closeNotificationDrawer = () => ({
   type: actionTypes.NOTIFICATION_DRAWER_CLOSE
 })
 
-export const checkNotification = id => ({
+export const checkNotifications = (id) => ({
   type: actionTypes.NOTIFICATIONS_CHECK,
   id
 })
 
-export const checkNotificationSuccess = notifications => ({
+export const checkNotificationsStart = (notification) => ({
+  type: actionTypes.NOTIFICATIONS_CHECK_START,
+  notification
+})
+
+export const checkNotificationsSuccess = notifications => ({
   type: actionTypes.NOTIFICATIONS_CHECK_SUCCESS,
   notifications
+})
+
+export const checkNotificationsFail = (notifications, error) => ({
+  type: actionTypes.NOTIFICATIONS_CHECK_FAIL,
+  notifications,
+  error
 })
 
 export const updateNotifications = () => ({
@@ -44,8 +55,4 @@ export const updateNotificationsSuccess = notifications => ({
 export const updateNotificationsFail = error => ({
   type: actionTypes.NOTIFICATIONS_UPDATE_FAIL,
   error
-})
-
-export const updateNotificationsContinue = () => ({
-  type: actionTypes.NOTIFICATIONS_UPDATE_CONTINUE
 })

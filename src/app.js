@@ -37,7 +37,7 @@ module.exports = function ({ port }) {
     })
 
   app.register(require('./plugins/db'))
-  app.register(require('./plugins/db/dbActions.js'))
+  app.register(require('./plugins/db/actions'))
 
   app.register(require('./routes/dashboard'), {
     prefix: '/api/v1/dashboard'
@@ -45,6 +45,10 @@ module.exports = function ({ port }) {
 
   app.register(require('./routes/sensors'), {
     prefix: 'api/v1/map'
+  })
+
+  app.register(require('./routes/notifications'), {
+    prefix: 'api/v1/notifications'
   })
 
   app.register(require('./routes/authors'), {

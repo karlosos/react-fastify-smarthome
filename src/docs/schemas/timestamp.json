@@ -1,0 +1,9 @@
+{
+    "$id": "timestamp.json",
+    "title": "Timestamp",
+    "type": "number",
+    "minimum": 0,
+    "description": "Timestamp value",
+    "example": 122178219
+  }
+  

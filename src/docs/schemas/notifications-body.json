@@ -1,0 +1,34 @@
+{
+    "title": "Notification body",
+    "$id": "notifications-body.json",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$ref": "notifications-id.json"
+      },
+      "timestamp": {
+        "$ref": "timestamp.json"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["alert", "hvac", "doorbell", "windowSensor", "RFIDSensor"],
+        "example": "alert"
+      },
+      "sensorId": {
+        "$ref": "sensor-id.json"
+      },
+      "isChecked": {
+        "type": "boolean",
+        "example": true
+      }
+      
+    },
+    "required": [
+      "id",
+      "timestamp",
+      "type",
+      "sensorId",
+      "isChecked"
+    ]
+  }
+  

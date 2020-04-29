@@ -11,7 +11,10 @@ describe('notification reducer', () => {
     fetching: false,
     isDrawerOpen: false,
     updating: false,
-    updateError: undefined
+    updateError: undefined,
+    checking: false,
+    notificationContent: undefined,
+    checkError: undefined
   }
 
   const testError = 'Error'
@@ -22,31 +25,35 @@ describe('notification reducer', () => {
       timestamp: 1517902808,
       type: 'aleRFIDSensorrt',
       sensorId: 55,
-      checked: true
+      isChecked: true
     },
     {
       id: 2,
       timestamp: 1598162038,
       type: 'doorbell',
-      sensorId: 22
+      sensorId: 22,
+      isChecked: false
     },
     {
       id: 4,
       timestamp: 153989218,
       type: 'windowSensor',
-      sensorId: 44
+      sensorId: 44,
+      isChecked: false
     },
     {
       id: 3,
       timestamp: 1578075628,
       type: 'hvac',
-      sensorId: 33
+      sensorId: 33,
+      isChecked: false
     },
     {
       id: 1,
       timestamp: 1558248448,
       type: 'alert',
-      sensorId: 11
+      sensorId: 11,
+      isChecked: false
     }
   ]
 
@@ -93,15 +100,37 @@ describe('notification reducer', () => {
   })
 
   test(`should handle ${actionTypes.NOTIFICATIONS_CHECK}`, () => {
-    expect(reducer(initialState, actions.checkNotification(3))).toEqual({
-      ...initialState
+    expect(reducer(initialState, actions.checkNotifications(3))).toEqual({
+      ...initialState,
+      notificationContent: undefined,
+      checkError: undefined,
+      checking: false
+    })
+  })
+
+  test(`should handle ${actionTypes.NOTIFICATIONS_CHECK_START}`, () => {
+    expect(reducer(initialState, actions.checkNotificationsStart(mockNotifications[0]))).toEqual({
+      ...initialState,
+      notificationContent: mockNotifications[0],
+      checking: true
     })
   })
 
   test(`should handle ${actionTypes.NOTIFICATIONS_CHECK_SUCCESS}`, () => {
-    expect(reducer(initialState, actions.checkNotificationSuccess(mockNotifications))).toEqual({
+    expect(reducer(initialState, actions.checkNotificationsSuccess(mockNotifications))).toEqual({
       ...initialState,
-      notifications: mockNotifications
+      notifications: mockNotifications,
+      checking: false,
+      checkError: undefined
+    })
+  })
+
+  test(`should handle ${actionTypes.NOTIFICATIONS_CHECK_FAIL}`, () => {
+    expect(reducer(initialState, actions.checkNotificationsFail(mockNotifications, testError))).toEqual({
+      ...initialState,
+      notifications: mockNotifications,
+      checking: false,
+      checkError: testError
     })
   })
 

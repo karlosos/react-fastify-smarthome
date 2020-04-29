@@ -3,9 +3,8 @@ const mockedEnv = require('mocked-env')
 const mongodb = require('mongo-mock')
 const MongoClient = mongodb.MongoClient
 const url = process.env.MONGODB_URI || 'mongodb://localhost/test-sensors'
-const app = require('../../app.js')
+const app = require('../../../app.js')
 
-// describe.skip
 describe('check database interactions', () => {
   let connection
   let db
@@ -75,12 +74,5 @@ describe('check database interactions', () => {
 
     expect(res1.result.n).toEqual(0)
     expect(res2.length).toEqual(1)
-  })
-
-  it('should remove sensors from db', async () => {
-    const res = await instance.db.removeAllSensors(db)
-    const res2 = await instance.db.getAllSensors(db)
-    expect(res).toBe(true)
-    expect(res2).toEqual([])
   })
 })

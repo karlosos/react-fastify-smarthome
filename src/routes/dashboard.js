@@ -20,11 +20,6 @@ const dashboard = async function (fastify, options, next) {
     reply.code(200).send(data)
   })
 
-  fastify.get('/delete', async function (req, reply) {
-    const res = await this.db.removeAllSensors(this.mongo.db)
-    reply.code(200).send(res)
-  })
-
   next()
 }
 

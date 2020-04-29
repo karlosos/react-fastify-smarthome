@@ -1,0 +1,10 @@
+{
+  "$id": "notifications-get-200.json",
+  "title": "Notifications ",
+   "type": "array",
+  "description": "Notifications information",
+  "items": {
+    "$ref": "notifications-body.json"
+  }
+}
+  

@@ -1,0 +1,9 @@
+{
+    "$id": "notifications-id.json",
+    "title": "Notification ID",
+    "type": "number",
+    "minimum": 0,
+    "description": "Notification ID",
+    "example": 4
+  }
+  

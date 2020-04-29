@@ -2,7 +2,7 @@
   "$id": "sensor-id.json",
   "title": "Sensor ID",
   "type": "number",
-  "minimum": 0,
+  "minimum": 1,
   "description": "Sensor ID",
   "example": 12
 }

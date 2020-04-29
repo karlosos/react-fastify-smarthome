@@ -9,7 +9,7 @@ import {
   Container,
   Button
 } from '@material-ui/core'
-import { checkNotification } from '@data/actions/notification'
+import { checkNotifications } from '@data/actions/notification'
 import NotificationDrawerList from '@components/UI/NotificationDrawer/NotificationDrawerList.jsx'
 import Page404 from '@components/UI/Page404'
 import Spinner from '@components/UI/Spinner'
@@ -63,7 +63,7 @@ const Notifications = () => {
 
   const handleNotificationCheck = (id, event) => {
     if ((event.type === 'keydown' && event.key === 'Enter') || event.type === 'click') {
-      dispatch(checkNotification(id))
+      dispatch(checkNotifications(id))
     }
   }
 

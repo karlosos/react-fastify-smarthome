@@ -24,11 +24,9 @@
       },
       "SensorId": {
         "$ref": "schemas/sensor-id.json"
-      }
-    },
-    "parameters": {
-      "sensorID": {
-        "$ref": "schemas/sensor-id.json"
+      },
+      "NotificationsGet200": {
+        "$ref": "schemas/notifications-get-200.json"
       }
     },
     "responses": {
@@ -103,7 +101,7 @@
       }
     },
 
-    "/api/v1/map/{sensorID}": {
+    "/api/v1/map/{id}": {
       "post": {
         "summary": "Endpoint to add sensor to map",
         "requestBody": {
@@ -144,6 +142,45 @@
               }
             }
           }
+        }
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "summary": "Endpoint with data containing information about notifications.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "schemas/notifications-get-200.json"
+                },
+                "examples": {
+                  "positive": {
+                    "$ref": "examples/positive/notifications-get-200.json"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "schemas/generic-error.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/notifications/{id}": {
+      "delete": {
+        "summary": "Endpoint to check notifications as seen",
+        "requestBody": {
+          "required": false
         }
       }
     }
