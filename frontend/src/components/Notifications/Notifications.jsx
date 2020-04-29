@@ -48,7 +48,7 @@ const Notifications = () => {
     if (uncheckedNotifications.length >= numberNotificationsToShow) {
       numberOfUnchecked = numberNotificationsToShow
       numberOfChecked = 0
-    } else if (uncheckedNotifications.length < numberNotificationsToShow) {
+    } else {
       numberOfUnchecked = uncheckedNotifications.length
       numberOfChecked = numberNotificationsToShow - numberOfUnchecked
     }

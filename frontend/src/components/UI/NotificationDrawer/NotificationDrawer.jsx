@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
   Drawer,
   Divider,
   Typography,
-  Link,
   Box
 } from '@material-ui/core'
 import NotificationDrawerList from './NotificationDrawerList.jsx'
@@ -69,7 +69,7 @@ const NotificationDrawer = ({ uncheckedNotifications }) => {
       <Drawer anchor='right' open={isDrawerOpen} onClose={handleDrawerClose()}>
         <Box py={1} px={3} align='center'>
           <Typography variant='overline'>
-            <Link href='/notifications'>
+            <Link to='/notifications'>
               {t('notification-history')}
             </Link>
           </Typography>
