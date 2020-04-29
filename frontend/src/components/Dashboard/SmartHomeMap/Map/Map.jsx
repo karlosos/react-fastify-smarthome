@@ -8,7 +8,7 @@ import house from '@assets/house.svg'
 import Sensor from '@components/Dashboard/SmartHomeMap/Map/Sensor'
 import MapModal from '@components/Dashboard/SmartHomeMap/Map/MapModal'
 import { loadSensors, updateSensors } from '@data/actions/sensor/sensorActions.js'
-import { dbAddPoint, dbUpdateAddErrorPoints } from '@data/actions/dbActions.js'
+import { dbAddPoint, dbUpdateAddErrorPoints, dbUpdateRemoveErrorPoints } from '@data/actions/dbActions.js'
 import {
   fromCoordinateToPercentMapper,
   fromPercentToCoordinateMapper,
@@ -43,7 +43,7 @@ const newMapSensors = (nonMappedSensors, _id) => {
   return Object.values(nonMappedSensors).map((sensorGroup) => (sensorGroup.map((sensor) => {
     sensor.id === _id && delete sensor.mapPosition
     return sensor
-})))
+  })))
 }
 
 const HomeMap = () => {
@@ -59,7 +59,7 @@ const HomeMap = () => {
 
   const nonMappedSensors = useSelector((state) => state.sensor.sensors)
   const mapListCommunication = useSelector((state) => state.mapListCommunication)
-  const { _id, addError, addErrorPoints, removeSuccess } = useSelector((state) => state.dbInteraction)
+  const { _id, addError, addErrorPoints, removeSuccess, removeErrorPoints } = useSelector((state) => state.dbInteraction)
 
   /**
    * Transfroms sensors from store to appropriate format.
@@ -102,8 +102,11 @@ const HomeMap = () => {
   }, [addError])
 
   useEffect(() => {
-    const newSensors = newMapSensors(nonMappedSensors, _id)
-    removeSuccess && dispatch(updateSensors(newSensors))
+    if (removeSuccess && removeErrorPoints.length !== 0) {
+      const newSensors = newMapSensors(nonMappedSensors, _id)
+      dispatch(updateSensors(newSensors))
+      dispatch(dbUpdateRemoveErrorPoints(_id))
+    }
   }, [removeSuccess])
 
   useEffect(() => {

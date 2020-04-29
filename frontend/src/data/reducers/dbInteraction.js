@@ -77,7 +77,7 @@ const removePointSuccess = (state, action) => {
     addingPoint: false,
     removeError: undefined,
     removeSuccess: true,
-    removeErrorPoints: [...state.removeErrorPoints.filter(p => p !== action._id)]
+    removeErrorPoints: state.removeErrorPoints
   }
 }
 
@@ -90,7 +90,7 @@ const removePointFail = (state, action) => {
     addingPoint: false,
     removeError: action.error,
     removeSuccess: false,
-    removeErrorPoints: [...state.removeErrorPoints]
+    removeErrorPoints: state.removeErrorPoints
   }
 }
 
