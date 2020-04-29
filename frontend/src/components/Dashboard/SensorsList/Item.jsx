@@ -28,7 +28,8 @@ const useStyles = makeStyles({
   row: props => ({
     borderLeft: '10px solid',
     borderColor: props.accentColor,
-    backgroundColor: props.bgColor
+    backgroundColor: props.bgColor,
+    padding: '8px'
   }),
   type: props => ({
     fontWeight: 'bold',
@@ -99,28 +100,23 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
   return itemInfo[sensorType]
 }
 
-function drawExpansionPanelDetails (sensorType) {
+function drawExpansionPanelDetails (sensorType, sensorData) {
   const itemDetails = {
-    windowBlind: <WindowBlindsItemDetails />,
-    RGBLight: <LightItemDetails sensorData />
+    windowBlind: <WindowBlindsItemDetails sensorData={sensorData} />,
+    RGBLight: <LightItemDetails sensorData={sensorData} />
   }
 
-  let details = null
   if (itemDetails[sensorType]) {
-    details = (
+    return (
       <ExpansionPanelDetails>
         {itemDetails[sensorType]}
       </ExpansionPanelDetails>
     )
   }
-
-  return details
 }
 
 function isSensorEditable (sensorType, isOnMap) {
-  if (sensorType === 'RGBLight' || (sensorType === 'windowBlind' && isOnMap)) {
-    return true
-  }
+  return (sensorType === 'RGBLight') || (sensorType === 'windowBlind' && isOnMap)
 }
 
 const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeExpanded }) => {
@@ -191,7 +187,6 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
                   color='textPrimary'
                 >
                   <ItemDisplayedInfo infoType='description' sensorType={type} />
-                  {/* {sensorsInfo[type] && sensorsInfo[type].description} */}
                 </Typography>
               </>
             }

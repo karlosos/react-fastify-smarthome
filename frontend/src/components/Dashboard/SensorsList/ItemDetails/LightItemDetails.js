@@ -20,7 +20,6 @@ export default function LightItemInfo (sensorData) {
   const [brightness, setBrightness] = useState(0)
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
-  // change initial values to sensorData.value, .hue, .saturation
 
   return (
     <div className={classes.root}>
