@@ -19,12 +19,14 @@ import {
 
 const NotificationDrawer = ({ uncheckedNotifications }) => {
   const { t } = useTranslation()
-
   const {
     fetchError,
     isDrawerOpen,
     updateError
   } = useSelector(state => state.notification)
+
+  const { sensors } = useSelector(state => state.sensor)
+  const sensorArray = Object.values(sensors).flat()
 
   const dispatch = useDispatch()
 
@@ -62,6 +64,7 @@ const NotificationDrawer = ({ uncheckedNotifications }) => {
         <NotificationDrawerList
           notifications={uncheckedNotifications}
           handleNotificationCheck={handleNotificationCheck}
+          sensors={sensorArray}
         />
 
   return (

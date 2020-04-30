@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Notifications = () => {
   const classes = useStyles()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const [loadUnchecked, setLoadUnchecked] = useState(0)
   const [loadChecked, setLoadChecked] = useState(0)
@@ -40,7 +41,8 @@ const Notifications = () => {
     updateError
   } = useSelector(state => state.notification)
   const { uncheckedNotifications, checkedNotifications } = useSelector(state => notificationFilter(state.notification.notifications))
-  const dispatch = useDispatch()
+  const { sensors } = useSelector(state => state.sensor)
+  const sensorArray = Object.values(sensors).flat()
 
   const showMore = numberNotificationsToShow => {
     let numberOfUnchecked
@@ -90,6 +92,7 @@ const Notifications = () => {
           <NotificationDrawerList
             notifications={uncheckedNotifications.slice(0, loadUnchecked)}
             handleNotificationCheck={handleNotificationCheck}
+            sensors={sensorArray}
           />
         )
 
@@ -99,7 +102,10 @@ const Notifications = () => {
         {t('inactive')}
       </Typography>
       <Divider />
-      <NotificationDrawerList notifications={checkedNotifications.slice(0, loadChecked)} />
+      <NotificationDrawerList
+        notifications={checkedNotifications.slice(0, loadChecked)}
+        sensors={sensorArray}
+      />
     </div>)
 
   return (

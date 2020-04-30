@@ -72,9 +72,10 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick }) => {
     ))
   }
 
-  const bgColor = sensorData.id === mapListCommunication.pressedItemId
-    ? 'white' && sensorsInfo[type] && sensorsInfo[type].colorLight : ''
-  const accentColor = 'black' && sensorsInfo[type] && sensorsInfo[type].color
+  const bgColor =
+    sensorData.id === mapListCommunication.pressedItemId
+      ? sensorsInfo[type] && sensorsInfo[type].colorLight : 'white'
+  const accentColor = sensorsInfo[type] ? sensorsInfo[type].color : 'black'
   const clicked = sensorData.id === mapListCommunication.pressedItemId
   const props = { accentColor, bgColor, clicked, isOnMap }
   const classes = useStyles(props)
