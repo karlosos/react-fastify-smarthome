@@ -3,10 +3,11 @@ import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
-
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { changeLightSensorDetails } from '@data/actions/sensor'
 
 const useStyles = makeStyles({
   root: {
@@ -14,23 +15,36 @@ const useStyles = makeStyles({
   }
 })
 
-export default function LightItemInfo (sensorData) {
+export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const classes = useStyles()
-  const [brightness, setBrightness] = useState(0)
+  const [value, setValue] = useState(0)
   const [hue, setHue] = useState(0)
   const [saturation, setSaturation] = useState(0)
+
+  const dispatchLightDetailsChange = () => {
+    const lightSensorDetails = {
+      id: sensorData.id,
+      type: sensorData.type,
+      hue,
+      saturation,
+      value
+    }
+    dispatch(changeLightSensorDetails(lightSensorDetails))
+    handleChangeExpanded()()
+  }
 
   return (
     <div className={classes.root}>
       <div>
         <Typography id='value' gutterBottom>
-          {t('dashboard:light-brightness')}
+          {t('dashboard:light-value')}
         </Typography>
         <Slider
           defaultValue={0}
-          value={brightness}
-          onChange={(e, val) => { setBrightness(val) }}
+          value={value}
+          onChange={(e, val) => { setValue(val) }}
           aria-labelledby='value'
           valueLabelDisplay='auto'
           min={0}
@@ -48,7 +62,7 @@ export default function LightItemInfo (sensorData) {
           aria-labelledby='hue'
           valueLabelDisplay='auto'
           min={0}
-          max={100}
+          max={359}
         />
       </div>
       <div>
@@ -69,6 +83,7 @@ export default function LightItemInfo (sensorData) {
         <Button
           variant='outlined'
           color='primary'
+          onClick={dispatchLightDetailsChange}
         >
           {t('dashboard:sensor-detail-confirm')}
         </Button>

@@ -5,7 +5,8 @@ const initialState = {
   loadingSensors: true,
   loadingError: null,
   sensorError: null,
-  refreshError: null
+  refreshError: null,
+  lightDetailsError: null
 }
 
 const fetchSensorsStart = (state, action) => {
@@ -97,6 +98,26 @@ const refreshSensorsFail = (state, action) => {
   }
 }
 
+const changeLightSensorDetailsStart = (state, action) => {
+  return {
+    ...state,
+    lightDetailsError: null
+  }
+}
+
+const changeLightSensorDetailsSuccess = (state, action) => {
+  return {
+    ...state
+  }
+}
+
+const changeLightSensorDetailsFail = (state, action) => {
+  return {
+    ...state,
+    lightDetailsError: action.error
+  }
+}
+
 export default function sensor (state = initialState, action) {
   switch (action.type) {
     case actionTypes.SENSORS_FETCH_START:
@@ -122,6 +143,13 @@ export default function sensor (state = initialState, action) {
       return refreshSensorsSuccess(state, action)
     case actionTypes.SENSORS_REFRESH_FAIL:
       return refreshSensorsFail(state, action)
+
+    case actionTypes.SENSOR_LIGHT_CHANGE_START:
+      return changeLightSensorDetailsStart(state, action)
+    case actionTypes.SENSOR_LIGHT_CHANGE_SUCCESS:
+      return changeLightSensorDetailsSuccess(state, action)
+    case actionTypes.SENSOR_LIGHT_CHANGE_FAIL:
+      return changeLightSensorDetailsFail(state, action)
     default:
       return state
   }

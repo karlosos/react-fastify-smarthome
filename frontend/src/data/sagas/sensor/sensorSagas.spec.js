@@ -2,10 +2,10 @@
 
 import { takeLatest, put, call } from 'redux-saga/effects'
 import { watchSensors } from './index'
-import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga } from './sensorSagas'
+import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
-import { getSensors, changeSensorStatus, refreshSensors } from '../../api/sensor'
+import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails } from '../../api/sensor'
 
 import actionTypes from '@constants/actionTypes'
 import * as actions from '../../actions/sensor'
@@ -22,6 +22,9 @@ describe('sensors watcher', () => {
 
     expect(gen.next().value)
       .toEqual(takeLatest(actionTypes.SENSORS_REFRESH_ACTION, refreshSensorsSaga))
+
+    expect(gen.next().value)
+      .toEqual(takeLatest(actionTypes.SENSOR_LIGHT_CHANGE_ACTION, changeLightSensorDetailsSaga))
 
     expect(gen.next().done)
       .toEqual(true)
@@ -183,6 +186,70 @@ describe('refreshSensorsSaga', () => {
 
     it('should put refreshSensorsFail action', result => {
       expect(result).toEqual(put(actions.refreshSensorsFail(new Error('test error'))))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+})
+
+describe('changeLightSensorDetailsSaga', () => {
+  describe('should change light sensor\'s details successfuly', () => {
+    const action = {
+      lightSensorDetails: {
+        id: 5,
+        type: 'RGBLight',
+        hue: 5,
+        saturation: 5,
+        value: 5
+      }
+    }
+
+    const it = sagaHelper(changeLightSensorDetailsSaga(action))
+
+    it('should put changeLightSensorDetailsStart action', result => {
+      expect(result).toEqual(put(actions.changeLightSensorDetailsStart()))
+    })
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(changeLightDetails, action.lightSensorDetails))
+    })
+
+    it('should put changeLightSensorDetailsSuccess action', result => {
+      expect(result).toEqual(put(actions.changeLightSensorDetailsSuccess()))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+
+  describe('should throw an exception on unsuccessful light sensor\'s detail change', () => {
+    const action = {
+      lightSensorDetails: {
+        id: 5,
+        type: 'RGBLight',
+        hue: 5,
+        saturation: 5,
+        value: 5
+      }
+    }
+
+    const it = sagaHelper(changeLightSensorDetailsSaga(action))
+
+    it('should put changeLightSensorDetailsStart action', result => {
+      expect(result).toEqual(put(actions.changeLightSensorDetailsStart()))
+    })
+
+    it('should make an unsuccessful request to API', result => {
+      expect(result).toEqual(call(changeLightDetails, action.lightSensorDetails))
+
+      return new Error('test error')
+    })
+
+    it('should put changeLightSensorDetailsFail action', result => {
+      expect(result).toEqual(put(actions.changeLightSensorDetailsFail(new Error('test error'))))
     })
 
     it('should be done', result => {

@@ -14,7 +14,7 @@
 
   "light-hue": "Odcień",
   "light-saturation": "Nasycenie",
-  "light-brightness": "Jasność",
+  "light-value": "Natężenie",
   "RFID-last-action": "Ostatnia akcja:",
   "smoke-detected": "WYKRYTO",
   "smoke-not-detected": "BRAK",

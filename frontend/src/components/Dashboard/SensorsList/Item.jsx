@@ -100,10 +100,10 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
   return itemInfo[sensorType]
 }
 
-function drawExpansionPanelDetails (sensorType, sensorData) {
+function drawExpansionPanelDetails (sensorType, sensorData, handleChangeExpanded) {
   const itemDetails = {
     windowBlind: <WindowBlindsItemDetails sensorData={sensorData} />,
-    RGBLight: <LightItemDetails sensorData={sensorData} />
+    RGBLight: <LightItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />
   }
 
   if (itemDetails[sensorType]) {
@@ -144,7 +144,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
   const props = { accentColor, bgColor, clicked, isOnMap }
   const classes = useStyles(props)
 
-  const expansionPanelDetails = drawExpansionPanelDetails(type, sensorData)
+  const expansionPanelDetails = drawExpansionPanelDetails(type, sensorData, handleChangeExpanded)
 
   return (
     <ExpansionPanel

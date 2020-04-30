@@ -15,7 +15,7 @@ export default function LightItemInfo ({ sensorData, classes, handleRemoveClick 
           <div className={classes.item}>
             {t('dashboard:light-hue')}: {sensorData.hue} <br />
             {t('dashboard:light-saturation')}: {sensorData.saturation} <br />
-            {t('dashboard:light-brightness')}: {sensorData.value} <br />
+            {t('dashboard:light-value')}: {sensorData.value} <br />
             <IconButton
               className={classes.close}
               onClick={() => handleRemoveClick(true)}

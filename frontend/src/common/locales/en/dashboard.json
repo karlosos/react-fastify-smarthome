@@ -14,7 +14,7 @@
 
   "light-hue": "Hue",
   "light-saturation": "Saturation",
-  "light-brightness": "Brightness",
+  "light-value": "Value",
   "RFID-last-action": "Last action:",
   "smoke-detected": "DETECTED",
   "smoke-not-detected": "NO SMOKE",

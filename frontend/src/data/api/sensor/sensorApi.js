@@ -20,3 +20,10 @@ export function * refreshSensors () {
 
   return res.data
 }
+
+export function * changeLightDetails (lightSensorDetails) {
+  const config = { headers: { 'Content-Type': 'application/json' } }
+  const res = yield axios.put('https://patronage20-concept-master.herokuapp.com/light', lightSensorDetails, config)
+
+  return res.data
+}

@@ -132,4 +132,25 @@ describe('sensor reducer', () => {
       refreshError: testError
     })
   })
+
+  test(`should handle ${actionTypes.SENSOR_LIGHT_CHANGE_START}`, () => {
+    expect(reducer(initialState, actions.changeLightSensorDetailsStart())).toEqual({
+      ...initialState,
+      lightDetailsError: null
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSOR_LIGHT_CHANGE_SUCCESS}`, () => {
+    expect(reducer(initialState, actions.changeLightSensorDetailsSuccess())).toEqual({
+      ...initialState
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSOR_LIGHT_CHANGE_FAIL}`, () => {
+    const testError = 'Error'
+    expect(reducer(initialState, actions.changeLightSensorDetailsFail(testError))).toEqual({
+      ...initialState,
+      lightDetailsError: testError
+    })
+  })
 })

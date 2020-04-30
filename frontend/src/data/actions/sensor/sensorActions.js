@@ -91,3 +91,29 @@ export function refreshSensorsFail (error) {
     error
   }
 }
+
+export function changeLightSensorDetails (lightSensorDetails) {
+  return {
+    type: actionTypes.SENSOR_LIGHT_CHANGE_ACTION,
+    lightSensorDetails
+  }
+}
+
+export function changeLightSensorDetailsStart () {
+  return {
+    type: actionTypes.SENSOR_LIGHT_CHANGE_START
+  }
+}
+
+export function changeLightSensorDetailsSuccess () {
+  return {
+    type: actionTypes.SENSOR_LIGHT_CHANGE_SUCCESS
+  }
+}
+
+export function changeLightSensorDetailsFail (error) {
+  return {
+    type: actionTypes.SENSOR_LIGHT_CHANGE_FAIL,
+    error
+  }
+}
