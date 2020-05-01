@@ -72,7 +72,7 @@ const NotificationDrawer = ({ uncheckedNotifications }) => {
       <Drawer anchor='right' open={isDrawerOpen} onClose={handleDrawerClose()}>
         <Box py={1} px={3} align='center'>
           <Typography variant='overline'>
-            <Link to='/notifications'>
+            <Link to='/notifications' style={{ textDecoration: 'none' }}>
               {t('notification-history')}
             </Link>
           </Typography>

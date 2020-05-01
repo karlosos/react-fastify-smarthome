@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh'
   },
   content: {
-    height: 'calc(100vh - 64px)', // check navigation height in frontend\src\components\Navigation\Navigation.jsx if needed
+    height: 'calc(100vh - 65px)', // check navigation height in frontend\src\components\Navigation\Navigation.jsx if needed
     boxSizing: 'border-box'
   }
 }))

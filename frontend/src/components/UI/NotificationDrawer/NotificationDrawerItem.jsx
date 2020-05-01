@@ -11,7 +11,10 @@ const useStyles = makeStyles(theme => ({
   close: {
     padding: theme.spacing(0.5)
   },
-  type: {
+  id: {
+    fontStyle: 'italic'
+  },
+  sensor: {
     fontWeight: 'bold'
   },
   row: props => ({
@@ -45,7 +48,7 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
       <ListItemText
         primary={
           <div>
-            <span className={classes.type}>
+            <span className={classes.sensor}>
               <ItemDisplayedInfo infoType='name' sensorType={sensor.type} />
             </span>
             <span className={classes.id}> {sensorId}</span>

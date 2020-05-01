@@ -2,7 +2,7 @@ const mockNotifications = [
   {
     id: 5,
     timestamp: 1517902808,
-    type: 'aleRFIDSensorrt',
+    type: 'RFIDSensor',
     sensorId: 1
   },
   {
