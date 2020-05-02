@@ -26,8 +26,13 @@ async function updateNotification (db, id) {
   return db.collection(collectionName).updateOne({"_id": id }, { $set: { "isChecked": true } })
 }
 
+async function deleteNotifications (db) {
+  return db.collection(collectionName).drop()
+}
+
 module.exports = {
   getNotifications,
   postNotification,
-  updateNotification
+  updateNotification,
+  deleteNotifications
 }

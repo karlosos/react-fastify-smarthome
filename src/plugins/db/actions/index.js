@@ -9,7 +9,8 @@ module.exports = fp(function (fastify, options, next) {
     removeSensor: sensors.removeSensor,
     getNotifications: notifications.getNotifications,
     postNotification: notifications.postNotification,
-    updateNotification: notifications.updateNotification
+    updateNotification: notifications.updateNotification,
+    deleteNotifications: notifications.deleteNotifications
   })
 
   next()

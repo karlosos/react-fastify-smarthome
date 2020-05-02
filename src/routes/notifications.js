@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { postNewNotifications, filterNewNotifications } = require('../plugins/db/helpers')
+const mockNotifications = require('../public/mockNotifications.json')
 
 const schema = {
   schema: {
@@ -25,45 +26,6 @@ const deleteSchema = {
   }
 }
 
-const mockNotifications = [
-  {
-    id: 5,
-    timestamp: 1517902808,
-    type: 'RFIDSensor',
-    sensorId: 55
-  },
-  {
-    id: 2,
-    timestamp: 1598162038,
-    type: 'doorbell',
-    sensorId: 22
-  },
-  {
-    id: 4,
-    timestamp: 153989218,
-    type: 'windowSensor',
-    sensorId: 44
-  },
-  {
-    id: 3,
-    timestamp: 1578075628,
-    type: 'hvac',
-    sensorId: 33
-  },
-  {
-    id: 1,
-    timestamp: 1558248448,
-    type: 'alert',
-    sensorId: 11
-  },
-  {
-    id: 6,
-    timestamp: 1558248448,
-    type: 'alert',
-    sensorId: 11
-  }
-]
-
 const notifications = async function (fastify, options, next) {
   fastify.get('/', schema, async function (request, reply) {
     // TODO: uncomment code below, delete mockNotifications
@@ -83,6 +45,11 @@ const notifications = async function (fastify, options, next) {
     res.result.n === 0
       ? reply.code(400).send(res)
       : reply.code(200).send(res)
+  })
+
+  fastify.get('/delete', async function (req, reply) {
+    const res = await this.db.deleteNotifications(this.mongo.db)
+    reply.code(200).send(res)
   })
 
   next()
