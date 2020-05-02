@@ -6,6 +6,7 @@ import {
   updateNotificationsSuccess,
   updateNotificationsFail,
   checkNotificationsSuccess,
+  updateNotificationsContinue,
   checkNotificationsStart,
   checkNotificationsFail
 } from '@data/actions/notification'
@@ -29,7 +30,12 @@ export function * updateNotificationsSaga () {
       const result = yield call(fetchNotifications)
       const newNotifications = result.filter(item => !notificationsBefore.some(notification => notification.id === item.id))
       const updatedNotifications = newNotifications.concat(notificationsBefore).sort((a, b) => b.timestamp - a.timestamp)
-      yield put(updateNotificationsSuccess(updatedNotifications))
+      const store = yield select()
+      const notificationsAfter = store.notification.notifications
+      const isStoreChanged = notificationsBefore.some((notification, i) => notification.isChecked !== notificationsAfter[i].isChecked)
+      if (!isStoreChanged) {
+        yield put(updateNotificationsSuccess(updatedNotifications))
+      } else { yield put(updateNotificationsContinue()) }
     } catch (error) {
       yield put(updateNotificationsFail(error))
     }
@@ -43,6 +49,8 @@ export function * checkNotificationsSaga (action) {
   yield put(checkNotificationsStart(checked))
   try {
     yield call(checkNotifications, checked)
+    console.log('index')
+    console.log(notifications.indexOf(checked))
     notifications[notifications.indexOf(checked)].isChecked = true
     yield put(checkNotificationsSuccess(notifications))
   } catch (error) {

@@ -49,7 +49,7 @@ const postNewNotifications = async (db, mongo, newNotifications) => {
     }
     delete copy.id
     try {
-      await db.postOneNotification(mongo, copy)
+      await db.postNotification(mongo, copy)
     } catch (e) {
       console.error(e)
     }

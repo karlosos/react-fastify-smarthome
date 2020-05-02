@@ -40,7 +40,7 @@ describe('check database interactions', () => {
       sensorId: 55,
       isChecked: true
     }
-    const res = await instance.db.postOneNotification(db, mockNotification)
+    const res = await instance.db.postNotification(db, mockNotification)
     expect(res.ops[0]).toEqual(mockNotification)
     expect(res.insertedCount).toEqual(1)
   })
@@ -53,9 +53,9 @@ describe('check database interactions', () => {
       sensorId: 6,
       isChecked: false
     }
-    const res1 = await instance.db.postOneNotification(db, mockNotification)
+    const res1 = await instance.db.postNotification(db, mockNotification)
     try {
-      await instance.db.postOneNotification(db, mockNotification)
+      await instance.db.postNotification(db, mockNotification)
     } catch (e) {
       expect(e).toBeDefined()
     }
@@ -64,19 +64,19 @@ describe('check database interactions', () => {
   })
 
   it('should return all notifications from db', async () => {
-    const res = await instance.db.getAllNotifications(db)
+    const res = await instance.db.getNotifications(db)
     expect(res.length).toEqual(2)
   })
 
   it('should update notification with given id', async () => {
     const id = 4
-    const res1 = await instance.db.updateOneNotification(db, id)
+    const res1 = await instance.db.updateNotification(db, id)
     expect(res1.result.n).toEqual(1)
   })
 
   it('should not update notification when given id is not in db', async () => {
     const id = 6
-    const res1 = await instance.db.updateOneNotification(db, id)
+    const res1 = await instance.db.updateNotification(db, id)
     expect(res1.result.n).toEqual(0)
   })
 })

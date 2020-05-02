@@ -1,4 +1,3 @@
-// const fp = require('fastify-plugin')
 const appName = process.env.APP_NAME || 'default'
 const collectionName = `${appName}-map_sensors`
 

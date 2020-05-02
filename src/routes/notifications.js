@@ -71,15 +71,15 @@ const notifications = async function (fastify, options, next) {
     // const gatewayUrl = this.config.GATEWAY_URL
     // const gatewayResponse = await axios.get(`${gatewayUrl}/notifications`)
 
-    const res = await this.db.getAllNotifications(this.mongo.db)
+    const res = await this.db.getNotifications(this.mongo.db)
     const filtered = await filterNewNotifications(mockNotifications, res)
     await postNewNotifications(this.db, this.mongo.db, filtered)
-    const all = await this.db.getAllNotifications(this.mongo.db)
+    const all = await this.db.getNotifications(this.mongo.db)
     reply.code(200).send(all)
   })
 
   fastify.delete('/:id', deleteSchema, async function (req, reply) {
-    const res = await this.db.updateOneNotification(this.mongo.db, parseInt(req.params.id))
+    const res = await this.db.updateNotification(this.mongo.db, parseInt(req.params.id))
     res.result.n === 0
       ? reply.code(400).send(res)
       : reply.code(200).send(res)

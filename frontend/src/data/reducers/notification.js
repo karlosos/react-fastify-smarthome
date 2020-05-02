@@ -87,6 +87,8 @@ export default function notification (state = initialState, action = {}) {
         updating: false,
         updateError: action.error
       }
+    case actionTypes.NOTIFICATIONS_UPDATE_CONTINUE:
+      return state
     default:
       return state
   }

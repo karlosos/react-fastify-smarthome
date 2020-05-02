@@ -47,7 +47,7 @@ describe('/api/v1/notifications', function () {
       expect(typeof (JSON.parse(result.payload))).toBe('object')
     })
 
-    test('sshould fastify.config.GATEWAY_URL be set and status code should be 400 when no notifications in db', async function () {
+    test('should fastify.config.GATEWAY_URL be set and status code should be 400 when no notifications in db', async function () {
       const result = await instance.inject({
         method: 'DELETE',
         url: '/api/v1/notifications/399'

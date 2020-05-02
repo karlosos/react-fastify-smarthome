@@ -4,12 +4,12 @@ const notifications = require('./dbNotificationsActions')
 
 module.exports = fp(function (fastify, options, next) {
   fastify.decorate('db', {
-    getAllSensors: sensors.getSensors,
-    postOneSensor: sensors.postSensor,
-    removeOneSensor: sensors.removeSensor,
-    getAllNotifications: notifications.getNotifications,
-    postOneNotification: notifications.postNotification,
-    updateOneNotification: notifications.updateNotification
+    getSensors: sensors.getSensors,
+    postSensor: sensors.postSensor,
+    removeSensor: sensors.removeSensor,
+    getNotifications: notifications.getNotifications,
+    postNotification: notifications.postNotification,
+    updateNotification: notifications.updateNotification
   })
 
   next()

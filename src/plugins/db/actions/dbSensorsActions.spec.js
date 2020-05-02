@@ -34,17 +34,17 @@ describe('check database interactions', () => {
 
   it('should insert a sensor into database', async () => {
     const mockSensor = { _id: 100, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
-    const res = await instance.db.postOneSensor(db, mockSensor)
+    const res = await instance.db.postSensor(db, mockSensor)
     expect(res.ops[0]).toEqual(mockSensor)
     expect(res.insertedCount).toEqual(1)
   })
 
   it('should not insert record with duplicated id ', async () => {
     const mockSensor1 = { _id: 22, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
-    const res1 = await instance.db.postOneSensor(db, mockSensor1)
+    const res1 = await instance.db.postSensor(db, mockSensor1)
     try {
       const mockSensor2 = { _id: 22, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
-      await instance.db.postOneSensor(db, mockSensor2)
+      await instance.db.postSensor(db, mockSensor2)
     } catch (e) {
       expect(e).toBeDefined()
     }
@@ -53,15 +53,15 @@ describe('check database interactions', () => {
   })
 
   it('should return sensors with map position when id matched the sensor id and type from db', async () => {
-    const res = await instance.db.getAllSensors(db)
+    const res = await instance.db.getSensors(db)
 
     expect(res.length).toEqual(2)
   })
 
   it('should remove one sensor from db', async () => {
     const id = 22
-    const res1 = await instance.db.removeOneSensor(db, id)
-    const res2 = await instance.db.getAllSensors(db)
+    const res1 = await instance.db.removeSensor(db, id)
+    const res2 = await instance.db.getSensors(db)
 
     expect(res1.result.n).toEqual(1)
     expect(res2.length).toEqual(1)
@@ -69,8 +69,8 @@ describe('check database interactions', () => {
 
   it('should not remove sensor from db when id is not found', async () => {
     const id = 25
-    const res1 = await instance.db.removeOneSensor(db, id)
-    const res2 = await instance.db.getAllSensors(db)
+    const res1 = await instance.db.removeSensor(db, id)
+    const res2 = await instance.db.getSensors(db)
 
     expect(res1.result.n).toEqual(0)
     expect(res2.length).toEqual(1)
