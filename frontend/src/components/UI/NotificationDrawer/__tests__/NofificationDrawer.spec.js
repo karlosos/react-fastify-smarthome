@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import configureStore from 'redux-mock-store'
 import i18n from '../../../../i18n'
-import { MemoryRouter } from 'react-router-dom'
 import NotificationDrawer from '../index'
 import { notificationFilter } from '@components/Notifications/notificationFilter'
 
@@ -14,22 +14,32 @@ describe('<NotificationDrawer />', () => {
   let initialStore = {
     notification: {
       notifications: [{
-        id: 7,
+        id: 1,
         timestamp: 1777777777,
         type: 'alert',
-        sensorId: 6
+        sensorId: 1
       },
       {
-        id: 6,
+        id: 2,
         timestamp: 1666666666,
         type: 'alert',
-        sensorId: 6
+        sensorId: 1
       }],
       fetching: false,
       isDrawerOpen: true,
       updating: false,
       fetchError: false,
       updateError: false
+    },
+    sensor: {
+      sensors: {
+        temperatureSensors: [
+          {
+            id: 1,
+            type: 'temperatureSensor',
+            value: 21
+          }]
+      }
     }
   }
   let store
@@ -45,22 +55,32 @@ describe('<NotificationDrawer />', () => {
     initialStore = {
       notification: {
         notifications: [{
-          id: 7,
+          id: 1,
           timestamp: 1777777777,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         },
         {
-          id: 6,
+          id: 2,
           timestamp: 1666666666,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         }],
         fetching: false,
         isDrawerOpen: true,
         updating: false,
         fetchError: false,
         updateError: false
+      },
+      sensor: {
+        sensors: {
+          temperatureSensors: [
+            {
+              id: 1,
+              type: 'temperatureSensor',
+              value: 21
+            }]
+        }
       }
     }
   })
@@ -136,7 +156,7 @@ describe('<NotificationDrawer />', () => {
 
     expect(checkIcons.length).toBe(2)
 
-    const expectedAction = { type: 'NOTIFICATIONS_CHECK', id: 7 }
+    const expectedAction = { type: 'NOTIFICATIONS_CHECK', id: 1 }
     fireEvent.click(checkIcons[0])
     const lastAction = store.getActions().length - 1
 

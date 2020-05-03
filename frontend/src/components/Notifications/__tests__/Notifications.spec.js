@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { render, fireEvent, cleanup, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 import configureStore from 'redux-mock-store'
@@ -8,24 +8,34 @@ import Notifications from '../index'
 
 const mockStore = configureStore([])
 
-describe('<NotificationDrawer />', () => {
+describe('<Notifications />', () => {
   let initialStore = {
     notification: {
       notifications: [{
-        id: 7,
+        id: 1,
         timestamp: 1777777777,
         type: 'alert',
-        sensorId: 6
+        sensorId: 1
       },
       {
-        id: 6,
+        id: 2,
         timestamp: 1666666666,
         type: 'alert',
-        sensorId: 6
+        sensorId: 1
       }],
       fetching: false,
       fetchError: false,
       updateError: false
+    },
+    sensor: {
+      sensors: {
+        temperatureSensors: [
+          {
+            id: 1,
+            type: 'temperatureSensor',
+            value: 21
+          }]
+      }
     }
   }
   let store
@@ -39,21 +49,30 @@ describe('<NotificationDrawer />', () => {
     initialStore = {
       notification: {
         notifications: [{
-          id: 7,
+          id: 1,
           timestamp: 1777777777,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         },
         {
-          id: 6,
+          id: 2,
           timestamp: 1666666666,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         }],
         fetching: false,
-        updating: false,
         fetchError: false,
         updateError: false
+      },
+      sensor: {
+        sensors: {
+          temperatureSensors: [
+            {
+              id: 1,
+              type: 'temperatureSensor',
+              value: 21
+            }]
+        }
       }
     }
   })
@@ -66,7 +85,6 @@ describe('<NotificationDrawer />', () => {
         </I18nextProvider>
       </Provider>
     )
-
     expect(queryByTestId('notification-list')).toBeTruthy()
     expect(queryAllByTestId('drawer-item').length).toBe(2)
   })
@@ -74,16 +92,16 @@ describe('<NotificationDrawer />', () => {
     initialStore.notification = {
       ...initialStore.notification,
       notifications: [{
-        id: 7,
+        id: 1,
         timestamp: 1777777777,
         type: 'alert',
-        sensorId: 6
+        sensorId: 1
       },
       {
-        id: 6,
+        id: 2,
         timestamp: 1666666666,
         type: 'alert',
-        sensorId: 6,
+        sensorId: 1,
         isChecked: true
       }]
     }
@@ -146,7 +164,6 @@ describe('<NotificationDrawer />', () => {
 
     expect(queryByTestId('page-404')).toBeTruthy()
   })
-
   test('should remove one notification from list', () => {
     const { queryAllByRole } = render(
       <Provider store={store}>
@@ -156,10 +173,23 @@ describe('<NotificationDrawer />', () => {
       </Provider>
     )
     const checkIcons = queryAllByRole('check-notification')
-    const expectedAction = { type: 'NOTIFICATIONS_CHECK', id: 7 }
+    const expectedAction = { type: 'NOTIFICATIONS_CHECK', id: 1 }
     fireEvent.click(checkIcons[0])
     const lastAction = store.getActions().length - 1
 
     expect(store.getActions()[lastAction]).toEqual(expectedAction)
+  })
+  test('should call setState', () => {
+    const setState = jest.fn()
+    const useStateSpy = jest.spyOn(React, 'useState')
+    useStateSpy.mockImplementation(init => [init, setState])
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <Notifications />
+        </I18nextProvider>
+      </Provider>
+    )
+    expect(setState).toHaveBeenCalled()
   })
 })

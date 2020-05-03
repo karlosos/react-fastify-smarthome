@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
@@ -29,10 +29,10 @@ const Notifications = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const [loadUnchecked, setLoadUnchecked] = useState(0)
-  const [loadChecked, setLoadChecked] = useState(0)
-  const [loadCount, setLoadCount] = useState(20)
-  const [display, setDisplay] = useState('')
+  const [loadUnchecked, setLoadUnchecked] = React.useState(0)
+  const [loadChecked, setLoadChecked] = React.useState(0)
+  const [loadCount, setLoadCount] = React.useState(20)
+  const [display, setDisplay] = React.useState('')
 
   useEffect(() => { dispatch(loadSensors()) }, [])
 

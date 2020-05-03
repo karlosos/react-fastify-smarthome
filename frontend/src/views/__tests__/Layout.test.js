@@ -19,17 +19,27 @@ describe('<DashboardContent />', () => {
     store = mockStore({
       notification: {
         notifications: [{
-          id: 7,
+          id: 1,
           timestamp: 1777777777,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         },
         {
-          id: 6,
+          id: 2,
           timestamp: 1666666666,
           type: 'alert',
-          sensorId: 6
+          sensorId: 1
         }]
+      },
+      sensor: {
+        sensors: {
+          temperatureSensors: [
+            {
+              id: 1,
+              type: 'temperatureSensor',
+              value: 21
+            }]
+        }
       }
     })
   })

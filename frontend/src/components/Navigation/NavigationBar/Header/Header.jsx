@@ -113,7 +113,7 @@ export default function Header () {
               overlap='circle'
               color='secondary'
             >
-              <NotificationsIcon fontSize='large' />
+              <NotificationsIcon />
             </Badge>
           </IconButton>
           <NotificationDrawer uncheckedNotifications={uncheckedNotifications} checkedNotifications={checkedNotifications} />
