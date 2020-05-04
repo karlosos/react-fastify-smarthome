@@ -89,7 +89,7 @@ describe('<NotificationDrawer />', () => {
     const { checkedNotifications, uncheckedNotifications } = notificationFilter(store.getState().notification.notifications)
     const { queryByTestId, queryAllByTestId } = render(
       <Provider store={store}>
-        <MemoryRouter initialRoute={initialRoute}>
+        <MemoryRouter initialEntries={initialRoute}>
           <I18nextProvider i18n={i18n}>
             <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
           </I18nextProvider>
@@ -109,7 +109,7 @@ describe('<NotificationDrawer />', () => {
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <MemoryRouter initialRoute={initialRoute}>
+        <MemoryRouter initialEntries={initialRoute}>
           <I18nextProvider i18n={i18n}>
             <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
           </I18nextProvider>
@@ -130,7 +130,7 @@ describe('<NotificationDrawer />', () => {
 
     const { queryByTestId } = render(
       <Provider store={store}>
-        <MemoryRouter initialRoute={initialRoute}>
+        <MemoryRouter initialEntries={initialRoute}>
           <I18nextProvider i18n={i18n}>
             <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
           </I18nextProvider>
@@ -145,7 +145,7 @@ describe('<NotificationDrawer />', () => {
 
     const { queryAllByRole } = render(
       <Provider store={store}>
-        <MemoryRouter initialRoute={initialRoute}>
+        <MemoryRouter initialEntries={initialRoute}>
           <I18nextProvider i18n={i18n}>
             <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
           </I18nextProvider>

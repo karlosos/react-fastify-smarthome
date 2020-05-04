@@ -109,5 +109,15 @@
         "y": 15
       }
     }
+  },
+  "light-put-200": {
+    "summary": "positive",
+    "value": {
+      "id": 7,
+      "type": "RGBLight",
+      "hue": 100,
+      "saturation": 50,
+      "value": 50
+    }
   }
 }

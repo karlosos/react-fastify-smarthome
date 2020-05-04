@@ -51,6 +51,10 @@ module.exports = function ({ port }) {
     prefix: 'api/v1/notifications'
   })
 
+  app.register(require('./routes/light'), {
+    prefix: 'api/v1/light'
+  })
+
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'
   })

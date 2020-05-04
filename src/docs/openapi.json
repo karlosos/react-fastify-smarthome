@@ -183,6 +183,40 @@
           "required": false
         }
       }
+    },
+    "/api/v1/light": {
+      "put": {
+        "summary": "Sets light to given color",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "schemas/light.json"
+              },
+              "examples": {
+                "positive": {
+                  "$ref": "examples/positive.json#/light-put-200"
+                },
+                "positive_example": {
+                  "$ref": "examples/positive_example.json#/light-put-200"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
     }
   }
 }

@@ -6,27 +6,24 @@
   "required": ["id", "type"],
   "properties": {
     "id": {
-      "type": "integer",
-      "format": "int32"
+      "$ref": "sensor-id.json"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "const": "RGBLight"
     },
     "hue": {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 0,
       "maximum": 359
     },
     "saturation": {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 0,
       "maximum": 100
     },
     "value" : {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 0,
       "maximum": 100
     },
