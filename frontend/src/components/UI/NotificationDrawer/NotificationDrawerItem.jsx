@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { ListItem, ListItemText, IconButton, ListItemSecondaryAction } from '@material-ui/core'
 import Close from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,6 +25,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck, sensor }) => {
+  const { t } = useTranslation()
+
   const accentColor = sensorsInfo[sensor.type] ? sensorsInfo[sensor.type].color : 'black'
   const props = { accentColor }
   const classes = useStyles(props)
@@ -43,13 +46,15 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
     </ListItemSecondaryAction>
   )
 
+  const displayedInfo = sensor ? <ItemDisplayedInfo infoType='name' sensorType={sensor.type} /> : t('unknown-sensor')
+
   return (
     <ListItem button key={id} data-testid='drawer-item' disabled={isChecked} className={classes.row}>
       <ListItemText
         primary={
           <div>
             <span className={classes.sensor}>
-              <ItemDisplayedInfo infoType='name' sensorType={sensor.type} />
+              {displayedInfo}
             </span>
             <span className={classes.id}> {sensorId}</span>
           </div>

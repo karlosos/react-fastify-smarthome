@@ -49,8 +49,6 @@ export function * checkNotificationsSaga (action) {
   yield put(checkNotificationsStart(checked))
   try {
     yield call(checkNotifications, checked)
-    console.log('index')
-    console.log(notifications.indexOf(checked))
     notifications[notifications.indexOf(checked)].isChecked = true
     yield put(checkNotificationsSuccess(notifications))
   } catch (error) {

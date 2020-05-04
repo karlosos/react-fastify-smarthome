@@ -9,6 +9,6 @@
   "no-new-notifications": "Brak nowych notyfikacji",
   "notifications": "Notyfikacje",
   "inactive": "Nieaktywne",
-  "show-more-button": "POKAŻ WIĘCEJ"
-
+  "show-more-button": "POKAŻ WIĘCEJ",
+  "unknown-sensor": "Nieznany sensor"
 }

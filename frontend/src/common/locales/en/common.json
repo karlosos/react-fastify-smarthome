@@ -9,5 +9,6 @@
   "no-new-notifications": "No new notifications",
   "notifications": "Notifications",
   "inactive": "Inactive",
-  "show-more-button": "SHOW MORE"
+  "show-more-button": "SHOW MORE",
+  "unknown-sensor": "Unknown sensor"
 }
