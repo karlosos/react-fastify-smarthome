@@ -119,5 +119,13 @@
       "saturation": 50,
       "value": 50
     }
+  },
+  "blinds-put-200": {
+    "summary": "positive",
+    "value": {
+      "id": 7,
+      "type": "windowBlind",
+      "position": 50
+    }
   }
 }

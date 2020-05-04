@@ -19,7 +19,7 @@
       "GenericError": {
         "$ref": "schemas/generic-error.json"
       },
-      "MapAddRequestBody":{
+      "MapAddRequestBody": {
         "$ref": "schemas/map-add-request-body.json"
       },
       "SensorId": {
@@ -120,8 +120,7 @@
         "requestBody": {
           "required": false,
           "content": {
-            "application/json": {
-            }
+            "application/json": {}
           }
         }
       },
@@ -200,6 +199,40 @@
                 },
                 "positive_example": {
                   "$ref": "examples/positive_example.json#/light-put-200"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/v1/blinds": {
+      "put": {
+        "summary": "Sets Window blinds to given state.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "schemas/window-blind.json"
+              },
+              "examples": {
+                "positive": {
+                  "$ref": "examples/positive.json#/blinds-put-200"
+                },
+                "positive_example": {
+                  "$ref": "examples/positive_example.json#/blinds-put-200"
                 }
               }
             }
