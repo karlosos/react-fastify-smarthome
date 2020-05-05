@@ -153,4 +153,25 @@ describe('sensor reducer', () => {
       lightDetailsError: testError
     })
   })
+
+  test(`should handle ${actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_START}`, () => {
+    expect(reducer(initialState, actions.changeWindowBlindsSensorDetailsStart())).toEqual({
+      ...initialState,
+      windowBlindsDetailsError: null
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_SUCCESS}`, () => {
+    expect(reducer(initialState, actions.changeWindowBlindsSensorDetailsSuccess())).toEqual({
+      ...initialState
+    })
+  })
+
+  test(`should handle ${actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAIL}`, () => {
+    const testError = 'Error'
+    expect(reducer(initialState, actions.changeWindowBlindsSensorDetailsFail(testError))).toEqual({
+      ...initialState,
+      windowBlindsDetailsError: testError
+    })
+  })
 })

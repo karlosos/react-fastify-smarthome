@@ -2,10 +2,10 @@
 
 import { takeLatest, put, call } from 'redux-saga/effects'
 import { watchSensors } from './index'
-import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga } from './sensorSagas'
+import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga, changeWindowBlindsSensorDetailsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
-import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails } from '../../api/sensor'
+import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails, changeWindowBlindsDetails } from '../../api/sensor'
 
 import actionTypes from '@constants/actionTypes'
 import * as actions from '../../actions/sensor'
@@ -25,6 +25,9 @@ describe('sensors watcher', () => {
 
     expect(gen.next().value)
       .toEqual(takeLatest(actionTypes.SENSOR_LIGHT_CHANGE_ACTION, changeLightSensorDetailsSaga))
+
+    expect(gen.next().value)
+      .toEqual(takeLatest(actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_ACTION, changeWindowBlindsSensorDetailsSaga))
 
     expect(gen.next().done)
       .toEqual(true)
@@ -250,6 +253,64 @@ describe('changeLightSensorDetailsSaga', () => {
 
     it('should put changeLightSensorDetailsFail action', result => {
       expect(result).toEqual(put(actions.changeLightSensorDetailsFail(new Error('test error'))))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+})
+
+describe('changeWindowBlindsSensorDetailsSaga', () => {
+  describe('should change window blinds sensor\'s details successfuly', () => {
+    const action = {
+      windowBlindsSensorDetails: {
+        id: 5,
+        type: 'windowBlind',
+        position: 50
+      }
+    }
+
+    const it = sagaHelper(changeWindowBlindsSensorDetailsSaga(action))
+
+    it('should put changeWindowBlindsSensorDetailsStart action', result => {
+      expect(result).toEqual(put(actions.changeWindowBlindsSensorDetailsStart()))
+    })
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(changeWindowBlindsDetails, action.windowBlindsSensorDetails))
+    })
+
+    it('should put changeWindowBlindsSensorDetailsSuccess action', result => {
+      expect(result).toEqual(put(actions.changeWindowBlindsSensorDetailsSuccess()))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+
+  describe('should throw an exception on unsuccessful window blinds sensor\'s detail change', () => {
+    const action = {
+      windowBlindsSensorDetails: {
+        id: 5,
+        type: 'windowBlind',
+        position: 5
+      }
+    }
+
+    const it = sagaHelper(changeWindowBlindsSensorDetailsSaga(action))
+
+    it('should put changeWindowBlindsSensorDetailsStart action', result => {
+      expect(result).toEqual(put(actions.changeWindowBlindsSensorDetailsStart()))
+    })
+
+    it('should make an unsuccessful request to API', result => {
+      expect(result).toEqual(call(changeWindowBlindsDetails, action.windowBlindsSensorDetails))
+    })
+
+    it('should put changeWindowBlindsSensorDetailsFail action', result => {
+      expect(result).toEqual(put(actions.changeWindowBlindsSensorDetailsFail(new Error('test error'))))
     })
 
     it('should be done', result => {

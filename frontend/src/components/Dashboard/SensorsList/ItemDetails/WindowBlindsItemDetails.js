@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { changeWindowBlindsSensorDetails } from '@data/actions/sensor'
 
 const useStyles = makeStyles({
   root: {
@@ -14,11 +16,22 @@ const useStyles = makeStyles({
   }
 })
 
-export default function WindowBlindsItemDetails (sensorData) {
+export default function WindowBlindsItemDetails ({ sensorData, handleChangeExpanded }) {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const classes = useStyles()
 
   const [position, setPosition] = useState(0)
+
+  const dispatchWindowBlindsDetailsChange = () => {
+    const windowBlindsDetails = {
+      id: sensorData.id,
+      type: sensorData.type,
+      position: position
+    }
+    dispatch(changeWindowBlindsSensorDetails(windowBlindsDetails))
+    handleChangeExpanded()()
+  }
 
   return (
     <div className={classes.root}>
@@ -40,6 +53,7 @@ export default function WindowBlindsItemDetails (sensorData) {
         <Button
           variant='outlined'
           color='primary'
+          onClick={dispatchWindowBlindsDetailsChange}
         >
           {t('dashboard:sensor-detail-confirm')}
         </Button>

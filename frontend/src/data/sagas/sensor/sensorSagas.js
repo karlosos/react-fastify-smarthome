@@ -1,6 +1,6 @@
 import * as actions from '../../actions/sensor'
 import { put, call } from 'redux-saga/effects'
-import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails } from '../../api/sensor'
+import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails, changeWindowBlindsDetails } from '../../api/sensor'
 
 export function * loadSensorsSaga () {
   yield put(actions.fetchSensorsStart())
@@ -39,5 +39,15 @@ export function * changeLightSensorDetailsSaga (action) {
     yield put(actions.changeLightSensorDetailsSuccess())
   } catch (error) {
     yield put(actions.changeLightSensorDetailsFail(error))
+  }
+}
+
+export function * changeWindowBlindsSensorDetailsSaga (action) {
+  yield put(actions.changeWindowBlindsSensorDetailsStart())
+  try {
+    yield call(changeWindowBlindsDetails, action.windowBlindsSensorDetails)
+    yield put(actions.changeWindowBlindsSensorDetailsSuccess())
+  } catch (error) {
+    yield put(actions.changeWindowBlindsSensorDetailsFail(error))
   }
 }

@@ -117,3 +117,29 @@ export function changeLightSensorDetailsFail (error) {
     error
   }
 }
+
+export function changeWindowBlindsSensorDetails (windowBlindsSensorDetails) {
+  return {
+    type: actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_ACTION,
+    windowBlindsSensorDetails
+  }
+}
+
+export function changeWindowBlindsSensorDetailsStart () {
+  return {
+    type: actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_START
+  }
+}
+
+export function changeWindowBlindsSensorDetailsSuccess () {
+  return {
+    type: actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_SUCCESS
+  }
+}
+
+export function changeLightSensorDetailsFails (error) {
+  return {
+    type: actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAIL,
+    error
+  }
+}

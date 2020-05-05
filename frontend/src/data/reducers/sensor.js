@@ -6,7 +6,8 @@ const initialState = {
   loadingError: null,
   sensorError: null,
   refreshError: null,
-  lightDetailsError: null
+  lightDetailsError: null,
+  windowBlindsDetailsError: null
 }
 
 const fetchSensorsStart = (state, action) => {
@@ -118,6 +119,26 @@ const changeLightSensorDetailsFail = (state, action) => {
   }
 }
 
+const changeWindowBlindsSensorDetailsStart = (state, action) => {
+  return {
+    ...state,
+    lightDetailsError: null
+  }
+}
+
+const changeWindowBlindsSensorDetailsSuccess = (state, action) => {
+  return {
+    ...state
+  }
+}
+
+const changeWindowBlindsSensorDetailsFail = (state, action) => {
+  return {
+    ...state,
+    windowBlindsDetailsError: action.error
+  }
+}
+
 export default function sensor (state = initialState, action) {
   switch (action.type) {
     case actionTypes.SENSORS_FETCH_START:
@@ -150,6 +171,14 @@ export default function sensor (state = initialState, action) {
       return changeLightSensorDetailsSuccess(state, action)
     case actionTypes.SENSOR_LIGHT_CHANGE_FAIL:
       return changeLightSensorDetailsFail(state, action)
+
+    case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_START:
+      return changeWindowBlindsSensorDetailsStart(state, action)
+    case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_SUCCESS:
+      return changeWindowBlindsSensorDetailsSuccess(state, action)
+    case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAILS:
+      return changeWindowBlindsSensorDetailsFail(state, action)
+
     default:
       return state
   }

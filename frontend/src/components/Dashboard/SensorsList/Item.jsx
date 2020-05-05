@@ -102,7 +102,7 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
 
 function drawExpansionPanelDetails (sensorType, sensorData, handleChangeExpanded) {
   const itemDetails = {
-    windowBlind: <WindowBlindsItemDetails sensorData={sensorData} />,
+    windowBlind: <WindowBlindsItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />,
     RGBLight: <LightItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />
   }
 

@@ -27,3 +27,10 @@ export function * changeLightDetails (lightSensorDetails) {
 
   return res.data
 }
+
+export function * changeWindowBlindsDetails (windowBlindsSensorDetails) {
+  const config = { headers: { 'Content-Type': 'application/json' } }
+  const res = yield axios.put('/api/v1/blinds', windowBlindsSensorDetails, config)
+
+  return res.data
+}
