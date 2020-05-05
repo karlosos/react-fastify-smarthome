@@ -158,7 +158,6 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
       >
         <ListItem
           id={`sensor${id}`}
-          buttonRef
           onClick={(e) => {
             clickDispatch(accentColor, sensorData, isOnMap)
             if (isSensorEditable(type, true)) {

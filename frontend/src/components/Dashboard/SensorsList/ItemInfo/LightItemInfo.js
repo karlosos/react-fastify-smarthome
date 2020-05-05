@@ -12,7 +12,7 @@ export default function LightItemInfo ({ sensorData, classes, handleRemoveClick 
     <ListItemSecondaryAction>
       <ListItemText
         secondary={
-          <div className={classes.item}>
+          <span className={classes.item}>
             {t('dashboard:light-hue')}: {sensorData.hue} <br />
             {t('dashboard:light-saturation')}: {sensorData.saturation} <br />
             {t('dashboard:light-value')}: {sensorData.value} <br />
@@ -22,7 +22,7 @@ export default function LightItemInfo ({ sensorData, classes, handleRemoveClick 
             >
               <CloseIcon />
             </IconButton>
-          </div>
+          </span>
         }
       />
     </ListItemSecondaryAction>
