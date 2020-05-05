@@ -25,7 +25,7 @@ describe('/api/v1/light', function () {
   })
 
   describe('PUT method', () => {
-    test('should return status code 200 and message "OK" if request body fits schema', async function () {
+    test('should return status code 200 if request body fits schema', async function () {
       const data = {
         id: 7,
         type: 'RGBLight',
@@ -44,10 +44,9 @@ describe('/api/v1/light', function () {
 
       expect(axios.put).toBeCalled()
       expect(result.statusCode).toBe(200)
-      expect(result.statusMessage).toEqual('OK')
     })
 
-    test('should return status code 400 and message "Bad Request" if request body doesn\'t fit schema', async function () {
+    test('should return status code 400 if request body doesn\'t fit schema', async function () {
       const data = {
         id: 'zzz',
         type: 'RGBLight',
@@ -66,7 +65,27 @@ describe('/api/v1/light', function () {
 
       expect(axios.put).toBeCalled()
       expect(result.statusCode).toBe(400)
-      expect(result.statusMessage).toEqual('Bad Request')
+    })
+
+    test('should return status code 500 if promise gets rejected', async function () {
+      const data = {
+        id: 5,
+        type: 'RGBLight',
+        hue: 100,
+        saturation: 50,
+        value: 80
+      }
+
+      axios.put.mockImplementation(() => Promise.reject((new Error('err'))))
+
+      const result = await instance.inject({
+        method: 'put',
+        url: 'api/v1/light',
+        payload: data
+      })
+
+      expect(axios.put).toBeCalled()
+      expect(result.statusCode).toBe(500)
     })
   })
 })
