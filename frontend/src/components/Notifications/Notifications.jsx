@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     margin: theme.spacing(2, 0)
+  },
+  container: {
+    overflow: 'auto',
+    maxHeight: '100%'
   }
 
 }))
@@ -117,11 +121,16 @@ const Notifications = () => {
     </Box>)
 
   return (
-    <Grid container justify='center'>
+    <Grid
+      container justify='center'
+      className={classes.container}
+    >
       {fetchError ? <Page404 />
         : fetching ? <Spinner />
           : (
-            <Grid item xs={4}>
+            <Grid
+              item xs={4}
+            >
               <Typography align='center' variant='h6' className={classes.title}>
                 {t('notifications')}
               </Typography>
