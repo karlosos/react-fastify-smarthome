@@ -42,9 +42,9 @@ with any example provided in the `./src/docs/examples/` directory.
 When deploying app in local environment create `.env` file in root directory which contains:
 
 ```
-GATEWAY_URL='https://patronage20-concept-master.herokuapp.com'
-COOKIE_NAME=secret_cookie
-COOKIE_VALUE=3241231213fsdj23kj4kl32j4
+GATEWAY_URL='https://gate.patronage2020-iot.intive-projects.com'
+COOKIE_NAME='____________'
+COOKIE_VALUE='________________________'
 ```
 
 `COOKIE_NAME` and `COOKIE_VALUE` are optional and should be both defined when cookie authentication is desirable.
@@ -60,7 +60,7 @@ var doSetCookie = function setCookie (c_name, value, exdays) {
   var c_value = escape(value) + ((exdays == null) ? '' : '; expires=' + exdate.toUTCString())
   document.cookie = c_name + '=' + c_value + '; samesite=Lax'
 }
-doSetCookie('secret_cookie', '3241231213fsdj23kj4kl32j4', 1)
+doSetCookie('___________', '___________________', 1)
 ```
 
 ### Starting application in development environment

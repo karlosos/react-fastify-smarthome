@@ -27,7 +27,9 @@ module.exports = function ({ port }) {
         })
 
       instance.register(require('./routes/well-known/health-check'), {
-        GATEWAY_URL: app.config.GATEWAY_URL
+        GATEWAY_URL: app.config.GATEWAY_URL,
+        COOKIE_NAME: app.config.COOKIE_NAME,
+        COOKIE_VALUE: app.config.COOKIE_VALUE
       })
 
       next()

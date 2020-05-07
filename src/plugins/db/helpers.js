@@ -1,16 +1,3 @@
-const changeID = (sensors) => {
-  let index = 1
-  for (const key in sensors) {
-    sensors[key] = sensors[key][0] !== undefined
-      ? sensors[key].map(sensor => {
-        sensor.id = index
-        index += 1
-        return sensor
-      }) : sensors[key]
-  }
-  return sensors
-}
-
 const joinSensors = (sensors, mapSensors) => {
   for (const key in sensors) {
     sensors[key] = sensors[key][0] !== undefined
@@ -57,7 +44,6 @@ const postNewNotifications = async (db, mongo, newNotifications) => {
 }
 
 module.exports = {
-  changeID,
   joinSensors,
   createCappedCollection,
   postNewNotifications,

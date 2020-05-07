@@ -1,6 +1,5 @@
 const axios = require('axios')
 const { postNewNotifications, filterNewNotifications } = require('../plugins/db/helpers')
-const mockNotifications = require('../public/mockNotifications.json')
 
 const schema = {
   schema: {
@@ -28,13 +27,16 @@ const deleteSchema = {
 
 const notifications = async function (fastify, options, next) {
   fastify.get('/', schema, async function (request, reply) {
-    // TODO: uncomment code below, delete mockNotifications
-    // pass gatewayResponse.data to filterNewNotifications instead of mockNotifications
-    // const gatewayUrl = this.config.GATEWAY_URL
-    // const gatewayResponse = await axios.get(`${gatewayUrl}/notifications`)
+    const gatewayUrl = this.config.GATEWAY_URL
+    const gatewayResponse = await axios.get(`${gatewayUrl}/notifications`, {
+      withCredentials: true,
+      headers: {
+        Cookie: `${this.config.COOKIE_NAME}=${this.config.COOKIE_VALUE}`
+      }
+    })
 
     const res = await this.db.getNotifications(this.mongo.db)
-    const filtered = await filterNewNotifications(mockNotifications, res)
+    const filtered = await filterNewNotifications(gatewayResponse.data, res)
     await postNewNotifications(this.db, this.mongo.db, filtered)
     const all = await this.db.getNotifications(this.mongo.db)
     reply.code(200).send(all)

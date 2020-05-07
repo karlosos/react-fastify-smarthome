@@ -29,21 +29,25 @@ describe('/api/v1/notifications', function () {
   describe('GATEWAY_URL set in environment variables', () => {
     beforeEach(async () => {
       restore = mockedEnv({
-        GATEWAY_URL: 'https://patronage20-concept-master.herokuapp.com',
+        GATEWAY_URL: 'https://gate.patronage2020-iot.intive-projects.com',
         COOKIE_NAME: '',
         COOKIE_VALUE: ''
       })
       instance = await app({ port: 3000 }).ready()
     })
 
-    test('should fastify.config.GATEWAY_URL be set and should return object response and status code 200', async function () {
+    test('should fastify.config.GATEWAY_URL be set and should return object response and status code 500', async function () {
       const result = await instance.inject({
         method: 'GET',
-        url: '/api/v1/notifications'
+        url: '/api/v1/notifications',
+        withCredentials: true,
+        headers: {
+          Cookie: `${instance.config.COOKIE_NAME}=${instance.config.COOKIE_VALUE}`
+        }
       })
 
-      expect(instance.config.GATEWAY_URL).toBe('https://patronage20-concept-master.herokuapp.com')
-      expect(result.statusCode).toBe(200)
+      expect(instance.config.GATEWAY_URL).toBe('https://gate.patronage2020-iot.intive-projects.com')
+      expect(result.statusCode).toBe(500)
       expect(typeof (JSON.parse(result.payload))).toBe('object')
     })
 

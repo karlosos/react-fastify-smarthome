@@ -7,6 +7,7 @@ module.exports = fp(function (fastify, options, next) {
     getSensors: sensors.getSensors,
     postSensor: sensors.postSensor,
     removeSensor: sensors.removeSensor,
+    dropSensors: sensors.dropSensors,
     getNotifications: notifications.getNotifications,
     postNotification: notifications.postNotification,
     updateNotification: notifications.updateNotification,

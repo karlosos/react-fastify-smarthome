@@ -95,7 +95,7 @@ const mockSensors = {
   lights: [
     {
       id: 6,
-      type: 'RGBLight',
+      type: 'LED_CONTROLLER',
       hue: 17,
       saturation: 40,
       value: 32

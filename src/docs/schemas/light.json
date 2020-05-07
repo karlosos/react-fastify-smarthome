@@ -10,7 +10,7 @@
     },
     "type": {
       "type": "string",
-      "const": "RGBLight"
+      "const": "LED_CONTROLLER"
     },
     "hue": {
       "type": "number",

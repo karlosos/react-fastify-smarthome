@@ -28,7 +28,7 @@ describe('/api/v1/light', function () {
     test('should return status code 200 if request body fits schema', async function () {
       const data = {
         id: 7,
-        type: 'RGBLight',
+        type: 'LED_CONTROLLER',
         hue: 100,
         saturation: 50,
         value: 50
@@ -49,7 +49,7 @@ describe('/api/v1/light', function () {
     test('should return status code 400 if request body doesn\'t fit schema', async function () {
       const data = {
         id: 'zzz',
-        type: 'RGBLight',
+        type: 'LED_CONTROLLER',
         hue: 106460,
         saturation: 56460,
         value: 73750
@@ -70,7 +70,7 @@ describe('/api/v1/light', function () {
     test('should return status code 500 if promise gets rejected', async function () {
       const data = {
         id: 5,
-        type: 'RGBLight',
+        type: 'LED_CONTROLLER',
         hue: 100,
         saturation: 50,
         value: 80

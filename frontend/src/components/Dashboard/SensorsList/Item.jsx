@@ -95,7 +95,7 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
     windowBlind: <WindowBlindsItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
     RFIDSensor: <RFIDSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
     smokeSensor: <SmokeSensorItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />,
-    RGBLight: <LightItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />
+    LED_CONTROLLER: <LightItemInfo sensorData={sensorData} classes={classes} handleRemoveClick={handleRemoveClick} />
   }
   return itemInfo[sensorType]
 }
@@ -103,7 +103,7 @@ function drawItemInfo (sensorType, sensorData, classes, handleRemoveClick) {
 function drawExpansionPanelDetails (sensorType, sensorData, handleChangeExpanded) {
   const itemDetails = {
     windowBlind: <WindowBlindsItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />,
-    RGBLight: <LightItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />
+    LED_CONTROLLER: <LightItemDetails sensorData={sensorData} handleChangeExpanded={handleChangeExpanded} />
   }
 
   if (itemDetails[sensorType]) {
@@ -116,7 +116,7 @@ function drawExpansionPanelDetails (sensorType, sensorData, handleChangeExpanded
 }
 
 function isSensorEditable (sensorType, isOnMap) {
-  return (sensorType === 'RGBLight') || (sensorType === 'windowBlind' && isOnMap)
+  return (sensorType === 'LED_CONTROLLER') || (sensorType === 'windowBlind' && isOnMap)
 }
 
 const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeExpanded }) => {

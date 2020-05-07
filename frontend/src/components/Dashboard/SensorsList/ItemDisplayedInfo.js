@@ -26,7 +26,7 @@ export default function ItemDisplayedName ({ infoType, sensorType }) {
         name: t('dashboard:smoke-sensor-name'),
         desc: t('dashboard:smoke-sensor-desc')
       },
-      RGBLight: {
+      LED_CONTROLLER: {
         name: t('dashboard:RGB-light-name'),
         desc: t('dashboard:RGB-light-desc')
       }
