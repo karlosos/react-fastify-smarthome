@@ -31,7 +31,8 @@ export default function ItemDisplayedName ({ infoType, sensorType }) {
         desc: t('dashboard:RGB-light-desc')
       }
     }
-    return sensorNames[type]
+
+    return !sensorNames[type] ? { name: 'UNKNOWN', desc: 'UNKNOWN' } : sensorNames[type]
   }
 
   const getNeededInfo = (infoType) => {
