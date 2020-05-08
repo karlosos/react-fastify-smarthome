@@ -21,7 +21,7 @@ export default function WindowBlindsItemDetails ({ sensorData, handleChangeExpan
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const [position, setPosition] = useState(0)
+  const [position, setPosition] = useState(sensorData.position)
 
   const dispatchWindowBlindsDetailsChange = () => {
     const windowBlindsDetails = {

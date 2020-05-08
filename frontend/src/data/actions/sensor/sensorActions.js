@@ -137,7 +137,7 @@ export function changeWindowBlindsSensorDetailsSuccess () {
   }
 }
 
-export function changeLightSensorDetailsFails (error) {
+export function changeWindowBlindsSensorDetailsFail (error) {
   return {
     type: actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAIL,
     error

@@ -122,7 +122,7 @@ const changeLightSensorDetailsFail = (state, action) => {
 const changeWindowBlindsSensorDetailsStart = (state, action) => {
   return {
     ...state,
-    lightDetailsError: null
+    windowBlindsDetailsError: null
   }
 }
 
@@ -176,7 +176,7 @@ export default function sensor (state = initialState, action) {
       return changeWindowBlindsSensorDetailsStart(state, action)
     case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_SUCCESS:
       return changeWindowBlindsSensorDetailsSuccess(state, action)
-    case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAILS:
+    case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAIL:
       return changeWindowBlindsSensorDetailsFail(state, action)
 
     default:

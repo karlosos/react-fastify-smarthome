@@ -307,6 +307,8 @@ describe('changeWindowBlindsSensorDetailsSaga', () => {
 
     it('should make an unsuccessful request to API', result => {
       expect(result).toEqual(call(changeWindowBlindsDetails, action.windowBlindsSensorDetails))
+
+      return new Error('test error')
     })
 
     it('should put changeWindowBlindsSensorDetailsFail action', result => {

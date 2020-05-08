@@ -19,9 +19,9 @@ export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const classes = useStyles()
-  const [value, setValue] = useState(0)
-  const [hue, setHue] = useState(0)
-  const [saturation, setSaturation] = useState(0)
+  const [value, setValue] = useState(sensorData.value)
+  const [hue, setHue] = useState(sensorData.hue)
+  const [saturation, setSaturation] = useState(sensorData.saturation)
 
   const dispatchLightDetailsChange = () => {
     const lightSensorDetails = {
