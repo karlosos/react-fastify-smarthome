@@ -5,7 +5,7 @@
       "temperatureSensors": [
         {
           "id": 666,
-          "type": "temperatureSensor",
+          "type": "TEMPERATURE_SENSOR",
           "value": 12.2,
           "mapPosition": {
             "x": 5,
@@ -14,12 +14,12 @@
         },
         {
           "id": 667,
-          "type": "temperatureSensor",
+          "type": "TEMPERATURE_SENSOR",
           "value": 19
         },
         {
           "id": 668,
-          "type": "temperatureSensor",
+          "type": "TEMPERATURE_SENSOR",
           "value": 20
         }
       ],

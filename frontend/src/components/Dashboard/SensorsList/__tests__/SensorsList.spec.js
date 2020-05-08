@@ -78,12 +78,12 @@ describe('<SensorsList />', () => {
           temperatureSensors: [
             {
               id: 1,
-              type: 'temperatureSensor',
+              type: 'TEMPERATURE_SENSOR',
               value: 21
             },
             {
               id: 9,
-              type: 'temperatureSensor',
+              type: 'TEMPERATURE_SENSOR',
               value: 22,
               mapPosition: {
                 x: 0,
@@ -92,7 +92,7 @@ describe('<SensorsList />', () => {
             },
             {
               id: 10,
-              type: 'temperatureSensor',
+              type: 'TEMPERATURE_SENSOR',
               value: 22,
               mapPosition: {
                 x: 0,

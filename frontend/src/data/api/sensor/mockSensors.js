@@ -2,12 +2,12 @@ const mockSensors = {
   temperatureSensors: [
     {
       id: 1,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 21
     },
     {
       id: 9,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 22,
       mapPosition: {
         x: 40,
@@ -16,7 +16,7 @@ const mockSensors = {
     },
     {
       id: 10,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 22,
       mapPosition: {
         x: 77,
@@ -25,7 +25,7 @@ const mockSensors = {
     },
     {
       id: 11,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 24,
       mapPosition: {
         x: 40,
@@ -34,7 +34,7 @@ const mockSensors = {
     },
     {
       id: 12,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 19.3,
       mapPosition: {
         x: 0,
@@ -43,7 +43,7 @@ const mockSensors = {
     },
     {
       id: 13,
-      type: 'temperatureSensor',
+      type: 'TEMPERATURE_SENSOR',
       value: 21,
       mapPosition: {
         x: 35,

@@ -6,7 +6,7 @@ export default function ItemDisplayedName ({ infoType, sensorType }) {
 
   const getSensorDisplayedInfo = (type) => {
     const sensorNames = {
-      temperatureSensor: {
+      TEMPERATURE_SENSOR: {
         name: t('dashboard:temperature-sensor-name'),
         desc: t('dashboard:temperature-sensor-desc')
       },

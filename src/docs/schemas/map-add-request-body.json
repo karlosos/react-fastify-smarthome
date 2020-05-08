@@ -8,7 +8,7 @@
     },
     "sensorType": {
       "type": "string",
-      "example": "temperatureSensor"
+      "example": "TEMPERATURE_SENSOR"
     },
     "mapPosition": {
       "$ref": "map-point.json"

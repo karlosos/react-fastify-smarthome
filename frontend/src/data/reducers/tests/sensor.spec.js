@@ -16,7 +16,7 @@ describe('sensor reducer', () => {
     temperatureSensors: [
       {
         id: 1,
-        type: 'temperatureSensor',
+        type: 'TEMPERATURE_SENSOR',
         value: 25
       }
     ],

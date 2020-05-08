@@ -36,7 +36,7 @@ describe('<DashboardContent />', () => {
           temperatureSensors: [
             {
               id: 1,
-              type: 'temperatureSensor',
+              type: 'TEMPERATURE_SENSOR',
               value: 21
             }]
         }

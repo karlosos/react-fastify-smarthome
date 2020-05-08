@@ -1,5 +1,5 @@
 const sensorsInfo = {
-  temperatureSensor: {
+  TEMPERATURE_SENSOR: {
     color: 'HSL(30, 100%, 60%)',
     colorLight: 'HSL(30, 100%, 90%)',
     colorDark: 'HSL(30, 100%, 30%)'

@@ -32,7 +32,7 @@ describe('<Notifications />', () => {
         temperatureSensors: [
           {
             id: 1,
-            type: 'temperatureSensor',
+            type: 'TEMPERATURE_SENSOR',
             value: 21
           }]
       }
@@ -69,7 +69,7 @@ describe('<Notifications />', () => {
           temperatureSensors: [
             {
               id: 1,
-              type: 'temperatureSensor',
+              type: 'TEMPERATURE_SENSOR',
               value: 21
             }]
         }

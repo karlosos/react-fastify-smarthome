@@ -33,17 +33,17 @@ describe('check database interactions', () => {
   })
 
   it('should insert a sensor into database', async () => {
-    const mockSensor = { _id: 100, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
+    const mockSensor = { _id: 100, sensorType: 'TEMPERATURE_SENSORr', mapPosition: { x: 0, y: 0 } }
     const res = await instance.db.postSensor(db, mockSensor)
     expect(res.ops[0]).toEqual(mockSensor)
     expect(res.insertedCount).toEqual(1)
   })
 
   it('should not insert record with duplicated id ', async () => {
-    const mockSensor1 = { _id: 22, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
+    const mockSensor1 = { _id: 22, sensorType: 'TEMPERATURE_SENSOR', mapPosition: { x: 0, y: 0 } }
     const res1 = await instance.db.postSensor(db, mockSensor1)
     try {
-      const mockSensor2 = { _id: 22, sensorType: 'temperatureSensor', mapPosition: { x: 0, y: 0 } }
+      const mockSensor2 = { _id: 22, sensorType: 'TEMPERATURE_SENSOR', mapPosition: { x: 0, y: 0 } }
       await instance.db.postSensor(db, mockSensor2)
     } catch (e) {
       expect(e).toBeDefined()
