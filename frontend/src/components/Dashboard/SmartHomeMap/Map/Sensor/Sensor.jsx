@@ -7,8 +7,13 @@ import sensorsInfo from '../../../../../common/constants/sensorsInfo'
 
 const useStyles = makeStyles((props) => ({
   container: props => ({
+    width: props.sensorSize.width,
+    height: props.sensorSize.height,
     backgroundColor: props.sensorColor,
-    border: props.clicked && `2px solid ${props.sensorBorderColor}`,
+    border: props.clicked ? `${props.borderSize}px solid ${props.sensorBorderColor}` : '',
+    top: props.clicked ? props.position.top : props.position.top + props.borderSize,
+    left: props.clicked ? props.position.left : props.position.left + props.borderSize,
+    position: props.position.position,
     borderRadius: '50%',
     '&:hover': {
       cursor: 'pointer'
@@ -51,13 +56,15 @@ const Sensor = (props) => {
   const classes = useStyles({
     sensorColor: sensorColor,
     sensorBorderColor: sensorBorderColor,
-    clicked: clicked
+    clicked: clicked,
+    sensorSize: sensorSize,
+    position: position,
+    borderSize: 2
   })
 
   return (
     <div
       className={classes.container}
-      style={Object.assign(position, sensorSize)}
       data-testid='sensor-id'
       onClick={() => clickDispatch(sensorBorderColor)}
     />
