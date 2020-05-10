@@ -1,3 +1,19 @@
 {
-
+  "room": "Room",
+  "sensors": "Available sensors",
+  "temperature": "Temperature",
+  "id": "HVAC room",
+  "name": "HVAC name",
+  "temperatureSensorId": "Temperature sensor",
+  "windowSensorIds": "Window sensors",
+  "heatingTemperature": "Heating",
+  "coolingTemperature": "Cooling",
+  "hysteresis": "Hysteresis",
+  "back-button": "Back",
+  "reset-button": "Reset",
+  "add-button": "Add",
+  "next-button": "Next",
+  "finish-button": "Finish",
+  "steps-completed": "All steps completed",
+  "invalid-form": "INVALID FORM"
 }

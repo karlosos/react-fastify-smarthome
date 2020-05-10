@@ -72,8 +72,8 @@
         {
           "id": 6,
           "type": "HVACRoom",
-          "heating-temperature": 100,
-          "cooling-temperature": 100,
+          "heatingTemperature": 100,
+          "coolingTemperature": 100,
           "hysteresis": 15,
           "temperatureSensorId": 1,
           "windowSensorIds": [

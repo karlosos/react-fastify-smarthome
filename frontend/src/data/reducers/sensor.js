@@ -2,12 +2,15 @@ import actionTypes from '@constants/actionTypes'
 
 const initialState = {
   sensors: [],
+  HVACRooms: [],
   loadingSensors: true,
   loadingError: null,
   sensorError: null,
   refreshError: null,
   lightDetailsError: null,
-  windowBlindsDetailsError: null
+  windowBlindsDetailsError: null,
+  hvacRoomsDetailsError: null,
+  hvacRoomsValidForm: true
 }
 
 const fetchSensorsStart = (state, action) => {
@@ -31,6 +34,7 @@ const fetchSensorsSuccess = (state, action) => {
   return {
     ...state,
     sensors,
+    HVACRooms: action.sensors.HVACRooms,
     loadingSensors: false,
     refreshError: null
   }
@@ -139,6 +143,34 @@ const changeWindowBlindsSensorDetailsFail = (state, action) => {
   }
 }
 
+const changeHvacRoomsDetailsStart = (state, action) => {
+  return {
+    ...state,
+    hvacRoomsDetailsError: null
+  }
+}
+
+const changeHvacRoomsDetailsSuccess = (state, action) => {
+  return {
+    ...state
+  }
+}
+
+const changeHvacRoomsDetailsFail = (state, action) => {
+  return {
+    ...state,
+    hvacRoomsDetailsError: action.error
+  }
+}
+
+const validHvacFormSnackbar = (state, action) => {
+  console.log(action.valid)
+  return {
+    ...state,
+    hvacRoomsValidForm: action.valid
+  }
+}
+
 export default function sensor (state = initialState, action) {
   switch (action.type) {
     case actionTypes.SENSORS_FETCH_START:
@@ -178,6 +210,15 @@ export default function sensor (state = initialState, action) {
       return changeWindowBlindsSensorDetailsSuccess(state, action)
     case actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_FAIL:
       return changeWindowBlindsSensorDetailsFail(state, action)
+
+    case actionTypes.HVAC_ROOMS_CHANGE_START:
+      return changeHvacRoomsDetailsStart(state, action)
+    case actionTypes.HVAC_ROOMS_CHANGE_SUCCESS:
+      return changeHvacRoomsDetailsSuccess(state, action)
+    case actionTypes.HVAC_ROOMS_CHANGE_FAIL:
+      return changeHvacRoomsDetailsFail(state, action)
+    case actionTypes.HVAC_ROOMS_VALID_FORM:
+      return validHvacFormSnackbar(state, action)
 
     default:
       return state

@@ -34,3 +34,11 @@ export function * changeWindowBlindsDetails (windowBlindsSensorDetails) {
 
   return res.data
 }
+
+export function * changeHvacRoomsDetails (hvacRoomsDetails) {
+  // const config = { headers: { 'Content-Type': 'application/json' } }
+  // const res = yield axios.put('/api/v1/HVACRooms', hvacRoomsDetails, config)
+  console.log('PUT request', hvacRoomsDetails)
+  return hvacRoomsDetails
+  // return res.data
+}

@@ -12,13 +12,13 @@
     "type": {
       "type": "string"
     },
-    "heating-temperature": {
+    "heatingTemperature": {
       "type": "integer",
       "format": "int32",
       "minimum": 50,
       "maximum": 300
     },
-    "cooling-temperature": {
+    "coolingTemperature": {
       "type": "integer",
       "format": "int32",
       "minimum": 100,

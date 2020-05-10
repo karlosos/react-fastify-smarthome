@@ -1,3 +1,19 @@
 {
-
+  "room": "Pomieszczenie",
+  "sensors": "Dostępne sensory",
+  "temperature": "Temperatura",
+  "id": "Numer pomieszczenia",
+  "name": "Nazwa reguły",
+  "temperatureSensorId": "Sensor temperatury",
+  "windowSensorIds": "Sensory okien",
+  "heatingTemperature": "Ogrzewanie",
+  "coolingTemperature": "Chłodzenie",
+  "hysteresis": "Histereza",
+  "back-button": "Wróć",
+  "reset-button": "Wyczyść",
+  "add-button": "Dodaj",
+  "next-button": "Następny",
+  "finish-button": "Zakończ",
+  "steps-completed": "Wybór zakończony",
+  "invalid-form": "NIEPOPRAWNY FORMULARZ"
 }

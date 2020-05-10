@@ -143,3 +143,36 @@ export function changeWindowBlindsSensorDetailsFail (error) {
     error
   }
 }
+
+export function changeHvacRoomsDetails (hvacRoomsDetails) {
+  return {
+    type: actionTypes.HVAC_ROOMS_CHANGE_ACTION,
+    hvacRoomsDetails
+  }
+}
+
+export function changeHvacRoomsDetailsStart () {
+  return {
+    type: actionTypes.HVAC_ROOMS_CHANGE_START
+  }
+}
+
+export function changeHvacRoomsDetailsSuccess () {
+  return {
+    type: actionTypes.HVAC_ROOMS_CHANGE_SUCCESS
+  }
+}
+
+export function changeHvacRoomsDetailsFail (error) {
+  return {
+    type: actionTypes.HVAC_ROOMS_CHANGE_FAIL,
+    error
+  }
+}
+
+export function validHvacFormSnackbar (valid) {
+  return {
+    type: actionTypes.HVAC_ROOMS_VALID_FORM,
+    valid
+  }
+}
