@@ -40,6 +40,12 @@
         "type": "integer",
         "format": "int32"
       }    
-    }   
+    },
+    "cooling": {
+      "type": "boolean"
+    },
+    "heating": {
+      "type": "boolean"
+    }
   }
 }

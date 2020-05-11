@@ -3,7 +3,7 @@
   "title": "Hvac status",
   "type": "object",
   "description": "hvac status data",
-  "required": ["type", "heating", "cooling"],
+  "required": [ "id", "type", "heating", "cooling"],
   "properties": {
     "type": {
       "type": "string"
@@ -13,6 +13,10 @@
     },
     "cooling": {
       "type": "boolean"
+    },
+    "id": {
+      "type": "integer",
+      "format": "int32"
     }
   }
 }
