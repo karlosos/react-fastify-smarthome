@@ -6,10 +6,6 @@ import Sensor from './Sensor'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 
-const styleMock = {
-  top: '20px', left: '50px'
-}
-
 const mockedSensorState = {
   sensors: [],
   loadingSensors: false,
@@ -33,16 +29,36 @@ const mockedDbInteractionState = {
   dbError: undefined
 }
 
+const mockedProps = {
+  sensorSize: {
+    width: '10px',
+    height: '10px'
+  },
+  sensorColor: 'black',
+  sensorBorderColor: 'white',
+  position: {
+    top: '10px',
+    left: '50px'
+  },
+  clicked: true
+}
+
 describe('Sensor component test suite', () => {
   const initialState = { sensor: mockedSensorState, mapListCommunication: mockedMapState, dbInteraction: mockedDbInteractionState }
   const mockStore = configureStore()
   const store = mockStore(initialState)
 
-  test('should have styles', () => {
+  test('should be rendered', () => {
     expect(render(
       <Provider store={store}>
-        <Sensor position={styleMock} />
+        <Sensor
+          sensorSize={mockedProps.sensorSize}
+          sensorColor={mockedProps.sensorColor}
+          sensorborderColor={mockedProps.sensorBorderColor}
+          position={mockedProps.position}
+          clicked={mockedProps.clicked}
+        />
       </Provider>
-    ).getByTestId('sensor-id')).toHaveStyle(styleMock)
+    ).getByTestId('sensor-id')).toBeTruthy()
   })
 })
