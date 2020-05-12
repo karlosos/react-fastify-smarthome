@@ -164,7 +164,6 @@ const changeHvacRoomsDetailsFail = (state, action) => {
 }
 
 const validHvacFormSnackbar = (state, action) => {
-  console.log(action.valid)
   return {
     ...state,
     hvacRoomsValidForm: action.valid

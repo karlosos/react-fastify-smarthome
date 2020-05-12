@@ -2,7 +2,7 @@
 
 import { takeLatest, put, call } from 'redux-saga/effects'
 import { watchSensors } from './index'
-import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga, changeWindowBlindsSensorDetailsSaga } from './sensorSagas'
+import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga, changeWindowBlindsSensorDetailsSaga, changeHvacRoomsDetailsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
 import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails, changeWindowBlindsDetails } from '../../api/sensor'
@@ -28,6 +28,9 @@ describe('sensors watcher', () => {
 
     expect(gen.next().value)
       .toEqual(takeLatest(actionTypes.SENSOR_WINDOW_BLINDS_CHANGE_ACTION, changeWindowBlindsSensorDetailsSaga))
+
+    expect(gen.next().value)
+      .toEqual(takeLatest(actionTypes.HVAC_ROOMS_CHANGE_ACTION, changeHvacRoomsDetailsSaga))
 
     expect(gen.next().done)
       .toEqual(true)

@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Stepper } from '@material-ui/core'
-import Step from '@material-ui/core/Step'
-import StepLabel from '@material-ui/core/StepLabel'
-import StepContent from '@material-ui/core/StepContent'
-import Button from '@material-ui/core/Button'
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  StepContent,
+  Button
+} from '@material-ui/core'
 
 const HvacStepper = ({ activeStep, steps, getStepContent, classes, handleBack, handleNext }) => {
   const { t } = useTranslation()

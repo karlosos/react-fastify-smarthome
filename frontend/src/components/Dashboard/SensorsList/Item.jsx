@@ -24,7 +24,7 @@ import ItemDisplayedInfo from './ItemDisplayedInfo'
 import LightItemDetails from './ItemDetails/LightItemDetails'
 import WindowBlindsItemDetails from './ItemDetails/WindowBlindsItemDetails'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   row: props => ({
     borderLeft: '10px solid',
     borderColor: props.accentColor,
@@ -45,12 +45,18 @@ const useStyles = makeStyles({
     alignItems: 'center'
   },
   close: props => ({
-    display: props.clicked && props.isOnMap ? 'block' : 'none',
+    padding: theme.spacing(0.5),
+    borderRadius: '50%',
+    minWidth: 'auto',
+    minHeight: 'auto',
+    alighItems: 'center',
+    justifyContent: 'center',
+    display: props.clicked && props.isOnMap ? 'flex' : 'none',
     '&:hover': {
       cursor: 'pointer'
     }
   })
-})
+}))
 
 const ExpansionPanel = withStyles({
   root: {

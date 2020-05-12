@@ -32,8 +32,9 @@ export const RoomChoose = ({ classes, description, form, handleChange, handleRoo
       label={description.id}
       value={form.id}
       onChange={event => handleRoomIdChange(event)}
+      data-testid='hvac-id'
     >
-      {HVACRooms.map(room => <MenuItem key={room.id} value={room.id}>{room.id}</MenuItem>)}
+      {HVACRooms.map(room => <MenuItem data-testid='room-id' key={room.id} value={room.id}>{room.id}</MenuItem>)}
     </TextField>
     <TextField
       name='name'
@@ -41,6 +42,7 @@ export const RoomChoose = ({ classes, description, form, handleChange, handleRoo
       label={description.name}
       value={form.name}
       onChange={handleChange}
+      data-testid='hvac-name'
     />
   </FormControl>
 )
@@ -56,6 +58,7 @@ export const SensorsChoose = ({ classes, description, form, handleChange, window
       label={description.temperatureSensorId}
       value={form.temperatureSensorId}
       onChange={handleChange}
+      data-testid='hvac-temperatureSensorId'
     >
       {temperatureSensors.map(sensor => <MenuItem key={sensor.id} value={sensor.id}>{sensor.id}</MenuItem>)}
     </TextField>
@@ -67,6 +70,7 @@ export const SensorsChoose = ({ classes, description, form, handleChange, window
         value={form.windowSensorIds}
         id='windowSensorIds'
         onChange={handleChange}
+        data-testid='hvac-windowSensorIds'
       >
         {windowSensors.map(sensor => <MenuItem key={sensor.id} value={sensor.id}>{sensor.id}</MenuItem>)}
       </Select>
@@ -104,6 +108,7 @@ export const TemperatureSet = ({ description, form, handleTemperatureChange, tem
           min={heating.min}
           max={heating.max}
           marks={marks(heating)}
+          data-testid='hvac-heating'
         />
       </Box>
       <Box mt={2}>
@@ -122,6 +127,7 @@ export const TemperatureSet = ({ description, form, handleTemperatureChange, tem
           min={cooling.min}
           max={cooling.max}
           marks={marks(cooling)}
+          data-testid='hvac-cooling'
         />
       </Box>
       <Box mt={2}>
@@ -137,6 +143,7 @@ export const TemperatureSet = ({ description, form, handleTemperatureChange, tem
           min={hysteresis.min}
           max={hysteresis.max}
           marks={marks(hysteresis)}
+          data-testid='hvac-hysteresis'
         />
       </Box>
     </div>

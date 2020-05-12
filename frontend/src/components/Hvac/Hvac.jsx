@@ -20,7 +20,8 @@ import InvalidHvacFormSnackbar from '../UI/Snackbars/InvalidHvacForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%'
+    width: '100%',
+    marginTop: theme.spacing(5)
   },
   formControl: {
     width: '100%'
@@ -211,23 +212,25 @@ const Hvac = () => {
 
   const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1)
 
-  const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1)
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1)
+    dispatch(validHvacFormSnackbar(true))
+  }
 
   const handleReset = () => {
     setActiveStep(0)
     setForm({ ...initialForm })
+    dispatch(validHvacFormSnackbar(true))
   }
 
   const handleSubmit = e => {
     e.preventDefault()
     const valid = formValidate(form)
+    dispatch(validHvacFormSnackbar(valid))
     if (valid) {
-      dispatch(validHvacFormSnackbar(valid))
       dispatchHvacRoomsDetailsChange()
       setActiveStep(0)
       setForm({ ...initialForm })
-    } else {
-      dispatch(validHvacFormSnackbar(valid))
     }
   }
 
@@ -248,6 +251,7 @@ const Hvac = () => {
     <Grid
       container justify='center'
       className={classes.root}
+      data-testid='hvac'
     >
       <Grid item xs={6}>
         <form id='hvac-form' onSubmit={handleSubmit}>

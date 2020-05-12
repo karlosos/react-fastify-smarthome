@@ -12,7 +12,6 @@ export default function InvalidHvacFormSnackbar () {
     if (!hvacRoomsValidForm) {
       enqueueSnackbar(t('hvac:invalid-form'), {
         variant: 'warning',
-        persist: true,
         key: 'invalid-form-snackbar'
       })
     } else if (hvacRoomsValidForm) {
