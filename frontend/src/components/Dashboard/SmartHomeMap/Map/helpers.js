@@ -1,5 +1,5 @@
 /** Distance defined in percent in which new point can't be located. */
-const POINT_LOCATION_TOLERANCE = 3.25
+const POINT_LOCATION_TOLERANCE = 4
 
 /**
 * Changes point relative coordinates to map's percentage dependence.

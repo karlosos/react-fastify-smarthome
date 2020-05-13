@@ -38,20 +38,6 @@ export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
   return (
     <div className={classes.root}>
       <div>
-        <Typography id='value' gutterBottom>
-          {t('dashboard:light-value')}
-        </Typography>
-        <Slider
-          defaultValue={0}
-          value={value}
-          onChange={(e, val) => { setValue(val) }}
-          aria-labelledby='value'
-          valueLabelDisplay='auto'
-          min={0}
-          max={100}
-        />
-      </div>
-      <div>
         <Typography id='hue' gutterBottom>
           {t('dashboard:light-hue')}
         </Typography>
@@ -74,6 +60,20 @@ export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
           value={saturation}
           onChange={(e, val) => { setSaturation(val) }}
           aria-labelledby='saturation'
+          valueLabelDisplay='auto'
+          min={0}
+          max={100}
+        />
+      </div>
+      <div>
+        <Typography id='value' gutterBottom>
+          {t('dashboard:light-value')}
+        </Typography>
+        <Slider
+          defaultValue={0}
+          value={value}
+          onChange={(e, val) => { setValue(val) }}
+          aria-labelledby='value'
           valueLabelDisplay='auto'
           min={0}
           max={100}

@@ -32,7 +32,7 @@ export default function ItemDisplayedName ({ infoType, sensorType }) {
       }
     }
 
-    return !sensorNames[type] ? { name: 'UNKNOWN', desc: 'UNKNOWN' } : sensorNames[type]
+    return !sensorNames[type] ? { name: t('unknown-sensor'), desc: t('unknown-sensor') } : sensorNames[type]
   }
 
   const getNeededInfo = (infoType) => {

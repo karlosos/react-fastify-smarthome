@@ -13,7 +13,7 @@ export default function WindowSensorItem ({ sensorData, classes, handleRemoveCli
       <ListItemText
         primary={
           <div className={classes.item}>
-            {sensorData.status ? t('dashboard:window-open') : t('dashboard:window-closed')}
+            {sensorData.status === 'open' ? t('dashboard:window-open') : t('dashboard:window-closed')}
             <IconButton
               className={classes.close}
               onClick={() => handleRemoveClick(true)}

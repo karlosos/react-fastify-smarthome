@@ -31,8 +31,8 @@ const mockedDbInteractionState = {
 
 const mockedProps = {
   sensorSize: {
-    width: '10px',
-    height: '10px'
+    width: 10,
+    height: 10
   },
   sensorColor: 'black',
   sensorBorderColor: 'white',
@@ -41,6 +41,12 @@ const mockedProps = {
     left: '50px'
   },
   clicked: true
+}
+
+const mockSensorData = {
+  type: 'windowSensor',
+  id: 5,
+  status: 'open'
 }
 
 describe('Sensor component test suite', () => {
@@ -57,6 +63,7 @@ describe('Sensor component test suite', () => {
           sensorborderColor={mockedProps.sensorBorderColor}
           position={mockedProps.position}
           clicked={mockedProps.clicked}
+          sensorData={mockSensorData}
         />
       </Provider>
     ).getByTestId('sensor-id')).toBeTruthy()

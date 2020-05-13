@@ -20,7 +20,7 @@ import { useTranslation } from 'react-i18next'
 import { useSnackbar } from 'notistack'
 
 /** Defines how many times sensor is smaller than map. */
-const SENSOR_COEFFICIENT = 50
+const SENSOR_COEFFICIENT = 20
 
 const useStyles = makeStyles((props) => ({
   container: {
@@ -191,12 +191,11 @@ const HomeMap = () => {
           .map((point) => (
             validPointData(point) &&
               <Sensor
-                id={point.id}
-                type={point.type}
+                sensorData={point}
                 data-testid='sensor-id'
                 key={point.id}
                 sensorSize={
-                  { width: mapWidth / SENSOR_COEFFICIENT, height: mapWidth / SENSOR_COEFFICIENT }
+                  { width: Math.round(mapHeight / SENSOR_COEFFICIENT), height: Math.round(mapHeight / SENSOR_COEFFICIENT) }
                 }
                 position={{
                   top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
