@@ -36,9 +36,7 @@ export function * changeWindowBlindsDetails (windowBlindsSensorDetails) {
 }
 
 export function * changeHvacRoomsDetails (hvacRoomsDetails) {
-  // const config = { headers: { 'Content-Type': 'application/json' } }
-  // const res = yield axios.put('/api/v1/HVACRooms', hvacRoomsDetails, config)
-  console.log('PUT request', hvacRoomsDetails)
-  return hvacRoomsDetails
-  // return res.data
+  const config = { headers: { 'Content-Type': 'application/json' } }
+  const res = yield axios.put('/api/v1/hvac', hvacRoomsDetails, config)
+  return res.data
 }

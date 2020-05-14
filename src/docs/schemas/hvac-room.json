@@ -6,39 +6,33 @@
   "required": ["id", "type"],
   "properties": {
     "id": {
-      "type": "integer",
-      "format": "int32"
+      "type": "number"
     },
     "type": {
       "type": "string"
     },
     "heatingTemperature": {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 50,
       "maximum": 300
     },
     "coolingTemperature": {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 100,
       "maximum": 400
     },
     "hysteresis": {
-      "type": "integer",
-      "format": "int32",
+      "type": "number",
       "minimum": 5,
       "maximum": 20
     },
     "temperatureSensorId": {
-      "type": "integer",
-      "format": "int32"
+      "type": "number"
     },
     "windowSensorIds": {
       "type": "array",
       "items": {
-        "type": "integer",
-        "format": "int32"
+        "type": "number"
       }    
     },
     "cooling": {

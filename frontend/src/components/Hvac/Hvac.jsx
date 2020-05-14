@@ -17,6 +17,7 @@ import { loadSensors, changeHvacRoomsDetails, validHvacFormSnackbar } from '@dat
 import { RoomChoose, SensorsChoose, TemperatureSet } from './StepContent.jsx'
 import HvacStepper from './HvacStepper.jsx'
 import InvalidHvacFormSnackbar from '../UI/Snackbars/InvalidHvacForm'
+import HvacPutRequestErrorSnackbar from '../UI/Snackbars/HvacPutRequestError'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,6 +88,7 @@ const initialForm = {
   temperatureSensorId: '',
   windowSensorIds: []
 }
+let type
 
 const formValidate = (form) => {
   let valid = true
@@ -168,6 +170,7 @@ const Hvac = () => {
   const handleRoomIdChange = event => {
     const { name, value } = event.target
     const room = HVACRooms.find(room => room.id === value)
+    type = room.type
     const setSensor = data =>
       room.windowSensorIds.every(id => sensors.windowSensors.includes(id))
         ? room[data] : form[data]
@@ -184,7 +187,6 @@ const Hvac = () => {
       (validHeatingTemperature + validHysteresis <= temperatureValidate('coolingTemperature', temperatureRange.cooling))
         ? temperatureValidate('coolingTemperature', temperatureRange.cooling)
         : validHeatingTemperature + validHysteresis
-
     setForm({
       ...form,
       [name]: value,
@@ -242,7 +244,8 @@ const Hvac = () => {
       coolingTemperature: form.coolingTemperature * 10,
       hysteresis: form.hysteresis * 10,
       temperatureSensorId: form.temperatureSensorId,
-      windowSensorIds: form.windowSensorIds
+      windowSensorIds: form.windowSensorIds,
+      type
     }
     dispatch(changeHvacRoomsDetails(HvacRoomsDetails))
   }
@@ -256,6 +259,7 @@ const Hvac = () => {
       <Grid item xs={6}>
         <form id='hvac-form' onSubmit={handleSubmit}>
           <InvalidHvacFormSnackbar />
+          <HvacPutRequestErrorSnackbar />
           <HvacStepper activeStep={activeStep} steps={steps} getStepContent={getStepContent} classes={classes} handleBack={handleBack} handleNext={handleNext} />
           {activeStep === steps.length && (
             <Paper square elevation={0} className={classes.resetContainer}>

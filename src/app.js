@@ -61,6 +61,10 @@ module.exports = function ({ port }) {
     prefix: 'api/v1/blinds'
   })
 
+  app.register(require('./routes/hvac'), {
+    prefix: 'api/v1/hvac'
+  })
+
   app.register(require('./routes/authors'), {
     prefix: '/api/v1/authors'
   })

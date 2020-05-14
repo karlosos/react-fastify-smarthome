@@ -15,5 +15,6 @@
   "next-button": "Następny",
   "finish-button": "Zakończ",
   "steps-completed": "Wybór zakończony",
-  "invalid-form": "NIEPOPRAWNY FORMULARZ"
+  "invalid-form": "NIEPOPRAWNY FORMULARZ. Wypełnij wymagane pola.",
+  "room-details-error": "Zapisanie danych nie powiodło się."
 }

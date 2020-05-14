@@ -15,5 +15,6 @@
   "next-button": "Next",
   "finish-button": "Finish",
   "steps-completed": "All steps completed",
-  "invalid-form": "INVALID FORM"
+  "invalid-form": "INVALID FORM. Fill out the required fields.",
+  "room-details-error": "The rule has not been saved."
 }
