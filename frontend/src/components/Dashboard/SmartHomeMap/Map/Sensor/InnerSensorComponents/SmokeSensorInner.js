@@ -4,6 +4,9 @@ import { faSmog } from '@fortawesome/free-solid-svg-icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
+  size: {
+    fontSize: '1.6vh'
+  },
   smokePulse: {
     color: 'rgba(235, 49, 52, 1)',
     animationName: '$pulse',
@@ -34,5 +37,5 @@ export default function SmokeSensorInner ({ isSmokeDetected }) {
   // isSmokeDetected = true - uncomment this to see pulse animation
   const classes = useStyles()
 
-  return <FontAwesomeIcon icon={faSmog} className={isSmokeDetected ? classes.smokePulse : ''} />
+  return <FontAwesomeIcon icon={faSmog} className={isSmokeDetected ? `${classes.smokePulse} ${classes.size}` : classes.size} />
 }

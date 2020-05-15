@@ -1,7 +1,15 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((props) => ({
+  size: {
+    fontSize: '1.8vh'
+  }
+}))
 
 export default function LightSensorInner () {
-  return <FontAwesomeIcon icon={faLightbulb} />
+  const classes = useStyles()
+  return <FontAwesomeIcon icon={faLightbulb} className={classes.size} />
 }
