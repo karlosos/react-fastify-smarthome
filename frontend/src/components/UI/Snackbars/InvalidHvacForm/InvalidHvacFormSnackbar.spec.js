@@ -30,7 +30,7 @@ describe('showing <InvalidHvacFormSnackbar />', () => {
         </SnackbarProvider>
       </Provider>
     )
-    expect(screen.getByText('INVALID FORM')).not.toEqual(null)
+    expect(screen.getByText('INVALID FORM. Fill out the required fields.')).not.toEqual(null)
   })
 
   it('should close a snackbar if snackbar is open and hvacRoomsValidForm is set to true, should not open a new one', () => {

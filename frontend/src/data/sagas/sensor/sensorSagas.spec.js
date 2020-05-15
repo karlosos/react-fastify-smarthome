@@ -5,7 +5,14 @@ import { watchSensors } from './index'
 import { loadSensorsSaga, changeSensorStatusSaga, refreshSensorsSaga, changeLightSensorDetailsSaga, changeWindowBlindsSensorDetailsSaga, changeHvacRoomsDetailsSaga } from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
-import { getSensors, changeSensorStatus, refreshSensors, changeLightDetails, changeWindowBlindsDetails } from '../../api/sensor'
+import {
+  getSensors,
+  changeSensorStatus,
+  refreshSensors,
+  changeLightDetails,
+  changeWindowBlindsDetails,
+  changeHvacRoomsDetails
+} from '../../api/sensor'
 
 import actionTypes from '@constants/actionTypes'
 import * as actions from '../../actions/sensor'
@@ -316,6 +323,74 @@ describe('changeWindowBlindsSensorDetailsSaga', () => {
 
     it('should put changeWindowBlindsSensorDetailsFail action', result => {
       expect(result).toEqual(put(actions.changeWindowBlindsSensorDetailsFail(new Error('test error'))))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+})
+
+describe('changeHvacRoomsDetailsSaga', () => {
+  describe('should change hvac room details successfuly', () => {
+    const action = {
+      hvacRoomsDetails: {
+        id: 1,
+        heatingTemperature: 150,
+        coolingTemperature: 300,
+        hysteresis: 20,
+        temperatureSensorId: 2,
+        windowSensorIds: [3, 4],
+        type: 'HVACRoom'
+      }
+    }
+
+    const it = sagaHelper(changeHvacRoomsDetailsSaga(action))
+
+    it('should put changeHvacRoomsDetailsSaga action', result => {
+      expect(result).toEqual(put(actions.changeHvacRoomsDetailsStart()))
+    })
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(changeHvacRoomsDetails, action.hvacRoomsDetails))
+    })
+
+    it('should put changeHvacRoomsDetailsSuccess action', result => {
+      expect(result).toEqual(put(actions.changeHvacRoomsDetailsSuccess()))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+
+  describe('should throw an exception on unsuccessful hvac room detail change', () => {
+    const action = {
+      hvacRoomsDetails: {
+        id: 1,
+        heatingTemperature: 150,
+        coolingTemperature: 300,
+        hysteresis: 20,
+        temperatureSensorId: 2,
+        windowSensorIds: [3, 4],
+        type: 'HVACRoom'
+      }
+    }
+
+    const it = sagaHelper(changeHvacRoomsDetailsSaga(action))
+
+    it('should put changeHvacRoomsDetailsStart action', result => {
+      expect(result).toEqual(put(actions.changeHvacRoomsDetailsStart()))
+    })
+
+    it('should make an unsuccessful request to API', result => {
+      expect(result).toEqual(call(changeHvacRoomsDetails, action.hvacRoomsDetails))
+
+      return new Error('test error')
+    })
+
+    it('should put changeHvacRoomsDetailsFail action', result => {
+      expect(result).toEqual(put(actions.changeHvacRoomsDetailsFail(new Error('test error'))))
     })
 
     it('should be done', result => {

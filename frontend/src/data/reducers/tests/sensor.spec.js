@@ -9,7 +9,9 @@ describe('sensor reducer', () => {
     sensors: [],
     loadingSensors: false,
     loadingError: null,
-    sensorError: null
+    sensorError: null,
+    hvacRoomsDetailsError: null,
+    hvacRoomsValidForm: true
   }
 
   const testSensors = {
@@ -172,6 +174,35 @@ describe('sensor reducer', () => {
     expect(reducer(initialState, actions.changeWindowBlindsSensorDetailsFail(testError))).toEqual({
       ...initialState,
       windowBlindsDetailsError: testError
+    })
+  })
+
+  test(`should handle ${actionTypes.HVAC_ROOMS_CHANGE_START}`, () => {
+    expect(reducer(initialState, actions.changeHvacRoomsDetailsStart())).toEqual({
+      ...initialState,
+      hvacRoomsDetailsError: null
+    })
+  })
+
+  test(`should handle ${actionTypes.HVAC_ROOMS_CHANGE_SUCCESS}`, () => {
+    expect(reducer(initialState, actions.changeHvacRoomsDetailsSuccess())).toEqual({
+      ...initialState
+    })
+  })
+
+  test(`should handle ${actionTypes.HVAC_ROOMS_CHANGE_FAIL}`, () => {
+    const testError = 'Error'
+    expect(reducer(initialState, actions.changeHvacRoomsDetailsFail(testError))).toEqual({
+      ...initialState,
+      hvacRoomsDetailsError: testError
+    })
+  })
+
+  test(`should handle ${actionTypes.HVAC_ROOMS_VALID_FORM}`, () => {
+    const testValid = false
+    expect(reducer(initialState, actions.validHvacFormSnackbar(testValid))).toEqual({
+      ...initialState,
+      hvacRoomsValidForm: testValid
     })
   })
 })

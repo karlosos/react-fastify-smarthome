@@ -165,7 +165,8 @@ describe('<Hvac />', () => {
           coolingTemperature: 300,
           hysteresis: 5,
           temperatureSensorId: 2,
-          windowSensorIds: []
+          windowSensorIds: [],
+          type: 'HVACRoom'
         }
       }
     }
