@@ -16,6 +16,8 @@ import {
 import { loadSensors, changeHvacRoomsDetails, validHvacFormSnackbar } from '@data/actions/sensor'
 import { RoomChoose, SensorsChoose, TemperatureSet } from './StepContent.jsx'
 import HvacStepper from './HvacStepper.jsx'
+import Page404 from '../UI/Page404'
+import Spinner from '../UI/Spinner'
 import InvalidHvacFormSnackbar from '../UI/Snackbars/InvalidHvacForm'
 import HvacPutRequestErrorSnackbar from '../UI/Snackbars/HvacPutRequestError'
 
@@ -102,7 +104,7 @@ const Hvac = () => {
   const dispatch = useDispatch()
 
   useEffect(() => { dispatch(loadSensors()) }, [])
-  const { HVACRooms, sensors } = useSelector(state => state.sensor)
+  const { HVACRooms, sensors, loadingError, loadingSensors } = useSelector(state => state.sensor)
 
   const [activeStep, setActiveStep] = useState(0)
 
@@ -250,42 +252,44 @@ const Hvac = () => {
     dispatch(changeHvacRoomsDetails(HvacRoomsDetails))
   }
 
-  return (
-    <Grid
-      container justify='center'
-      className={classes.root}
-      data-testid='hvac'
-    >
-      <Grid item xs={6}>
-        <form id='hvac-form' onSubmit={handleSubmit}>
-          <InvalidHvacFormSnackbar />
-          <HvacPutRequestErrorSnackbar />
-          <HvacStepper activeStep={activeStep} steps={steps} getStepContent={getStepContent} classes={classes} handleBack={handleBack} handleNext={handleNext} />
-          {activeStep === steps.length && (
-            <Paper square elevation={0} className={classes.resetContainer}>
-              <Typography>{t('hvac:steps-completed')}</Typography>
-              <Divider />
-              <List>
-                {drawItem(description, form)}
-              </List>
-              <Button
-                onClick={handleBack}
-                className={classes.button}
-              >
-                {t('hvac:back-button')}
-              </Button>
-              <Button onClick={handleReset} className={classes.button}>
-                {t('hvac:reset-button')}
-              </Button>
-              <Button type='submit' className={classes.button} color='primary' variant='contained'>
-                {t('hvac:add-button')}
-              </Button>
-            </Paper>
-          )}
-        </form>
-      </Grid>
-    </Grid>
-  )
+  return loadingError ? <Page404 />
+    : loadingSensors ? <Spinner />
+      : (
+        <Grid
+          container justify='center'
+          className={classes.root}
+          data-testid='hvac'
+        >
+          <Grid item xs={6}>
+            <form id='hvac-form' onSubmit={handleSubmit}>
+              <InvalidHvacFormSnackbar />
+              <HvacPutRequestErrorSnackbar />
+              <HvacStepper activeStep={activeStep} steps={steps} getStepContent={getStepContent} classes={classes} handleBack={handleBack} handleNext={handleNext} />
+              {activeStep === steps.length && (
+                <Paper square elevation={0} className={classes.resetContainer}>
+                  <Typography>{t('hvac:steps-completed')}</Typography>
+                  <Divider />
+                  <List>
+                    {drawItem(description, form)}
+                  </List>
+                  <Button
+                    onClick={handleBack}
+                    className={classes.button}
+                  >
+                    {t('hvac:back-button')}
+                  </Button>
+                  <Button onClick={handleReset} className={classes.button}>
+                    {t('hvac:reset-button')}
+                  </Button>
+                  <Button type='submit' className={classes.button} color='primary' variant='contained'>
+                    {t('hvac:add-button')}
+                  </Button>
+                </Paper>
+              )}
+            </form>
+          </Grid>
+        </Grid>
+      )
 }
 
 export default Hvac
