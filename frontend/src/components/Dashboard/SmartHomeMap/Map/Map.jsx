@@ -137,10 +137,10 @@ const HomeMap = () => {
     const { offsetX = 0, offsetY = 0 } = e.nativeEvent
     /** Offset defined in map's width in percent. */
     const xCoordinate = fromCoordinateToPercentMapper(
-      offsetX - (mapWidth / SENSOR_COEFFICIENT / 2), mapWidth)
+      offsetX - (mapHeight / SENSOR_COEFFICIENT / 2), mapWidth)
     /** Offset defined in map's height in percent. */
     const yCoordinate = fromCoordinateToPercentMapper(
-      offsetY - (mapWidth / SENSOR_COEFFICIENT / 2), mapHeight)
+      offsetY - (mapHeight / SENSOR_COEFFICIENT / 2), mapHeight)
     /** Sensors fetched from store and mapper to appropriate format. */
     const storeSensors = sensors
       .map((sensor) => Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
