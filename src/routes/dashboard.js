@@ -19,8 +19,9 @@ const dashboard = async function (fastify, options, next) {
         Cookie: `${this.config.COOKIE_NAME}=${this.config.COOKIE_VALUE}`
       }
     })
-    const res = await this.db.getSensors(this.mongo.db)
-    const data = await helpers.joinSensors(gatewayResponse.data, res)
+    const sensors = await this.db.getSensors(this.mongo.db)
+    const rules = await this.db.getHvacRules(this.mongo.db)
+    const data = await helpers.joinSensors(gatewayResponse.data, sensors, rules)
     reply.code(200).send(data)
   })
 

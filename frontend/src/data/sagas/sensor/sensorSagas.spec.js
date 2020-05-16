@@ -368,6 +368,7 @@ describe('changeHvacRoomsDetailsSaga', () => {
     const action = {
       hvacRoomsDetails: {
         id: 1,
+        name: 'Rule',
         heatingTemperature: 150,
         coolingTemperature: 300,
         hysteresis: 20,

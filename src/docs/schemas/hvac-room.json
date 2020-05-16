@@ -11,6 +11,9 @@
     "type": {
       "type": "string"
     },
+    "name": {
+      "type": "string"
+    },
     "heatingTemperature": {
       "type": "number",
       "minimum": 50,

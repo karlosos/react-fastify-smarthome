@@ -1,6 +1,7 @@
 const fp = require('fastify-plugin')
 const sensors = require('./dbSensorsActions')
 const notifications = require('./dbNotificationsActions')
+const hvac = require('./dbHvacActions')
 
 module.exports = fp(function (fastify, options, next) {
   fastify.decorate('db', {
@@ -11,7 +12,11 @@ module.exports = fp(function (fastify, options, next) {
     getNotifications: notifications.getNotifications,
     postNotification: notifications.postNotification,
     updateNotification: notifications.updateNotification,
-    deleteNotifications: notifications.deleteNotifications
+    deleteNotifications: notifications.deleteNotifications,
+    getHvacRules: hvac.getHvacRules,
+    postHvacRule: hvac.postHvacRule,
+    updateHvacRule: hvac.updateHvacRule,
+    deleteHvacRules: hvac.deleteHvacRules
   })
 
   next()

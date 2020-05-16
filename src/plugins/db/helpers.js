@@ -1,7 +1,14 @@
-const joinSensors = (sensors, mapSensors) => {
+const joinSensors = (sensors, mapSensors, hvacRules) => {
   for (const key in sensors) {
     sensors[key] = sensors[key][0] !== undefined
       ? sensors[key].map(sensor => {
+        if (sensor.type === 'HVACRoom') {
+          hvacRules.map(rule => {
+            if (rule._id === sensor.id) {
+              sensor.name = rule.name
+            }
+          })
+        }
         const matchedSensor = mapSensors.find(mapSensor => mapSensor._id === sensor.id && mapSensor.sensorType === sensor.type)
         sensor = matchedSensor ? { ...sensor, mapPosition: matchedSensor.mapPosition } : sensor
         return sensor
@@ -43,9 +50,23 @@ const postNewNotifications = async (db, mongo, newNotifications) => {
   })
 }
 
+const defineHvacRule = async (db, mongo, rule) => {
+  const copy = {
+    ...rule,
+    _id: rule.id
+  }
+  delete copy.id
+  const rules = await db.getHvacRules(mongo)
+  const res = await rules.filter(r => r._id === copy._id).length === 0
+    ? db.postHvacRule(mongo, copy)
+    : db.updateHvacRule(mongo, copy)
+  return res
+}
+
 module.exports = {
   joinSensors,
   createCappedCollection,
   postNewNotifications,
-  filterNewNotifications
+  filterNewNotifications,
+  defineHvacRule
 }

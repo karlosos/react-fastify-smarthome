@@ -59,6 +59,7 @@ export function * changeHvacRoomsDetailsSaga (action) {
   try {
     yield call(changeHvacRoomsDetails, {
       id,
+      name,
       heatingTemperature,
       coolingTemperature,
       hysteresis,
