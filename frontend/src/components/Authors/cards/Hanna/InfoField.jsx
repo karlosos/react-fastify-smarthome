@@ -41,8 +41,8 @@ const InfoField = (props) => {
       spacing={1}
       className={classes.field}
     >
-      <Grid container direction="row" alignItems="center" xs={6}>
-        <Brightness1Icon className={classes.icon}/>
+      <Grid container direction='row' alignItems='center' xs={6}>
+        <Brightness1Icon className={classes.icon} />
         <p className={classes.infoName}>{infoName}</p>
       </Grid>
       <Grid item xs={6}>

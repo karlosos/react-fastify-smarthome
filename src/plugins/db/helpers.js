@@ -22,9 +22,9 @@ const createCappedCollection = async (db, name, size, max) => {
   if (capped.length === 0) {
     db.createCollection(name,
       {
-        "capped": true,
-        "size": size,
-        "max": max
+        capped: true,
+        size: size,
+        max: max
       })
   }
 }

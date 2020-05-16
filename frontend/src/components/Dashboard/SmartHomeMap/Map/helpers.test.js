@@ -31,10 +31,10 @@ describe('Helpers function tests', () => {
 
   describe('validPointData function test', () => {
     it('checks if has obligatory properties', () => {
-      expect(validPointData({ position: { x: 20, y: 30 }})).toBe(false)
+      expect(validPointData({ position: { x: 20, y: 30 } })).toBe(false)
       expect(validPointData({ x: 20, y: 30 })).toBe(false)
-      expect(validPointData({ mapPosition: { xProp: 20, yProp: 30 }})).toBe(false)
-      expect(validPointData({ mapPosition: { x: 20, y: 30 }})).toBe(true)
+      expect(validPointData({ mapPosition: { xProp: 20, yProp: 30 } })).toBe(false)
+      expect(validPointData({ mapPosition: { x: 20, y: 30 } })).toBe(true)
     })
   })
 })

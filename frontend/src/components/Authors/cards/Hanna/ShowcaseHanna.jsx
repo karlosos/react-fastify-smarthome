@@ -98,24 +98,24 @@ export default function ShowcaseHanna (props) {
   }
 
   return (
-    <Grid container direction="column" className={classes.main}>
-      <Grid container direction="column" className={classes.info}>
-        <Grid container direction="row" className={classes.header}>
-          { author && <Avatar
+    <Grid container direction='column' className={classes.main}>
+      <Grid container direction='column' className={classes.info}>
+        <Grid container direction='row' className={classes.header}>
+          {author && <Avatar
             alt='Avatar'
             aria-label='avatar'
             className={classes.avatar}
-            src={author.avatar} />
-          }
-          <Grid container direction="column" className={classes.title}>
+            src={author.avatar}
+                     />}
+          <Grid container direction='column' className={classes.title}>
             <p className={classes.name}>Hanna Gałuszka</p>
             <p className={classes.headerDescription}>Junior Fullstack Developer</p>
           </Grid>
         </Grid>
-        <Box display="flex" flexDirection="row" alignItems="center" flexWrap="no-wrap" m="0">
-          <Box p={4} width="25%">
+        <Box display='flex' flexDirection='row' alignItems='center' flexWrap='no-wrap' m='0'>
+          <Box p={4} width='25%'>
             <Showcase.Section>
-              <Showcase.Section.InfoIcon color="#F67280" iconName="school" />
+              <Showcase.Section.InfoIcon color='#F67280' iconName='school' />
               <Showcase.Section.Header title='EDUCATION' />
               <Showcase.Section.InfoField infoName='College' infoValue='ZUT' />
               <Showcase.Section.InfoField infoName='City' infoValue='Szczecin' />
@@ -123,14 +123,16 @@ export default function ShowcaseHanna (props) {
               <Showcase.Section.InfoField infoName='Year' infoValue='2017-2020' />
             </Showcase.Section>
           </Box>
-          <Box p={4} width="25%">
+          <Box p={4} width='25%'>
             <Showcase.Section>
-              <Showcase.Section.InfoIcon color="#355C7D" iconName="work" />
+              <Showcase.Section.InfoIcon color='#355C7D' iconName='work' />
               <Showcase.Section.Header title='BASE INFO' />
               {
                 author && Object.keys(author).map((key) => (
                   key === 'github' ? <Showcase.Section.InfoLink
-                    infoName='Github' infoValue={author.github}></Showcase.Section.InfoLink>
+                    infoName='Github' infoValue={author.github}
+                  >
+                                     </Showcase.Section.InfoLink>
                     : key !== 'avatar' && <Showcase.Section.InfoField
                       key={key}
                       infoName={key}
@@ -140,18 +142,18 @@ export default function ShowcaseHanna (props) {
               }
             </Showcase.Section>
           </Box>
-          <Box p={4} width="25%">
+          <Box p={4} width='25%'>
             <Showcase.Section>
-              <Showcase.Section.InfoIcon color="#6C5B7B" iconName="favorite" />
+              <Showcase.Section.InfoIcon color='#6C5B7B' iconName='favorite' />
               <Showcase.Section.Header title='CONTACT' />
               <Showcase.Section.InfoField infoName='Street' infoValue='Przykładowa' />
               <Showcase.Section.InfoField infoName='Home' infoValue='13' />
               <Showcase.Section.InfoField infoName='Zip code' infoValue='99-999' />
             </Showcase.Section>
           </Box>
-          <Box p={4} width="25%">
+          <Box p={4} width='25%'>
             <Showcase.Section>
-              <Showcase.Section.InfoIcon color="#F67280" iconName="contacts" />
+              <Showcase.Section.InfoIcon color='#F67280' iconName='contacts' />
               <Showcase.Section.Header title='HOBBY' />
               <Showcase.Section.InfoField infoName='Powerlifting' infoValue='****' />
               <Showcase.Section.InfoField infoName='Cooking' infoValue='***' />
@@ -161,7 +163,7 @@ export default function ShowcaseHanna (props) {
           </Box>
         </Box>
       </Grid>
-      <Grid container direction="column" alignContent="center" alignItems="center" className="quoteSection">
+      <Grid container direction='column' alignContent='center' alignItems='center' className='quoteSection'>
         <p className={classes.mainQuoteMotto}>motto</p>
         <p className={classes.mainQuote}>&quot;Whenever you find yourself on the side of the majority, it is time to reform (or pause and reflect).&quot;</p>
       </Grid>

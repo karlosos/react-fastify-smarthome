@@ -23,7 +23,7 @@ async function postNotification (db, notification) {
 }
 
 async function updateNotification (db, id) {
-  return db.collection(collectionName).updateOne({"_id": id }, { $set: { "isChecked": true } })
+  return db.collection(collectionName).updateOne({ _id: id }, { $set: { isChecked: true } })
 }
 
 async function deleteNotifications (db) {

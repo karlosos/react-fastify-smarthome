@@ -27,7 +27,7 @@ const Section = (props) => {
   const classes = useStyles()
 
   return (
-    <Grid container direction="column" alignItems="center" justify="center" className={classes.section}>
+    <Grid container direction='column' alignItems='center' justify='center' className={classes.section}>
       {props.children}
     </Grid>
   )

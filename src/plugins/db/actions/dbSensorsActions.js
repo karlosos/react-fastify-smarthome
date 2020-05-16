@@ -11,7 +11,7 @@ async function postSensor (db, sensor) {
 }
 
 async function removeSensor (db, id) {
-  return db.collection(collectionName).deleteOne({ "_id": id })
+  return db.collection(collectionName).deleteOne({ _id: id })
 }
 
 async function dropSensors (db) {
