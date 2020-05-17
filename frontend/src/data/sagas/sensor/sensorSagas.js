@@ -54,19 +54,8 @@ export function * changeWindowBlindsSensorDetailsSaga (action) {
 
 export function * changeHvacRoomsDetailsSaga (action) {
   yield put(actions.changeHvacRoomsDetailsStart())
-  const { name, id, heatingTemperature, coolingTemperature, hysteresis, temperatureSensorId, windowSensorIds, type } =
-    action.hvacRoomsDetails
   try {
-    yield call(changeHvacRoomsDetails, {
-      id,
-      name,
-      heatingTemperature,
-      coolingTemperature,
-      hysteresis,
-      temperatureSensorId,
-      windowSensorIds,
-      type
-    })
+    yield call(changeHvacRoomsDetails, action.hvacRoomsDetails)
     yield put(actions.changeHvacRoomsDetailsSuccess())
   } catch (error) {
     yield put(actions.changeHvacRoomsDetailsFail(error))

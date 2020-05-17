@@ -13,6 +13,7 @@ module.exports = function (fastify, options, next) {
   fastify.put('/', schema, async function (request, reply) {
     const gatewayUrl = this.config.GATEWAY_URL
     const dbRes = await defineHvacRule(this.db, this.mongo.db, request.body)
+    await delete request.body.name
     const res = await axios.put(`${gatewayUrl}/hvac`, request.body, {
       withCredentials: true,
       headers: {
