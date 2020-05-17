@@ -101,12 +101,13 @@ export default function ShowcaseHanna (props) {
     <Grid container direction='column' className={classes.main}>
       <Grid container direction='column' className={classes.info}>
         <Grid container direction='row' className={classes.header}>
-          {author && <Avatar
-            alt='Avatar'
-            aria-label='avatar'
-            className={classes.avatar}
-            src={author.avatar}
-                     />}
+          {author &&
+            <Avatar
+              alt='Avatar'
+              aria-label='avatar'
+              className={classes.avatar}
+              src={author.avatar}
+            />}
           <Grid container direction='column' className={classes.title}>
             <p className={classes.name}>Hanna Gałuszka</p>
             <p className={classes.headerDescription}>Junior Fullstack Developer</p>
@@ -129,15 +130,18 @@ export default function ShowcaseHanna (props) {
               <Showcase.Section.Header title='BASE INFO' />
               {
                 author && Object.keys(author).map((key) => (
-                  key === 'github' ? <Showcase.Section.InfoLink
-                    infoName='Github' infoValue={author.github}
-                  >
-                                     </Showcase.Section.InfoLink>
-                    : key !== 'avatar' && <Showcase.Section.InfoField
-                      key={key}
-                      infoName={key}
-                      infoValue={author[key]}
-                    />
+                  key === 'github'
+                    ? (
+                      <Showcase.Section.InfoLink
+                        key={key} infoName='Github' infoValue={author.github}
+                      >
+                      </Showcase.Section.InfoLink>)
+                    : key !== 'avatar' &&
+                      <Showcase.Section.InfoField
+                        key={key}
+                        infoName={key}
+                        infoValue={author[key]}
+                      />
                 ))
               }
             </Showcase.Section>

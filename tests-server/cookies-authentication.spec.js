@@ -1,4 +1,4 @@
-/* globals beforeAll, describe, test, expect, afterEach */
+/* globals describe, test, expect, afterEach */
 const app = require('../src/app.js')
 const mockedEnv = require('mocked-env')
 

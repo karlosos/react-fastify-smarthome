@@ -1,3 +1,4 @@
+import axios from 'axios'
 import authors from '@constants/urls.js'
 
 /**
@@ -6,7 +7,7 @@ import authors from '@constants/urls.js'
  */
 export async function fetchAuthors () {
   try {
-    const response = await fetch(authors.authors)
+    const response = await axios.get(authors.authors)
 
     if (response.status === 200) {
       return await response.json()
