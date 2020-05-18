@@ -16,5 +16,19 @@
   "finish-button": "Finish",
   "steps-completed": "All steps completed",
   "invalid-form": "INVALID FORM. Fill out the required fields.",
-  "room-details-error": "The rule has not been saved."
+  "room-details-error": "The rule has not been saved.",
+
+
+  "name-not-defined": "HVAC Rule",
+  "heating-temperature": "Heating temperature",
+  "cooling-temperature": "Cooling temperature",
+  "heating-active": "Heating is active",
+  "heating-inactive": "Heating is inactive",
+  "cooling-active": "Cooling is active",
+  "cooling-inactive": "Cooling is inactive",
+  "temperature-sensor": "Temperature sensor",
+  "window-sensor": "Window sensor",
+  "window-open": "Open",
+  "window-closed": "Closed",
+  "no-rules": "No defined rules to show"
 }

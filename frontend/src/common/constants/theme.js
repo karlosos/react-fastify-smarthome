@@ -12,6 +12,7 @@ const theme = createMuiTheme({
     background: {
       default: '#fafafa',
       paper: '#fff',
+      levelHalf: '#fdfdfd',
       level1: '#fafafa',
       level2: '#f6f6f6'
     }

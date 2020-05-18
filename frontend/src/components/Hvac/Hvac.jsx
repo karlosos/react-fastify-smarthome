@@ -20,6 +20,7 @@ import Page404 from '../UI/Page404'
 import Spinner from '../UI/Spinner'
 import InvalidHvacFormSnackbar from '../UI/Snackbars/InvalidHvacForm'
 import HvacPutRequestErrorSnackbar from '../UI/Snackbars/HvacPutRequestError'
+import HVACList from './List/index.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1)
+  },
+  body: {
+    backgroundColor: theme.palette.background.default
   }
 }))
 
@@ -111,6 +115,10 @@ const Hvac = () => {
   const [form, setForm] = useState({
     ...initialForm
   })
+
+  useEffect(() => {
+    document.body.className = classes.body
+  }, [])
 
   const { t } = useTranslation()
   const description = {
@@ -287,6 +295,15 @@ const Hvac = () => {
                 </Paper>
               )}
             </form>
+          </Grid>
+          <Grid
+            container
+            justify='center'
+            className={classes.root}
+          >
+            <Grid item xs={6}>
+              <HVACList />
+            </Grid>
           </Grid>
         </Grid>
       )

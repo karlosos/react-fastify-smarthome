@@ -16,5 +16,19 @@
   "finish-button": "Zakończ",
   "steps-completed": "Wybór zakończony",
   "invalid-form": "NIEPOPRAWNY FORMULARZ. Wypełnij wymagane pola.",
-  "room-details-error": "Zapisanie danych nie powiodło się."
+  "room-details-error": "Zapisanie danych nie powiodło się.",
+
+
+  "name-not-defined": "Reguła HVAC",
+  "heating-temperature": "Temperatura ogrzewnia",
+  "cooling-temperature": "Temperatura chłodzenia",
+  "heating-active": "Ogrzewanie aktywne",
+  "heating-inactive": "Ogrzewanie niekatywne",
+  "cooling-active": "Chłodzenie aktywne",
+  "cooling-inactive": "Chłodzenie nieaktywne",
+  "temperature-sensor": "Sensor temperatury",
+  "window-sensor": "Sensor okna",
+  "window-open": "Otwarte",
+  "window-closed": "Zamknięte",
+  "no-rules": "Brak reguł do wyświetlenia"
 }
