@@ -20,10 +20,10 @@
 
 
   "name-not-defined": "Reguła HVAC",
-  "heating-temperature": "Temperatura ogrzewnia",
+  "heating-temperature": "Temperatura ogrzewania",
   "cooling-temperature": "Temperatura chłodzenia",
   "heating-active": "Ogrzewanie aktywne",
-  "heating-inactive": "Ogrzewanie niekatywne",
+  "heating-inactive": "Ogrzewanie nieaktywne",
   "cooling-active": "Chłodzenie aktywne",
   "cooling-inactive": "Chłodzenie nieaktywne",
   "temperature-sensor": "Sensor temperatury",
