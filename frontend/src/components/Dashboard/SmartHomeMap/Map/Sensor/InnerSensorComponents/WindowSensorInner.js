@@ -12,5 +12,5 @@ const useStyles = makeStyles((props) => ({
 
 export default function WindowSensorInner ({ status }) {
   const classes = useStyles()
-  return status === 'open' ? <LaunchIcon className={classes.size} /> : <BorderAllIcon className={classes.size} />
+  return status === 'open' ? <LaunchIcon data-testid='window-sensor-launch-icon' className={classes.size} /> : <BorderAllIcon data-testid='border-all-icon' className={classes.size} />
 }

@@ -37,5 +37,5 @@ export default function SmokeSensorInner ({ isSmokeDetected }) {
   // isSmokeDetected = true - uncomment this to see pulse animation
   const classes = useStyles()
 
-  return <FontAwesomeIcon icon={faSmog} className={isSmokeDetected ? `${classes.smokePulse} ${classes.size}` : classes.size} />
+  return <FontAwesomeIcon data-testid='smoke-sensor-inner' icon={faSmog} className={isSmokeDetected ? `${classes.smokePulse} ${classes.size}` : classes.size} />
 }

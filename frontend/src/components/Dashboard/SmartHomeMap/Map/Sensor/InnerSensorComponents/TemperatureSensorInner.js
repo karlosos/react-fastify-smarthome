@@ -11,7 +11,7 @@ const useStyles = makeStyles((props) => ({
 }))
 
 export default function TemperatureSensorInner ({ temperature }) {
-  temperature = temperature / 10
+  temperature = (temperature / 10).toString()
 
   const getFontSize = (temperature) => {
     if (temperature.length === 5) {
@@ -22,10 +22,12 @@ export default function TemperatureSensorInner ({ temperature }) {
       return '1.4vh'
     } else if (temperature.length === 2 || temperature.length === 1) {
       return '1.75vh'
+    } else {
+      return '0rem'
     }
   }
 
-  const classes = useStyles({ fontSize: getFontSize(temperature.toString()) })
+  const classes = useStyles({ fontSize: getFontSize(temperature) })
 
   return (
     <Typography className={classes.temperature}>
