@@ -192,7 +192,7 @@ describe('<HVACList />', () => {
     const initialStore = {
       sensor: {
         sensors: {
-        //   temperatureSensors: [{ id: 2 }],
+          temperatureSensors: [{ id: 999 }],
           windowSensors: [{ id: 3 }, { id: 4 }]
         },
         HVACRooms: [
@@ -223,6 +223,74 @@ describe('<HVACList />', () => {
   })
 
   it('should render <HVACList /> with rules referencing to not existing window sensor', () => {
+    const initialStore = {
+      sensor: {
+        sensors: {
+          temperatureSensors: [{ id: 2 }],
+          windowSensors: [{ id: 999 }, { id: 998 }]
+        },
+        HVACRooms: [
+          {
+            id: 1,
+            type: 'HVACRoom',
+            heatingTemperature: 200,
+            coolingTemperature: 300,
+            hysteresis: 5,
+            temperatureSensorId: 2,
+            windowSensorIds: [3, 4]
+          }
+        ]
+      }
+    }
+    store = mockStore(initialStore)
+
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <HVACList />
+        </I18nextProvider>
+      </Provider>
+    )
+
+    expect(queryByTestId('HVACList').childElementCount).toBe(1)
+    expect(queryByTestId('show-more-button')).toBeFalsy()
+  })
+
+  it('should render <HVACList /> with rules referencing to empty temperature sensor list', () => {
+    const initialStore = {
+      sensor: {
+        sensors: {
+        //   temperatureSensors: [{ id: 2 }],
+          windowSensors: [{ id: 3 }, { id: 4 }]
+        },
+        HVACRooms: [
+          {
+            id: 1,
+            type: 'HVACRoom',
+            heatingTemperature: 200,
+            coolingTemperature: 300,
+            hysteresis: 5,
+            temperatureSensorId: 2,
+            windowSensorIds: [3, 4]
+          }
+        ]
+      }
+    }
+    store = mockStore(initialStore)
+
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <HVACList />
+        </I18nextProvider>
+      </Provider>
+    )
+
+    expect(queryByTestId('HVACList').childElementCount).toBe(1)
+    expect(queryByTestId('show-more-button')).toBeFalsy()
+  })
+
+  it('should render <HVACList /> with rules referencing to empty window sensors list', () => {
     const initialStore = {
       sensor: {
         sensors: {

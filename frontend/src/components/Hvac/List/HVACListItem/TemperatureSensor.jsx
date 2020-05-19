@@ -38,9 +38,13 @@ const useStyles = makeStyles((theme) => ({
 const TemperatureSensor = ({ data }) => {
   const classes = useStyles()
   const temperatureSensors = useSelector((state) => state.sensor.sensors.temperatureSensors)
-  const temperature = temperatureSensors !== undefined && temperatureSensors.length !== 0
-    ? temperatureSensors.find(sensor => sensor.id === data.temperatureSensorId).value
+  const temperatureSensor = temperatureSensors !== undefined && temperatureSensors.length !== 0
+    ? temperatureSensors.find(sensor => sensor.id === data.temperatureSensorId)
+    : undefined
+  const temperature = temperatureSensor !== undefined
+    ? temperatureSensor.value
     : 'NA'
+
   const { t } = useTranslation()
 
   return (

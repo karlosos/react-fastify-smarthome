@@ -38,8 +38,11 @@ const useStyles = makeStyles((theme) => ({
 const SingleSensor = ({ windowId }) => {
   const classes = useStyles()
   const windowSensors = useSelector((state) => state.sensor.sensors.windowSensors)
-  const windowStatus = windowSensors !== undefined && windowSensors.length !== 1
-    ? windowSensors.find(sensor => sensor.id === windowId).status
+  const windowSensor = windowSensors !== undefined && windowSensors.length !== 1
+    ? windowSensors.find(sensor => sensor.id === windowId)
+    : undefined
+  const windowStatus = windowSensor !== undefined
+    ? windowSensors.status
     : 'NA'
 
   const { t } = useTranslation()
