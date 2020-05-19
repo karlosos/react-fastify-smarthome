@@ -260,7 +260,6 @@ describe('<HVACList />', () => {
     const initialStore = {
       sensor: {
         sensors: {
-        //   temperatureSensors: [{ id: 2 }],
           windowSensors: [{ id: 3 }, { id: 4 }]
         },
         HVACRooms: [
@@ -295,7 +294,6 @@ describe('<HVACList />', () => {
       sensor: {
         sensors: {
           temperatureSensors: [{ id: 2 }]
-        //   windowSensors: [{ id: 3 }, { id: 4 }]
         },
         HVACRooms: [
           {

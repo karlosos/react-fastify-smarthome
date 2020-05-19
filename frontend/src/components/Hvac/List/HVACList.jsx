@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Typography, Button } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import { refreshSensors } from '@data/actions/sensor'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,7 @@ const HVACList = () => {
   )
   const props = { displayShowMoreButton: displayShowMoreButton }
   const classes = useStyles(props)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setDisplayShowMoreButton(
@@ -52,7 +54,7 @@ const HVACList = () => {
     return (
       <Box data-testid='emptyState'>
         <Typography className={classes.emptyState}>
-          No defined rules to show.
+          {t('hvac:no-rules')}
         </Typography>
       </Box>
     )
@@ -70,7 +72,7 @@ const HVACList = () => {
           className={classes.showMoreButton}
           data-testid='show-more-button'
         >
-        Show more
+          {t('common:show-more-button')}
         </Button>}
 
       {/* Display placeholder if rules are empty */}
