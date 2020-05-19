@@ -22,30 +22,38 @@ const CoolingSlider = withStyles({
   }
 })(Slider)
 
-export const RoomChoose = ({ classes, description, form, handleChange, handleRoomIdChange, HVACRooms }) => (
-  <FormControl className={classes.formControl}>
-    <TextField
-      error={!form.id}
-      required
-      select
-      name='id'
-      label={description.id}
-      value={form.id}
-      onChange={event => handleRoomIdChange(event)}
-      data-testid='hvac-id'
-    >
-      {HVACRooms.map(room => <MenuItem data-testid='room-id' key={room.id} value={room.id}>{room.id}</MenuItem>)}
-    </TextField>
-    <TextField
-      name='name'
-      type='string'
-      label={description.name}
-      value={form.name}
-      onChange={handleChange}
-      data-testid='hvac-name'
-    />
-  </FormControl>
-)
+export const RoomChoose = ({ classes, description, form, handleChange, handleRoomIdChange, HVACRooms }) => {
+  const maxNameLength = 30
+  return (
+    <FormControl className={classes.formControl}>
+      <TextField
+        error={!form.id}
+        required
+        select
+        name='id'
+        label={description.id}
+        value={form.id}
+        onChange={event => handleRoomIdChange(event)}
+        data-testid='hvac-id'
+      >
+        {HVACRooms.map(room => <MenuItem data-testid='room-id' key={room.id} value={room.id}>{room.id}</MenuItem>)}
+      </TextField>
+      <TextField
+        name='name'
+        type='string'
+        inputProps={{
+          type: 'text',
+          maxLength: maxNameLength
+        }}
+        helperText={`${form.name.length}/${maxNameLength}`}
+        label={description.name}
+        value={form.name}
+        onChange={handleChange}
+        data-testid='hvac-name'
+      />
+    </FormControl>
+  )
+}
 
 export const SensorsChoose = ({ classes, description, form, handleChange, windowSensors, temperatureSensors }) => (
 
