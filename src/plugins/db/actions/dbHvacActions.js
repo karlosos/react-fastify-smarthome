@@ -11,14 +11,14 @@ async function postHvacRule (db, rule) {
 }
 
 async function updateHvacRule (db, rule) {
-  return db.collection(collectionName).updateOne({"_id": rule._id }, {
+  return db.collection(collectionName).updateOne({ _id: rule._id }, {
     $set: {
-      "name": rule.name,
-      "heatingTemperature": rule.heatingTemperature,
-      "coolingTemperature": rule.coolingTemperature,
-      "hysteresis": rule.hysteresis,
-      "temperatureSensorId": rule.temperatureSensorId,
-      "windowSensorIds": rule.windowSensorIds
+      name: rule.name,
+      heatingTemperature: rule.heatingTemperature,
+      coolingTemperature: rule.coolingTemperature,
+      hysteresis: rule.hysteresis,
+      temperatureSensorId: rule.temperatureSensorId,
+      windowSensorIds: rule.windowSensorIds
     }
   })
 }
