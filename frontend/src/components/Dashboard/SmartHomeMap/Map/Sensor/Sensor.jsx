@@ -107,8 +107,8 @@ const Sensor = (props) => {
     sensorBorderColor: sensorBorderColor,
     clicked: clicked,
     sensorSize: sensorSize,
-    width: '20px' && sensorSize && sensorSize.width,
-    height: '20px' && sensorSize && sensorSize.height,
+    width: sensorSize.width || '20px',
+    height: sensorSize.height || '20px',
     position: position,
     borderSize: isLightSensor ? 4 : 2
   })

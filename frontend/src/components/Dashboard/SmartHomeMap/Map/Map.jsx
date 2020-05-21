@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
-
 import sensorsInfo from '@constants/sensorsInfo'
 import { onMapClick } from '@data/actions/mapListCommunicationActions.js'
 import house from '@assets/house.svg'
@@ -134,13 +133,13 @@ const HomeMap = () => {
     }
 
     const { offsetX = 0, offsetY = 0 } = e.nativeEvent
+
     /** Offset defined in map's width in percent. */
-    const xCoordinate = fromCoordinateToPercentMapper(
-      offsetX - Math.floor((mapHeight / (SENSOR_COEFFICIENT * SENSOR_COEFFICIENT))), mapWidth)
+    const xCoordinate = fromCoordinateToPercentMapper(offsetX, mapWidth)
     /** Offset defined in map's height in percent. */
-    const yCoordinate = fromCoordinateToPercentMapper(
-      offsetY - Math.floor((mapHeight / (SENSOR_COEFFICIENT * SENSOR_COEFFICIENT))), mapHeight)
+    const yCoordinate = fromCoordinateToPercentMapper(offsetY, mapHeight)
     /** Sensors fetched from store and mapper to appropriate format. */
+
     const storeSensors = sensors
       .map((sensor) => Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
 
@@ -197,8 +196,8 @@ const HomeMap = () => {
                   { width: Math.round(mapHeight / SENSOR_COEFFICIENT), height: Math.round(mapHeight / SENSOR_COEFFICIENT) }
                 }
                 position={{
-                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight) - mapHeight / SENSOR_COEFFICIENT / 2,
-                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth) - mapWidth / SENSOR_COEFFICIENT / 2,
+                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight) - Math.round(mapHeight / SENSOR_COEFFICIENT) / 2,
+                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth) - Math.round(mapHeight / SENSOR_COEFFICIENT) / 2,
                   position: 'absolute'
                 }}
                 sensorColor={'black' && sensorsInfo[point.type] && sensorsInfo[point.type].color}
