@@ -92,6 +92,7 @@ const refreshSensorsSuccess = (state, action) => {
   return {
     ...state,
     sensors,
+    HVACRooms: action.sensors.HVACRooms,
     refreshError: null
   }
 }

@@ -172,8 +172,8 @@ describe('<Hvac />', () => {
     }
     const getActions = store.getActions()
     const actions = {
-      valid: getActions[getActions.length - 2],
-      add: getActions[getActions.length - 1]
+      valid: getActions[getActions.length - 3],
+      add: getActions[getActions.length - 2]
     }
 
     expect(actions.valid).toEqual(expectedActions.valid)

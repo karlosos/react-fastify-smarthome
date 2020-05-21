@@ -13,7 +13,7 @@ import {
   Paper,
   Typography
 } from '@material-ui/core'
-import { loadSensors, changeHvacRoomsDetails, validHvacFormSnackbar } from '@data/actions/sensor'
+import { loadSensors, refreshSensors, changeHvacRoomsDetails, validHvacFormSnackbar } from '@data/actions/sensor'
 import { RoomChoose, SensorsChoose, TemperatureSet } from './StepContent.jsx'
 import HvacStepper from './HvacStepper.jsx'
 import Page404 from '../UI/Page404'
@@ -241,6 +241,7 @@ const Hvac = () => {
     dispatch(validHvacFormSnackbar(valid))
     if (valid) {
       dispatchHvacRoomsDetailsChange()
+      dispatch(refreshSensors())
       setActiveStep(0)
       setForm({ ...initialForm })
     }
