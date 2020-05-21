@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
@@ -70,6 +70,8 @@ export default function Header () {
   const { t } = useTranslation()
 
   const [value, setValue] = useState(checkActive(location.pathname))
+  useEffect(() => { setValue(checkActive(location.pathname)) }, [location.pathname])
+
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
