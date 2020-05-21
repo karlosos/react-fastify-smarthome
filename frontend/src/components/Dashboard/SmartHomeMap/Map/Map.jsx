@@ -25,8 +25,7 @@ const SENSOR_COEFFICIENT = 20
 const useStyles = makeStyles((props) => ({
   container: {
     position: 'relative',
-    overflow: 'hidden',
-    top: '20px'
+    overflow: 'hidden'
   },
   image: props => ({
     cursor: props.mapDisabled
@@ -35,7 +34,7 @@ const useStyles = makeStyles((props) => ({
     height: 'auto',
     width: 'auto',
     minWidth: '100%',
-    maxHeight: 'calc(100vh - 250px)'
+    maxHeight: 'calc(100vh - 150px)'
   })
 }))
 
@@ -137,10 +136,10 @@ const HomeMap = () => {
     const { offsetX = 0, offsetY = 0 } = e.nativeEvent
     /** Offset defined in map's width in percent. */
     const xCoordinate = fromCoordinateToPercentMapper(
-      offsetX - (mapHeight / SENSOR_COEFFICIENT / 2), mapWidth)
+      offsetX - Math.floor((mapHeight / (SENSOR_COEFFICIENT * SENSOR_COEFFICIENT))), mapWidth)
     /** Offset defined in map's height in percent. */
     const yCoordinate = fromCoordinateToPercentMapper(
-      offsetY - (mapHeight / SENSOR_COEFFICIENT / 2), mapHeight)
+      offsetY - Math.floor((mapHeight / (SENSOR_COEFFICIENT * SENSOR_COEFFICIENT))), mapHeight)
     /** Sensors fetched from store and mapper to appropriate format. */
     const storeSensors = sensors
       .map((sensor) => Object.assign(sensor, { x: sensor.mapPosition.x, y: sensor.mapPosition.y }))
@@ -198,8 +197,8 @@ const HomeMap = () => {
                   { width: Math.round(mapHeight / SENSOR_COEFFICIENT), height: Math.round(mapHeight / SENSOR_COEFFICIENT) }
                 }
                 position={{
-                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight),
-                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth),
+                  top: fromPercentToCoordinateMapper(point.mapPosition.y, mapHeight) - mapHeight / SENSOR_COEFFICIENT / 2,
+                  left: fromPercentToCoordinateMapper(point.mapPosition.x, mapWidth) - mapWidth / SENSOR_COEFFICIENT / 2,
                   position: 'absolute'
                 }}
                 sensorColor={'black' && sensorsInfo[point.type] && sensorsInfo[point.type].color}

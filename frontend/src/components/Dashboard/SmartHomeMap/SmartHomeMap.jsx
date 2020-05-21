@@ -7,6 +7,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default
   },
   mapContainer: {
+    display: 'flex',
+    alignItems: 'center',
     maxWidth: '100%',
     height: 'calc(100vh - 64px)',
     objectFit: 'contain'
