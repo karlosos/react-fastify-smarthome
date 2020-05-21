@@ -12,7 +12,8 @@ import {
 const HvacStepper = ({ activeStep, steps, getStepContent, classes, handleBack, handleNext }) => {
   const { t } = useTranslation()
   const disabledNextButton = activeStep === steps.length - 1
-  const displayFinishButton = !disabledNextButton ? { display: 'none' } : {}
+  const displayFinishButton = disabledNextButton ? {} : { display: 'none' }
+  const nextButtonVariant = disabledNextButton ? 'text' : 'contained'
   return (
     <Stepper activeStep={activeStep} orientation='vertical'>
       {steps.map((label, index) => (
@@ -30,7 +31,7 @@ const HvacStepper = ({ activeStep, steps, getStepContent, classes, handleBack, h
                   {t('hvac:back-button')}
                 </Button>
                 <Button
-                  variant='contained'
+                  variant={nextButtonVariant}
                   color='primary'
                   onClick={handleNext}
                   className={classes.button}
