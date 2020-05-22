@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
 import Button from '@material-ui/core/Button'
@@ -22,6 +22,10 @@ export default function WindowBlindsItemDetails ({ sensorData, handleChangeExpan
   const classes = useStyles()
 
   const [position, setPosition] = useState(sensorData.position)
+
+  useEffect(() => {
+    setPosition(sensorData.position)
+  }, [sensorData])
 
   const dispatchWindowBlindsDetailsChange = () => {
     const windowBlindsDetails = {
