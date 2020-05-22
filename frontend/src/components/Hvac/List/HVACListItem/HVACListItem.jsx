@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   expansionDetails: {
     flexDirection: 'row',
     flexWrap: 'wrap'
-    // spacing: theme.spacing(1)
   }
 }))
 
