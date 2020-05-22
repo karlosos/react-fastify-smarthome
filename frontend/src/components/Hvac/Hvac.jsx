@@ -181,12 +181,15 @@ const Hvac = () => {
     const { name, value } = event.target
     const room = HVACRooms.find(room => room.id === value)
     type = room.type
-    const setSensor = data =>
-      room.windowSensorIds.every(id => sensors.windowSensors.includes(id))
-        ? room[data] : form[data]
+
+    const setWindowSensorIds = () =>
+      room.windowSensorIds.every(id => sensors.windowSensors.map(sensor => sensor.id).includes(id))
+        ? room.windowSensorIds : form.windowSensorIds
+    const setTemperatureSensorId = () =>
+      sensors.temperatureSensors.map(sensor => sensor.id).includes(room.temperatureSensorId)
+        ? room.temperatureSensorId : form.temperatureSensorId
 
     const roundHalf = value => Math.round(value * 2) / 2
-
     const setTemperature = data => roundHalf(room[data]) || form[data]
     const temperatureValidate = (temperature, range) =>
       setTemperature(temperature) < range.min
@@ -205,8 +208,8 @@ const Hvac = () => {
       hysteresis: validHysteresis,
       heatingTemperature: validHeatingTemperature,
       coolingTemperature: validCoolingTemperature,
-      windowSensorIds: setSensor('windowSensorIds'),
-      temperatureSensorId: setSensor('temperatureSensorId')
+      windowSensorIds: setWindowSensorIds(),
+      temperatureSensorId: setTemperatureSensorId()
     })
   }
 
