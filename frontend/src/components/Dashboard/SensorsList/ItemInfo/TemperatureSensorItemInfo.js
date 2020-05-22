@@ -11,7 +11,7 @@ export default function TemperatureSensorItemInfo ({ sensorData, classes, handle
       <ListItemText
         primary={
           <div className={classes.item}>
-            {(sensorData.value / 10) + '°C'}
+            {sensorData.value + '°C'}
             <IconButton
               className={classes.close}
               onClick={() => handleRemoveClick(true)}

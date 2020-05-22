@@ -54,7 +54,7 @@ const TemperatureSensor = ({ data }) => {
           {t('hvac:temperature-sensor')}
         </Typography>
         <Typography className={classes.data}>
-          {temperature / 10}°C
+          {temperature}°C
         </Typography>
       </CardContent>
       <CardActions className={classes.cardFooter}>

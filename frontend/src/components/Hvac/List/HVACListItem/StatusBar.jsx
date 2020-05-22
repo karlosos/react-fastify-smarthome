@@ -32,20 +32,20 @@ const StatusBar = ({ data }) => {
       <Box className={classes.status}>
         <img src={HeatingIcon} className={classes.statusIcon} />
         <Typography className={classes.statusData}>
-          {data.heatingTemperature / 10}°C
+          {data.heatingTemperature}°C
         </Typography>
       </Box>
       <Box className={classes.status}>
         <img src={CoolingIcon} className={classes.statusIcon} />
 
         <Typography className={classes.statusData}>
-          {data.coolingTemperature / 10}°C
+          {data.coolingTemperature}°C
         </Typography>
       </Box>
       <Box className={classes.status}>
         <img src={HysteresisIcon} className={classes.statusIcon} />
         <Typography className={classes.statusData}>
-          {data.hysteresis / 10}°C
+          {data.hysteresis}°C
         </Typography>
       </Box>
     </Box>

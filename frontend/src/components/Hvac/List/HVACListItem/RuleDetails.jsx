@@ -52,7 +52,7 @@ const RuleDetails = ({ data }) => {
             {t('hvac:heating-temperature')}
           </Typography>
           <Typography className={classes.data}>
-            {data.heatingTemperature / 10}°C
+            {data.heatingTemperature}°C
           </Typography>
         </CardContent>
         <CardActions className={classes.cardFooter}>
@@ -68,7 +68,7 @@ const RuleDetails = ({ data }) => {
             {t('hvac:cooling-temperature')}
           </Typography>
           <Typography className={classes.data}>
-            {data.coolingTemperature / 10}°C
+            {data.coolingTemperature}°C
           </Typography>
         </CardContent>
         <CardActions className={classes.cardFooter}>
@@ -84,7 +84,7 @@ const RuleDetails = ({ data }) => {
             {t('hvac:hysteresis')}
           </Typography>
           <Typography className={classes.data}>
-            {data.hysteresis / 10}°C
+            {data.hysteresis}°C
           </Typography>
         </CardContent>
         <CardActions className={classes.cardFooter}>

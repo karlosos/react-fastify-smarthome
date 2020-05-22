@@ -185,7 +185,9 @@ const Hvac = () => {
       room.windowSensorIds.every(id => sensors.windowSensors.includes(id))
         ? room[data] : form[data]
 
-    const setTemperature = data => room[data] / 10 || form[data]
+    const roundHalf = value => Math.round(value * 2) / 2
+
+    const setTemperature = data => roundHalf(room[data]) || form[data]
     const temperatureValidate = (temperature, range) =>
       setTemperature(temperature) < range.min
         ? range.min
@@ -251,9 +253,9 @@ const Hvac = () => {
     const HvacRoomsDetails = {
       name: form.name,
       id: form.id,
-      heatingTemperature: form.heatingTemperature * 10,
-      coolingTemperature: form.coolingTemperature * 10,
-      hysteresis: form.hysteresis * 10,
+      heatingTemperature: form.heatingTemperature,
+      coolingTemperature: form.coolingTemperature,
+      hysteresis: form.hysteresis,
       temperatureSensorId: form.temperatureSensorId,
       windowSensorIds: form.windowSensorIds,
       type
