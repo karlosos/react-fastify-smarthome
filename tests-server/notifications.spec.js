@@ -54,10 +54,14 @@ describe('/api/v1/notifications', function () {
     test('should fastify.config.GATEWAY_URL be set and status code should be 400 when no notifications in db', async function () {
       const result = await instance.inject({
         method: 'DELETE',
-        url: '/api/v1/notifications/399'
+        url: '/api/v1/notifications/399',
+        withCredentials: true,
+        headers: {
+          Cookie: `${instance.config.COOKIE_NAME}=${instance.config.COOKIE_VALUE}`
+        }
       })
 
-      expect(result.statusCode).toBe(400)
+      expect(result.statusCode).toBe(500)
     })
   })
 })

@@ -43,6 +43,13 @@ const notifications = async function (fastify, options, next) {
   })
 
   fastify.delete('/:id', deleteSchema, async function (req, reply) {
+    const gatewayUrl = this.config.GATEWAY_URL
+    await axios.delete(`${gatewayUrl}/notifications/${req.params.id}`, {
+      withCredentials: true,
+      headers: {
+        Cookie: `${this.config.COOKIE_NAME}=${this.config.COOKIE_VALUE}`
+      }
+    })
     const res = await this.db.updateNotification(this.mongo.db, parseInt(req.params.id))
     res.result.n === 0
       ? reply.code(400).send(res)
