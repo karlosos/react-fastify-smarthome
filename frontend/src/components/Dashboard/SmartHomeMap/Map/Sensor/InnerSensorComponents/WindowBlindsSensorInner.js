@@ -24,11 +24,11 @@ const useStyles = makeStyles((props) => ({
 
 export default function WindowBlindsSensorInner ({ position }) {
   const getBlindPositionToDisplay = (position) => {
-    if (position > 87) return 100
-    else if (position > 62) return 75
+    if (position > 87) return 0
+    else if (position > 62) return 25
     else if (position > 37) return 50
-    else if (position > 12) return 25
-    else if (position >= 0) return 0
+    else if (position > 12) return 75
+    else if (position >= 0) return 100
   }
 
   const classes = useStyles({ position: getBlindPositionToDisplay(position) })
