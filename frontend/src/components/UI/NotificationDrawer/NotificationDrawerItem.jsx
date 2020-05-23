@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { ListItem, ListItemText, IconButton, ListItemSecondaryAction } from '@material-ui/core'
+import { ListItem, ListItemText, IconButton, ListItemSecondaryAction, ListItemAvatar, Paper } from '@material-ui/core'
 import Close from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles'
 import timeConverter from './timeConverter'
 import ItemDisplayedInfo from '../../Dashboard/SensorsList/ItemDisplayedInfo'
 import sensorsInfo from '../../../common/constants/sensorsInfo'
+
+import { drawSensorGraphicComponent } from '../../Dashboard/SmartHomeMap/Map/Sensor/SensorGraphicComponent.jsx'
 
 const useStyles = makeStyles(theme => ({
   close: {
@@ -18,17 +20,30 @@ const useStyles = makeStyles(theme => ({
   sensor: {
     fontWeight: 'bold'
   },
-  row: props => ({
-    borderLeft: '10px solid',
-    borderColor: props.accentColor
+  icon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: 'scale(1.34)',
+    minWidth: '20px',
+    textAlign: 'center',
+    marginRight: '1rem'
+  },
+  elevation: props => ({
+    transform: props.clicked ? 'scale(1.04)' : '',
+    transition: 'transform 0.2s ease',
+    margin: '5px',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   })
 }))
 
-const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck, sensor }) => {
+const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck, sensor, clicked, handleClick }) => {
   const { t } = useTranslation()
 
   const accentColor = sensorsInfo[sensor.type] ? sensorsInfo[sensor.type].color : 'black'
-  const props = { accentColor }
+  const props = { accentColor, clicked }
   const classes = useStyles(props)
 
   const checkButton = !isChecked && (
@@ -38,8 +53,14 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
         aria-label='close'
         color='inherit'
         className={classes.close}
-        onClick={event => handleNotificationCheck(id, event)}
-        onKeyDown={event => handleNotificationCheck(id, event)}
+        onClick={event => {
+          handleNotificationCheck(id, event)
+          event.stopPropagation()
+        }}
+        onKeyDown={event => {
+          handleNotificationCheck(id, event)
+          event.stopPropagation()
+        }}
       >
         <Close />
       </IconButton>
@@ -49,20 +70,30 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
   const displayedInfo = sensor ? <ItemDisplayedInfo infoType='name' sensorType={sensor.type} /> : t('unknown-sensor')
 
   return (
-    <ListItem button key={id} data-testid='drawer-item' disabled={isChecked} className={classes.row}>
-      <ListItemText
-        primary={
-          <div>
-            <span className={classes.sensor}>
-              {displayedInfo}
-            </span>
-            <span className={classes.id}> {sensorId}</span>
-          </div>
-        }
-        secondary={timeConverter(timestamp)}
-      />
-      {checkButton}
-    </ListItem>
+    <Paper
+      className={classes.elevation}
+      elevation={clicked ? 6 : 2}
+      square
+      onClick={handleClick}
+    >
+      <ListItem key={id} data-testid='drawer-item' disabled={isChecked} className={classes.row}>
+        <ListItemAvatar className={classes.icon}>
+          {drawSensorGraphicComponent(sensor.type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : sensor.type)}
+        </ListItemAvatar>
+        <ListItemText
+          primary={
+            <div>
+              <span className={classes.sensor}>
+                {displayedInfo}
+              </span>
+              <span className={classes.id}> {sensorId}</span>
+            </div>
+          }
+          secondary={timeConverter(timestamp)}
+        />
+        {checkButton}
+      </ListItem>
+    </Paper>
   )
 }
 

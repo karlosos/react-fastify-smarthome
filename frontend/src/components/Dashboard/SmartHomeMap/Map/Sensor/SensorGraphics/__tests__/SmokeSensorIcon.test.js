@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import SmokeSensorInner from '../SmokeSensorInner'
+import SmokeSensorIcon from '../SmokeSensorIcon'
 
-describe('<SmokeSensorInner />', () => {
-  it('should render <SmokeSensorInner /> component', () => {
-    expect(render(<SmokeSensorInner />)).not.toBeNull()
+describe('<SmokeSensorIcon />', () => {
+  it('should render <SmokeSensorIcon /> component', () => {
+    expect(render(<SmokeSensorIcon />)).not.toBeNull()
   })
 
   it('should have color red and pulse animation if smoke is detected', () => {
     const isSmokeDetected = true
-    const { queryByTestId } = render(<SmokeSensorInner isSmokeDetected={isSmokeDetected} />)
+    const { queryByTestId } = render(<SmokeSensorIcon isSmokeDetected={isSmokeDetected} />)
 
     const icon = queryByTestId('smoke-sensor-inner')
     expect(icon).toHaveStyle('color: rgba(235, 49, 52, 1)')

@@ -25,11 +25,7 @@ export default function RFIDSensorItemInfo ({ sensorData, classes, handleRemoveC
           secondary={
             <>
               {sensorData.lastTag.type} {sensorData.lastTag.id} <br />
-              {/*
-
-              COMMENTED OUT BECAUSE MOCK VALUES FROM API DO NOT MATCH ANY DATE FORMAT
-
-              {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(sensorData.lastTag.timestamp)} */}
+              {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(sensorData.lastTag.timestamp)}
             </>
           }
         />

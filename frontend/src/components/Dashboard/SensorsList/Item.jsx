@@ -1,11 +1,13 @@
 import React from 'react'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import Paper from '@material-ui/core/Paper'
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel'
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
@@ -24,12 +26,16 @@ import ItemDisplayedInfo from './ItemDisplayedInfo'
 import LightItemDetails from './ItemDetails/LightItemDetails'
 import WindowBlindsItemDetails from './ItemDetails/WindowBlindsItemDetails'
 
+import { drawSensorGraphicComponent } from '../SmartHomeMap/Map/Sensor/SensorGraphicComponent.jsx'
+
 const useStyles = makeStyles(theme => ({
+  elevation: props => ({
+    transform: props.clicked ? 'scale(1.04)' : '',
+    transition: 'transform 0.2s ease',
+    margin: '5px'
+  }),
   row: props => ({
-    borderLeft: '10px solid',
-    borderColor: props.accentColor,
-    backgroundColor: props.bgColor,
-    padding: '8px'
+    padding: '4px 2px'
   }),
   type: props => ({
     fontWeight: 'bold',
@@ -55,11 +61,21 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       cursor: 'pointer'
     }
-  })
+  }),
+  icon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: 'scale(1.54)',
+    minWidth: '30px',
+    textAlign: 'center',
+    marginRight: '1rem'
+  }
 }))
 
 const ExpansionPanel = withStyles({
   root: {
+    position: 'static',
     overflowX: 'hidden',
     margin: 0,
     '&:before': {
@@ -153,54 +169,62 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
   const expansionPanelDetails = drawExpansionPanelDetails(type, sensorData, handleChangeExpanded)
 
   return (
-    <ExpansionPanel
-      square
-      className={classes.row}
-      expanded={expanded === id}
-      onChange={handleChangeExpanded(id)}
+    <Paper
+      className={classes.elevation}
+      elevation={clicked ? 6 : 0}
     >
-      <ExpansionPanelSummary
-        expandIcon={isSensorEditable(type, isOnMap) ? <SettingsIcon /> : null}
+      <ExpansionPanel
+        square
+        className={classes.row}
+        expanded={expanded === id}
+        onChange={handleChangeExpanded(id)}
       >
-        <ListItem
-          id={`sensor${id}`}
-          onClick={(e) => {
-            clickDispatch(accentColor, sensorData, isOnMap)
-            if (isSensorEditable(type, true)) {
-              if (expanded !== id) {
-                handleChangeExpanded()()
-              }
-              e.stopPropagation()
-            }
-          }}
+        <ExpansionPanelSummary
+          expandIcon={isSensorEditable(type, isOnMap) ? <SettingsIcon /> : null}
         >
-          <ListItemText
-            primary={
-              <>
-                <span className={classes.type}>
-                  <ItemDisplayedInfo infoType='name' sensorType={type} />
-                </span>
-                <span className={classes.id}> {sensorData.id}</span>
-              </>
-            }
-            secondary={
-              <>
-                <Typography
-                  component='span'
-                  variant='body2'
-                  className={classes.inline}
-                  color='textPrimary'
-                >
-                  <ItemDisplayedInfo infoType='description' sensorType={type} />
-                </Typography>
-              </>
-            }
-          />
-          {drawItemInfo(type, sensorData, classes, handleRemoveClick)}
-        </ListItem>
-      </ExpansionPanelSummary>
-      {expansionPanelDetails}
-    </ExpansionPanel>
+          <ListItem
+            id={`sensor${id}`}
+            onClick={(e) => {
+              clickDispatch(accentColor, sensorData, isOnMap)
+              if (isSensorEditable(type, true)) {
+                if (expanded !== id) {
+                  handleChangeExpanded()()
+                }
+                e.stopPropagation()
+              }
+            }}
+          >
+            <ListItemAvatar className={classes.icon}>
+              {drawSensorGraphicComponent(type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : type, sensorData)}
+            </ListItemAvatar>
+            <ListItemText
+              primary={
+                <>
+                  <span className={classes.type}>
+                    <ItemDisplayedInfo infoType='name' sensorType={type} />
+                  </span>
+                  <span className={classes.id}> {sensorData.id}</span>
+                </>
+              }
+              secondary={
+                <>
+                  <Typography
+                    component='span'
+                    variant='body2'
+                    className={classes.inline}
+                    color='textPrimary'
+                  >
+                    <ItemDisplayedInfo infoType='description' sensorType={type} />
+                  </Typography>
+                </>
+              }
+            />
+            {drawItemInfo(type, sensorData, classes, handleRemoveClick)}
+          </ListItem>
+        </ExpansionPanelSummary>
+        {expansionPanelDetails}
+      </ExpansionPanel>
+    </Paper>
   )
 }
 

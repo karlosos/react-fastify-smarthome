@@ -9,20 +9,20 @@ const useStyles = makeStyles((props) => ({
     position: 'relative'
   },
   inner: {
-    fontSize: '2.4vh',
+    fontSize: '2.5vh',
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)'
   },
   blind: props => ({
-    fontSize: '1.55vh',
+    fontSize: '1.6vh',
     clipPath: `polygon(0 0, 100% 0, 100% ${props.position}%, 0 ${props.position}%)`,
     color: 'rgba(0, 0, 0, 0.65)'
   })
 }))
 
-export default function WindowBlindsSensorInner ({ position }) {
+export default function WindowBlindsSensorInner ({ position = 50 }) {
   const getBlindPositionToDisplay = (position) => {
     if (position > 87) return 0
     else if (position > 62) return 25

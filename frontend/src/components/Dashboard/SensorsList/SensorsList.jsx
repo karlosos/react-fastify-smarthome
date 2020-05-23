@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
     height: props.sidebarHeight + 'px',
     backgroundColor: theme.palette.background.level2
   }),
-  listSubheader: {
-    backgroundColor: theme.palette.background.level2
+  list: {
+    margin: 'auto',
+    width: '95%'
   }
 }))
 
@@ -121,14 +122,14 @@ export default function SensorsList () {
       <List
         className={classes.list}
         data-testid='not-connected-sensors-list'
-        subheader={<ListSubheader className={classes.listSubheader}>{t('dashboard:sensors-not-placed')}</ListSubheader>}
+        subheader={<ListSubheader disableSticky>{t('dashboard:sensors-not-placed')}</ListSubheader>}
       >
         {drawItems(notConnectedSensors, false, setActiveModal, expanded, handleChangeExpanded)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
-        subheader={<ListSubheader className={classes.listSubheader}>{t('dashboard:sensors-placed')}</ListSubheader>}
+        subheader={<ListSubheader disableSticky>{t('dashboard:sensors-placed')}</ListSubheader>}
       >
         {drawItems(connectedSensors, true, setActiveModal, expanded, handleChangeExpanded)}
       </List>

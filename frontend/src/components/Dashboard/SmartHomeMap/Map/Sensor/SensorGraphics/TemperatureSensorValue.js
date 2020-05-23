@@ -10,7 +10,7 @@ const useStyles = makeStyles((props) => ({
   })
 }))
 
-export default function TemperatureSensorInner ({ temperature }) {
+export default function TemperatureSensorInner ({ temperature = 15 }) {
   temperature = temperature.toString()
 
   const getFontSize = temperature => {

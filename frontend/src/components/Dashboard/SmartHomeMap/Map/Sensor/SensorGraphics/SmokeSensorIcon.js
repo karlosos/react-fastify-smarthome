@@ -33,8 +33,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function SmokeSensorInner ({ isSmokeDetected }) {
-  // isSmokeDetected = true - uncomment this to see pulse animation
+export default function SmokeSensorInner ({ isSmokeDetected = false }) {
   const classes = useStyles()
 
   return <FontAwesomeIcon data-testid='smoke-sensor-inner' icon={faSmog} className={isSmokeDetected ? `${classes.smokePulse} ${classes.size}` : classes.size} />

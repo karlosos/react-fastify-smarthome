@@ -5,12 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { onPointClick } from '@data/actions/mapListCommunicationActions.js'
 import { Paper } from '@material-ui/core'
 
-import LightSensorInner from './InnerSensorComponents/LightSensorInner'
-import RFIDSensorInner from './InnerSensorComponents/RFIDSensorInner'
-import SmokeSensorInner from './InnerSensorComponents/SmokeSensorInner'
-import TemperatureSensorInner from './InnerSensorComponents/TemperatureSensorInner'
-import WindowBlindsSensorInner from './InnerSensorComponents/WindowBlindsSensorInner'
-import WindowSensorInner from './InnerSensorComponents/WindowSensorInner'
+import { drawSensorGraphicComponent } from './SensorGraphicComponent.jsx'
 
 const useStyles = makeStyles((props) => ({
   container: props => ({
@@ -41,8 +36,7 @@ const Sensor = (props) => {
   const {
     sensorData,
     position,
-    sensorSize,
-    sensorColor = 'black'
+    sensorSize
   } = props
 
   const id = sensorData.id
@@ -63,18 +57,6 @@ const Sensor = (props) => {
       id,
       borderColor
     ))
-  }
-
-  function drawInnerSensorComponent (sensorType) {
-    const innerSensorComponent = {
-      TEMPERATURE_SENSOR: <TemperatureSensorInner temperature={sensorData.value} />,
-      windowSensor: <WindowSensorInner status={sensorData.status} />,
-      windowBlind: <WindowBlindsSensorInner position={sensorData.position} />,
-      RFIDSensor: <RFIDSensorInner />,
-      smokeSensor: <SmokeSensorInner isSmokeDetected={sensorData.isSmokeDetected} />,
-      LED_CONTROLLER: <LightSensorInner />
-    }
-    return innerSensorComponent[sensorType]
   }
 
   const convertHsvToHsl = (h, s, v) => {
@@ -100,7 +82,7 @@ const Sensor = (props) => {
   }
 
   const isLightSensor = type === 'LED_CONTROLLER'
-  const sensorBorderColor = isLightSensor ? getLightColor() : sensorColor
+  const sensorBorderColor = isLightSensor ? getLightColor() : '#444'
   const clicked = id === mapListCommunication.pressedItemId
 
   const classes = useStyles({
@@ -120,7 +102,7 @@ const Sensor = (props) => {
       data-testid='sensor-id'
       onClick={() => clickDispatch(sensorBorderColor)}
     >
-      {drawInnerSensorComponent(type)}
+      {drawSensorGraphicComponent(type, sensorData)}
     </Paper>
   )
 }
