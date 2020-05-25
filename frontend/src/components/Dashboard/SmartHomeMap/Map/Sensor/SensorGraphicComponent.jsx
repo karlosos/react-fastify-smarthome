@@ -7,7 +7,7 @@ import TemperatureSensorValue from './SensorGraphics/TemperatureSensorValue'
 import WindowBlindsSensorIcon from './SensorGraphics/WindowBlindsSensorIcon'
 import WindowSensorIcon from './SensorGraphics/WindowSensorIcon'
 import TemperatureSensorIcon from './SensorGraphics/TemperatureSensorIcon'
-import UnkownSensorIcon from './SensorGraphics/UnkownSensorIcon'
+import UnknownSensorIcon from './SensorGraphics/UnknownSensorIcon'
 
 export function drawSensorGraphicComponent (sensorType, sensorData) {
   const SensorGraphicComponent = {
@@ -19,5 +19,5 @@ export function drawSensorGraphicComponent (sensorType, sensorData) {
     LED_CONTROLLER: <LightSensorIcon />,
     TEMPERATURE_SENSOR_ICON: <TemperatureSensorIcon temperature={sensorData && sensorData.value} />
   }
-  return SensorGraphicComponent[sensorType] || <UnkownSensorIcon />
+  return SensorGraphicComponent[sensorType] || <UnknownSensorIcon />
 }

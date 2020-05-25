@@ -14,7 +14,9 @@ export default function TemperatureSensorInner ({ temperature = 15 }) {
   temperature = temperature.toString()
 
   const getFontSize = temperature => {
-    if (temperature.length === 5) {
+    if (temperature.length === 6) {
+      return '1vh'
+    } else if (temperature.length === 5) {
       return '1.1vh'
     } else if (temperature.length === 4) {
       return '1.2vh'

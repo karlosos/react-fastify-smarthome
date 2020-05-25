@@ -20,4 +20,11 @@ describe('<WindowSensorIcon />', () => {
     expect(queryByTestId('window-sensor-launch-icon')).not.toBeTruthy()
     expect(queryByTestId('border-all-icon')).toBeTruthy()
   })
+
+  it('should be a BorderAllIcon if window is status value is not passed', () => {
+    const { queryByTestId } = render(<WindowSensorIcon />)
+
+    expect(queryByTestId('window-sensor-launch-icon')).not.toBeTruthy()
+    expect(queryByTestId('border-all-icon')).toBeTruthy()
+  })
 })

@@ -36,7 +36,7 @@ export default function WindowBlindsSensorInner ({ position = 50 }) {
   return (
     <div className={classes.container}>
       <CheckBoxOutlineBlankIcon className={classes.inner} />
-      <FontAwesomeIcon icon={faSquareFull} className={`${classes.inner} ${classes.blind}`} />
+      <FontAwesomeIcon data-testid='blind-icon' icon={faSquareFull} className={`${classes.inner} ${classes.blind}`} />
     </div>
   )
 }

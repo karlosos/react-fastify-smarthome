@@ -158,6 +158,16 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
     ))
   }
 
+  const handleListItemClick = (e) => {
+    clickDispatch(accentColor, sensorData, isOnMap)
+    if (isSensorEditable(type, true)) {
+      if (expanded !== id) {
+        handleChangeExpanded()()
+      }
+      e.stopPropagation()
+    }
+  }
+
   const bgColor =
     sensorData.id === mapListCommunication.pressedItemId
       ? sensorsInfo[type] && sensorsInfo[type].colorLight : 'white'
@@ -184,15 +194,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
         >
           <ListItem
             id={`sensor${id}`}
-            onClick={(e) => {
-              clickDispatch(accentColor, sensorData, isOnMap)
-              if (isSensorEditable(type, true)) {
-                if (expanded !== id) {
-                  handleChangeExpanded()()
-                }
-                e.stopPropagation()
-              }
-            }}
+            onClick={(e) => { handleListItemClick(e) }}
           >
             <ListItemAvatar className={classes.icon}>
               {drawSensorGraphicComponent(type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : type, sensorData)}
