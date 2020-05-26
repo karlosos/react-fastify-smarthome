@@ -48,16 +48,21 @@ describe('loadSensorsSaga', () => {
   describe('should load sensors successfuly', () => {
     const it = sagaHelper(loadSensorsSaga())
 
-    const testSensors = [{
-      id: 52,
-      type: 'testsens421',
-      isOn: true
-    },
-    {
-      id: 36,
-      type: 'testsens352',
-      isOn: true
-    }]
+    const testSensors = {
+      temperatureSensors: [
+        {
+          id: 52,
+          type: 'testsens421',
+          isOn: true
+        },
+        {
+          id: 36,
+          type: 'testsens352',
+          isOn: true
+        }
+      ],
+      HVACRooms: []
+    }
 
     it('should put fetchSensorsStart action', result => {
       expect(result).toEqual(put(actions.fetchSensorsStart()))
@@ -154,16 +159,21 @@ describe('changeSensorStatusSaga', () => {
 describe('refreshSensorsSaga', () => {
   describe('should refresh sensors successfuly', () => {
     const it = sagaHelper(refreshSensorsSaga())
-    const testSensors = [{
-      id: 52,
-      type: 'testsens421',
-      isOn: true
-    },
-    {
-      id: 36,
-      type: 'testsens352',
-      isOn: true
-    }]
+    const testSensors = {
+      temperatureSensors: [
+        {
+          id: 52,
+          type: 'testsens421',
+          isOn: true
+        },
+        {
+          id: 36,
+          type: 'testsens352',
+          isOn: true
+        }
+      ],
+      HVACRooms: []
+    }
 
     it('should put refreshSensorsStart action', result => {
       expect(result).toEqual(put(actions.refreshSensorsStart()))
@@ -336,13 +346,20 @@ describe('changeHvacRoomsDetailsSaga', () => {
     const action = {
       hvacRoomsDetails: {
         id: 1,
-        heatingTemperature: 150,
-        coolingTemperature: 300,
+        heatingTemperature: 15,
+        coolingTemperature: 30,
         hysteresis: 20,
         temperatureSensorId: 2,
         windowSensorIds: [3, 4],
         type: 'HVACRoom'
       }
+    }
+
+    const expected = {
+      ...action.hvacRoomsDetails,
+      heatingTemperature: 150,
+      coolingTemperature: 300,
+      hysteresis: 200
     }
 
     const it = sagaHelper(changeHvacRoomsDetailsSaga(action))
@@ -352,7 +369,7 @@ describe('changeHvacRoomsDetailsSaga', () => {
     })
 
     it('should make a successful request to API', result => {
-      expect(result).toEqual(call(changeHvacRoomsDetails, action.hvacRoomsDetails))
+      expect(result).toEqual(call(changeHvacRoomsDetails, expected))
     })
 
     it('should put changeHvacRoomsDetailsSuccess action', result => {
@@ -369,13 +386,20 @@ describe('changeHvacRoomsDetailsSaga', () => {
       hvacRoomsDetails: {
         id: 1,
         name: 'Rule',
-        heatingTemperature: 150,
-        coolingTemperature: 300,
+        heatingTemperature: 15,
+        coolingTemperature: 30,
         hysteresis: 20,
         temperatureSensorId: 2,
         windowSensorIds: [3, 4],
         type: 'HVACRoom'
       }
+    }
+
+    const expected = {
+      ...action.hvacRoomsDetails,
+      heatingTemperature: 150,
+      coolingTemperature: 300,
+      hysteresis: 200
     }
 
     const it = sagaHelper(changeHvacRoomsDetailsSaga(action))
@@ -385,7 +409,7 @@ describe('changeHvacRoomsDetailsSaga', () => {
     })
 
     it('should make an unsuccessful request to API', result => {
-      expect(result).toEqual(call(changeHvacRoomsDetails, action.hvacRoomsDetails))
+      expect(result).toEqual(call(changeHvacRoomsDetails, expected))
 
       return new Error('test error')
     })

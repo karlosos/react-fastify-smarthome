@@ -161,11 +161,11 @@ describe('<Hvac />', () => {
         hvacRoomsDetails: {
           name: '',
           id: 1,
-          heatingTemperature: 200,
-          coolingTemperature: 300,
-          hysteresis: 5,
+          heatingTemperature: 30,
+          coolingTemperature: 40,
+          hysteresis: 2,
           temperatureSensorId: 2,
-          windowSensorIds: [],
+          windowSensorIds: [3, 4],
           type: 'HVACRoom'
         }
       }
