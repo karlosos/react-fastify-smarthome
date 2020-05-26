@@ -63,10 +63,19 @@ const defineHvacRule = async (db, mongo, rule) => {
   return res
 }
 
+const addMapSensor = async (db, mongo, sensor) => {
+  const sensors = await db.getSensors(mongo)
+  const res = await sensors.filter(s => s._id === sensor._id).length === 0
+    ? db.postSensor(mongo, sensor)
+    : db.updateSensor(mongo, sensor)
+  return res
+}
+
 module.exports = {
   joinSensors,
   createCappedCollection,
   postNewNotifications,
   filterNewNotifications,
-  defineHvacRule
+  defineHvacRule,
+  addMapSensor
 }

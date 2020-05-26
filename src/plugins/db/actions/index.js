@@ -7,6 +7,7 @@ module.exports = fp(function (fastify, options, next) {
   fastify.decorate('db', {
     getSensors: sensors.getSensors,
     postSensor: sensors.postSensor,
+    updateSensor: sensors.updateSensor,
     removeSensor: sensors.removeSensor,
     dropSensors: sensors.dropSensors,
     getNotifications: notifications.getNotifications,

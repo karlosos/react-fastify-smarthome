@@ -52,6 +52,13 @@ describe('check database interactions', () => {
     expect(res1.ops[0]).toEqual(mockSensor1)
   })
 
+  it('should update mapPosition of record', async () => {
+    const mockSensor1 = { _id: 22, sensorType: 'TEMPERATURE_SENSOR', mapPosition: { x: 10, y: 10 } }
+    const res = await instance.db.updateSensor(db, mockSensor1)
+
+    expect(res.result.nModified).toEqual(1)
+  })
+
   it('should return sensors with map position when id matched the sensor id and type from db', async () => {
     const res = await instance.db.getSensors(db)
 

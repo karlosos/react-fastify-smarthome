@@ -29,9 +29,11 @@ const deleteSchema = {
   }
 }
 
+const helpers = require('../plugins/db/helpers.js')
+
 const routes = async (fastify, options, next) => {
   fastify.post('/:id', schema, async function (req, reply) {
-    const res = await this.db.postSensor(this.mongo.db, req.body)
+    const res = await helpers.addMapSensor(this.db, this.mongo.db, req.body)
     reply.code(200).send(res)
   })
 

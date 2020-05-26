@@ -10,6 +10,10 @@ async function postSensor (db, sensor) {
   return db.collection(collectionName).insertOne(sensor)
 }
 
+async function updateSensor (db, sensor) {
+  return db.collection(collectionName).updateOne({ _id: sensor._id }, { $set: { mapPosition: sensor.mapPosition } })
+}
+
 async function removeSensor (db, id) {
   return db.collection(collectionName).deleteOne({ _id: id })
 }
@@ -21,6 +25,7 @@ async function dropSensors (db) {
 module.exports = {
   getSensors,
   postSensor,
+  updateSensor,
   removeSensor,
   dropSensors
 }
