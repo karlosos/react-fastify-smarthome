@@ -3,9 +3,11 @@ import { makeStyles, withStyles } from '@material-ui/core/styles'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import Typography from '@material-ui/core/Typography'
 import { useSelector, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
+
+import CloseIcon from '@material-ui/icons/Close'
+import IconButton from '@material-ui/core/Button'
 
 import Paper from '@material-ui/core/Paper'
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel'
@@ -108,7 +110,9 @@ const ExpansionPanelSummary = withStyles({
   },
   expanded: {},
   expandIcon: {
-    marginRight: '8px'
+    marginLeft: '-16px',
+    marginRight: '8px',
+    padding: '6px'
   }
 })(MuiExpansionPanelSummary)
 
@@ -217,19 +221,17 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
                 </>
               }
               secondary={
-                <>
-                  <Typography
-                    component='span'
-                    variant='body2'
-                    className={classes.inline}
-                    color='textPrimary'
-                  >
-                    <ItemDisplayedInfo infoType='description' sensorType={type} />
-                  </Typography>
-                </>
+                <span className={classes.item}>
+                  {drawItemInfo(type, sensorData, classes, handleRemoveClick)}
+                </span>
               }
             />
-            {drawItemInfo(type, sensorData, classes, handleRemoveClick)}
+            <IconButton
+              className={classes.close}
+              onClick={() => handleRemoveClick(true)}
+            >
+              <CloseIcon />
+            </IconButton>
           </ListItem>
         </ExpansionPanelSummary>
         {expansionPanelDetails}
