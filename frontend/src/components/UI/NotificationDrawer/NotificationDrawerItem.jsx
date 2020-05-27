@@ -20,15 +20,16 @@ const useStyles = makeStyles(theme => ({
   sensor: {
     fontWeight: 'bold'
   },
-  icon: {
+  icon: props => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     transform: 'scale(1.34)',
     minWidth: '20px',
     textAlign: 'center',
-    marginRight: '1rem'
-  },
+    marginRight: '1rem',
+    color: props.accentColor
+  }),
   elevation: props => ({
     transform: props.clicked ? 'scale(1.04)' : '',
     transition: 'transform 0.2s ease',

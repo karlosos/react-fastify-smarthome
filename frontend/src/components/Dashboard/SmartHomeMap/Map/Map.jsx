@@ -23,8 +23,7 @@ const SENSOR_COEFFICIENT = 20
 
 const useStyles = makeStyles((props) => ({
   container: {
-    position: 'relative',
-    overflow: 'hidden'
+    position: 'relative'
   },
   image: props => ({
     cursor: props.mapDisabled
@@ -52,6 +51,7 @@ const HomeMap = () => {
   const [mapHeight, setMapHeight] = useState(null)
   const [mapWidth, setMapWidth] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
+  const [isMapReady, setMapReady] = useState(false)
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -113,6 +113,7 @@ const HomeMap = () => {
         const { height, width } = picRef.current
         setMapHeight(height)
         setMapWidth(width)
+        setMapReady(true)
       }
     }
     window.addEventListener('resize', handleResize)
@@ -169,6 +170,7 @@ const HomeMap = () => {
   /** Function sets starting map size after image loading. **/
   function setOnLoadMapSize () {
     const { height, width } = picRef.current
+    setMapReady(true)
     setMapHeight(height)
     setMapWidth(width)
   }
@@ -185,7 +187,7 @@ const HomeMap = () => {
         onLoad={setOnLoadMapSize}
       />
       {
-        sensors
+        isMapReady ? sensors
           .map((point) => (
             validPointData(point) &&
               <Sensor
@@ -203,6 +205,7 @@ const HomeMap = () => {
                 sensorColor={'black' && sensorsInfo[point.type] && sensorsInfo[point.type].color}
               />
           ))
+          : null
       }
 
       <MapModal

@@ -27,6 +27,7 @@ import LightItemDetails from './ItemDetails/LightItemDetails'
 import WindowBlindsItemDetails from './ItemDetails/WindowBlindsItemDetails'
 
 import { drawSensorGraphicComponent } from '../SmartHomeMap/Map/Sensor/SensorGraphicComponent.jsx'
+import { convertHsvToHsl } from '../SmartHomeMap/Map/Sensor/helpers'
 
 const useStyles = makeStyles(theme => ({
   elevation: props => ({
@@ -62,15 +63,16 @@ const useStyles = makeStyles(theme => ({
       cursor: 'pointer'
     }
   }),
-  icon: {
+  icon: props => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     transform: 'scale(1.54)',
     minWidth: '30px',
     textAlign: 'center',
-    marginRight: '1rem'
-  }
+    marginRight: '1rem',
+    color: props.accentColor
+  })
 }))
 
 const ExpansionPanel = withStyles({
@@ -168,10 +170,16 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
     }
   }
 
+  const getLightColor = () => {
+    const hsl = convertHsvToHsl(sensorData.hue, sensorData.saturation, sensorData.value)
+
+    return `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`
+  }
+
   const bgColor =
     sensorData.id === mapListCommunication.pressedItemId
       ? sensorsInfo[type] && sensorsInfo[type].colorLight : 'white'
-  const accentColor = sensorsInfo[type] ? sensorsInfo[type].color : 'black'
+  const accentColor = type === 'LED_CONTROLLER' ? getLightColor() : sensorsInfo[type] ? sensorsInfo[type].color : 'black'
   const clicked = sensorData.id === mapListCommunication.pressedItemId
   const props = { accentColor, bgColor, clicked, isOnMap }
   const classes = useStyles(props)

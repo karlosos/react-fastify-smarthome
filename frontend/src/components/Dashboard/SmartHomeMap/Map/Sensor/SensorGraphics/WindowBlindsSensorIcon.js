@@ -17,8 +17,7 @@ const useStyles = makeStyles((props) => ({
   },
   blind: props => ({
     fontSize: '1.6vh',
-    clipPath: `polygon(0 0, 100% 0, 100% ${props.position}%, 0 ${props.position}%)`,
-    color: 'rgba(0, 0, 0, 0.65)'
+    clipPath: `polygon(0 0, 100% 0, 100% ${props.position}%, 0 ${props.position}%)`
   })
 }))
 

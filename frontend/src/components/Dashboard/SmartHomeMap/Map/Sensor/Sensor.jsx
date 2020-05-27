@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
 import { onPointClick } from '@data/actions/mapListCommunicationActions.js'
 import { Paper } from '@material-ui/core'
+import { convertHsvToHsl } from './helpers'
 
 import { drawSensorGraphicComponent } from './SensorGraphicComponent.jsx'
 
@@ -57,22 +58,6 @@ const Sensor = (props) => {
       id,
       borderColor
     ))
-  }
-
-  const convertHsvToHsl = (h, s, v) => {
-    const l = (2 - s / 100) * v / 2
-
-    if (l !== 0) {
-      if (l === 100) {
-        s = 0
-      } else if (l < 50) {
-        s = s * v / (l * 2)
-      } else {
-        s = s * v / (200 - l * 2)
-      }
-    }
-
-    return [h, s, l]
   }
 
   const getLightColor = () => {
