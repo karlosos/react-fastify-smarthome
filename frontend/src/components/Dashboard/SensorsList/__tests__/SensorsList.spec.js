@@ -128,4 +128,89 @@ describe('<SensorsList />', () => {
     // 1 sensor + header = 2 children
     expect(queryByTestId('not-connected-sensors-list').childElementCount).toBe(2)
   })
+
+  test('should render lists headers when sensorsLists have elements', () => {
+    store = mockStore({
+      sensor: {
+        sensors: {
+          temperatureSensors: [
+            {
+              id: 1,
+              type: 'TEMPERATURE_SENSOR',
+              value: 21
+            },
+            {
+              id: 9,
+              type: 'TEMPERATURE_SENSOR',
+              value: 22,
+              mapPosition: {
+                x: 0,
+                y: 0
+              }
+            },
+            {
+              id: 10,
+              type: 'TEMPERATURE_SENSOR',
+              value: 22,
+              mapPosition: {
+                x: 0,
+                y: 0
+              }
+            }]
+        }
+      },
+      mapListCommunication: {
+        pressedItemId: 3
+      },
+      dbInteraction: {
+        _id: 1,
+        removeError: false,
+        removeErrorPoints: []
+      },
+      loadingSensors: false
+    })
+
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <SnackbarProvider>
+          <SensorsList />
+        </SnackbarProvider>
+      </Provider>
+
+    )
+    expect(queryByTestId('sensors-list')).toBeTruthy()
+    expect(queryByTestId('notConnected-header')).toBeTruthy()
+    expect(queryByTestId('connected-header')).toBeTruthy()
+  })
+
+  test('should not render lists headers when sensorsLists are empty', () => {
+    store = mockStore({
+      sensor: {
+        sensors: {
+          temperatureSensors: []
+        }
+      },
+      mapListCommunication: {
+        pressedItemId: 3
+      },
+      dbInteraction: {
+        _id: 1,
+        removeError: false,
+        removeErrorPoints: []
+      },
+      loadingSensors: false
+    })
+
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <SnackbarProvider>
+          <SensorsList />
+        </SnackbarProvider>
+      </Provider>
+
+    )
+    expect(queryByTestId('sensors-list')).toBeTruthy()
+    expect(queryByTestId('notConnected-header')).toBeFalsy()
+    expect(queryByTestId('connected-header')).toBeFalsy()
+  })
 })

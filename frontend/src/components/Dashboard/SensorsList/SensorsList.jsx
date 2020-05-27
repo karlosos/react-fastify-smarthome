@@ -15,6 +15,7 @@ import { useSnackbar } from 'notistack'
 
 import { dbRemovePoint, dbUpdateRemoveErrorPoints } from '@data/actions/dbActions.js'
 import { onMapClick } from '@data/actions/mapListCommunicationActions.js'
+import { divideSensors, isSensorsListEmpty } from './helpers'
 
 const useStyles = makeStyles((theme) => ({
   root: props => ({
@@ -44,17 +45,6 @@ function drawItems (sensors, isOnMap, handleRemoveClick, expanded, handleChangeE
       )
     }))
   }))
-}
-
-const divideSensors = (sensors) => {
-  const connectedSensors = {}
-  const notConnectedSensors = {}
-  for (const key in sensors) {
-    connectedSensors[key] = sensors[key].filter(sensor => sensor.mapPosition !== undefined)
-    notConnectedSensors[key] = sensors[key].filter(sensor => sensor.mapPosition === undefined)
-  }
-
-  return { connectedSensors, notConnectedSensors }
 }
 
 export default function SensorsList () {
@@ -122,14 +112,28 @@ export default function SensorsList () {
       <List
         className={classes.list}
         data-testid='not-connected-sensors-list'
-        subheader={<ListSubheader disableSticky>{t('dashboard:sensors-not-placed')}</ListSubheader>}
+        subheader={!isSensorsListEmpty(notConnectedSensors) &&
+          <ListSubheader
+            disableSticky
+            className={classes.listSubheader}
+            data-testid='notConnected-header'
+          >
+            {t('dashboard:sensors-not-placed')}
+          </ListSubheader>}
       >
         {drawItems(notConnectedSensors, false, setActiveModal, expanded, handleChangeExpanded)}
       </List>
       <List
         className={classes.list}
         data-testid='connected-sensors-list'
-        subheader={<ListSubheader disableSticky>{t('dashboard:sensors-placed')}</ListSubheader>}
+        subheader={!isSensorsListEmpty(connectedSensors) &&
+          <ListSubheader
+            disableSticky
+            className={classes.listSubheader}
+            data-testid='connected-header'
+          >
+            {t('dashboard:sensors-placed')}
+          </ListSubheader>}
       >
         {drawItems(connectedSensors, true, setActiveModal, expanded, handleChangeExpanded)}
       </List>
