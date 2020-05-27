@@ -56,7 +56,3 @@ export const updateNotificationsFail = error => ({
   type: actionTypes.NOTIFICATIONS_UPDATE_FAIL,
   error
 })
-
-export const updateNotificationsContinue = () => ({
-  type: actionTypes.NOTIFICATIONS_UPDATE_CONTINUE
-})
