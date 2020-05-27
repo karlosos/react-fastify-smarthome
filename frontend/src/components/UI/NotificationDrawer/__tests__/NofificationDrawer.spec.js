@@ -132,7 +132,7 @@ describe('<NotificationDrawer />', () => {
       <Provider store={store}>
         <MemoryRouter initialEntries={initialRoute}>
           <I18nextProvider i18n={i18n}>
-            <NotificationDrawer checkedNotifications={checkedNotifications} uncheckedNotifications={uncheckedNotifications} />
+            <NotificationDrawer checkedNotifications={[checkedNotifications]} uncheckedNotifications={uncheckedNotifications} />
           </I18nextProvider>
         </MemoryRouter>
       </Provider>
@@ -158,6 +158,22 @@ describe('<NotificationDrawer />', () => {
 
     const expectedAction = { type: 'NOTIFICATIONS_CHECK', id: 1 }
     fireEvent.click(checkIcons[0])
+    const lastAction = store.getActions().length - 1
+
+    expect(store.getActions()[lastAction]).toEqual(expectedAction)
+  })
+  test('should close the drawer', () => {
+    const { queryByTestId } = render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={initialRoute}>
+          <I18nextProvider i18n={i18n}>
+            <NotificationDrawer checkedNotifications={[]} uncheckedNotifications={[]} />
+          </I18nextProvider>
+        </MemoryRouter>
+      </Provider>
+    )
+    const expectedAction = { type: 'NOTIFICATION_DRAWER_CLOSE' }
+    fireEvent.click(queryByTestId('link-notification-history'))
     const lastAction = store.getActions().length - 1
 
     expect(store.getActions()[lastAction]).toEqual(expectedAction)
