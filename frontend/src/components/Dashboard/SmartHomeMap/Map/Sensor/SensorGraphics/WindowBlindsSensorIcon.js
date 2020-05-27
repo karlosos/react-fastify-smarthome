@@ -9,14 +9,14 @@ const useStyles = makeStyles((props) => ({
     position: 'relative'
   },
   inner: {
-    fontSize: '2.5vh',
+    fontSize: '2.9vh',
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)'
   },
   blind: props => ({
-    fontSize: '1.6vh',
+    fontSize: '2vh',
     clipPath: `polygon(0 0, 100% 0, 100% ${props.position}%, 0 ${props.position}%)`
   })
 }))

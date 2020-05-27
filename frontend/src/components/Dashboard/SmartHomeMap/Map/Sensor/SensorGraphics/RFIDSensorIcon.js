@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((props) => ({
   size: {
-    fontSize: '2.55vh'
+    fontSize: '3.1vh'
   }
 }))
 

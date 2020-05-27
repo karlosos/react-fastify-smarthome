@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transform: 'scale(1.34)',
+    transform: 'scale(1.24)',
     minWidth: '20px',
     textAlign: 'center',
     marginRight: '1rem',

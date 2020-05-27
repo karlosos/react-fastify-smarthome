@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   size: {
-    fontSize: '1.6vh'
+    fontSize: '1.95vh'
   },
   smokePulse: {
     color: 'rgba(235, 49, 52, 1)',
@@ -19,13 +19,13 @@ const useStyles = makeStyles({
       transform: 'scale(1.0)'
     },
     '25%': {
-      transform: 'scale(0.85)'
+      transform: 'scale(0.87)'
     },
     '50%': {
       transform: 'scale(1.0)'
     },
     '75%': {
-      transform: 'scale(1.08)'
+      transform: 'scale(1.06)'
     },
     '100%': {
       transform: 'scale(1.0)'

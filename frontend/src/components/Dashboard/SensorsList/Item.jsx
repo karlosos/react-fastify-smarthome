@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transform: 'scale(1.54)',
+    transform: 'scale(1.4)',
     minWidth: '30px',
     textAlign: 'center',
     marginRight: '1rem',
