@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((props) => ({
   temperature: props => ({
     fontSize: props.fontSize,
+    fontWeight: 'bold',
     textAlign: 'center',
     verticalAlign: 'center'
   })
