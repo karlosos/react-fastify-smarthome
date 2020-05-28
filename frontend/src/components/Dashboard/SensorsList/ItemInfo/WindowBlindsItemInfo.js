@@ -4,6 +4,6 @@ export default function WindowBlindsItemInfo ({ sensorData, classes, handleRemov
   const { t } = useTranslation()
 
   return (
-    `${t('dashboard:blinds-position')}: ${sensorData.position}`
+    `${t('dashboard:blinds-position')}: ${sensorData.position}%`
   )
 }
