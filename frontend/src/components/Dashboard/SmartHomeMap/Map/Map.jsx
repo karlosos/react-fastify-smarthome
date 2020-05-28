@@ -27,8 +27,8 @@ const useStyles = makeStyles((props) => ({
   },
   image: props => ({
     cursor: props.mapDisabled
-      ? props.pointPressed ? 'pointer' : 'cell'
-      : 'not-allowed',
+      ? 'cell'
+      : props.pointPressed ? 'pointer' : 'not-allowed',
     height: 'auto',
     width: 'auto',
     minWidth: '100%',
@@ -69,11 +69,12 @@ const HomeMap = () => {
     return Object.keys(sensors).map(key => sensors[key]).flat().filter(sensor => sensor.mapPosition)
   })
 
+  const checkListSensorClicked = () => sensors.filter(s => s.id === mapListCommunication.pressedItemId).length === 1
+
   const classes = useStyles({
     mapDisabled:
-      mapListCommunication.waitingForSensorLocation ||
-      mapListCommunication.mapPointPressed,
-    pointPressed: mapListCommunication.mapPointPressed
+      mapListCommunication.waitingForSensorLocation,
+    pointPressed: mapListCommunication.mapPointPressed || checkListSensorClicked()
   })
 
   useEffect(() => {
@@ -126,7 +127,7 @@ const HomeMap = () => {
   * @param e Mouse click event.
   */
   const addNewSensor = (e) => {
-    if (mapListCommunication.mapPointPressed) {
+    if (mapListCommunication.mapPointPressed || checkListSensorClicked()) {
       dispatch(onMapClick())
     }
     if (!mapListCommunication.waitingForSensorLocation) {

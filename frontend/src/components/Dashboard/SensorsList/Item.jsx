@@ -15,7 +15,7 @@ import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import SettingsIcon from '@material-ui/icons/Settings'
 
-import { onListClick } from '@data/actions/mapListCommunicationActions.js'
+import { onListClick, onMapClick } from '@data/actions/mapListCommunicationActions.js'
 import LightItemInfo from './ItemInfo/LightItemInfo'
 import RFIDSensorItemInfo from './ItemInfo/RFIDSensorItemInfo'
 import SmokeSensorItemInfo from './ItemInfo/SmokeSensorItemInfo'
@@ -206,7 +206,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
         >
           <ListItem
             id={`sensor${id}`}
-            onClick={(e) => { handleListItemClick(e) }}
+            onClick={(e) => { clicked ? dispatch(onMapClick()) : handleListItemClick(e) }}
           >
             <ListItemAvatar className={classes.icon}>
               {drawSensorGraphicComponent(type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : type, sensorData)}
