@@ -16,6 +16,9 @@ const NotificationDrawerList = ({ notifications, handleNotificationCheck, sensor
   const sensor = notification => sensors.find(sensor => sensor.id === notification.sensorId) || ''
 
   const [clicked, setClicked] = useState(null)
+  const handleClick = (id) => {
+    setClicked(clicked === id ? null : id)
+  }
 
   return (
     <div role='presentation' data-testid='notification-list'>
@@ -27,7 +30,7 @@ const NotificationDrawerList = ({ notifications, handleNotificationCheck, sensor
             handleNotificationCheck={handleNotificationCheck}
             sensor={sensor(notification)}
             clicked={clicked === notification.id}
-            handleClick={() => setClicked(notification.id)}
+            handleClick={() => handleClick(notification.id)}
           />
         ))}
       </List>
