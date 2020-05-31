@@ -34,6 +34,8 @@
   "smoke-sensor-desc": "Smoke sensor",
   "RGB-light-name": "RGB light",
   "RGB-light-desc": "Light",
+  "hvac-status-name": "HVAC status",
+  "hvac-room-name": "HVAC room",
 
   "sensor-add-failed": "Sensor {{id}} could not be added.",
   "sensor-remove-failed": "Error during removing sensor {{id}}",

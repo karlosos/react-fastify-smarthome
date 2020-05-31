@@ -34,6 +34,8 @@
   "smoke-sensor-desc": "Czujnik dymu",
   "RGB-light-name": "Światło RGB",
   "RGB-light-desc": "Światło",
+  "hvac-status-name": "Status HVAC",
+  "hvac-room-name": "Pokój HVAC",
 
   "sensor-add-failed": "Czujnik {{id}} nie został dodany.",
   "sensor-remove-failed": "Błąd przy usuwaniu czujnika {{id}}",

@@ -5,7 +5,7 @@ import { ListItem, ListItemText, IconButton, ListItemSecondaryAction, ListItemAv
 import Close from '@material-ui/icons/Close'
 import { makeStyles } from '@material-ui/core/styles'
 import timeConverter from './timeConverter'
-import ItemDisplayedInfo from '../../Dashboard/SensorsList/ItemDisplayedInfo'
+import { ItemDisplayedName } from '../../Dashboard/SensorsList/helpers'
 import sensorsInfo from '../../../common/constants/sensorsInfo'
 
 import { drawSensorGraphicComponent } from '../../Dashboard/SmartHomeMap/Map/Sensor/SensorGraphicComponent.jsx'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     transform: 'scale(1.24)',
-    minWidth: '20px',
+    minWidth: '30px',
     textAlign: 'center',
     marginRight: '1rem',
     color: props.accentColor
@@ -40,10 +40,10 @@ const useStyles = makeStyles(theme => ({
   })
 }))
 
-const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck, sensor, clicked, handleClick }) => {
+const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChecked }, handleNotificationCheck, sensorType, clicked, handleClick }) => {
   const { t } = useTranslation()
 
-  const accentColor = sensorsInfo[sensor.type] ? sensorsInfo[sensor.type].color : 'black'
+  const accentColor = sensorsInfo[sensorType] ? sensorsInfo[sensorType].color : 'black'
   const props = { accentColor, clicked }
   const classes = useStyles(props)
 
@@ -68,7 +68,7 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
     </ListItemSecondaryAction>
   )
 
-  const displayedInfo = sensor ? <ItemDisplayedInfo infoType='name' sensorType={sensor.type} /> : t('unknown-sensor')
+  const displayedInfo = sensorType ? <ItemDisplayedName sensorType={sensorType} /> : t('unknown-sensor')
 
   return (
     <Paper
@@ -79,7 +79,7 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
     >
       <ListItem key={id} data-testid='drawer-item' disabled={isChecked} className={classes.row}>
         <ListItemAvatar className={classes.icon}>
-          {drawSensorGraphicComponent(sensor.type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : sensor.type)}
+          {drawSensorGraphicComponent(sensorType === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : sensorType)}
         </ListItemAvatar>
         <ListItemText
           primary={

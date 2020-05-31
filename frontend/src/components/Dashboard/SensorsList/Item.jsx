@@ -23,7 +23,7 @@ import TemperatureSensorItemInfo from './ItemInfo/TemperatureSensorItemInfo'
 import WindowBlindsItemInfo from './ItemInfo/WindowBlindsItemInfo'
 import WindowSensorItemInfo from './ItemInfo/WindowSensorItemInfo'
 import sensorsInfo from '../../../common/constants/sensorsInfo'
-import ItemDisplayedInfo from './ItemDisplayedInfo'
+import { ItemDisplayedName } from './helpers'
 
 import LightItemDetails from './ItemDetails/LightItemDetails'
 import WindowBlindsItemDetails from './ItemDetails/WindowBlindsItemDetails'
@@ -220,7 +220,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
               primary={
                 <>
                   <span className={classes.type}>
-                    <ItemDisplayedInfo infoType='name' sensorType={type} />
+                    <ItemDisplayedName sensorType={type} />
                   </span>
                   <span className={classes.id}> {sensorData.id}</span>
                 </>

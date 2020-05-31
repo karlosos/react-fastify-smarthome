@@ -28,6 +28,15 @@ const sensorsInfo = {
     color: 'HSL(336, 87%, 52%)',
     colorLight: 'HSL(129, 59%, 85%)',
     colorDark: 'HSL(129, 59%, 12%)'
+  },
+  led: {
+    color: 'HSL(336, 87%, 52%)'
+  },
+  hvacStatus: {
+    color: 'HSL(151, 51%, 42%)'
+  },
+  hvacRoom: {
+    color: 'HSL(276, 87%, 52%)'
   }
 }
 
