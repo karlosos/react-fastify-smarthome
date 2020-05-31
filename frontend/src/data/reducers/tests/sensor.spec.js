@@ -53,7 +53,30 @@ describe('sensor reducer', () => {
         type: 'smokeSensor',
         isSmokeDetected: true
       }
-    ]
+    ],
+    HVACRooms: [
+      {
+        id: 6,
+        windowSensorIds: [],
+        type: 'HVACRoom',
+        temperatureSensorId: 61,
+        coolingTemperature: 130,
+        cooling: true,
+        heating: false,
+        heatingTemperature: 120,
+        hysteresis: 10
+      }
+    ],
+    lights: [
+      {
+        value: 100,
+        type: 'LED_CONTROLLER',
+        saturation: 100,
+        hue: 0,
+        id: 7
+      }
+    ],
+    updating: 0
   }
 
   test('should return the initial state', () => {
@@ -88,28 +111,6 @@ describe('sensor reducer', () => {
       ...initialState,
       loadingError: testError,
       loadingSensors: false
-    })
-  })
-
-  test(`should handle ${actionTypes.SENSOR_CHANGE_STATUS_START}`, () => {
-    expect(reducer(initialState, actions.changeSensorStatusStart())).toEqual({
-      ...initialState,
-      sensorError: null
-    })
-  })
-
-  // add payload to this test, once its added in the reducer!
-  test(`should handle ${actionTypes.SENSOR_CHANGE_STATUS_SUCCESS}`, () => {
-    expect(reducer(initialState, actions.changeSensorStatusSuccess())).toEqual({
-      ...initialState
-    })
-  })
-
-  test(`should handle ${actionTypes.SENSOR_CHANGE_STATUS_FAIL}`, () => {
-    const testError = 'Error'
-    expect(reducer(initialState, actions.changeSensorStatusFail(testError))).toEqual({
-      ...initialState,
-      sensorError: testError
     })
   })
 

@@ -10,7 +10,8 @@ const initialState = {
   lightDetailsError: null,
   windowBlindsDetailsError: null,
   hvacRoomsDetailsError: null,
-  hvacRoomsValidForm: true
+  hvacRoomsValidForm: true,
+  updating: 0
 }
 
 const fetchSensorsStart = (state, action) => {
@@ -40,10 +41,21 @@ const fetchSensorsSuccess = (state, action) => {
   }
 }
 
-const updateSensors = (state, action) => {
+const updateSensorsStart = (state, action) => {
+  return {
+    ...state
+  }
+}
+const updateSensorsSuccess = (state, action) => {
   return {
     ...state,
-    sensors: action.sensors
+    sensors: action.sensors,
+    updating: state.updating + 1
+  }
+}
+const updateSensorsFail = (state, action) => {
+  return {
+    ...state
   }
 }
 
@@ -52,26 +64,6 @@ const fetchSensorsFail = (state, action) => {
     ...state,
     loadingError: action.error,
     loadingSensors: false
-  }
-}
-
-const changeSensorStatusStart = (state, action) => {
-  return {
-    ...state,
-    sensorError: null
-  }
-}
-
-const changeSensorStatusSuccess = (state, action) => {
-  return {
-    ...state
-  }
-}
-
-const changeSensorStatusFail = (state, action) => {
-  return {
-    ...state,
-    sensorError: action.error
   }
 }
 
@@ -93,14 +85,16 @@ const refreshSensorsSuccess = (state, action) => {
     ...state,
     sensors,
     HVACRooms: action.sensors.HVACRooms,
-    refreshError: null
+    refreshError: null,
+    updating: 0
   }
 }
 
 const refreshSensorsFail = (state, action) => {
   return {
     ...state,
-    refreshError: action.error
+    refreshError: action.error,
+    updating: 0
   }
 }
 
@@ -180,15 +174,12 @@ export default function sensor (state = initialState, action) {
     case actionTypes.SENSORS_FETCH_FAIL:
       return fetchSensorsFail(state, action)
 
-    case actionTypes.SENSOR_CHANGE_STATUS_START:
-      return changeSensorStatusStart(state, action)
-    case actionTypes.SENSOR_CHANGE_STATUS_SUCCESS:
-      return changeSensorStatusSuccess(state, action)
-    case actionTypes.SENSOR_CHANGE_STATUS_FAIL:
-      return changeSensorStatusFail(state, action)
-
-    case actionTypes.SENSORS_UPDATE_ACTION:
-      return updateSensors(state, action)
+    case actionTypes.SENSORS_UPDATE_START:
+      return updateSensorsStart(state, action)
+    case actionTypes.SENSORS_UPDATE_SUCCESS:
+      return updateSensorsSuccess(state, action)
+    case actionTypes.SENSORS_UPDATE_FAIL:
+      return updateSensorsFail(state, action)
 
     case actionTypes.SENSORS_REFRESH_START:
       return refreshSensorsStart(state, action)

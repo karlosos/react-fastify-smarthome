@@ -1,8 +1,7 @@
 import * as actions from '../../actions/sensor'
-import { put, call } from 'redux-saga/effects'
+import { put, call, delay, select } from 'redux-saga/effects'
 import {
   getSensors,
-  changeSensorStatus,
   refreshSensors,
   changeLightDetails,
   changeWindowBlindsDetails,
@@ -35,25 +34,28 @@ export function * loadSensorsSaga () {
   }
 }
 
-export function * changeSensorStatusSaga (action) {
-  yield put(actions.changeSensorStatusStart())
+export function * updateSensorsSaga (action) {
+  yield put(actions.updateSensorsStart())
   try {
-    const response = yield call(changeSensorStatus, action.sensorId) // exchange with real async inside changeSensorStatus
-    yield put(actions.changeSensorStatusSuccess(response))
+    yield put(actions.updateSensorsSuccess(action.sensors))
   } catch (error) {
-    yield put(actions.changeSensorStatusFail(error))
+    yield put(actions.updateSensorsFail(error))
   }
 }
 
 export function * refreshSensorsSaga () {
   yield put(actions.refreshSensorsStart())
-  try {
-    const sensors = yield call(refreshSensors)
-    sensors.HVACRooms = changeHvacTemperatureValueFormat(sensors.HVACRooms)
-    sensors.temperatureSensors = changeSensorTemperatureValueFormat(sensors.temperatureSensors)
-    yield put(actions.refreshSensorsSuccess(sensors))
-  } catch (error) {
-    yield put(actions.refreshSensorsFail(error))
+  while (true) {
+    yield delay(5000)
+    try {
+      const sensors = yield call(refreshSensors)
+      sensors.HVACRooms = changeHvacTemperatureValueFormat(sensors.HVACRooms)
+      sensors.temperatureSensors = changeSensorTemperatureValueFormat(sensors.temperatureSensors)
+      const { updating } = (yield select()).sensor
+      updating === 0 && (yield put(actions.refreshSensorsSuccess(sensors)))
+    } catch (error) {
+      yield put(actions.refreshSensorsFail(error))
+    }
   }
 }
 

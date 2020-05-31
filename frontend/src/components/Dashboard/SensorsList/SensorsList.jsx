@@ -58,11 +58,9 @@ export default function SensorsList () {
   const { enqueueSnackbar } = useSnackbar()
 
   const dispatch = useDispatch()
+
   useEffect(() => {
-    const interval = setInterval(function () { dispatch(refreshSensors()) }, 5000)
-    return () => {
-      clearInterval(interval)
-    }
+    dispatch(refreshSensors())
   }, [])
 
   const { removeErrorPoints, removeError } = useSelector((state) => state.dbInteraction)

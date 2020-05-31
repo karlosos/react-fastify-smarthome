@@ -13,6 +13,26 @@ export function updateSensors (sensors) {
   }
 }
 
+export function updateSensorsStart () {
+  return {
+    type: actionTypes.SENSORS_UPDATE_START
+  }
+}
+
+export function updateSensorsSuccess (sensors) {
+  return {
+    type: actionTypes.SENSORS_UPDATE_SUCCESS,
+    sensors
+  }
+}
+
+export function updateSensorsFail (error) {
+  return {
+    type: actionTypes.SENSORS_UPDATE_FAIL,
+    error
+  }
+}
+
 export function fetchSensorsStart () {
   return {
     type: actionTypes.SENSORS_FETCH_START
@@ -37,32 +57,6 @@ export function addSensorRequest (sensor) {
   return {
     type: actionTypes.ADD_SENSOR_REQUEST,
     sensor
-  }
-}
-
-export function changeSensorStatus (sensorId) {
-  return {
-    type: actionTypes.SENSOR_CHANGE_STATUS_ACTION,
-    sensorId
-  }
-}
-
-export function changeSensorStatusStart () {
-  return {
-    type: actionTypes.SENSOR_CHANGE_STATUS_START
-  }
-}
-
-export function changeSensorStatusSuccess () {
-  return {
-    type: actionTypes.SENSOR_CHANGE_STATUS_SUCCESS
-  }
-}
-
-export function changeSensorStatusFail (error) {
-  return {
-    type: actionTypes.SENSOR_CHANGE_STATUS_FAIL,
-    error
   }
 }
 
