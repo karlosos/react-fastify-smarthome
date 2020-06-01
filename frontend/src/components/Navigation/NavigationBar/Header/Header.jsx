@@ -59,7 +59,7 @@ function checkActive (url) {
     '/hvac': 1,
     '/authors': 2
   }
-  return sites[url] || 0
+  return sites[url]
 }
 
 export default function Header () {
