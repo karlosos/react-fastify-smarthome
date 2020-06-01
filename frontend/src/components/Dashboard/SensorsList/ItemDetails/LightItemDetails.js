@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
 import Button from '@material-ui/core/Button'
@@ -68,7 +68,21 @@ export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
   const [hue, setHue] = useState(sensorData.hue)
   const [saturation, setSaturation] = useState(sensorData.saturation)
   const [value, setValue] = useState(sensorData.value)
+  const [originalSensorData, setOriginalSensorData] = useState(sensorData)
   const classes = useStyles({ hue, saturation, value })
+
+  useEffect(() => {
+    const hasSensorDataChanged = sensorData.hue !== originalSensorData.hue ||
+        sensorData.value !== originalSensorData.value ||
+        sensorData.saturation !== originalSensorData.saturation
+
+    if (hasSensorDataChanged) {
+      setHue(sensorData.hue)
+      setSaturation(sensorData.saturation)
+      setValue(sensorData.value)
+      setOriginalSensorData(sensorData)
+    }
+  })
 
   const dispatchLightDetailsChange = () => {
     const lightSensorDetails = {
