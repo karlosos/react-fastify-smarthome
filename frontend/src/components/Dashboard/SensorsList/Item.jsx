@@ -190,6 +190,11 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
 
   const expansionPanelDetails = drawExpansionPanelDetails(type, sensorData, handleChangeExpanded)
 
+  const handleCloseClick = (e) => {
+    e.stopPropagation()
+    handleRemoveClick(true)
+  }
+
   return (
     <Paper
       className={classes.elevation}
@@ -228,7 +233,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
             />
             <IconButton
               className={classes.close}
-              onClick={() => handleRemoveClick(true)}
+              onClick={(e) => handleCloseClick(e)}
             >
               <CloseIcon />
             </IconButton>
