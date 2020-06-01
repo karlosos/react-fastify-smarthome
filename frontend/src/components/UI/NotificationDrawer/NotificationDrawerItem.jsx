@@ -87,7 +87,7 @@ const NotificationDrawerItem = ({ notification: { id, timestamp, sensorId, isChe
               <span className={classes.sensor}>
                 {displayedInfo}
               </span>
-              <span className={classes.id}> {sensorId}</span>
+              <span className={classes.id}>{sensorId > 0 ? ` ${sensorId}` : ''}</span>
             </div>
           }
           secondary={timeConverter(timestamp)}
