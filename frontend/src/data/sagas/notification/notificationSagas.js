@@ -10,11 +10,12 @@ import {
   checkNotificationsFail
 } from '@data/actions/notification'
 
+const sortNotifications = notifications => notifications.sort((a, b) => b.timestamp - a.timestamp)
+
 export function * fetchNotificationsSaga () {
   try {
     const result = yield call(fetchNotifications)
-    const sortedNotifications = result.sort((a, b) => b.timestamp - a.timestamp)
-    yield put(fetchNotificationsSuccess(sortedNotifications))
+    yield put(fetchNotificationsSuccess(sortNotifications(result)))
   } catch (error) {
     yield put(fetchNotificationsError(error))
   }
@@ -26,7 +27,7 @@ export function * updateNotificationsSaga () {
     try {
       const result = yield call(fetchNotifications)
       const { checking } = (yield select()).notification
-      !checking && (yield put(updateNotificationsSuccess(result)))
+      !checking && (yield put(updateNotificationsSuccess(sortNotifications(result))))
     } catch (error) {
       yield put(updateNotificationsFail(error))
     }
