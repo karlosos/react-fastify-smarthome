@@ -164,8 +164,10 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
     ))
   }
 
-  const handleListItemClick = (e) => {
-    clickDispatch(accentColor, sensorData, isOnMap)
+  const handleListItemClick = (e, clicked) => {
+    clicked
+      ? dispatch(onMapClick())
+      : clickDispatch(accentColor, sensorData, isOnMap)
     if (isSensorEditable(type, true)) {
       if (expanded !== id) {
         handleChangeExpanded()()
@@ -211,7 +213,7 @@ const Item = ({ sensorData, isOnMap, handleRemoveClick, expanded, handleChangeEx
         >
           <ListItem
             id={`sensor${id}`}
-            onClick={(e) => { clicked ? dispatch(onMapClick()) : handleListItemClick(e) }}
+            onClick={(e) => { handleListItemClick(e, clicked) }}
           >
             <ListItemAvatar className={classes.icon}>
               {drawSensorGraphicComponent(type === 'TEMPERATURE_SENSOR' ? 'TEMPERATURE_SENSOR_ICON' : type, sensorData)}
