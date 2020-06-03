@@ -11,6 +11,7 @@ const initialState = {
   windowBlindsDetailsError: null,
   hvacRoomsDetailsError: null,
   hvacRoomsValidForm: true,
+  updateError: null,
   updating: 0
 }
 
@@ -43,19 +44,22 @@ const fetchSensorsSuccess = (state, action) => {
 
 const updateSensorsStart = (state, action) => {
   return {
-    ...state
+    ...state,
+    updateError: null
   }
 }
 const updateSensorsSuccess = (state, action) => {
   return {
     ...state,
     sensors: action.sensors,
-    updating: state.updating + 1
+    updating: state.updating + 1,
+    updateError: false
   }
 }
 const updateSensorsFail = (state, action) => {
   return {
-    ...state
+    ...state,
+    updateError: true
   }
 }
 

@@ -1,13 +1,19 @@
 /* globals describe, test, expect */
 
-import { takeLatest, put, call } from 'redux-saga/effects'
+import { takeLatest, put, call, delay, select } from 'redux-saga/effects'
 import { watchSensors } from './index'
-import { loadSensorsSaga, refreshSensorsSaga, changeLightSensorDetailsSaga, changeWindowBlindsSensorDetailsSaga, changeHvacRoomsDetailsSaga } from './sensorSagas'
+import {
+  loadSensorsSaga,
+  refreshSensorsSaga,
+  changeLightSensorDetailsSaga,
+  changeWindowBlindsSensorDetailsSaga,
+  updateSensorsSaga,
+  changeHvacRoomsDetailsSaga
+} from './sensorSagas'
 import sagaHelper from 'redux-saga-testing'
 
 import {
   getSensors,
-  updateSensorsSaga,
   refreshSensors,
   changeLightDetails,
   changeWindowBlindsDetails,
@@ -35,6 +41,9 @@ describe('sensors watcher', () => {
 
     expect(gen.next().value)
       .toEqual(takeLatest(actionTypes.HVAC_ROOMS_CHANGE_ACTION, changeHvacRoomsDetailsSaga))
+
+    expect(gen.next().value)
+      .toEqual(takeLatest(actionTypes.SENSORS_UPDATE_ACTION, updateSensorsSaga))
 
     expect(gen.next().done)
       .toEqual(true)
@@ -122,9 +131,18 @@ describe('refreshSensorsSaga', () => {
       HVACRooms: []
     }
 
+    const fakeStore = {
+      sensor: {
+        updating: 0
+      }
+    }
+
     it('should put refreshSensorsStart action', result => {
       expect(result).toEqual(put(actions.refreshSensorsStart()))
     })
+
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
 
     it('should make a successful request to API', result => {
       expect(result).toEqual(call(refreshSensors))
@@ -132,12 +150,65 @@ describe('refreshSensorsSaga', () => {
       return testSensors
     })
 
+    it('should select store', result => {
+      expect(result).toEqual(select())
+      return fakeStore
+    })
+
     it('should put refreshSensorsSuccess action', result => {
       expect(result).toEqual(put(actions.refreshSensorsSuccess(testSensors)))
     })
 
-    it('should be done', result => {
-      expect(result).toBeUndefined()
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
+
+    it('should not be done', result => {
+      expect(result).toBeDefined()
+    })
+  })
+
+  describe('should skip ongoing refresh action and start again', () => {
+    const it = sagaHelper(refreshSensorsSaga())
+    const testSensors = {
+      temperatureSensors: [],
+      HVACRooms: []
+    }
+
+    const fakeStore = {
+      sensor: {
+        updating: 1
+      }
+    }
+
+    it('should put refreshSensorsStart action', result => {
+      expect(result).toEqual(put(actions.refreshSensorsStart()))
+    })
+
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(refreshSensors))
+
+      return testSensors
+    })
+
+    it('should select store', result => {
+      expect(result).toEqual(select())
+      return fakeStore
+    })
+
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
+
+    it('should make a successful request to API', result => {
+      expect(result).toEqual(call(refreshSensors))
+
+      return testSensors
+    })
+
+    it('should not be done', result => {
+      expect(result).toBeDefined()
     })
   })
 
@@ -147,6 +218,9 @@ describe('refreshSensorsSaga', () => {
     it('should put fetchSensorsStart action', result => {
       expect(result).toEqual(put(actions.refreshSensorsStart()))
     })
+
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
 
     it('should make an unsuccessful request to API', result => {
       expect(result).toEqual(call(refreshSensors))
@@ -158,8 +232,11 @@ describe('refreshSensorsSaga', () => {
       expect(result).toEqual(put(actions.refreshSensorsFail(new Error('test error'))))
     })
 
-    it('should be done', result => {
-      expect(result).toBeUndefined()
+    it('should call delay', result =>
+      expect(result).toEqual(delay(5000)))
+
+    it('should not be done', result => {
+      expect(result).toBeDefined()
     })
   })
 })
@@ -363,6 +440,36 @@ describe('changeHvacRoomsDetailsSaga', () => {
 
     it('should put changeHvacRoomsDetailsFail action', result => {
       expect(result).toEqual(put(actions.changeHvacRoomsDetailsFail(new Error('test error'))))
+    })
+
+    it('should be done', result => {
+      expect(result).toBeUndefined()
+    })
+  })
+})
+
+describe('updateSensorsSaga', () => {
+  describe('should update sensor successfuly', () => {
+    const action = {
+      sensors: {
+        temperatureSensors: [
+          {
+            id: 52,
+            type: 'testsens421',
+            isOn: true
+          }
+        ]
+      }
+    }
+
+    const it = sagaHelper(updateSensorsSaga(action))
+
+    it('should put updateSensorsStart action', result => {
+      expect(result).toEqual(put(actions.updateSensorsStart()))
+    })
+
+    it('should put updateSensorsSuccess action', result => {
+      expect(result).toEqual(put(actions.updateSensorsSuccess(action.sensors)))
     })
 
     it('should be done', result => {

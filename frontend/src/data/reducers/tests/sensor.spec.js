@@ -7,14 +7,19 @@ import * as actions from '../../actions/sensor'
 describe('sensor reducer', () => {
   const initialState = {
     sensors: [],
+    HVACRooms: [],
     loadingSensors: false,
     loadingError: null,
     sensorError: null,
+    refreshError: null,
+    lightDetailsError: null,
+    windowBlindsDetailsError: null,
     hvacRoomsDetailsError: null,
-    hvacRoomsValidForm: true
+    hvacRoomsValidForm: true,
+    updating: 0
   }
 
-  const testSensors = {
+  const dashboardSensors = {
     temperatureSensors: [
       {
         id: 1,
@@ -54,19 +59,6 @@ describe('sensor reducer', () => {
         isSmokeDetected: true
       }
     ],
-    HVACRooms: [
-      {
-        id: 6,
-        windowSensorIds: [],
-        type: 'HVACRoom',
-        temperatureSensorId: 61,
-        coolingTemperature: 130,
-        cooling: true,
-        heating: false,
-        heatingTemperature: 120,
-        hysteresis: 10
-      }
-    ],
     lights: [
       {
         value: 100,
@@ -75,8 +67,26 @@ describe('sensor reducer', () => {
         hue: 0,
         id: 7
       }
-    ],
-    updating: 0
+    ]
+  }
+
+  const HVACRooms = [
+    {
+      id: 6,
+      windowSensorIds: [],
+      type: 'HVACRoom',
+      temperatureSensorId: 61,
+      coolingTemperature: 130,
+      cooling: true,
+      heating: false,
+      heatingTemperature: 120,
+      hysteresis: 10
+    }
+  ]
+
+  const testSensors = {
+    ...dashboardSensors,
+    HVACRooms
   }
 
   test('should return the initial state', () => {
@@ -98,7 +108,8 @@ describe('sensor reducer', () => {
   test(`should handle ${actionTypes.SENSORS_FETCH_SUCCESS}`, () => {
     expect(reducer(initialState, actions.fetchSensorsSuccess(testSensors))).toEqual({
       ...initialState,
-      sensors: testSensors,
+      sensors: dashboardSensors,
+      HVACRooms: testSensors.HVACRooms,
       loadingSensors: false,
       refreshError: null
     })
@@ -123,7 +134,9 @@ describe('sensor reducer', () => {
   test(`should handle ${actionTypes.SENSORS_REFRESH_SUCCESS}`, () => {
     expect(reducer(initialState, actions.refreshSensorsSuccess(testSensors))).toEqual({
       ...initialState,
-      sensors: testSensors,
+      sensors: dashboardSensors,
+      HVACRooms: testSensors.HVACRooms,
+      loadingSensors: false,
       refreshError: null
     })
   })
