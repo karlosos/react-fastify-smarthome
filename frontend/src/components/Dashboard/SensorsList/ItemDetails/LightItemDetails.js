@@ -29,11 +29,12 @@ const useStyles = makeStyles({
   }),
   button: props => ({
     backgroundColor: hsv(props.hue, props.saturation, props.value),
+    '&:hover': {
+      backgroundColor: hsv(props.hue, props.saturation, props.value)
+    },
     transition: 'all 0s ease',
-    marginTop: 16
-  }),
-  buttonText: props => ({
-    color: `hsl(${360 - props.hue}, ${100 - props.saturation}%, 50%)`
+    marginTop: 16,
+    padding: 15
   })
 })
 
@@ -61,6 +62,13 @@ const CustomSlider = withStyles(theme => ({
     marginTop: -1
   }
 }))(Slider)
+
+const CustomButton = withStyles(theme => ({
+  contained: {
+    color: theme.palette.getContrastText(theme.palette.background.paper),
+    backgroundColor: theme.palette.background.paper
+  }
+}))(Button)
 
 export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
   const { t } = useTranslation()
@@ -145,14 +153,17 @@ export default function LightItemInfo ({ sensorData, handleChangeExpanded }) {
       </div>
       <Box display='flex' justifyContent='center'>
         <Button
-          className={classes.button}
-          variant='outlined'
-          color='primary'
-          onClick={dispatchLightDetailsChange}
+          component='div'
+          className={classes.button} variant='outlined'
         >
-          <span className={classes.buttonText}>
-            {t('dashboard:sensor-detail-confirm')}
-          </span>
+          <CustomButton
+            variant='contained'
+            onClick={dispatchLightDetailsChange}
+          >
+            <span className={classes.buttonText}>
+              {t('dashboard:sensor-detail-confirm')}
+            </span>
+          </CustomButton>
         </Button>
       </Box>
     </div>
