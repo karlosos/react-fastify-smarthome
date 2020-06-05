@@ -25,12 +25,7 @@ const HVACList = () => {
   const HVACRooms = useSelector((state) => state.sensor.HVACRooms)
 
   const dispatch = useDispatch()
-  useEffect(() => {
-    const interval = setInterval(function () { dispatch(refreshSensors()) }, 5000)
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
+  useEffect(() => { dispatch(refreshSensors()) }, [])
 
   const [itemsToShow, setItemsToShow] = useState(10)
   const [displayShowMoreButton, setDisplayShowMoreButton] = useState(
