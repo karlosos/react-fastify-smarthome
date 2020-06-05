@@ -53,7 +53,7 @@ const SingleSensor = ({ windowId }) => {
           {t('hvac:window-sensor')}
         </Typography>
         <Typography className={classes.data}>
-          {windowStatus !== 'open' ? t('hvac:window-open') : t('hvac:window-closed')}
+          {windowStatus === 'open' ? t('hvac:window-open') : t('hvac:window-closed')}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardFooter}>
