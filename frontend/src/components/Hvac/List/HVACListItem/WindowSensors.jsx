@@ -42,7 +42,7 @@ const SingleSensor = ({ windowId }) => {
     ? windowSensors.find(sensor => sensor.id === windowId)
     : undefined
   const windowStatus = windowSensor !== undefined
-    ? windowSensors.status
+    ? windowSensor.status
     : 'NA'
 
   const { t } = useTranslation()
