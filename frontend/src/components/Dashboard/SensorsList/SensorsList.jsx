@@ -64,7 +64,7 @@ export default function SensorsList () {
   }, [])
 
   const { removeErrorPoints, removeError } = useSelector((state) => state.dbInteraction)
-  const { pressedItemId } = useSelector((state) => state.mapListCommunication)
+  const { pressedItemId, mapPointPressed } = useSelector((state) => state.mapListCommunication)
 
   useEffect(() => {
     if (removeError !== undefined) {
@@ -99,6 +99,12 @@ export default function SensorsList () {
   const handleChangeExpanded = (panel) => (e, isExpanded) => {
     setExpanded(isExpanded ? panel : false)
   }
+
+  useEffect(() => {
+    if (mapPointPressed) {
+      setExpanded(false)
+    }
+  }, [mapPointPressed])
 
   return (
     <Grid
