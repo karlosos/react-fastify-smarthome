@@ -27,6 +27,7 @@ I've learnt a lot from this project. Technologies that was used:
 - Unit testing with jest
 - Swagger documentation and OpenAPI
 - Internationalization with `il8next`
+- Docker
 
 ## Features
 
@@ -85,6 +86,16 @@ With correct `Name` and `Value`.
 - Frontend should be builded and served by backend. On every change frontend should be rebuilded and reloaded by backend.
 - Access frontend by `http://0.0.0.0:3000/`
 - Set cookie if request was forbidden.
+
+## Docker 🐋 
+
+Instead of configuring local development prerequisites you can use Docker with command:
+
+```
+sudo docker-compose up
+```
+
+This will build application with MongoDB and expose it to your machine.
 
 ## Testing 🚥
 
