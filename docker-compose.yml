@@ -12,7 +12,8 @@ services:
       - .:/usr/src/app
     depends_on:
       - database
-     
+    environment:
+      - DOCKER=true  
   database: # name of the service
     image: mongo # specify image to build container from
 

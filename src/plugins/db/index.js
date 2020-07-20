@@ -1,4 +1,4 @@
-const mongoURL = process.env.MONGODB_URI || 'mongodb://database/sensors_data'
+const mongoURL = process.env.DOCKER ? 'mongodb://database/sensors_data' : process.env.MONGODB_URI || 'mongodb://localhost/sensors_data'
 
 const fp = require('fastify-plugin')
 const mongo = require('fastify-mongodb')
