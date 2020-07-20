@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  description: API for Smart Home GateWay
+  version: 1.0.0
+  title: Smart Home API
+servers:
+  - url: /smart-home
+tags:
+  - name: Dashboard
+  - name: Configuration
+  - name: Notifications
+paths:
+  '/':
+    get:
+      summary: Health check
+      tags:
+        - Healthcheck
+      responses:
+        "200":
+          description: System status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Healthcheck'
+
+  '/dashboard':
+    get:
+      summary: Returns all data about home
+      tags:
+        - Dashboard
+      responses:
+        "200":
+          description: System status and information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+  '/hvac':
+    put:
+      summary: Updates a HVAC room configuration
+      tags:
+        - Configuration
+      parameters:
+        - $ref: '#/components/parameters/id32'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HVACRoom'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not found
+  '/blinds':
+    put:
+      summary: Sets Window blinds to given state.
+      tags:
+        - Configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WindowBlind'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not found
+  '/light':
+    put:
+      summary: Sets light to given color.
+      tags:
+        - Configuration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Light'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not found
+  '/notifications':
+    get:
+      summary: Returns notification list
+      tags:
+        - Notifications
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+  '/notifications/{id}':
+    delete:
+      summary: Deletes notification with given ID
+      tags:
+        - Notifications
+      parameters:
+      - $ref: '#/components/parameters/id64'
+      responses:
+        "200":
+          description: OK
+components:
+  parameters:
+    id32:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+    id64:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Healthcheck:
+      $ref: 'schemas/healthcheck.json'
+    Dashboard:
+      $ref: 'schemas/dashboard.json'
+    WindowSensor:
+      $ref: 'schemas/window-sensor.json'
+    WindowBlind:
+      $ref: 'schemas/window-blind.json'
+    TemperatureSensor:
+      $ref: 'schemas/temperature-sensor.json'
+    RFIDSensor:
+      $ref: 'schemas/rfid-sensor.json'
+    SmokeSensor:
+      $ref: 'schemas/smoke-sensor.json'
+    HVACStatus:
+      $ref: 'schemas/hvac-status.json'
+    HVACRoom:
+      $ref: 'schemas/hvac-room.json'
+    Light:
+      $ref: 'schemas/light.json'
+    Notification:
+      $ref: 'schemas/notification.json'

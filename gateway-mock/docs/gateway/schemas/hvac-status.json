@@ -1,0 +1,19 @@
+{
+  "$id": "hvac-status.json",
+  "title": "Hvac status",
+  "type": "object",
+  "description": "hvac status data",
+  "required": ["type", "heating", "cooling"],
+  "properties": {
+    "type": {
+        "type": "string",
+        "const": "HVACStatus"
+    },
+    "heating": {
+      "type": "boolean"
+    },
+    "cooling": {
+      "type": "boolean"
+    }
+  }
+}

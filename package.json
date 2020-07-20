@@ -35,7 +35,8 @@
     "redux-react-hook": "^4.0.1",
     "redux-saga": "^1.1.3",
     "redux-saga-testing": "^2.0.0",
-    "serve-static": "^1.14.1"
+    "serve-static": "^1.14.1",
+    "swagger-parser": "^10.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -74,7 +75,8 @@
     "build": "npm run build:frontend",
     "build:frontend": "webpack --mode production",
     "build:frontend:dev": "webpack --mode development --watch --progress",
-    "standard": "standard --fix"
+    "standard": "standard --fix",
+    "start:gateway:mock": "node gateway-mock/index.js && prism mock -h 0.0.0.0 -p 3001 gateway-mock/docs/gateway/openapi.json"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,13 @@
+{
+  "$id": "healthcheck.json",
+  "title": "Healthcheck",
+  "type": "object",
+  "description": "System status",
+  "properties": {
+    "status": {
+        "type": "integer",
+        "format": "int32",
+        "description": "Light ID"
+    }
+  }
+}
