@@ -14,6 +14,7 @@
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.5.0",
     "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
     "fastify": "^2.13.0",
     "fastify-cookie": "^3.6.0",
     "fastify-env": "^1.0.1",
@@ -76,7 +77,8 @@
     "build:frontend": "webpack --mode production",
     "build:frontend:dev": "webpack --mode development --watch --progress",
     "standard": "standard --fix",
-    "start:gateway:mock": "node gateway-mock/index.js && prism mock -h 0.0.0.0 -p 3001 gateway-mock/docs/gateway/openapi.json"
+    "start:gateway:mock": "node gateway-mock/index.js && prism mock -h 0.0.0.0 -p 3001 gateway-mock/docs/gateway/openapi.json",
+    "start:docker:mock": "concurrently --kill-others \"npm run start:watch\" \"npm run start:gateway:mock\""
   },
   "repository": {
     "type": "git",

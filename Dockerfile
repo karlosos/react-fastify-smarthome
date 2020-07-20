@@ -16,5 +16,6 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD [ "npm", "run", "build:frontend:dev" ]
-CMD [ "npm", "run", "start:watch" ]
+EXPOSE 3001
+CMD [ "npm", "run", "build:frontend" ]
+CMD [ "npm", "run", "start:docker:mock"]

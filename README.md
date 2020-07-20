@@ -97,6 +97,12 @@ sudo docker-compose up
 
 This will build application with MongoDB and expose it to your machine.
 
+Rebuilding image:
+
+```
+sudo docker-compose up --build
+```
+
 ## Testing 🚥
 
 Run frontend tests with: ```npm run test:frontend```
