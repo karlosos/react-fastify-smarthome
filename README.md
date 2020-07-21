@@ -111,7 +111,7 @@ Run backend tests with: ```npm run test:server```
 
 Run database test with: ```npm run test:db```
 
-## Using mock server 🎭
+## Using mock backend server 🎭
 
 Documentation is prepared using OpenAPI schema. You can acces this documentation under [localhost:3000/.well-known/documentation](localhost:3000/.well-known/documentation).
 
@@ -127,3 +127,47 @@ with any example provided in the `./src/docs/examples/` directory.
 * Follow the `positive_example` example.
   * Go to `openapi.json` and set what's needed.
   * Go to `./src/docs/examples` and create what's needed.
+
+## Using mock gateway 🎭
+
+Run mock gateway with `npm run start:gateway:mock`. Mock gateway will be working on port `3001`.
+Add/edit to `.env` follwing line:
+
+```
+GATEWAY_URL=http://localhost:3001
+```
+
+## Architecture 🏗️
+
+<!-- 
+```mermaid
+@startuml
+package "react-fastify-smarthome" {
+  [Frontend] - [Backend]
+  [Backend] -down- [MongoDB]
+database "MongoDB" {
+    [Notifications]
+    [Sensors]
+}
+ [Backend] -down- [BackendMock]
+ [GatewayMock] 
+ [Backend] ..> [GatewayMock]
+}
+
+[GatewayMock] -> [Gateway]
+[Backend] - [Gateway]
+[AndroidFrontend] - [Backend]
+[AndroidFrontend] ..> [BackendMock]
+@enduml
+```
+-->
+
+![https://i.imgur.com/pFzI80y.png](https://i.imgur.com/pFzI80y.png)
+
+This repository contains folders:
+
+- `docs` - with documentation resources such as images and diagrams
+- `frontend` - this is folder with frontend application implemented with React
+- `gateway-mock` - mock of gateway. Is used when there's no access to proper gateway.
+- `src` - this is backend application which has specialized API and works with MongoDB
+- `tests-server` - unit test for backend
