@@ -65,7 +65,7 @@
     "start": "node .",
     "start:watch": "nodemon .",
     "start:local": "npm run build:frontend && npm run start",
-    "start:local:mock": "prism mock -p 3001 http://localhost:3000/.well-known/documentation/json",
+    "start:local:mock": "prism mock -p 3001 http://127.0.0.1:3000/.well-known/documentation/json",
     "start:local:mock:watch": "nodemon --exec 'npm run start:local:mock'",
     "test": "npm run test:server",
     "test:server": "jest tests-server/",
